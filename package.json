@@ -1,0 +1,28 @@
+{
+  "name": "sona-sarovar-trust",
+  "version": "1.0.0",
+  "description": "Website for non-profit Sona Sarovar Trsut",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yasserhussain1110/sona-sarovar-trust.git"
+  },
+  "keywords": [
+    "non-profit",
+    "node",
+    "express",
+    "react",
+    "redux",
+    "mongo",
+    "mongoose"
+  ],
+  "author": "Yasser Hussain",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yasserhussain1110/sona-sarovar-trust/issues"
+  },
+  "homepage": "https://github.com/yasserhussain1110/sona-sarovar-trust#readme"
+}
