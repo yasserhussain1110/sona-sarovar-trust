@@ -4,7 +4,8 @@
   "description": "Website for non-profit Sona Sarovar Trsut",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=development webpack-dev-server",
+    "build": "NODE_ENV=production webpack -p"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,27 @@
   "bugs": {
     "url": "https://github.com/yasserhussain1110/sona-sarovar-trust/issues"
   },
-  "homepage": "https://github.com/yasserhussain1110/sona-sarovar-trust#readme"
+  "homepage": "https://github.com/yasserhussain1110/sona-sarovar-trust#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "html-webpack-plugin": "^2.28.0",
+    "react-hot-loader": "next",
+    "style-loader": "^0.18.1",
+    "webpack": "^2.6.1",
+    "webpack-dev-middleware": "^1.10.2",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-hot-middleware": "^2.18.0"
+  },
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0"
+  }
 }
