@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 // import reducer from './reducers';
 import App from './App';
-import './style.scss';
+import './style.css';
 
 const root = document.getElementById('root');
 
