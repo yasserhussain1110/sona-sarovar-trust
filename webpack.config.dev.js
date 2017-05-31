@@ -5,9 +5,12 @@ const utils = require('./webpack-utils/utils');
 const baseWebpackConfig = require('./webpack.config.base.js');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
+
+const devCodeEntry = ['react-hot-loader/patch', 'webpack/hot/dev-server', 'webpack-hot-middleware/client'];
+
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
-  baseWebpackConfig.entry[name] = ['react-hot-loader/patch'].concat(baseWebpackConfig.entry[name])
+  baseWebpackConfig.entry[name] = devCodeEntry.concat(baseWebpackConfig.entry[name])
 });
 
 module.exports = merge(baseWebpackConfig, {
