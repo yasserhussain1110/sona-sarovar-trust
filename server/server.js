@@ -4,7 +4,7 @@ const app = express();
 
 const port = process.env.PORT;
 
-require('./tools/setupDev')(app);
+require('./tools/setup-dev')(app);
 
 app.listen(port, () => {
   console.log(`Server started on ${port}`);
