@@ -8,18 +8,6 @@ function resolve(relPath) {
 }
 
 module.exports = {
-  /* devServer: {
-    host: 'localhost',
-    port: '3000',
-    hot: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    }
-  }, */
-  /*entry: [
-    'react-hot-loader/patch',
-    path.join(__dirname, './client/index.js')
-  ],*/
   entry: {
     app: resolve('./client/index.js')
   },
@@ -60,13 +48,6 @@ module.exports = {
       }
     ]
   },
-  /*plugins: dev ?
-    [
-      HTMLWebpackPluginConfig,
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin()
-    ] :
-    [HTMLWebpackPluginConfig, DefinePluginConfig, UglifyJsPluginConfig]*/
   plugins: [
     // copy custom static assets
     new CopyWebpackPlugin([
