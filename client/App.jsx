@@ -1,21 +1,10 @@
 import React from 'react';
-import {
-  BrowserRouter,
-  Route,
-  Link,
-} from 'react-router-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 
-import Home from './containers/Home';
-import About from './containers/About';
+import Home from './components/Home';
+import About from './components/About';
 
-/**
- * this container is defined as class so we can modify state
- */
 class App extends React.Component {
-  /**
-   * this is our statefull render
-   * @return {objects} our stateless components
-   */
   render() {
     return (
       <BrowserRouter>

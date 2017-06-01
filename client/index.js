@@ -3,15 +3,13 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 // import reducer from './reducers';
 import App from './App';
-import './style.css';
-
-const root = document.getElementById('root');
+import './stylesheets/main.scss';
 
 render(
   <AppContainer>
     <App />
   </AppContainer>,
-  root,
+  document.querySelector('#app'),
 );
 
 if (module.hot) module.hot.accept(App, () => render(App));
