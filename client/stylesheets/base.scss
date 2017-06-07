@@ -11,3 +11,17 @@ body {
   width: 90%;
   margin: auto;
 }
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #737070;
+}
+
+a:hover {
+  cursor: pointer;
+  color: #F7DB07;
+}
