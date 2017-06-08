@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const utils = require('./webpack-utils/utils');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -53,7 +54,11 @@ module.exports = {
     ]
   },
   plugins: [
-    // copy custom static assets
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'client/index.html',
+      inject: true
+    }),
     new CopyWebpackPlugin([
       {
         from: resolve('./client/static'),

@@ -1,1 +1,7 @@
-$primary: "blue"
+.carousal > .inactive {
+  display: none;
+}
+
+.carousal > .active {
+  display: initial;
+}

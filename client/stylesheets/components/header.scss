@@ -8,6 +8,10 @@
   font: normal normal bold 46px 'Kelly Slab',fantasy;
 }
 
+.nav-bar > .list-item > .active {
+  color: #F7DB07;
+}
+
 /*
   font-family: Charcoal, Impact, sans-serif;
   font-size: 40px;
@@ -27,6 +31,10 @@
   font: normal normal normal 15px/1.4em 'Courier New',courier-ps-w01,courier-ps-w02,courier-ps-w10,monospace;
   margin: 5px;
   padding: 0 10px;
+}
+
+.list-item:hover {
+  color: #F7DB07;
 }
 
 .nav {
