@@ -14,7 +14,7 @@ class Home extends Component {
 
     this.intervalHandler = setInterval(() => {
       this.updateImage();
-    }, 5000);
+    }, 6000);
 
     let i = 0;
 

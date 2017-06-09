@@ -11,6 +11,7 @@
   }
 
   position: relative;
+  width: 100%;
 
   .inactive {
     animation-duration: 2s;
@@ -26,6 +27,7 @@
 
   img {
     position: absolute;
-    width: 100%;
+    /* width: 1050px; */
+    width: 99%;
   }
 }
