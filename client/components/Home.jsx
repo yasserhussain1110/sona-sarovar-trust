@@ -6,7 +6,7 @@ class Home extends Component {
 
     this.state = {
       active: 0,
-      noImages: 3
+      noImages: 2
     };
 
     this.isActive = this.isActive.bind(this);
@@ -14,7 +14,13 @@ class Home extends Component {
 
     this.intervalHandler = setInterval(() => {
       this.updateImage();
-    }, 2000);
+    }, 5000);
+
+    let i = 0;
+
+    setInterval(() => {
+      console.log("tick " + (++i));
+    }, 1000);
   }
 
   componentWillUnmount() {
@@ -36,7 +42,6 @@ class Home extends Component {
       <div className="carousal">
         <img className={this.isActive(0) ? "active" : "inactive"} src="/static/IMG1.jpg" />
         <img className={this.isActive(1) ? "active" : "inactive"} src="/static/IMG2.jpg" />
-        <img className={this.isActive(2) ? "active" : "inactive"} src="/static/IMG3.jpg" />
       </div>
     );
   }
