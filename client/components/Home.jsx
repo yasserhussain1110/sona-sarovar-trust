@@ -15,12 +15,6 @@ class Home extends Component {
     this.intervalHandler = setInterval(() => {
       this.updateImage();
     }, 6000);
-
-    let i = 0;
-
-    setInterval(() => {
-      console.log("tick " + (++i));
-    }, 1000);
   }
 
   componentWillUnmount() {
