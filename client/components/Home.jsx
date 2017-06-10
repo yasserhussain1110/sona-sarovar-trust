@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import CarousalMessage from './CarousalMessage';
 
 class Home extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class Home extends Component {
       <div className="carousal">
         <img className={this.isActive(0) ? "active" : "inactive"} src="/static/IMG1.jpg" />
         <img className={this.isActive(1) ? "active" : "inactive"} src="/static/IMG2.jpg" />
+        <CarousalMessage />
       </div>
     );
   }

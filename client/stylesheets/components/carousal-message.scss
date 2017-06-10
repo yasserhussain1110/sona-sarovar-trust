@@ -1,0 +1,29 @@
+.carousal-message-container {
+  background-color: #316E5C;
+  position: absolute;
+  color: #EEEEEE;
+  right: 20px;
+  bottom: 20px;
+  width: 40%;
+  height: 15%;
+  font: normal normal normal 42px/1.4em 'Kelly Slab',fantasy;
+  font-size: 24px;
+  border-radius: 10px;
+
+  .message {
+    position: absolute;
+    padding: 10px;
+  }
+
+  .inactive {
+    animation-duration: 1s;
+    animation-name: hide;
+    opacity: 0;
+  }
+
+  .active {
+    animation-duration: 1s;
+    animation-name: show;
+    opacity: 1;
+  }
+}
