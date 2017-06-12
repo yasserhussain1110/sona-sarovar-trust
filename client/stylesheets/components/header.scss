@@ -8,7 +8,8 @@
   }
 
   .logo {
-    font: normal normal bold 46px 'Kelly Slab',fantasy;
+    font: $main-font;
+    font-weight: bold;
   }
 
   /*
@@ -27,7 +28,9 @@
 
   .list-item {
     display: inline;
-    font: normal normal normal 15px/1.4em 'Courier New',courier-ps-w01,courier-ps-w02,courier-ps-w10,monospace;
+    font: $secondary-font;
+    font-size: 15px;
+    line-height: 1.4em;
     margin: 5px;
     padding: 0 10px;
   }

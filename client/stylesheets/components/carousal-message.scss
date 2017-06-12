@@ -6,8 +6,9 @@
   bottom: 20px;
   width: 40%;
   height: 15%;
-  font: normal normal normal 42px/1.4em 'Kelly Slab',fantasy;
+  font: $main-font;
   font-size: 24px;
+  line-height: 1.4em;
   border-radius: 10px;
 
   .message {
