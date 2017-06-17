@@ -1,1 +1,42 @@
-$primary: "blue"
+.about {
+  background-color: #F1F4ED;
+  padding: 10px;
+
+  h2 {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .person-info {
+    margin: 10px 0;
+  }
+
+  .person-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .person-info {
+    display: flex;
+  }
+
+  .img-container {
+    margin-right: 10px;
+  }
+
+  .info {
+    margin-left: 20px;
+    font: normal normal normal 13px/1.4em Arial,'ｍｓ ｐゴシック','ms pgothic','돋움',dotum,helvetica,sans-serif;
+  }
+
+  .info > h3 {
+    padding: 2px;
+    margin: 2px;
+  }
+
+  .info-para {
+    padding: 2px;
+    margin: 2px;
+  }
+}
