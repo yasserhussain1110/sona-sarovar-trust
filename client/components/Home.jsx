@@ -48,7 +48,7 @@ class Home extends Component {
 
         <div className="info">
           <div className="short-bio">
-            <h3>School Of Promise Project</h3>
+            <h3>Sona Sarovar Trust</h3>
             <div className="details">
               <p>{details[0]}</p>
               <p>{details[1]}</p>

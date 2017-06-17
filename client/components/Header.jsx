@@ -4,8 +4,8 @@ import {NavLink} from 'react-router-dom';
 export default () => (
   <div className="header">
     <div className="logo">
-      <div className="top-portion">CHILDREN</div>
-      <div className="bottom-portion">OF AFRICA</div>
+      <div className="top-portion">SONA</div>
+      <div className="bottom-portion">TRUST</div>
     </div>
 
     <div className="nav">
