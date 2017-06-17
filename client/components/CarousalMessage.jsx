@@ -36,24 +36,13 @@ class CarousalMessage extends Component {
   }
 
   render() {
-    // let messagesWithClasses = messages.map((message, index) => (
-    //   React.cloneElement(
-    //     message,
-    //     {className: `${index === this.state.messageIndex ? "active" : "inactive"} message`}
-    //   )
-    // ));
-
-    let messageDivs = messages.map((message, index) => (
-      <div
-        key={index}
-        className={`${index === this.state.messageIndex ? "active" : "inactive"} message`}>
-        {message}
-      </div>
-    ));
-
     return (
-      <div className="carousal-message-container">
-        {messageDivs}
+      <div className="carousal-message-container">{messages.map((message, index) => (
+        <div
+          key={index}
+          className={`${index === this.state.messageIndex ? "active" : "inactive"} message`}>
+          {message}
+        </div>))}
       </div>
     );
   }
