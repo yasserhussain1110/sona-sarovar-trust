@@ -1,9 +1,9 @@
 import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 
-import Home from './components/Home';
-import About from './components/About';
-import Header from './components/Header'
+import Home from './containers/Home';
+import About from './containers/About';
+import Header from './containers/Header'
 import 'typeface-kelly-slab';
 
 class App extends React.Component {
@@ -12,8 +12,8 @@ class App extends React.Component {
       <BrowserRouter>
         <main>
           <Header/>
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
+          <Route exact path="/" component={Home}/>
+          <Route path="/about" component={About}/>
         </main>
       </BrowserRouter>
     );
