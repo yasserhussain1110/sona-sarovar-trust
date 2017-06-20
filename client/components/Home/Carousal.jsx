@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import CarousalMessageContainer from './CarousalMessageContainer';
-import CarousalImageContainer from './CarousalImageContainer';
+import React from 'react';
+import ImageCarousal from '../../lib/ImageCarousal';
+import MessageCarousal from '../../lib/MessageCarousal';
 
 const imageLinks = [
   "/static/IMG1.jpg",
@@ -13,60 +13,11 @@ const messages = [
   "Come, join our hands in helping improve their lives."
 ];
 
-class Carousal extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      numberOfImages: imageLinks.length,
-      activeImageIndex: 0,
-      numberOfMessages: messages.length,
-      activeMessageIndex: 0
-    };
-
-    this.updateChildComponentIndex = this.updateChildComponentIndex.bind(this);
-    this.isChildComponentActive = this.isChildComponentActive.bind(this);
-
-    this.carousalImageContainerHandler = setInterval(() => {
-      this.updateChildComponentIndex('numberOfImages', 'activeImageIndex');
-    }, 6000);
-
-    this.carousalMessageContainerHandler = setInterval(() => {
-      this.updateChildComponentIndex('numberOfMessages', 'activeMessageIndex');
-    }, 3000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.carousalImageContainerHandler);
-    clearInterval(this.carousalMessageContainerHandler);
-  }
-
-  updateChildComponentIndex(propSizeOfCollection, propCurrentlySelected) {
-    let size = this.state[propSizeOfCollection];
-    let selected = this.state[propCurrentlySelected];
-    let updateObj = {};
-    updateObj[propCurrentlySelected] = (selected + 1) % size;
-    this.setState(updateObj);
-  }
-
-  isChildComponentActive(propCurrentlySelected, index) {
-    return this.state[propCurrentlySelected] === index;
-  }
-
-  render() {
-    return (
-      <div className="carousal">
-        <CarousalImageContainer
-          isImageActive={this.isChildComponentActive.bind(null, 'activeImageIndex')}
-          imageLinks={imageLinks}
-        />
-        <CarousalMessageContainer
-          isMessageActive={this.isChildComponentActive.bind(null, 'activeMessageIndex')}
-          messages={messages}
-        />
-      </div>
-    );
-  }
-}
+const Carousal = () => (
+  <div className="carousal">
+    <ImageCarousal imageLinks={imageLinks} viewDuration={6000} />
+    <MessageCarousal messages={messages} viewDuration={3000} />
+  </div>
+);
 
 export default Carousal;

@@ -1,0 +1,23 @@
+.carousal-image-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  .inactive {
+    animation-duration: 2s;
+    animation-name: hide;
+    opacity: 0;
+  }
+
+  .active {
+    animation-duration: 2s;
+    animation-name: show;
+    opacity: 1;
+  }
+
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}

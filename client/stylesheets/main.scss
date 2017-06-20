@@ -2,4 +2,6 @@
 @import 'containers/header';
 @import 'containers/home';
 @import 'containers/about';
-@import 'containers/carousal-message';
+@import 'containers/projects';
+@import 'lib/image-carousal';
+@import 'lib/message-carousal';
