@@ -13,6 +13,7 @@ export default () => (
         <li className="list-item"><NavLink exact to="/" activeClassName="active">Home</NavLink></li>
         <li className="list-item"><NavLink to="/about" activeClassName="active">ABOUT US</NavLink></li>
         <li className="list-item"><NavLink to="/projects" activeClassName="active">PROJECTS</NavLink></li>
+        <li className="list-item"><NavLink to="/activities" activeClassName="active">ACTIVITIES</NavLink></li>
         <li className="list-item"><NavLink to="/involve" activeClassName="active">GET INVOLVED</NavLink></li>
         <li className="list-item"><NavLink to="/donate" activeClassName="active">DONATE</NavLink></li>
       </ul>
