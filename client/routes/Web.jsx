@@ -1,10 +1,10 @@
 import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
-import Home from './containers/Home';
-import About from './containers/About';
-import Header from './containers/Header';
-import Projects from './containers/Projects';
-import Activities from './containers/Activities';
+import Home from '../containers/Home';
+import About from '../containers/About';
+import Header from '../containers/Header';
+import Projects from '../containers/Projects';
+import Activities from '../containers/Activities';
 
 export default ({match}) => (
   <BrowserRouter>

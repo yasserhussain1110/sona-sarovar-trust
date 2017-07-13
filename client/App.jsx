@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 
-import Web from './Web';
-import Admin from './Admin';
+import Web from './routes/Web';
+import Admin from './routes/Admin';
 import 'typeface-kelly-slab';
 
 class App extends Component {

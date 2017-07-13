@@ -1,6 +1,6 @@
 const defaultState = {
   loggedIn: false,
-  authToken: ''
+  authToken: null
 };
 
 const userAuth = (state = defaultState, action) => {
