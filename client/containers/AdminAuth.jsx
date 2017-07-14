@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {logIn} from '../actions';
 import {Redirect} from 'react-router-dom';
 import LoginForm from '../components/AdminAuth/LoginForm';
+import axios from 'axios';
 
 class AdminAuth extends Component {
   constructor(props) {
@@ -18,9 +19,17 @@ class AdminAuth extends Component {
 
   submitForm(e) {
     e.preventDefault();
-    console.log("came here");
-    console.log(this.state.username);
-    console.log(this.state.password);
+    let {username, password} = this.state;
+    if (!username || !password) return;
+    axios.post('/login', {username, password})
+      .then(response => {
+        let authToken = response.headers['x-auth'];
+        localStorage.setItem('auth-token', authToken);
+        this.props.logIn(authToken);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {

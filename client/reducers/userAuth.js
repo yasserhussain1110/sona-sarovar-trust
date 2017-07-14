@@ -11,7 +11,7 @@ const userAuth = (state = defaultState, action) => {
         authToken: action.authToken
       };
 
-    case 'LOGGED_OFF':
+    case 'LOGGED_OUT':
       return {
         loggedIn: false,
         authToken: null

@@ -4,7 +4,8 @@
   "description": "Website for non-profit Sona Sarovar Trsut",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
+    "seed": "node server/seed/seed.js",
     "build": "webpack --config webpack.config.dev.js"
   },
   "repository": {
@@ -52,7 +53,9 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.1",

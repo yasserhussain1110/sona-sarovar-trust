@@ -5,8 +5,8 @@ export const logIn = authToken => {
   }
 };
 
-export const logOff = () => {
+export const logOut = () => {
   return {
-    type: 'LOGGED_OFF'
+    type: 'LOGGED_OUT'
   }
 };

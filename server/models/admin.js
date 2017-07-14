@@ -42,7 +42,7 @@ AdminSchema.pre('save', function (next) {
 
 AdminSchema.methods.generateAuthToken = function () {
   let admin = this;
-  let tokenString = jwt.sign(admin._id.toHexString(), JWT_SECRET_KEY);
+  let tokenString = jwt.sign({_id: admin._id.toHexString()}, JWT_SECRET_KEY);
   admin.tokens.push(tokenString);
 
   return admin.save().then(() => tokenString);
@@ -58,7 +58,7 @@ AdminSchema.statics.findByToken = function (tokenString) {
     return Promise.reject("Invalid Token");
   }
 
-  let _id = decoded;
+  let {_id} = decoded;
 
   return Admin.findOne({
     _id,
@@ -66,9 +66,9 @@ AdminSchema.statics.findByToken = function (tokenString) {
   });
 };
 
-AdminSchema.statics.findByCreds = function (email, password) {
+AdminSchema.statics.findByCreds = function (username, password) {
   let Admin = this;
-  return Admin.findOne({email})
+  return Admin.findOne({username})
     .then(admin => {
       if (!admin) {
         return Promise.reject("No such Admin");

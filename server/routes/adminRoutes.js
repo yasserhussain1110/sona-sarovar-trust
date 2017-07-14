@@ -7,11 +7,11 @@ const adminRoutes = app => {
     Admin.findByCreds(username, password)
       .then(user => user.generateAuthToken())
       .then(token => {
-        res.status(200).send(token);
+        res.header('x-auth', token).send();
       })
       .catch(e => {
         console.log(e);
-        res.status(400);
+        res.status(400).send();
       });
   });
 };
