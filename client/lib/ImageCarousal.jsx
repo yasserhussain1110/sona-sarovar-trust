@@ -5,7 +5,6 @@ class ImageCarousal extends Component {
     super(props);
 
     this.state = {
-      imageLinks: props.imageLinks,
       currentShowingImageIndex: 0
     };
 
@@ -23,7 +22,7 @@ class ImageCarousal extends Component {
 
   updateShowingImage() {
     this.setState({
-      currentShowingImageIndex: (this.state.currentShowingImageIndex + 1) % this.state.imageLinks.length
+      currentShowingImageIndex: (this.state.currentShowingImageIndex + 1) % this.props.imageLinks.length
     });
   }
 
@@ -33,7 +32,7 @@ class ImageCarousal extends Component {
 
   render() {
     return (
-      <div className="carousal-image-container">{this.state.imageLinks.map((link, index) => (
+      <div className="carousal-image-container">{this.props.imageLinks.map((link, index) => (
         <img key={index} className={this.isImageShowing(index) ? "active" : "inactive"} src={link}/>))}
       </div>
     );

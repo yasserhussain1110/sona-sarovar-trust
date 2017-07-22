@@ -5,7 +5,6 @@ class MessageCarousal extends Component {
     super(props);
 
     this.state = {
-      messages: props.messages,
       currentShowingMessageIndex: 0
     };
 
@@ -23,7 +22,7 @@ class MessageCarousal extends Component {
 
   updateMessage() {
     this.setState({
-      currentShowingMessageIndex: (this.state.currentShowingMessageIndex + 1) % this.state.messages.length
+      currentShowingMessageIndex: (this.state.currentShowingMessageIndex + 1) % this.props.messages.length
     });
   }
 
@@ -33,7 +32,7 @@ class MessageCarousal extends Component {
 
   render() {
     return (
-      <div className="carousal-message-container">{this.state.messages.map((message, index) => (
+      <div className="carousal-message-container">{this.props.messages.map((message, index) => (
         <div key={index} className={`${this.isMessageShowing(index) ? "active" : "inactive"} message`}>
           {message}
         </div>))}

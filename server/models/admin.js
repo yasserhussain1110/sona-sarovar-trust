@@ -20,7 +20,9 @@ const AdminSchema = new Schema({
     minlength: 6
   },
 
-  tokens: [String]
+  tokens: [{
+    type: String
+  }]
 });
 
 AdminSchema.pre('save', function (next) {
