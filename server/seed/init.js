@@ -24,25 +24,25 @@ const INIT_HOME_PAGE = {
 const INIT_TEAM_MEMBERS = [{
   name: "Member 1",
   info: "Roman Infantry 1",
-  pic: "about/person.png"
+  pic: "/about/person.png"
 }, {
   name: "Member 2",
   info: "Roman Infantry 2",
-  pic: "about/person.png"
+  pic: "/about/person.png"
 }, {
   name: "Member 3",
   info: "Roman Infantry 3",
-  pic: "about/person.png"
+  pic: "/about/person.png"
 }];
 
 const INIT_PROJECTS = [{
   name: "Project 1",
   info: "Project Desc 1",
-  pics: ["projects/project1.jpg", "projects/project2.jpg"]
+  pics: ["/projects/project1.jpg", "/projects/project2.jpg"]
 }, {
   name: "Project 2",
   info: "Project Desc 2",
-  pics: ["projects/project1.jpg", "projects/project2.jpg"]
+  pics: ["/projects/project1.jpg", "/projects/project2.jpg"]
 }];
 
 module.exports = {

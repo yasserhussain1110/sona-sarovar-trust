@@ -18,7 +18,7 @@ const TeamMemberSchema = new Schema({
 
 TeamMemberSchema.methods.toJSON = function () {
   let teamMember = this;
-  return _.pick(teamMember, ['name', 'info', 'pics']);
+  return _.pick(teamMember, ['name', 'info', 'pic']);
 };
 
 const TeamMember = mongoose.model('TeamMember', TeamMemberSchema);
