@@ -1,19 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-class Admin extends Component {
-  constructor(props) {
-    super(props);
-  }
+const AdminPanelScreen = (
+  //<button type="button" className="btn btn-primary">Primary</button>
+  <div>AdminPanel</div>
+);
 
-  render() {
-    if (!this.props.userAuth.loggedIn) {
-      return <Redirect to="/admin/auth" push/>
-    }
-    return <div>Admin Panel </div>;
-  }
-}
+const AdminPanel = ({userAuth}) => (!userAuth.loggedIn ? <Redirect to="/admin/auth" push/> : AdminPanelScreen);
 
 const mapStateToProps = state => {
   return {
@@ -21,4 +15,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps)(Admin);
+export default connect(mapStateToProps)(AdminPanel);
