@@ -1,31 +1,18 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import ProjectHolder from '../components/Projects/ProjectHolder';
 
-const projects = [{
-  imageLinks: [
-    "/static/project1.jpg",
-    "/static/project2.jpg"
-  ],
-
-  heading: "Safai Abhiyan",
-
-  details: "We did this we did that"
-}, {
-  imageLinks: [
-    "/static/project1.jpg",
-    "/static/project2.jpg"
-  ],
-
-  heading: "Project #2",
-
-  details: "We did number #2"
-}];
-
-const Projects = () => (
+const Projects = ({projectsDone}) => (
   <div className="projects">
-    <h2>Projects Done</h2>{projects.map((project, index) => (
+    <h2>Projects Done</h2>{projectsDone.map((project, index) => (
     <ProjectHolder key={index} {...project}/>))}
   </div>
 );
 
-export default Projects;
+const mapStateToProps = state => (
+  {
+    projectsDone: state.projects.projectsDone
+  }
+);
+
+export default connect(mapStateToProps)(Projects);

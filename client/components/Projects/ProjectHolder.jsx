@@ -1,14 +1,14 @@
 import React from 'react';
 import ImageCarousal from '../../lib/ImageCarousal';
 
-const ProjectHolder = ({imageLinks, heading, details}) => (
+const ProjectHolder = ({pics, name, description}) => (
   <div className="project-holder">
-    <h3>{heading}</h3>
+    <h3>{name}</h3>
     <div className="project-carousal">
-      <ImageCarousal imageLinks={imageLinks} viewDuration={5000}/>
+      <ImageCarousal imageLinks={pics} viewDuration={5000}/>
     </div>
     <div className="project-info">
-      <p>{details}</p>
+      <p>{description}</p>
     </div>
   </div>
 );
