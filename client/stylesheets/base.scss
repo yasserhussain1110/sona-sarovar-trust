@@ -8,9 +8,19 @@ body {
 }
 
 #app {
+  width: 100%;
+  margin: auto;
+}
+
+#app #web {
   width: 80%;
   margin: auto;
 }
+
+#app #admin {
+  width: 100%;
+}
+
 
 ul {
   list-style: none;

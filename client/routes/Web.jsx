@@ -8,7 +8,7 @@ import Activities from '../containers/Activities';
 
 export default ({match}) => (
   <BrowserRouter>
-    <main>
+    <main id="web">
       <Header match={match}/>
       <Route exact path={`${match.url}`} component={Home}/>
       <Route path={`${match.url}/about`} component={About}/>
