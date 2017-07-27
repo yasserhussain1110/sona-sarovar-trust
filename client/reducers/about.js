@@ -5,9 +5,9 @@ const defaultState = {
 const about = (state = defaultState, action) => {
   switch (action.type) {
     case 'RECEIVED_TEAM_MEMBERS':
-      return Object.assign({}, state, {
+      return {
         teamMembers: action.teamMembers
-      });
+      };
 
     default:
       return state;

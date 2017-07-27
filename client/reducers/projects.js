@@ -5,9 +5,9 @@ const defaultState = {
 const projects = (state = defaultState, action) => {
   switch (action.type) {
     case 'RECEIVED_PROJECTS_DONE':
-      return Object.assign({}, state, {
+      return {
         projectsDone: action.projectsDone
-      });
+      };
 
     default:
       return state;
