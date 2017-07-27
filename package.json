@@ -66,8 +66,10 @@
     "mongoose": "^4.10.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-icons-kit": "^1.0.7",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
+    "react-sidenav": "^2.1.2",
     "redux": "^3.7.1",
     "typeface-kelly-slab": "0.0.22",
     "url-loader": "^0.5.8"
