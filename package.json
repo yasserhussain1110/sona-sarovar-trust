@@ -71,6 +71,7 @@
     "react-router-dom": "^4.1.1",
     "react-sidenav": "^2.1.2",
     "redux": "^3.7.1",
+    "styled-components": "^2.1.1",
     "typeface-kelly-slab": "0.0.22",
     "url-loader": "^0.5.8"
   }
