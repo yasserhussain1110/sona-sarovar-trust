@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
-import Component1 from './Component1';
-import Component2 from './Component2';
+import Component1 from './CenterThemePanel';
+import Component2 from './InfoPanel';
 
 const Admin = ({match}) => (
   <BrowserRouter>

@@ -2,6 +2,7 @@ import React from 'react'
 
 const BaseContainer = props => (
   <div
+    className="nav-container"
     style={{
       display: 'inline-block',
       paddingTop: 16,

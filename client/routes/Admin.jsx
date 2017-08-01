@@ -7,7 +7,7 @@ const Admin = ({match}) => (
   <BrowserRouter>
     <main id="admin">
       {/* Might need to remove exact keyword from here */}
-      <Route exact path={`${match.url}`} component={AdminController}/>
+      <Route path={`${match.url}`} component={AdminController}/>
       <Route path={`${match.url}/auth`} component={AdminAuth}/>
     </main>
   </BrowserRouter>
