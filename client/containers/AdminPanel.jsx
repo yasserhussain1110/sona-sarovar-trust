@@ -2,8 +2,9 @@ import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import BaseContainer from '../components/AdminPanel/BaseContainer';
 import BasicSideNav from '../components/AdminPanel/BasicSideNav';
-import CenterThemePanel from '../components/AdminPanel/CenterThemePanel';
-import InfoPanel from '../components/AdminPanel/InfoPanel';
+import CenterPicsPanel from '../components/AdminPanel/CenterPicsPanel';
+import CaptionsPanel from '../components/AdminPanel/CaptionsPanel';
+import MainTextsPanel from '../components/AdminPanel/MainTextsPanel';
 import ProjectsPanel from '../components/AdminPanel/ProjectsPanel';
 
 const AdminPanel = ({match}) => {
@@ -14,9 +15,10 @@ const AdminPanel = ({match}) => {
           <BaseContainer style={{background: '#2c3e50', color: '#FFF'}}>
             <BasicSideNav adminMatch={match}/>
           </BaseContainer>
-          <Route exact path="/admin/home" component={CenterThemePanel} />
-          <Route exact path="/admin/home/center-theme" component={CenterThemePanel}/>
-          <Route exact path="/admin/home/info" component={InfoPanel}/>
+          <Route exact path="/admin/home" component={CenterPicsPanel} />
+          <Route exact path="/admin/home/center-pics" component={CenterPicsPanel}/>
+          <Route exact path="/admin/home/captions" component={CaptionsPanel}/>
+          <Route exact path="/admin/home/main-texts" component={MainTextsPanel}/>
           <Route exact path="/admin/projects" component={ProjectsPanel} />
         </div>
       </main>

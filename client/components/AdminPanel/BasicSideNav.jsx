@@ -21,13 +21,17 @@ const BasicSideNav = ({adminMatch, history}) => (
     <Nav id="home">
       <NavIcon><Icon20 icon={home}/></NavIcon>
       <NavText> Home </NavText>
-      <Nav id="center-theme">
+      <Nav id="center-pics">
         <NavIcon><Icon20 size={16} icon={ic_aspect_ratio}/></NavIcon>
-        <NavText> Center Theme </NavText>
+        <NavText> Center Pics </NavText>
       </Nav>
-      <Nav id="info">
+      <Nav id="captions">
         <NavIcon><Icon20 size={16} icon={ic_business}/></NavIcon>
-        <NavText> Info </NavText>
+        <NavText> Captions </NavText>
+      </Nav>
+      <Nav id="main-texts">
+        <NavIcon><Icon20 size={16} icon={ic_business}/></NavIcon>
+        <NavText> Main Texts </NavText>
       </Nav>
     </Nav>
     <Nav id="projects">
