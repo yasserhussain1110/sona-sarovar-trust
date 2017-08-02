@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PicAdder from './CenterPicsPanel/PicAdder';
 
 const CenterPicsPanel = ({centerPics}) => (
-  <div className="panel center-pics">
+  <div className="controller center-pics">
     <h3>Center Pics</h3>
     <div className="image-holder-wrapper">{centerPics.map((pic, index) => (
       <div key={index} className="image-holder">

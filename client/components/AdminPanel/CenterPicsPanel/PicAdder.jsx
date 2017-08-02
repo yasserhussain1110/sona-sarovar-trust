@@ -11,20 +11,18 @@ class PicAdder extends Component {
   }
 
   render() {
-    return (
-      <div className="pic-adder">{!this.state.addingPic ?
+    return (!this.state.addingPic ?
         <AdderButton
-          onClick={() => this.setState({addingPic: true})}
+          turnOnAddingPicSwitch={() => this.setState({addingPic: true})}
         /> :
-        <PicAdderForm />}
-      </div>
+        <PicAdderForm goBack={() => this.setState({addingPic: false})}/>
     );
   }
 }
 
-const AdderButton = ({onClick}) => (
-  <div className="adder-button">
-    <button onClick={onClick}>+</button>
+const AdderButton = ({turnOnAddingPicSwitch}) => (
+  <div className="adder-button-holder">
+    <button className="adder-button" onClick={turnOnAddingPicSwitch}>+</button>
   </div>
 );
 

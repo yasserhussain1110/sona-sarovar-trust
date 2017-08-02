@@ -11,6 +11,12 @@ class PicAdderForm extends Component {
     };
 
     this.uploadFile = this.uploadFile.bind(this);
+    this.goBack = this.goBack.bind(this);
+  }
+
+  goBack(e) {
+    e.preventDefault();
+    this.props.goBack();
   }
 
   validatePicAndUpdateState(file) {
@@ -56,14 +62,15 @@ class PicAdderForm extends Component {
       <Form
         {...this.state}
         uploadFile={this.uploadFile}
-        resetErrors={()=>{this.setState({noPicSelected: false, fileNotAPic: false})}}
+        goBack={this.goBack}
+        resetErrors={() => (this.setState({noPicSelected: false, fileNotAPic: false}))}
       />
     );
   }
 }
 
 
-const Form = ({noPicSelected, fileNotAPic, uploadFile, resetErrors}) => (
+const Form = ({noPicSelected, fileNotAPic, uploadFile, resetErrors, goBack}) => (
   <div className="pic-adder-form">
     <form>
       <div className="form-control">
@@ -81,6 +88,10 @@ const Form = ({noPicSelected, fileNotAPic, uploadFile, resetErrors}) => (
 
       <div className="form-control">
         <button onClick={uploadFile}>Upload</button>
+      </div>
+
+      <div className="form-control">
+        <button onClick={goBack}>Back</button>
       </div>
     </form>
   </div>

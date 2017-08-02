@@ -1,17 +1,57 @@
 #admin-panel {
-  .panel {
+  .controller {
     margin-left: 20px;
     padding: 5px;
   }
 
+  .controller-holder {
+    background-color: white;
+    width: 100%;
+  }
+
+  .image-holder-wrapper {
+    padding: 5px;
+    text-align: center;
+    margin-top: 5px;
+  }
+
   .image-holder {
     display: inline-block;
-    padding: 5px;
     margin: 10px;
   }
 
-  .center-pics img{
+  .center-pics {
+    margin-top: 20px;
+  }
+
+  .center-pics h3 {
+    text-align: center;
+    font-size: 24px;
+    color: black;
+  }
+
+  .center-pics img {
     height: 200px;
     width: 200px;
+  }
+
+  .adder-button-holder {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .adder-button {
+    background-color: green;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .pic-adder-form {
+    text-align: center;
   }
 }

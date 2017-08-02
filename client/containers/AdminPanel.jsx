@@ -15,11 +15,13 @@ const AdminPanel = ({match}) => {
           <BaseContainer style={{background: '#2c3e50', color: '#FFF'}}>
             <BasicSideNav adminMatch={match}/>
           </BaseContainer>
-          <Route exact path="/admin/home" component={CenterPicsPanel} />
-          <Route exact path="/admin/home/center-pics" component={CenterPicsPanel}/>
-          <Route exact path="/admin/home/captions" component={CaptionsPanel}/>
-          <Route exact path="/admin/home/main-texts" component={MainTextsPanel}/>
-          <Route exact path="/admin/projects" component={ProjectsPanel} />
+          <div className="controller-holder">
+            <Route exact path="/admin/home" component={CenterPicsPanel} />
+            <Route exact path="/admin/home/center-pics" component={CenterPicsPanel}/>
+            <Route exact path="/admin/home/captions" component={CaptionsPanel}/>
+            <Route exact path="/admin/home/main-texts" component={MainTextsPanel}/>
+            <Route exact path="/admin/projects" component={ProjectsPanel} />
+          </div>
         </div>
       </main>
     </BrowserRouter>
