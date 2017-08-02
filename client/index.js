@@ -5,7 +5,6 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import rootReducer from './reducers';
 import App from './App';
-import 'bootstrap/dist/css/bootstrap.css';
 import './stylesheets/main.scss';
 
 const configureStore = initialState => {
