@@ -21,6 +21,13 @@ body {
   width: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
+.shown {
+  display: initial;
+}
 
 ul {
   list-style: none;

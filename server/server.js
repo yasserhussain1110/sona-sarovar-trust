@@ -12,6 +12,7 @@ app.use(express.static('./resources'));
 
 require('./routes/adminRoutes')(app);
 require('./routes/appStateRoutes')(app);
+require('./routes/homePageRoutes')(app);
 
 /* Set up development server if required */
 if (process.env.NODE_ENV === "development") {
