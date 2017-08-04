@@ -12,6 +12,7 @@ class PicAdderForm extends Component {
 
     this.uploadFile = this.uploadFile.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.test2 = this.test2.bind(this);
   }
 
   goBack(e) {
@@ -57,6 +58,19 @@ class PicAdderForm extends Component {
       });
   };
 
+  test2() {
+    let pic = document.getElementById('pic').files[0];
+    let data = new FormData();
+    data.append('pic', pic);
+    axios.patch('/home-page/center-pic/59846979fdaf136d969f8b9f', data, {headers: {'x-auth': this.props.authToken}})
+      .then(function (res) {
+        console.log(res);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }
+
   render() {
     return (
       <Form
@@ -64,13 +78,14 @@ class PicAdderForm extends Component {
         uploadFile={this.uploadFile}
         goBack={this.goBack}
         resetErrors={() => (this.setState({noPicSelected: false, fileNotAPic: false}))}
+        test2={this.test2}
       />
     );
   }
 }
 
 
-const Form = ({noPicSelected, fileNotAPic, uploadFile, resetErrors, goBack}) => (
+const Form = ({noPicSelected, fileNotAPic, uploadFile, resetErrors, goBack, test2}) => (
   <div className="pic-adder-form">
     <form>
       <div className="form-control">
@@ -94,6 +109,8 @@ const Form = ({noPicSelected, fileNotAPic, uploadFile, resetErrors, goBack}) => 
         <button onClick={goBack}>Back</button>
       </div>
     </form>
+
+    <button onClick={test2}>I am test 2</button>
   </div>
 );
 
