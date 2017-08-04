@@ -18,10 +18,10 @@ const homePageRoutes = app => {
 
     checkIfFileIsImage(file)
       .then(() => {
-        writeBufferToDisk('resources/home/' + modifiedName, file.buffer);
+        return writeBufferToDisk('resources/home/' + modifiedName, file.buffer);
       })
       .then(() => {
-        addImageFileUrlToDB('/home/' + modifiedName);
+        return addImageFileUrlToDB('/home/' + modifiedName);
       })
       .then(() => {
         res.status(200).send('/home/' + modifiedName);
@@ -45,7 +45,7 @@ const checkIfFileIsImage = file => new Promise((resolve, reject) => {
   });
 });
 
-const writeBufferToDisk = (filePath, fileBuf) => new Promise((resolve, reject) => {
+const writeBufferToDisk = (filePath, fileBuf) => new Promise(resolve => {
   fs.writeFile(filePath, fileBuf, function (err) {
     if (err) throw err;
     resolve(filePath);
@@ -53,7 +53,7 @@ const writeBufferToDisk = (filePath, fileBuf) => new Promise((resolve, reject) =
 });
 
 
-const modifyFileName = fileName => crypto.pseudoRandomBytes(16).toString('hex') + '-' + fileName;
+const modifyFileName = fileName => crypto.pseudoRandomBytes(8).toString('hex') + '-' + fileName;
 
 const addImageFileUrlToDB = imageUrl => {
   return HomePage.findOne().then(homePage => {
