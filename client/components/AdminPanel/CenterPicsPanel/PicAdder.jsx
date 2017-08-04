@@ -15,7 +15,10 @@ class PicAdder extends Component {
         <AdderButton
           turnOnAddingPicSwitch={() => this.setState({addingPic: true})}
         /> :
-        <PicAdderForm goBack={() => this.setState({addingPic: false})}/>
+        <PicAdderForm
+          authToken={this.props.authToken}
+          goBack={() => this.setState({addingPic: false})}
+        />
     );
   }
 }

@@ -48,7 +48,7 @@ class PicAdderForm extends Component {
     }
     let data = new FormData();
     data.append('pic', pic);
-    axios.put('/upload', data)
+    axios.put('/home-page/center-pic', data, {headers: {'x-auth': this.props.authToken}})
       .then(function (res) {
         console.log(res);
       })

@@ -61,6 +61,7 @@
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.1",
     "lodash": "^4.17.4",
+    "mmmagic": "^0.4.5",
     "mongodb": "^2.2.30",
     "mongoose": "^4.10.8",
     "multer": "^1.3.0",
