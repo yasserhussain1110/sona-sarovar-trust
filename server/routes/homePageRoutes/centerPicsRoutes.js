@@ -32,17 +32,17 @@ const centerPicRoutes = app => {
       });
   });
 
-  app.patch('/home-page/center-pic/:id', auth, upload.single('pic'), (req, res) => {
+  app.patch('/home-page/center-pic/:_id', auth, upload.single('pic'), (req, res) => {
     if (!req.file) return res.status(400).send();
 
-    let id = req.params.id;
+    let _id = req.params._id;
     let file = req.file;
     let modifiedName = modifyFileName(file.originalname);
 
 
     HomePage
       .findOne({
-        'centerPics._id': id
+        'centerPics._id': _id
       })
       .then(homePage => {
         if (!homePage) throw new Error('center pic not found');
@@ -52,13 +52,38 @@ const centerPicRoutes = app => {
         return writeBufferToDisk('resources/home/' + modifiedName, file.buffer);
       })
       .then(() => {
-        return removeExistingImageFile(id);
+        return removeExistingImageFile(_id);
       })
       .then(() => {
-        return updateImageFileUrlInDB('/home/' + modifiedName, id);
+        return updateImageFileUrlInDB('/home/' + modifiedName, _id);
       })
       .then(() => {
         res.status(200).send('/home/' + modifiedName);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).send();
+      });
+  });
+
+  app.delete('/home-page/center-pic/:_id', auth, (req, res) => {
+    let _id = req.params._id;
+    HomePage
+      .findOne({
+        'centerPics._id': _id
+      })
+      .then(() => {
+        return removeExistingImageFile(_id);
+      })
+      .then(() => {
+        return HomePage.update({
+          $pull: {
+            centerPics: {_id}
+          }
+        });
+      })
+      .then(() => {
+        res.status(200).send();
       })
       .catch(err => {
         console.log(err);
@@ -117,13 +142,11 @@ const writeBufferToDisk = (filePath, fileBuf) => new Promise(resolve => {
 const modifyFileName = fileName => crypto.pseudoRandomBytes(8).toString('hex') + '-' + fileName;
 
 const addImageFileUrlToDB = imageUrl => {
-  return HomePage.findOne().then(homePage => {
-    return homePage.update({
-      $push: {
-        centerPics: {url: imageUrl}
-      }
-    });
-  })
+  return HomePage.update({
+    $push: {
+      centerPics: {url: imageUrl}
+    }
+  });
 };
 
 module.exports = centerPicRoutes;
