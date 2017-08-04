@@ -6,11 +6,11 @@ const INIT_ADMIN = {
 };
 
 const INIT_HOME_PAGE = {
-  centerPics: ["/home/IMG1.jpg", "/home/IMG2.jpg"],
+  centerPics: [{url: "/home/IMG1.jpg"}, {url: "/home/IMG2.jpg"}],
   captions: [
-    "66% of street children in Mumbai never receive any education.",
-    "You can make a difference in their lives.",
-    "Come, join our hands in helping improve their lives."
+    {text: "66% of street children in Mumbai never receive any education."},
+    {text: "You can make a difference in their lives."},
+    {text: "Come, join our hands in helping improve their lives."}
   ],
   mainTextPara1: "I'm a paragraph. Click here to add your own text and edit me. "
   + "It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. "

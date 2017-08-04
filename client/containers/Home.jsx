@@ -53,8 +53,8 @@ const Home = ({mainTexts, messages, imageLinks}) => (
 const mapStateToProps = state => (
   {
     mainTexts: state.home.mainTexts,
-    messages: state.home.captions,
-    imageLinks: state.home.centerPics
+    messages: state.home.captions.map(caption => caption.text),
+    imageLinks: state.home.centerPics.map(picObj => picObj.url)
   }
 );
 

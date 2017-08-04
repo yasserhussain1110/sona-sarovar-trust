@@ -4,22 +4,30 @@ const _ = require('lodash');
 
 const HomePageSchema = new Schema({
   centerPics: [{
-    type: String
+    url: {
+      type: String,
+      required: true
+    }
   }],
 
   captions: [{
-    type: String,
-    minlength: 40,
-    maxlength: 80,
-    trim: true
+    text: {
+      type: String,
+      minlength: 40,
+      maxlength: 80,
+      trim: true,
+      required: true
+    }
   }],
 
   mainTextPara1: {
-    type: String
+    type: String,
+    required: true
   },
 
   mainTextPara2: {
-    type: String
+    type: String,
+    required: true
   }
 });
 
