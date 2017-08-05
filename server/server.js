@@ -6,9 +6,10 @@ const port = process.env.PORT;
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const {RESOURCES_DIR} = process.env;
 
 app.use(bodyParser.json());
-app.use(express.static('./resources'));
+app.use(express.static('./' + RESOURCES_DIR));
 
 require('./routes/adminRoutes')(app);
 require('./routes/appStateRoutes')(app);
@@ -28,3 +29,5 @@ else if (process.env.NODE_ENV === "production") {
 app.listen(port, () => {
   console.log(`Server started on ${port}`);
 });
+
+module.exports = app;

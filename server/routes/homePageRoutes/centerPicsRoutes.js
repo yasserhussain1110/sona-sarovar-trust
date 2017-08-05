@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const mmm = require('mmmagic');
 const upload = multer();
 const magic = new mmm.Magic(mmm.MAGIC_MIME_TYPE);
+const {RESOURCES_DIR} = process.env;
 
 const centerPicRoutes = app => {
   app.put('/home-page/center-pic', auth, upload.single('pic'), (req, res) => {
@@ -16,7 +17,7 @@ const centerPicRoutes = app => {
 
     checkIfFileIsImage(file)
       .then(() => {
-        return writeBufferToDisk('resources/home/' + modifiedName, file.buffer);
+        return writeBufferToDisk(RESOURCES_DIR + '/home/' + modifiedName, file.buffer);
       })
       .then(() => {
         return addImageFileUrlToDB('/home/' + modifiedName);
@@ -47,7 +48,7 @@ const centerPicRoutes = app => {
         return checkIfFileIsImage(file);
       })
       .then(() => {
-        return writeBufferToDisk('resources/home/' + modifiedName, file.buffer);
+        return writeBufferToDisk(RESOURCES_DIR + '/home/' + modifiedName, file.buffer);
       })
       .then(() => {
         return removeExistingImageFile(_id);
@@ -108,7 +109,7 @@ const removeExistingImageFile = _id => {
     if (!homePage) throw new Error('center pic not found');
     let picUrl = homePage.centerPics[0].url;
     return new Promise(resolve => {
-      let filePath = 'resources' + picUrl;
+      let filePath = RESOURCES_DIR + picUrl;
       fs.unlink(filePath, function (err) {
         if (err) throw err;
         resolve(filePath);
