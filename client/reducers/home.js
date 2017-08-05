@@ -1,7 +1,8 @@
 const defaultState = {
   centerPics: [],
   captions: [],
-  mainTexts: []
+  mainTextPara1: "",
+  mainTextPara2: ""
 };
 
 const home = (state = defaultState, action) => {
@@ -19,7 +20,8 @@ const home = (state = defaultState, action) => {
     case 'RECEIVED_MAIN_TEXTS':
       return {
         ...state,
-        mainTexts: action.mainTexts
+        mainTextPara1: action.mainTextPara1,
+        mainTextPara2: action.mainTextPara2
       };
     default:
       return state;

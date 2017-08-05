@@ -12,9 +12,10 @@ export const receivedCenterPicCaptions = captions => (
   }
 );
 
-export const receivedMainTexts = mainTexts => (
+export const receivedMainTexts = (mainTextPara1, mainTextPara2) => (
   {
     type: "RECEIVED_MAIN_TEXTS",
-    mainTexts
+    mainTextPara1,
+    mainTextPara2
   }
 );

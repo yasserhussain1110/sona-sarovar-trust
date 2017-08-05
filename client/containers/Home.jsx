@@ -2,7 +2,7 @@ import React from 'react';
 import Carousal from '../components/Home/Carousal';
 import {connect} from 'react-redux';
 
-const Home = ({mainTexts, messages, imageLinks}) => (
+const Home = ({mainTextPara1, mainTextPara2, messages, imageLinks}) => (
   <div className="home">
     <Carousal messages={messages} imageLinks={imageLinks}/>
 
@@ -10,8 +10,8 @@ const Home = ({mainTexts, messages, imageLinks}) => (
       <div className="short-bio">
         <h3>Sona Sarovar Trust</h3>
         <div className="details">
-          <p>{mainTexts[0]}</p>
-          <p>{mainTexts[1]}</p>
+          <p>{mainTextPara1}</p>
+          <p>{mainTextPara2}</p>
         </div>
       </div>
 
@@ -52,7 +52,8 @@ const Home = ({mainTexts, messages, imageLinks}) => (
 
 const mapStateToProps = state => (
   {
-    mainTexts: state.home.mainTexts,
+    mainTextPara1: state.home.mainTextPara1,
+    mainTextPara2: state.home.mainTextPara2,
     messages: state.home.captions.map(caption => caption.text),
     imageLinks: state.home.centerPics.map(picObj => picObj.url)
   }
