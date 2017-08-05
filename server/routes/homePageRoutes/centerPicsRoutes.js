@@ -4,9 +4,7 @@ const HomePage = require('../../models/homepage');
 const fs = require('fs');
 const crypto = require('crypto');
 const mmm = require('mmmagic');
-
 const upload = multer();
-
 const magic = new mmm.Magic(mmm.MAGIC_MIME_TYPE);
 
 const centerPicRoutes = app => {
