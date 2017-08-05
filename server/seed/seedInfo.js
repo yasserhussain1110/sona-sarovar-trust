@@ -48,11 +48,11 @@ const INIT_TEAM_MEMBERS = [{
 const INIT_PROJECTS = [{
   name: "Project 1",
   description: "Project Desc 1",
-  pics: ["/projects/project1.jpg", "/projects/project2.jpg"]
+  pics: [{url: "/projects/project1.jpg"}, {url: "/projects/project2.jpg"}]
 }, {
   name: "Project 2",
   description: "Project Desc 2",
-  pics: ["/projects/project1.jpg", "/projects/project2.jpg"]
+  pics: [{url: "/projects/project1.jpg"}, {url: "/projects/project2.jpg"}]
 }];
 
 const populateAdmins = () => {

@@ -12,7 +12,10 @@ const ProjectSchema = new Schema({
   },
 
   pics: [{
-    type: String
+    url: {
+      type: String,
+      required: true
+    }
   }]
 });
 
