@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/server.js",
+    "test": "NODE_ENV=test mocha server/tests/*.test.js",
     "seed": "node server/seed/seed.js",
     "build": "webpack --config webpack.config.dev.js"
   },
@@ -42,11 +43,13 @@
     "file-loader": "^0.11.1",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.28.0",
+    "mocha": "^3.5.0",
     "node-sass": "^4.5.3",
     "nodemon": "^1.11.0",
     "react-hot-loader": "3.0.0-beta.6",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.1",
+    "supertest": "^3.0.0",
     "webpack": "^2.6.1",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-dev-server": "^2.4.5",
