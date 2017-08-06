@@ -5,7 +5,7 @@ const ProjectHolder = ({pics, name, description}) => (
   <div className="project-holder">
     <h3>{name}</h3>
     <div className="project-carousal">
-      <ImageCarousal imageLinks={pics} viewDuration={5000}/>
+      <ImageCarousal imageLinks={pics.map(p => p.url)} viewDuration={5000}/>
     </div>
     <div className="project-info">
       <p>{description}</p>
