@@ -3,17 +3,20 @@ const Schema = mongoose.Schema;
 const _ = require('lodash');
 
 const TeamMemberSchema = new Schema({
-    name: {
-      type: String
-    },
+  name: {
+    type: String,
+    required: true
+  },
 
-    info: {
-      type: String
-    },
+  info: {
+    type: String,
+    required: true
+  },
 
-    pic: {
-      type: String
-    }
+  pic: {
+    type: String,
+    required: true
+  }
 });
 
 TeamMemberSchema.methods.toJSON = function () {

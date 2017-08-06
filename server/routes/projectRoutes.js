@@ -10,7 +10,7 @@ const projectRoutes = app => {
     let {name, description} = req.body;
     let _id = req.params._id;
     if (!name || !description) {
-      return res.send(400);
+      return res.status(400).send();
     }
 
     Project.update({_id}, {
@@ -55,7 +55,7 @@ const projectRoutes = app => {
   app.put('/project', auth, (req, res) => {
     let {name, description} = req.body;
     if (!name || !description) {
-      return res.send(400);
+      return res.status(400).send();
     }
 
     new Project({
