@@ -38,6 +38,7 @@ const INIT_HOME_PAGE = {
 };
 
 const INIT_TEAM_MEMBERS = [{
+  _id: new ObjectID(),
   name: "Member 1",
   info: "Roman Infantry 1",
   pic: "/about/person1.png"

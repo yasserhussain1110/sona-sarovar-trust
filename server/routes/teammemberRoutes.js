@@ -2,7 +2,8 @@ const TeamMember = require('../models/teammember');
 const auth = require('../middleware/auth');
 const multer = require('multer');
 const upload = multer();
-const {ensureImageAndWriteToDisk, removeExistingImageFile} = require('../services');
+const fs = require('fs');
+const {ensureImageAndWriteToDisk} = require('../services');
 const {RESOURCES_DIR} = process.env;
 
 const teammemberRoutes = app => {
@@ -45,6 +46,7 @@ const teammemberRoutes = app => {
 
       if (file) {
         return ensureImageAndWriteToDisk(file, RESOURCES_DIR + '/about').then(imagePath => {
+          fs.unlinkSync(RESOURCES_DIR + member.pic);
           member.pic = imagePath.replace(RESOURCES_DIR, "");
           return member.save();
         });
