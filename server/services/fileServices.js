@@ -2,25 +2,30 @@ const fs = require('fs');
 const mmm = require('mmmagic');
 const magic = new mmm.Magic(mmm.MAGIC_MIME_TYPE);
 const crypto = require('crypto');
+const {RESOURCES_DIR} = process.env;
 
 const ensureImageAndWriteToDisk = (file, dir) => {
   let fileBuf = file.buffer;
-  let modifiedName =  modifyFileName(file.originalname);
+  let modifiedName = modifyFileName(file.originalname);
   let filePath = `${dir}/${modifiedName}`;
   return checkIfFileIsImage(fileBuf).then(() => {
     return writeBufferToDisk(filePath, fileBuf);
   });
 };
 
-const removeExistingImageFile = _id => {
-  return HomePage.findOne({
-    'centerPics._id': _id
-  }, {
-    _id: 0,
-    'centerPics.$': 1
-  }).then(homePage => {
-    if (!homePage) throw new Error('center pic not found');
-    let picUrl = homePage.centerPics[0].url;
+const removeExistingImageFile = (model, arrayField, _id) => {
+  let subFieldId = `${arrayField}._id`;
+  let subFieldQuery = `${arrayField}.$`;
+
+  let query = {};
+  query[subFieldId] = _id;
+
+  let projection = {_id: 0};
+  projection[subFieldQuery] = 1;
+
+  return model.findOne(query, projection).then(result => {
+    if (!result) throw new Error(model.toString() + 'not found');
+    let picUrl = result[arrayField][0].url;
     return new Promise(resolve => {
       let filePath = RESOURCES_DIR + picUrl;
       fs.unlink(filePath, function (err) {
@@ -30,7 +35,6 @@ const removeExistingImageFile = _id => {
     });
   })
 };
-
 
 const modifyFileName = fileName => crypto.pseudoRandomBytes(8).toString('hex') + '-' + fileName;
 

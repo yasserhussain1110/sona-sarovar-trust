@@ -19,7 +19,7 @@ beforeEach(done => {
 });
 
 
-describe('Testing path /home-page/center-pic', () => {
+describe('Testing path PUT /home-page/center-pic', () => {
   it("should add a new pic", done => {
     request(app)
       .put('/home-page/center-pic')

@@ -16,7 +16,13 @@ const INIT_ADMIN = {
 };
 
 const INIT_HOME_PAGE = {
-  centerPics: [{url: "/home/IMG1.jpg"}, {url: "/home/IMG2.jpg"}],
+  centerPics: [{
+    _id: new ObjectID(),
+    url: "/home/IMG1.jpg"
+  }, {
+    _id: new ObjectID(),
+    url: "/home/IMG2.jpg"
+  }],
   captions: [
     {text: "66% of street children in Mumbai never receive any education."},
     {text: "You can make a difference in their lives."},
@@ -34,25 +40,27 @@ const INIT_HOME_PAGE = {
 const INIT_TEAM_MEMBERS = [{
   name: "Member 1",
   info: "Roman Infantry 1",
-  pic: "/about/person.png"
+  pic: "/about/person1.png"
 }, {
   name: "Member 2",
   info: "Roman Infantry 2",
-  pic: "/about/person.png"
+  pic: "/about/person2.png"
 }, {
   name: "Member 3",
   info: "Roman Infantry 3",
-  pic: "/about/person.png"
+  pic: "/about/person3.png"
 }];
 
 const INIT_PROJECTS = [{
+  _id: new ObjectID(),
   name: "Project 1",
   description: "Project Desc 1",
-  pics: [{url: "/projects/project1.jpg"}, {url: "/projects/project2.jpg"}]
+  pics: [{_id: new ObjectID(), url: "/projects/project1.jpg"}, {url: "/projects/project2.jpg"}]
 }, {
+  _id: new ObjectID(),
   name: "Project 2",
   description: "Project Desc 2",
-  pics: [{url: "/projects/project1.jpg"}, {url: "/projects/project2.jpg"}]
+  pics: [{url: "/projects/project3.jpg"}, {url: "/projects/project4.jpg"}]
 }];
 
 const populateAdmins = () => {

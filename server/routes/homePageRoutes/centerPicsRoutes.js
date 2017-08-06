@@ -3,11 +3,9 @@ const auth = require('../../middleware/auth');
 const HomePage = require('../../models/homepage');
 const fs = require('fs');
 const crypto = require('crypto');
-const mmm = require('mmmagic');
 const upload = multer();
-const magic = new mmm.Magic(mmm.MAGIC_MIME_TYPE);
-const {RESOURCES_DIR} = process.env;
 const {ensureImageAndWriteToDisk, removeExistingImageFile} = require('../../services');
+const {RESOURCES_DIR} = process.env;
 
 const centerPicRoutes = app => {
   app.put('/home-page/center-pic', auth, upload.single('pic'), (req, res) => {
@@ -21,7 +19,7 @@ const centerPicRoutes = app => {
         return addImageFileUrlToDB(imageUrl).then(() => imageUrl);
       })
       .then(imageUrl => {
-        res.status(200).send(imageUrl);
+        res.status(200).send({imageUrl});
       })
       .catch(err => {
         console.log(err);
@@ -51,7 +49,7 @@ const centerPicRoutes = app => {
         return updateImageFileUrlInDB(imageUrl, _id).then(() => imageUrl);
       })
       .then(imageUrl => {
-        res.status(200).send(imageUrl);
+        res.status(200).send({imageUrl});
       })
       .catch(err => {
         console.log(err);
