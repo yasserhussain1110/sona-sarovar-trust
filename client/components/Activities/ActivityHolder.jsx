@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageCarousal from '../../lib/ImageCarousal';
+import ImageCarousal from '../../lib/components/ImageCarousal';
 
 const ActivityHolder = ({imageLinks, heading, details}) => (
   <div className="activity-holder">

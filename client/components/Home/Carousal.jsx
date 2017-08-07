@@ -1,6 +1,6 @@
 import React from 'react';
-import ImageCarousal from '../../lib/ImageCarousal';
-import MessageCarousal from '../../lib/MessageCarousal';
+import ImageCarousal from '../../lib/components/ImageCarousal';
+import MessageCarousal from '../../lib/components/MessageCarousal';
 
 const Carousal = ({messages, imageLinks}) => (
   <div className="carousal">

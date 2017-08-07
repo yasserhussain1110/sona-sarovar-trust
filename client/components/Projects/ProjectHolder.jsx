@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageCarousal from '../../lib/ImageCarousal';
+import ImageCarousal from '../../lib/components/ImageCarousal';
 
 const ProjectHolder = ({pics, name, description}) => (
   <div className="project-holder">
