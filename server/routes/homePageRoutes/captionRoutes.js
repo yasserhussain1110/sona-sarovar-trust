@@ -3,11 +3,11 @@ const HomePage = require('../../models/homepage');
 
 const captionRoutes = app => {
   app.put('/home-page/caption', auth, (req, res) => {
-    let caption = req.body.caption;
+    let captionText = req.body.text;
 
     HomePage.update({
       $push: {
-        captions: {text: caption}
+        captions: {text: captionText}
       }
     }).then(() => {
       res.status(200).send();
@@ -19,15 +19,16 @@ const captionRoutes = app => {
 
   app.patch('/home-page/caption/:_id', auth, (req, res) => {
     let _id = req.params._id;
-    let caption = req.body.caption;
+    let captionText = req.body.text;
 
     HomePage.update({
       'captions._id': _id
     }, {
       $set: {
-        'captions.$.text': caption
+        'captions.$.text': captionText
       }
-    }).then(() => {
+    }).then(r => {
+      if (r.n === 0) throw new Error("No caption found");
       res.status(200).send();
     }).catch(e => {
       console.log(e);
@@ -40,9 +41,10 @@ const captionRoutes = app => {
 
     HomePage.update({
       $pull: {
-        centerPics: {_id}
+        captions: {_id}
       }
-    }).then(() => {
+    }).then(r => {
+      if (r.nModified === 0) throw new Error("No match");
       res.status(200).send();
     }).catch(e => {
       console.log(e);
