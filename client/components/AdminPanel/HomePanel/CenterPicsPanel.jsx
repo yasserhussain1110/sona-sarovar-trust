@@ -24,8 +24,9 @@ class CenterPicsPanel extends Component {
   }
 
   picDeletedSuccess() {
-    this.close();
+    this.setState({showModalForm: false});
     this.props.deletedCenterPic(this.state.selectedCenterPicIndex);
+    this.close();
   }
 
   close() {
@@ -33,13 +34,15 @@ class CenterPicsPanel extends Component {
   }
 
   picUpdateSuccess(url) {
-    this.close();
+    this.setState({showModalForm: false});
     this.props.updatedCenterPic(this.state.selectedCenterPicIndex, url);
+    this.close();
   }
 
   picAddSuccess(centerPic) {
-    this.close();
+    this.setState({showModalForm: false});
     this.props.addedCenterPic(centerPic);
+    this.close();
   }
 
   getModalContent() {
