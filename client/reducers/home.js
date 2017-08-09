@@ -12,6 +12,20 @@ const home = (state = defaultState, action) => {
         ...state,
         centerPics: action.centerPics
       };
+    case 'ADDED_CENTER_PIC':
+      return {
+        ...state,
+        centerPics: [...state.centerPics, action.centerPic]
+      };
+    case 'DELETED_CENTER_PIC': {
+      return {
+        ...state,
+        centerPics: [
+          ...state.centerPics.slice(0, action.centerPicIndex),
+          ...state.centerPics.slice(action.centerPicIndex + 1)
+        ]
+      };
+    }
     case 'UPDATED_CENTER_PIC':
       return {
         ...state,
@@ -21,7 +35,7 @@ const home = (state = defaultState, action) => {
             ...state.centerPics[action.centerPicIndex],
             url: action.centerPicUrl
           },
-          ...state.captions.slice(action.centerPicIndex + 1)
+          ...state.centerPics.slice(action.centerPicIndex + 1)
         ]
       };
     case 'RECEIVED_CENTER_PIC_CAPTIONS':

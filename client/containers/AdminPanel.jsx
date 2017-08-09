@@ -2,9 +2,7 @@ import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import BaseContainer from '../components/AdminPanel/BaseContainer';
 import BasicSideNav from '../components/AdminPanel/BasicSideNav';
-import CenterPicsPanel from '../components/AdminPanel/CenterPicsPanel';
-import CaptionsPanel from '../components/AdminPanel/CaptionsPanel';
-import MainTextsPanel from '../components/AdminPanel/MainTextsPanel';
+import HomePanel from '../components/AdminPanel/HomePanel';
 import ProjectsPanel from '../components/AdminPanel/ProjectsPanel';
 
 const AdminPanel = ({match}) => {
@@ -16,10 +14,7 @@ const AdminPanel = ({match}) => {
             <BasicSideNav adminMatch={match}/>
           </BaseContainer>
           <div className="controller-holder">
-            <Route exact path="/admin/home" component={CenterPicsPanel} />
-            <Route exact path="/admin/home/center-pics" component={CenterPicsPanel}/>
-            <Route exact path="/admin/home/captions" component={CaptionsPanel}/>
-            <Route exact path="/admin/home/main-texts" component={MainTextsPanel}/>
+            <Route exact path="/admin/home" component={HomePanel} />
             <Route exact path="/admin/projects" component={ProjectsPanel} />
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-class PicAdderForm extends Component {
+class PicForm extends Component {
   constructor(props) {
     super(props);
 
@@ -10,14 +10,15 @@ class PicAdderForm extends Component {
       fileNotAPic: false
     };
 
-    this.uploadFile = this.uploadFile.bind(this);
-    this.goBack = this.goBack.bind(this);
-    this.test2 = this.test2.bind(this);
+    this.uploadPic = this.uploadPic.bind(this);
+    this.putPic = this.putPic.bind(this);
+    this.patchPic = this.patchPic.bind(this);
+    this.close = this.close.bind(this);
   }
 
-  goBack(e) {
+  close(e) {
     e.preventDefault();
-    this.props.goBack();
+    this.props.close();
   }
 
   validatePicAndUpdateState(file) {
@@ -41,8 +42,7 @@ class PicAdderForm extends Component {
     return true;
   }
 
-  uploadFile(e) {
-    e.preventDefault();
+  putPic() {
     let pic = document.getElementById('pic').files[0];
     if (!this.validatePicAndUpdateState(pic)) {
       return;
@@ -50,42 +50,49 @@ class PicAdderForm extends Component {
     let data = new FormData();
     data.append('pic', pic);
     axios.put('/home-page/center-pic', data, {headers: {'x-auth': this.props.authToken}})
-      .then(function (res) {
-        console.log(res);
+      .then(res =>{
+        this.props.onSuccess(res.data);
       })
-      .catch(function (err) {
-        console.log(err);
-      });
-  };
-
-  test2() {
-    let pic = document.getElementById('pic').files[0];
-    let data = new FormData();
-    data.append('pic', pic);
-    axios.patch('/home-page/center-pic/59846979fdaf136d969f8b9f', data, {headers: {'x-auth': this.props.authToken}})
-      .then(function (res) {
-        console.log(res);
-      })
-      .catch(function (err) {
+      .catch(err => {
         console.log(err);
       });
   }
+
+  patchPic() {
+    let pic = document.getElementById('pic').files[0];
+    if (!this.validatePicAndUpdateState(pic)) {
+      return;
+    }
+    let data = new FormData();
+    data.append('pic', pic);
+    axios.patch(`/home-page/center-pic/${this.props.picId}`, data, {headers: {'x-auth': this.props.authToken}})
+      .then(res => {
+        this.props.onSuccess(res.data.url);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  uploadPic(e) {
+    e.preventDefault();
+    this.props.mode === "add" ? this.putPic() : this.patchPic();
+  };
 
   render() {
     return (
       <Form
         {...this.state}
-        uploadFile={this.uploadFile}
-        goBack={this.goBack}
+        uploadPic={this.uploadPic}
+        close={this.close}
         resetErrors={() => (this.setState({noPicSelected: false, fileNotAPic: false}))}
-        test2={this.test2}
       />
     );
   }
 }
 
 
-const Form = ({noPicSelected, fileNotAPic, uploadFile, resetErrors, goBack, test2}) => (
+const Form = ({noPicSelected, fileNotAPic, uploadPic, resetErrors, close}) => (
   <div className="pic-adder-form">
     <form>
       <div className="form-control">
@@ -102,16 +109,14 @@ const Form = ({noPicSelected, fileNotAPic, uploadFile, resetErrors, goBack, test
       </div>
 
       <div className="form-control">
-        <button onClick={uploadFile}>Upload</button>
+        <button onClick={uploadPic}>Upload</button>
       </div>
 
       <div className="form-control">
-        <button onClick={goBack}>Back</button>
+        <button onClick={close}>Close</button>
       </div>
     </form>
-
-    <button onClick={test2}>I am test 2</button>
   </div>
 );
 
-export default PicAdderForm;
+export default PicForm;

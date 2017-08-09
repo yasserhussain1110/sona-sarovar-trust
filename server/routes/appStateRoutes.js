@@ -4,10 +4,10 @@ const TeamMember = require('../models/teammember');
 
 const appStateRoutes = app => {
   app.get('/init-state', (req, res) => {
-    Promise.all([HomePage.find(), Project.find(), TeamMember.find()])
-      .then(([homePages, projects, teamMembers]) => {
+    Promise.all([HomePage.findOne(), Project.find(), TeamMember.find()])
+      .then(([homePage, projects, teamMembers]) => {
         res.send({
-          homePage: homePages[0],
+          homePage,
           projects,
           teamMembers
         });

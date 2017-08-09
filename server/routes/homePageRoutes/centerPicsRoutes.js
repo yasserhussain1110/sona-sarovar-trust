@@ -16,10 +16,15 @@ const centerPicRoutes = app => {
     ensureImageAndWriteToDisk(file, RESOURCES_DIR + '/home')
       .then(imagePath => {
         let imageUrl = imagePath.replace(RESOURCES_DIR, "");
-        return addImageFileUrlToDB(imageUrl).then(() => imageUrl);
+        return addImageFileUrlToDB(imageUrl);
       })
-      .then(imageUrl => {
-        res.status(200).send({imageUrl});
+      .then(() => {
+        return HomePage.findOne().then(h => {
+          return h.centerPics[h.centerPics.length - 1]
+        });
+      })
+      .then(pic => {
+        res.status(200).send(pic);
       })
       .catch(err => {
         console.log(err);
@@ -42,14 +47,14 @@ const centerPicRoutes = app => {
         return ensureImageAndWriteToDisk(file, RESOURCES_DIR + '/home');
       })
       .then(imagePath => {
-        return removeExistingImageFile(_id).then(() => imagePath);
+        return removeExistingImageFile(HomePage, 'centerPics', _id).then(() => imagePath);
       })
       .then(imagePath => {
         let imageUrl = imagePath.replace(RESOURCES_DIR, "");
         return updateImageFileUrlInDB(imageUrl, _id).then(() => imageUrl);
       })
       .then(imageUrl => {
-        res.status(200).send({imageUrl});
+        res.status(200).send({url: imageUrl});
       })
       .catch(err => {
         console.log(err);
@@ -64,7 +69,7 @@ const centerPicRoutes = app => {
         'centerPics._id': _id
       })
       .then(() => {
-        return removeExistingImageFile(_id);
+        return removeExistingImageFile(HomePage, 'centerPics', _id);
       })
       .then(() => {
         return HomePage.update({

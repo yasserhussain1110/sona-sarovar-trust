@@ -42,16 +42,45 @@ a:hover {
   cursor: pointer;
 }
 
+.no-outline {
+  outline: none;
+}
+
+button {
+  background-color: lightblue;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:focus {
+  @extend .no-outline
+}
+
 @keyframes show {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes hide {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
-$main-font: normal normal 46px 'Kelly Slab',fantasy;
+$main-font: normal normal 46px 'Kelly Slab', fantasy;
 
-$secondary-font: normal normal normal 22px/1.4em 'Courier New',courier-ps-w01,courier-ps-w02,courier-ps-w10,monospace;
+$secondary-font: normal normal normal 22px/1.4em 'Courier New', courier-ps-w01, courier-ps-w02, courier-ps-w10, monospace;
