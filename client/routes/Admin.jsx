@@ -6,7 +6,6 @@ import AdminAuth from '../containers/AdminAuth';
 const Admin = ({match}) => (
   <BrowserRouter>
     <main id="admin">
-      {/* Might need to remove exact keyword from here */}
       <Route path={`${match.url}`} component={AdminController}/>
       <Route path={`${match.url}/auth`} component={AdminAuth}/>
     </main>

@@ -1,8 +1,30 @@
 #admin-panel {
+
+  .controller-holder {
+    background-color: white;
+    width: 100%;
+    margin-left: 10px;
+  }
   .controller {
+
   }
 
   .pic-holder-wrapper {
+  }
+
+  .caption-box-holder {
+    display: inline-block;
+    width: 25%;
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .caption-holder {
+    font-size: 18px;
+    background-color: lightgray;
+    padding: 5px;
+    border: 1px solid $black;
+    border-radius: 5px;
   }
 
   .pic-box-holder {

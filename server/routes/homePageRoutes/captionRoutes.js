@@ -10,7 +10,11 @@ const captionRoutes = app => {
         captions: {text: captionText}
       }
     }).then(() => {
-      res.status(200).send();
+      return HomePage.findOne().then(h => {
+        return h.captions[h.captions.length - 1];
+      })
+    }).then(caption => {
+      res.send(caption);
     }).catch(e => {
       console.log(e);
       res.status(400).send();

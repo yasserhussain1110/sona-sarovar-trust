@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Modal from '../../../lib/components/Modal';
-import PicForm from '../CenterPicsPanel/PicForm';
+import PicForm from './CenterPicsPanel/PicForm';
 import {addedCenterPic, updatedCenterPic, deletedCenterPic} from '../../../actions';
 import {bindActionCreators} from 'redux';
 import axios from 'axios';
@@ -85,7 +85,7 @@ class CenterPicsPanel extends Component {
     let {centerPics} = this.props;
     return (
       <div className="center-pic-panel">
-        <h2>CenterPics</h2>
+        <h2>Center Pics Panel</h2>
         <div className="pic-holder-wrapper">{centerPics.map((centerPic, index) => (
           <div key={centerPic._id} className="pic-box-holder">
             <div className="pic-holder">

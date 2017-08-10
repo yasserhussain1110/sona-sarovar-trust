@@ -49,7 +49,7 @@ export const addedCenterPicCaption = caption => (
   }
 );
 
-export const deletedCenterPicCaption = (captionIndex) => (
+export const deletedCenterPicCaption = captionIndex => (
   {
     type: "DELETED_CENTER_PIC_CAPTION",
     captionIndex
