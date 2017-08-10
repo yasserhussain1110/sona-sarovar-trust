@@ -117,7 +117,11 @@ class CenterPicsPanel extends Component {
         </div>
         <div className="add-pic-wrapper">
           <button
-            onClick={e => this.setState({showModalForm: true, picFormMode: "add", selectedCenterPicIndex: -1})}>
+            onClick={e => this.setState({
+              showModalForm: true,
+              picFormMode: "add",
+              selectedCenterPicIndex: -1
+            })}>
             Add Pic
           </button>
         </div>
@@ -162,7 +166,7 @@ const AddOrUpdatePic = ({pic, close, authToken, mode, onSuccess}) => {
         close={close}
         authToken={authToken}
         mode={mode}
-        picId={pic === null ? -1 : pic._id}
+        picId={pic === null ? "" : pic._id}
         onSuccess={onSuccess}
       />
     </div>
