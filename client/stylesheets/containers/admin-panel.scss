@@ -5,18 +5,27 @@
     width: 100%;
     margin-left: 10px;
   }
-  .controller {
-
-  }
-
-  .pic-holder-wrapper {
-  }
 
   .caption-box-holder {
     display: inline-block;
     width: 25%;
     margin: 5px;
     padding: 5px;
+  }
+
+  .main-text-box-holder {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+  }
+
+  .main-text-holder {
+    margin: 5px;
+    padding: 5px;
+    background-color: #FFE363;
+    color: darkblue;
+    border: 1px dotted blue;
+    border-radius: 10px;
   }
 
   .caption-holder {
@@ -47,61 +56,3 @@
     color: white;
   }
 }
-
-//#admin-panel {
-//  .controller {
-//    margin-left: 20px;
-//    padding: 5px;
-//  }
-//
-//  .controller-holder {
-//    background-color: white;
-//    width: 100%;
-//  }
-//
-//  .pic-holder-wrapper {
-//    padding: 5px;
-//    text-align: center;
-//    margin-top: 5px;
-//  }
-//
-//  .pic-holder {
-//    display: inline-block;
-//    margin: 10px;
-//  }
-//
-//  .center-pics {
-//    margin-top: 20px;
-//  }
-//
-//  .center-pics h3 {
-//    text-align: center;
-//    font-size: 24px;
-//    color: black;
-//  }
-//
-//  .center-pics img {
-//    height: 200px;
-//    width: 200px;
-//  }
-//
-//  .adder-button-holder {
-//    text-align: center;
-//    margin-top: 10px;
-//  }
-//
-//  .adder-button {
-//    background-color: green;
-//    border: none;
-//    padding: 10px 20px;
-//    border-radius: 5px;
-//    color: white;
-//    font-size: 20px;
-//    font-weight: 600;
-//    cursor: pointer;
-//  }
-//
-//  .pic-adder-form {
-//    text-align: center;
-//  }
-//}

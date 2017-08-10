@@ -1,6 +1,7 @@
 import React from 'react';
 import CenterPicsPanel from './HomePanel/CenterPicsPanel';
 import CaptionsPanel from './HomePanel/CaptionsPanel';
+import MainTextPanel from './HomePanel/MainTextPanel';
 
 const HomePanel = () => {
   return (
@@ -9,6 +10,7 @@ const HomePanel = () => {
       <section className="sub-panel">
         <CenterPicsPanel />
         <CaptionsPanel />
+        <MainTextPanel />
       </section>
     </div>
   );

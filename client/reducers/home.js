@@ -74,6 +74,16 @@ const home = (state = defaultState, action) => {
         mainTextPara1: action.mainTextPara1,
         mainTextPara2: action.mainTextPara2
       };
+    case 'UPDATED_MAIN_TEXT_PARA1':
+      return {
+        ...state,
+        mainTextPara1: action.mainTextPara1
+      };
+    case 'UPDATED_MAIN_TEXT_PARA2':
+      return {
+        ...state,
+        mainTextPara2: action.mainTextPara2
+      };
     default:
       return state;
   }
