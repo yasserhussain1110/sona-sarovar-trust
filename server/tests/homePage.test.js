@@ -22,7 +22,7 @@ beforeEach(done => {
 describe('Testing path PUT /home-page/center-pic', () => {
   it("should add a new pic", done => {
     request(app)
-      .put('/home-page/center-pic')
+      .put('/api/home-page/center-pic')
       .set('x-auth', INIT_ADMIN.tokens[0])
       .attach('pic', 'server/tests/files/sun.jpg')
       .expect(200)

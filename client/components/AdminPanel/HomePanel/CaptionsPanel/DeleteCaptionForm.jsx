@@ -11,7 +11,7 @@ const DeleteCaptionForm = ({caption, authToken, onSuccess, close}) => (
 );
 
 const deleteCaption = (_id, onSuccess, authToken) => {
-  axios.delete(`/home-page/caption/${_id}`, {headers: {'x-auth': authToken}})
+  axios.delete(`/api/home-page/caption/${_id}`, {headers: {'x-auth': authToken}})
     .then(res => {
       onSuccess();
     })

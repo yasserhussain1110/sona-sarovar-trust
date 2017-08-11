@@ -49,7 +49,7 @@ class PicForm extends Component {
     }
     let data = new FormData();
     data.append('pic', pic);
-    axios.put('/home-page/center-pic', data, {headers: {'x-auth': this.props.authToken}})
+    axios.put('/api/home-page/center-pic', data, {headers: {'x-auth': this.props.authToken}})
       .then(res =>{
         this.props.onSuccess(res.data);
       })
@@ -65,7 +65,7 @@ class PicForm extends Component {
     }
     let data = new FormData();
     data.append('pic', pic);
-    axios.patch(`/home-page/center-pic/${this.props.picId}`, data, {headers: {'x-auth': this.props.authToken}})
+    axios.patch(`/api/home-page/center-pic/${this.props.picId}`, data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
         this.props.onSuccess(res.data.url);
       })

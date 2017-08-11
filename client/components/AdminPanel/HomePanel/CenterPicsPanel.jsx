@@ -174,7 +174,7 @@ const AddOrUpdatePic = ({pic, close, authToken, mode, onSuccess}) => {
 };
 
 const deletePic = (picId, authToken, onDelete) => {
-  axios.delete(`/home-page/center-pic/${picId}`, {headers: {'x-auth': authToken}})
+  axios.delete(`/api/home-page/center-pic/${picId}`, {headers: {'x-auth': authToken}})
     .then(res => {
       onDelete();
     })

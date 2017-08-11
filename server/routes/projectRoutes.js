@@ -6,7 +6,7 @@ const {ensureImageAndWriteToDisk, removeExistingImageFile} = require('../service
 const {RESOURCES_DIR} = process.env;
 
 const projectRoutes = app => {
-  app.patch('/project/:_id', auth, (req, res) => {
+  app.patch('/api/project/:_id', auth, (req, res) => {
     let {name, description} = req.body;
     let _id = req.params._id;
     if (!name || !description) {
@@ -23,7 +23,7 @@ const projectRoutes = app => {
     })
   });
 
-  app.patch('/project/pic/:_id', auth, upload.single('pic'), (req, res) => {
+  app.patch('/api/project/pic/:_id', auth, upload.single('pic'), (req, res) => {
     if (!req.file) return res.status(400).send();
 
     let _id = req.params._id;
@@ -52,7 +52,7 @@ const projectRoutes = app => {
       });
   });
 
-  app.put('/project', auth, (req, res) => {
+  app.put('/api/project', auth, (req, res) => {
     let {name, description} = req.body;
     if (!name || !description) {
       return res.status(400).send();
@@ -70,7 +70,7 @@ const projectRoutes = app => {
     });
   });
 
-  app.put('/project/pic/:_id', auth, upload.single('pic'), (req, res) => {
+  app.put('/api/project/pic/:_id', auth, upload.single('pic'), (req, res) => {
     if (!req.file) return res.status(400).send();
 
     let _id = req.params._id;
@@ -94,7 +94,7 @@ const projectRoutes = app => {
       });
   });
 
-  app.delete('/project/:_id', auth, (req, res) => {
+  app.delete('/api/project/:_id', auth, (req, res) => {
     let _id = req.params._id;
 
     Project.findById(_id).then(project => {
@@ -112,7 +112,7 @@ const projectRoutes = app => {
     });
   });
 
-  app.delete('/project/pic/:_id', auth, (req, res) => {
+  app.delete('/api/project/pic/:_id', auth, (req, res) => {
     let _id = req.params._id;
 
     Project.findOne({

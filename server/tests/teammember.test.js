@@ -27,7 +27,7 @@ beforeEach(done => {
 describe('Testing path PUT /teammember', () => {
   it("should add a new team member", done => {
     request(app)
-      .put("/teammember")
+      .put("/api/teammember")
       .set('x-auth', INIT_ADMIN.tokens[0])
       .field('name', 'Yasser Hussain')
       .field('info', 'Yasser Hussain is awesome person')
@@ -63,7 +63,7 @@ describe('Testing path PUT /teammember', () => {
 describe('Testing path PATCH /teammember/:_id', () => {
   it("should update teammember without updating pic", done => {
     request(app)
-      .patch(`/teammember/${INIT_TEAM_MEMBERS[0]._id}`)
+      .patch(`/api/teammember/${INIT_TEAM_MEMBERS[0]._id}`)
       .set('x-auth', INIT_ADMIN.tokens[0])
       .field('name', 'Member 1 modified')
       .field('info', 'Roman Infantry 1 got modified')
@@ -89,7 +89,7 @@ describe('Testing path PATCH /teammember/:_id', () => {
 
   it("should update teammember with pic", done => {
     request(app)
-      .patch(`/teammember/${INIT_TEAM_MEMBERS[0]._id}`)
+      .patch(`/api/teammember/${INIT_TEAM_MEMBERS[0]._id}`)
       .set('x-auth', INIT_ADMIN.tokens[0])
       .field('name', 'Member 1 modified')
       .field('info', 'Roman Infantry 1 got modified')

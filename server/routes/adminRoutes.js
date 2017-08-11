@@ -1,7 +1,7 @@
 const Admin = require('../models/admin');
 
 const adminRoutes = app => {
-  app.post('/login', (req, res) => {
+  app.post('/api/login', (req, res) => {
     let {username, password} = req.body;
 
     Admin.findByCreds(username, password)

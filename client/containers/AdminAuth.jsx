@@ -21,7 +21,7 @@ class AdminAuth extends Component {
     e.preventDefault();
     let {username, password} = this.state;
     if (!username || !password) return;
-    axios.post('/login', {username, password})
+    axios.post('/api/login', {username, password})
       .then(response => {
         let authToken = response.headers['x-auth'];
         localStorage.setItem('auth-token', authToken);

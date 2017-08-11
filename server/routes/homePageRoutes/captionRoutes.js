@@ -2,7 +2,7 @@ const auth = require('../../middleware/auth');
 const HomePage = require('../../models/homepage');
 
 const captionRoutes = app => {
-  app.put('/home-page/caption', auth, (req, res) => {
+  app.put('/api/home-page/caption', auth, (req, res) => {
     let captionText = req.body.text;
 
     HomePage.update({
@@ -21,7 +21,7 @@ const captionRoutes = app => {
     });
   });
 
-  app.patch('/home-page/caption/:_id', auth, (req, res) => {
+  app.patch('/api/home-page/caption/:_id', auth, (req, res) => {
     let _id = req.params._id;
     let captionText = req.body.text;
 
@@ -40,7 +40,7 @@ const captionRoutes = app => {
     });
   });
 
-  app.delete('/home-page/caption/:_id', auth, (req, res) => {
+  app.delete('/api/home-page/caption/:_id', auth, (req, res) => {
     let _id = req.params._id;
 
     HomePage.update({

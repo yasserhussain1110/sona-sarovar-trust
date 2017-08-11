@@ -7,7 +7,7 @@ const {ensureImageAndWriteToDisk} = require('../services');
 const {RESOURCES_DIR} = process.env;
 
 const teammemberRoutes = app => {
-  app.put('/teammember', auth, upload.single('pic'), (req, res) => {
+  app.put('/api/teammember', auth, upload.single('pic'), (req, res) => {
     let file = req.file;
     let {name, info} = req.body;
 
@@ -33,7 +33,7 @@ const teammemberRoutes = app => {
       });
   });
 
-  app.patch('/teammember/:_id', auth, upload.single('pic'), (req, res) => {
+  app.patch('/api/teammember/:_id', auth, upload.single('pic'), (req, res) => {
     let file = req.file;
     let {name, info} = req.body;
     let _id = req.params._id;

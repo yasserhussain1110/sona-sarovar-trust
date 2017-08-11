@@ -8,7 +8,7 @@ const {ensureImageAndWriteToDisk, removeExistingImageFile} = require('../../serv
 const {RESOURCES_DIR} = process.env;
 
 const centerPicRoutes = app => {
-  app.put('/home-page/center-pic', auth, upload.single('pic'), (req, res) => {
+  app.put('/api/home-page/center-pic', auth, upload.single('pic'), (req, res) => {
     if (!req.file) return res.status(400).send();
 
     let file = req.file;
@@ -32,7 +32,7 @@ const centerPicRoutes = app => {
       });
   });
 
-  app.patch('/home-page/center-pic/:_id', auth, upload.single('pic'), (req, res) => {
+  app.patch('/api/home-page/center-pic/:_id', auth, upload.single('pic'), (req, res) => {
     if (!req.file) return res.status(400).send();
 
     let _id = req.params._id;
@@ -62,7 +62,7 @@ const centerPicRoutes = app => {
       });
   });
 
-  app.delete('/home-page/center-pic/:_id', auth, (req, res) => {
+  app.delete('/api/home-page/center-pic/:_id', auth, (req, res) => {
     let _id = req.params._id;
     HomePage
       .findOne({

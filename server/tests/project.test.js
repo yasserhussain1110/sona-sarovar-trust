@@ -27,7 +27,7 @@ beforeEach(done => {
 describe('Testing path DELETE /project/:_id', () => {
   it("should delete a whole project", done => {
     request(app)
-      .delete(`/project/${INIT_PROJECTS[0]._id}`)
+      .delete(`/api/project/${INIT_PROJECTS[0]._id}`)
       .set('x-auth', INIT_ADMIN.tokens[0])
       .send()
       .expect(200)
@@ -49,7 +49,7 @@ describe('Testing path DELETE /project/:_id', () => {
 describe('Testing path DELETE /project/pic/:_id', () => {
   it("should delete a pic of a project", done => {
     request(app)
-      .delete(`/project/pic/${INIT_PROJECTS[0].pics[0]._id}`)
+      .delete(`/api/project/pic/${INIT_PROJECTS[0].pics[0]._id}`)
       .set('x-auth', INIT_ADMIN.tokens[0])
       .send()
       .expect(200)

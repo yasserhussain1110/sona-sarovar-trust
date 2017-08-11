@@ -27,6 +27,11 @@ if (process.env.NODE_ENV === "development") {
 else if (process.env.NODE_ENV === "production") {
   console.log("Running In Production");
   app.use(express.static('./dist'));
+  // URLs like /api, /api/, /api/some should send back 404
+  app.get(/\/api($|\/)/, (req, res) => {
+    res.status(404).send();
+  });
+  // Other URLs will be handled on client side
   app.get('*', (req, res) => {
     res.sendFile(path.resolve('./dist/index.html'));
   });

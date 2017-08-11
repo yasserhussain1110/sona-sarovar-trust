@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   initializeApp() {
-    axios.get('/init-state')
+    axios.get('/api/init-state')
       .then(response => {
         let {homePage, projects, teamMembers} = response.data;
         let {captions, centerPics, mainTextPara1, mainTextPara2} = homePage;

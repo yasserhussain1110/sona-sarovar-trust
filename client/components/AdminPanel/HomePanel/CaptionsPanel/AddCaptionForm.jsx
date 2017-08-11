@@ -36,7 +36,7 @@ class AddCaptionForm extends Component {
 
     let data = {text: this.state.textAreaValue};
 
-    axios.put('/home-page/caption', data, {headers: {'x-auth': this.props.authToken}})
+    axios.put('/api/home-page/caption', data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
         this.props.onSuccess(res.data);
       })
