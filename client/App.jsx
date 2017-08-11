@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 import axios from 'axios';
 
 import Web from './routes/Web';
@@ -52,6 +52,7 @@ class App extends Component {
         <main>
           <Route path="/web" component={Web}/>
           <Route path="/admin" component={Admin}/>
+          <Route exact path="/" render={() => <Redirect to="/web"/>}/>
         </main>
       </BrowserRouter>
     );

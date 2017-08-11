@@ -14,7 +14,7 @@ module.exports = {
   },
   output: {
     path: resolve('dist'),
-    filename: '[name].js',
+    filename: utils.assetsPath('js/[name].js'),
     publicPath: '/'
   },
   resolve: {
@@ -26,14 +26,6 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         include: [resolve('client'), resolve('test')]
-      },
-      {
-        test: /\.css$/,
-        loaders: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

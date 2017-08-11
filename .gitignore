@@ -3,6 +3,7 @@ node_modules
 .env*
 npm-debug.log
 dist
+dist.prod
 data
 resources
 resources.test

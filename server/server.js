@@ -3,6 +3,7 @@ require('./db/mongoose');
 
 const port = process.env.PORT;
 
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -26,6 +27,9 @@ if (process.env.NODE_ENV === "development") {
 else if (process.env.NODE_ENV === "production") {
   console.log("Running In Production");
   app.use(express.static('./dist'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve('./dist/index.html'));
+  });
 }
 
 app.listen(port, () => {
