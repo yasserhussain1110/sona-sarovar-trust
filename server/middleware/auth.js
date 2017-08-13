@@ -4,7 +4,7 @@ const auth = (req, res, next) => {
   let token = req.get('x-auth');
   Admin.findByToken(token).then(admin => {
     if (!admin) {
-      return Promise.reject("No such user");
+      return Promise.reject("No such Admin");
     }
 
     req.admin = admin;
