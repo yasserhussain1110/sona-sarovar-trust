@@ -7,9 +7,14 @@ body {
   background-color: white;
 }
 
+html, body {
+  height: 100%;
+}
+
 #app {
   width: 100%;
   margin: auto;
+  height: 100%;
 }
 
 #app #web {
@@ -19,6 +24,11 @@ body {
 
 #app #admin {
   width: 100%;
+  height: 100%;
+}
+
+#app main {
+  height: 100%;
 }
 
 .hidden {

@@ -11,15 +11,32 @@ class AdminAuth extends Component {
 
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      error: ""
     };
 
     this.submitForm = this.submitForm.bind(this);
   }
 
+  validateInputAndUpdateError() {
+    let {username, password} = this.state;
+    if (!username) {
+      this.setState({error: "Username cannot be empty"});
+    } else if (!password) {
+      this.setState({error: "Password cannot be empty"});
+    } else {
+      return true;
+    }
+
+    return false;
+  }
+
   submitForm(e) {
     e.preventDefault();
     let {username, password} = this.state;
+
+    if (!this.validateInputAndUpdateError()) return;
+
     if (!username || !password) return;
     axios.post('/api/login', {username, password})
       .then(response => {
@@ -29,6 +46,7 @@ class AdminAuth extends Component {
       })
       .catch(error => {
         console.log(error);
+        this.setState({error: "Username or Password Invalid", username: "", password: ""});
       });
   }
 
@@ -43,7 +61,8 @@ class AdminAuth extends Component {
         password={this.state.password}
         updateUsername={username => this.setState({username})}
         updatePassword={password => this.setState({password})}
-        submitForm={this.submitForm}/>
+        submitForm={this.submitForm}
+        error={this.state.error}/>
     );
   }
 }
