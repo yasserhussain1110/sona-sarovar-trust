@@ -8,7 +8,9 @@
     "start:production": "node server/server",
     "start:development": "nodemon server/server",
     "test": "NODE_ENV=test mocha server/tests/*.test.js",
-    "postinstall": "npm run build",
+    "postinstall": "per-env",
+    "postinstall:production": "npm run build",
+    "postinstall:development": "echo 'skipping postinstall as in dev env'",
     "seed": "node server/seed/seed.js",
     "build": "webpack"
   },
