@@ -117,6 +117,7 @@ class CenterPicsPanel extends Component {
         </div>
         <div className="add-pic-wrapper">
           <button
+            className="add-pic-button"
             onClick={e => this.setState({
               showModalForm: true,
               picFormMode: "add",

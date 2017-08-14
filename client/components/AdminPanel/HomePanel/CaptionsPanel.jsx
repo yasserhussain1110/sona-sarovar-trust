@@ -91,8 +91,8 @@ class CaptionsPanel extends Component {
               <span>{caption.text}</span>
             </div>
             <div className="button-holder">
-              <button onClick={e => this.updateCaption(index)}>Update</button>
-              <button onClick={e => this.deleteCaption(index)}>Delete</button>
+              <button className="button update-button" onClick={e => this.updateCaption(index)}>Update</button>
+              <button className="button delete-button" onClick={e => this.deleteCaption(index)}>Delete</button>
             </div>
           </div>))}
         </div>
