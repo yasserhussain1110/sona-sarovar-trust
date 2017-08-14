@@ -7,3 +7,5 @@ dist.prod
 data
 resources
 resources.test
+resources.prod
+package-lock.json
