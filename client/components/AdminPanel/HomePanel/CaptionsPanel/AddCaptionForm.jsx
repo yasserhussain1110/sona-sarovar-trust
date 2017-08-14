@@ -50,15 +50,17 @@ class AddCaptionForm extends Component {
     return (
       <div className="add-caption-form">
         <h3>Adding New Caption</h3>
-        <span>Enter Caption in TextArea below and Click Add</span>
+        <span className="message">Enter Caption in TextArea below and Click Add</span>
         <textarea
           onFocus={e => this.setState({errorTextAreaEmpty: false})}
           value={this.state.textAreaValue}
           onChange={this.updateTextAreaValue}/> {this.state.errorTextAreaEmpty ?
         <span className="error">TextArea should not be empty</span>
         : ""}
-        <button className="add-button" onClick={this.addCaption}>Add</button>
-        <button className="cancel-button" onClick={this.close}>Cancel</button>
+        <div className="button-holder">
+          <button className="add-button" onClick={this.addCaption}>Add</button>
+          <button className="cancel-button" onClick={this.close}>Cancel</button>
+        </div>
       </div>
     );
   }

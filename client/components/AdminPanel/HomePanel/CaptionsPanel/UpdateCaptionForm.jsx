@@ -55,15 +55,17 @@ class UpdateCaptionForm extends Component {
     return (
       <div className="update-caption-form">
         <h3>Updating Caption</h3>
-        <span>Update Caption below and click Update</span>
+        <span className="message">Update Caption below and click Update</span>
         <textarea
           onFocus={e => this.setState({errorTextAreaEmpty: false})}
           value={this.state.textAreaValue}
           onChange={this.updateTextAreaValue}/> {this.state.errorTextAreaEmpty ?
         <span className="error">TextArea should not be empty</span> : ""}
-        <button className="update-button" onClick={this.updateCaption}>Update</button>
-        <button className="reset-button" onClick={this.resetCaption}>Reset</button>
-        <button className="cancel-button" onClick={this.close}>Cancel</button>
+        <div className="button-holder">
+          <button className="update-button" onClick={this.updateCaption}>Update</button>
+          <button className="reset-button" onClick={this.resetCaption}>Reset</button>
+          <button className="cancel-button" onClick={this.close}>Cancel</button>
+        </div>
       </div>
     );
   }

@@ -4,9 +4,11 @@ import axios from 'axios';
 const DeleteCaptionForm = ({caption, authToken, onSuccess, close}) => (
   <div className="delete-caption-form">
     <span>Are you sure you want to delete this caption?</span>
-    <span>{caption.text}</span>
-    <button onClick={e => deleteCaption(caption._id, onSuccess, authToken)}>Yes</button>
-    <button onClick={close}>No</button>
+    <span className="caption-text">{caption.text}</span>
+    <div className="button-holder">
+      <button onClick={e => deleteCaption(caption._id, onSuccess, authToken)}>Yes</button>
+      <button onClick={close}>No</button>
+    </div>
   </div>
 );
 

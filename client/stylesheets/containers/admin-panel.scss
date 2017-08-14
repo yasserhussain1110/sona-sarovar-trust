@@ -230,4 +230,90 @@
       color: white;
     }
   }
+
+  .update-caption-form {
+    textarea {
+      display: block;
+      height: 50px;
+      width: 80%;
+      margin: 10px auto;
+    }
+
+    .message {
+      margin: 10px 0;
+      display: block;
+    }
+
+    .button-holder {
+      text-align: center;
+    }
+
+    .error {
+      color: red;
+      background-color: #F7EC74;
+      margin: 10px 0;
+      text-align: center;
+      padding: 5px;
+      font-weight: lighter;
+      display: block;
+    }
+
+    .cancel-button {
+      background-color: green;
+      color: white;
+    }
+  }
+
+  .delete-caption-form {
+    span {
+      display: block;
+    }
+
+    .caption-text {
+      padding: 5px;
+      background-color: lightgray;
+      min-height: 40px;
+      margin: 10px 0;
+    }
+
+    .button-holder {
+      text-align: center;
+    }
+  }
+
+  .add-caption-form {
+    .message {
+      margin: 10px 0;
+      display: block;
+    }
+
+    textarea {
+      display: block;
+      height: 50px;
+      width: 80%;
+      margin: 10px auto;
+    }
+
+    .button-holder {
+      text-align: center;
+    }
+  }
+
+  .update-main-text-form {
+    .message {
+      margin: 10px 0;
+      display: block;
+    }
+
+    textarea {
+      display: block;
+      height: 50px;
+      width: 80%;
+      margin: 10px auto;
+    }
+
+    .button-holder {
+      text-align: center;
+    }
+  }
 }

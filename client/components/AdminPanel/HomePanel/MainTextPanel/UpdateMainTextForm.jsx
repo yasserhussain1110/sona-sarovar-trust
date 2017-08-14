@@ -51,18 +51,21 @@ class UpdateMainTextForm extends Component {
   render() {
     return (
       <div className="update-main-text-form">
+        <span className="message">Update text below and click Update</span>
         <textarea
           value={this.state.textAreaValue}
           onChange={this.updateTextAreaValue}
           onFocus={e => this.setState({errorTextAreaEmpty: false})}/>{this.state.errorTextAreaEmpty ?
         <span className="error">Text area must not be empty.</span> : ""}
-        <button onClick={this.updateMainText}>Update</button>
-        <button onClick={this.reset}>Reset</button>
-        <button onClick={e => {
-          e.preventDefault();
-          this.props.close();
-        }}>Close
-        </button>
+        <div className="button-holder">
+          <button onClick={this.updateMainText}>Update</button>
+          <button onClick={this.reset}>Reset</button>
+          <button onClick={e => {
+            e.preventDefault();
+            this.props.close();
+          }}>Close
+          </button>
+        </div>
       </div>
     );
   }
