@@ -50,7 +50,7 @@ class PicForm extends Component {
     let data = new FormData();
     data.append('pic', pic);
     axios.put('/api/home-page/center-pic', data, {headers: {'x-auth': this.props.authToken}})
-      .then(res =>{
+      .then(res => {
         this.props.onSuccess(res.data);
       })
       .catch(err => {
@@ -95,25 +95,27 @@ class PicForm extends Component {
 const Form = ({noPicSelected, fileNotAPic, uploadPic, resetErrors, close}) => (
   <div className="pic-adder-form">
     <form>
-      <div className="form-control">
+      <div className="selection form-control">
         <label>Select Pic</label>
         <input id="pic" name="pic" type="file" onChange={resetErrors}/>
       </div>
 
-      <div className={`error uploading-without-pic ${noPicSelected ? "shown" : "hidden" }`}>
+      <div className={`error uploading-without-pic ${noPicSelected ? "" : "hidden" }`}>
         <span>Please select a picture to continue uploading</span>
       </div>
 
-      <div className={`error file-not-pic ${fileNotAPic ? "shown" : "hidden"}`}>
+      <div className={`error file-not-pic ${fileNotAPic ? "" : "hidden"}`}>
         <span>Must upload a picture</span>
       </div>
 
-      <div className="form-control">
-        <button onClick={uploadPic}>Upload</button>
-      </div>
+      <div className="button-holder">
+        <div className="form-control">
+          <button onClick={uploadPic}>Upload</button>
+        </div>
 
-      <div className="form-control">
-        <button onClick={close}>Close</button>
+        <div className="form-control">
+          <button onClick={close}>Close</button>
+        </div>
       </div>
     </form>
   </div>

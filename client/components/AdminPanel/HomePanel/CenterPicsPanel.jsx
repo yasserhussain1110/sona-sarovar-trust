@@ -139,16 +139,22 @@ const DeletePic = ({pic, close, authToken, onDelete}) => {
     <div className="delete-pic-form">
       <label>Do you really want to delete this image?</label>
       <img src={pic.url}/>
-      <button onClick={e => {
-        e.preventDefault();
-        deletePic(pic._id, authToken, onDelete)
-      }}>Yes
-      </button>
-      <button onClick={e => {
-        e.preventDefault();
-        close()
-      }}>No
-      </button>
+      <div className="button-holder">
+        <button
+          className="delete"
+          onClick={e => {
+          e.preventDefault();
+          deletePic(pic._id, authToken, onDelete)
+        }}>Yes
+        </button>
+        <button
+          className="no-delete"
+          onClick={e => {
+          e.preventDefault();
+          close()
+        }}>No
+        </button>
+      </div>
     </div>
   );
 };
