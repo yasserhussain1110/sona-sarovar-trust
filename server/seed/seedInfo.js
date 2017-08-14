@@ -54,13 +54,13 @@ const INIT_TEAM_MEMBERS = [{
 
 const INIT_PROJECTS = [{
   _id: new ObjectID(),
-  name: "Project 1",
-  description: "Project Desc 1",
+  name: "Project XYZ",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.",
   pics: [{_id: new ObjectID(), url: "/projects/project1.jpg"}, {url: "/projects/project2.jpg"}]
 }, {
   _id: new ObjectID(),
-  name: "Project 2",
-  description: "Project Desc 2",
+  name: "Project ABC",
+  description: "Fusce commodo porta molestie. Vestibulum ac tellus condimentum, auctor felis sed, pharetra eros. Sed placerat eget elit ut feugiat. Pellentesque nec dictum lorem. Morbi luctus dignissim arcu et venenatis. Fusce ac fringilla lorem. Morbi pharetra at ex in sollicitudin. Donec commodo, nulla et mollis finibus, mauris dolor eleifend nisl, eget cursus arcu leo id risus.",
   pics: [{url: "/projects/project3.jpg"}, {url: "/projects/project4.jpg"}]
 }];
 

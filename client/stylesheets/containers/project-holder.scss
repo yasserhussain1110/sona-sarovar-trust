@@ -1,0 +1,25 @@
+.project-holder {
+  background-color: #F1F4ED;
+
+  h3 {
+    text-align: center;
+    padding: 20px 0;
+    font: normal normal normal 30px/1.4em 'Kelly Slab', fantasy;
+    font-weight: bolder;
+  }
+
+  h3 > span {
+    text-decoration: underline;
+  }
+
+  p {
+    padding: 20px;
+    font: normal normal normal 16px/1.4em 'Kelly Slab', fantasy;
+  }
+
+  .project-carousal {
+    width: 800px;
+    height: 400px;
+    margin: 10px auto;
+  }
+}

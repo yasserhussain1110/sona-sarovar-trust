@@ -1,11 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import ProjectHolder from '../components/Projects/ProjectHolder';
+import {Link} from 'react-router-dom';
 
 const Projects = ({projectsDone}) => (
   <div className="projects">
-    <h2>Projects Done</h2>{projectsDone.map((project, index) => (
-    <ProjectHolder key={index} {...project}/>))}
+    <h3><span>Projects</span></h3>
+    <div className="project-list">{projectsDone.map((project, index) => (
+      <div key={index} className="project">
+        <Link to={`/web/projects/${index}`}>
+          <img src={project.pics[0].url}/>
+          <h4>
+            <span>{project.name}</span>
+          </h4>
+        </Link>
+      </div>))}
+    </div>
   </div>
 );
 
