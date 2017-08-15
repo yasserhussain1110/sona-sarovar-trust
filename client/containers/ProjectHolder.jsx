@@ -2,8 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ImageCarousal from '../lib/components/ImageCarousal';
 
-const ProjectHolder = ({match, projects}) => {
-  let project = projects[match.params.index];
+const ProjectHolder = ({project}) => {
   if (!project) {
     return <div className="project-holder">No Such Project Found</div>;
   }
@@ -22,9 +21,9 @@ const ProjectHolder = ({match, projects}) => {
   );
 };
 
-const mapStateToProps = state => (
+const mapStateToProps = (state, ownProps) => (
   {
-    projects: state.projects.projectsDone
+    project: state.projects.projectsDone[ownProps.match.params.index]
   }
 );
 
