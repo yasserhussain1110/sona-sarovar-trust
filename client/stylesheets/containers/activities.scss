@@ -1,21 +1,43 @@
 .activities {
   background-color: #F1F4ED;
-  padding: 10px;
+  padding: 10px 0;
 
-  h2 {
-    text-align: center;
-    padding: 5px;
-    margin: 5px;
+  .activity-list {
+    width: 85%;
+    margin: 40px auto;
   }
 
   h3 {
-    padding: 5px;
-    margin: 5px;
+    font: normal normal normal 28px/1.4em 'Kelly Slab', fantasy;
   }
 
-  .activity-carousal {
-    width: 800px;
-    height: 400px;
-    margin: 20px auto;
+  h3 > span {
+    padding: 5px 20px;
+    background-color: #F7DB07;
   }
+
+  h4 {
+    font: normal normal normal 28px/1.4em 'Kelly Slab', fantasy;
+    font-weight: bolder;
+    text-align: center;
+  }
+
+  .activity {
+    display: inline-block;
+    margin: 0 20px;
+  }
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    color: #0F64A5;
+  }
+
+  img {
+    width: 200px;
+    height: 200px;
+  }
+
 }
