@@ -23,13 +23,14 @@ class App extends Component {
   initializeApp() {
     axios.get('/api/init-state')
       .then(response => {
-        let {homePage, projects, teamMembers} = response.data;
+        let {homePage, projects, activities, teamMembers} = response.data;
         let {captions, centerPics, mainTextPara1, mainTextPara2} = homePage;
 
         this.props.receivedCenterPicCaptions(captions);
         this.props.receivedCenterPics(centerPics);
         this.props.receivedMainTexts(mainTextPara1, mainTextPara2);
         this.props.receivedTeamMembers(teamMembers);
+        this.props.receivedActivitiesUndertaken(activities);
         this.props.receivedProjectsDone(projects);
       })
       .catch(error => {

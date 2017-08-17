@@ -1,31 +1,27 @@
 import React from 'react';
-import ActivityHolder from '../components/Activities/ActivityHolder';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-const activities = [{
-  imageLinks: [
-    "/static/project1.jpg",
-    "/static/project2.jpg"
-  ],
-
-  heading: "Activity #1",
-
-  details: "We did this we did that"
-}, {
-  imageLinks: [
-    "/static/project1.jpg",
-    "/static/project2.jpg"
-  ],
-
-  heading: "Activity #2",
-
-  details: "We did number #2"
-}];
-
-const Activities = () => (
+const Activities = ({activitiesUndertaken}) => (
   <div className="activities">
-    <h2>Activities Done</h2>{activities.map((activity, index) => (
-    <ActivityHolder key={index} {...activity}/>))}
+    <h3><span>Activities</span></h3>
+    <div className="activity-list">{activitiesUndertaken.map((activity, index) => (
+      <div key={index} className="activity">
+        <Link to={`/web/activities/${index}`}>
+          <img src={activity.pics[0].url}/>
+          <h4>
+            <span>{activity.name}</span>
+          </h4>
+        </Link>
+      </div>))}
+    </div>
   </div>
 );
 
-export default Activities;
+const mapStateToProps = state => (
+  {
+    activitiesUndertaken: state.activities.activitiesUndertaken
+  }
+);
+
+export default connect(mapStateToProps)(Activities);

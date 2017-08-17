@@ -4,6 +4,7 @@ const Admin = require('../models/admin');
 const HomePage = require('../models/homepage');
 const TeamMember = require('../models/teammember');
 const Project = require('../models/project');
+const Activity = require('../models/activity');
 const ncp = require('ncp').ncp;
 const {INIT_ADMIN_USERNAME, INIT_ADMIN_PASSWORD, JWT_SECRET_KEY, RESOURCES_DIR} = process.env;
 
@@ -55,20 +56,51 @@ const INIT_TEAM_MEMBERS = [{
 const INIT_PROJECTS = [{
   _id: new ObjectID(),
   name: "Project XYZ",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+  "Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. " +
+  "Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. " +
+  "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " +
+  "Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. " +
+  "Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. " +
+  "Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh " +
+  "lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.",
   pics: [{_id: new ObjectID(), url: "/projects/project1.jpg"}, {url: "/projects/project2.jpg"}]
 }, {
   _id: new ObjectID(),
   name: "Project ABC",
-  description: "Fusce commodo porta molestie. Vestibulum ac tellus condimentum, auctor felis sed, pharetra eros. Sed placerat eget elit ut feugiat. Pellentesque nec dictum lorem. Morbi luctus dignissim arcu et venenatis. Fusce ac fringilla lorem. Morbi pharetra at ex in sollicitudin. Donec commodo, nulla et mollis finibus, mauris dolor eleifend nisl, eget cursus arcu leo id risus.",
+  description: "Fusce commodo porta molestie. Vestibulum ac tellus condimentum, auctor felis sed, pharetra eros. " +
+  "Sed placerat eget elit ut feugiat. Pellentesque nec dictum lorem. Morbi luctus dignissim arcu et venenatis. " +
+  "Fusce ac fringilla lorem. Morbi pharetra at ex in sollicitudin. Donec commodo, nulla et mollis finibus, " +
+  "mauris dolor eleifend nisl, eget cursus arcu leo id risus.",
   pics: [{url: "/projects/project3.jpg"}, {url: "/projects/project4.jpg"}]
 }];
 
-const populateAdmins = () => {
-  return Admin.remove({}).then(() => {
-    return new Admin(INIT_ADMIN).save();
-  });
-};
+const INIT_ACTIVITIES = [{
+  _id: new ObjectID(),
+  name: "Card Making",
+  description: "Fusce commodo porta molestie. Vestibulum ac tellus condimentum, auctor felis sed, pharetra eros. " +
+  "Sed placerat eget elit ut feugiat. Pellentesque nec dictum lorem. Morbi luctus dignissim arcu et venenatis. " +
+  "Fusce ac fringilla lorem. Morbi pharetra at ex in sollicitudin. Donec commodo, nulla et mollis finibus, " +
+  "mauris dolor eleifend nisl, eget cursus arcu leo id risus.",
+  pics: [{url: "/activities/Card1.jpg"}, {url: "/activities/Card2.jpg"}, {url: "/activities/Card3.jpg"}]
+}, {
+  _id: new ObjectID(),
+  name: "Social Activities",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+  "Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. " +
+  "Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. " +
+  "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " +
+  "Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. " +
+  "Ut viverra quam sit amet enim rutrum volutpat.",
+  pics: [{url: "/activities/social1.jpg"}, {url: "/activities/social2.jpg"}]
+}];
+
+const
+  populateAdmins = () => {
+    return Admin.remove({}).then(() => {
+      return new Admin(INIT_ADMIN).save();
+    });
+  };
 
 const populateHomePage = () => {
   let sourceHomeDir = "initResources/home";
@@ -118,13 +150,31 @@ const populateProjects = () => {
   });
 };
 
+const populateActivities = () => {
+  let sourceProjectsDir = "initResources/activities";
+  let targetProjectsDir = RESOURCES_DIR + "/activities";
+
+  return new Promise(resolve => {
+    ncp(sourceProjectsDir, targetProjectsDir, function (err) {
+      if (err)  throw err;
+      resolve()
+    });
+  }).then(() => {
+    return Activity.remove({});
+  }).then(() => {
+    return Activity.insertMany(INIT_ACTIVITIES);
+  });
+};
+
 module.exports = {
   INIT_ADMIN,
   INIT_HOME_PAGE,
   INIT_TEAM_MEMBERS,
   INIT_PROJECTS,
+  INIT_ACTIVITIES,
   populateAdmins,
   populateHomePage,
   populateTeamMembers,
-  populateProjects
+  populateProjects,
+  populateActivities
 };
