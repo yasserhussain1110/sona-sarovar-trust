@@ -1,0 +1,22 @@
+.delete-pic-form {
+  label {
+    vertical-align: top;
+    padding: 10px;
+  }
+
+  .delete {
+    background-color: red;
+  }
+
+  .no-delete {
+    background-color: darkgreen;
+  }
+
+  .button-holder {
+    text-align: center;
+  }
+
+  button {
+    color: white;
+  }
+}

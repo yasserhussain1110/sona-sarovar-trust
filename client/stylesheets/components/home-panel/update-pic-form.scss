@@ -1,0 +1,45 @@
+.update-pic-form {
+  .message {
+    width: 70%;
+    margin: auto;
+  }
+
+  .pic-adder-form {
+    margin-top: 20px;
+  }
+
+  span {
+    vertical-align: top;
+    padding: 10px;
+    margin-left: 50px;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+  .selection {
+    text-align: center;
+  }
+
+  label {
+    padding: 10px;
+  }
+
+  input {
+    padding: 10px;
+  }
+
+  .button-holder {
+    text-align: center;
+  }
+
+  .button-holder > div {
+    display: inline-block;
+  }
+
+  .error {
+    color: #F42C04;
+    background-color: #F7EC74;
+    margin: 10px 0;
+    text-align: center;
+  }
+}
