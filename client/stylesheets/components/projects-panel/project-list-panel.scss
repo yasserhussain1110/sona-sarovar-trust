@@ -1,0 +1,24 @@
+.project-list-panel {
+  margin: 10px 0;
+
+  .list-project {
+    margin: 20px 0;
+  }
+
+  li > div {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px;
+    margin: 5px;
+    background-color: yellow;
+  }
+
+  .img-holder, .name, .description {
+    margin: 10px 40px;
+  }
+
+  img {
+    height: 120px;
+    width: 120px;
+  }
+}
