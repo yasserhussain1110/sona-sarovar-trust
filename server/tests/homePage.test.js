@@ -9,9 +9,7 @@ before(done => {
     fs.mkdirSync(RESOURCES_DIR);
   }
   Promise.all([populateAdmins(), populateHomePage(), populateTeamMembers(), populateProjects()])
-    .then(() => {
-      done();
-    });
+    .then(() => done());
 });
 
 beforeEach(done => {
