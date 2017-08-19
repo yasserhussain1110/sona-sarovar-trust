@@ -1,0 +1,43 @@
+.side-nav-bar {
+  background-color: rgb(44, 62, 80);
+  border-radius: 0;
+  padding: 5px 10px;
+  font-family: Roboto;
+  font-size: 16px;
+  width: 15%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+
+  h4 {
+    color: white;
+    font-weight: 500;
+    margin: 10px 0;
+  }
+
+  a {
+    color: white;
+    display: list-item;
+    padding: 10px 10px;
+  }
+
+  a:hover {
+    background-color: #00BCD4;
+  }
+
+  .selected {
+    background-color: #00BCD4;
+  }
+
+  .link-text {
+    vertical-align: middle;
+    display: inline-flex;
+    padding-right: 16px;
+  }
+
+  .icon-holder {
+    vertical-align: middle;
+    display: inline-flex;
+    width: 35px;
+  }
+}
