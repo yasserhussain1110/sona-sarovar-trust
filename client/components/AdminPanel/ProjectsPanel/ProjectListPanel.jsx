@@ -6,12 +6,14 @@ const clip = (str, length) => str.length < length ? str : str.substring(0, lengt
 
 const ProjectListPanel = ({projects}) => (
   <div className="project-list-panel">
-    <div className="add-project">
+    <div className="add-project-wrapper">
       <h2>Add a project</h2>
-      <button><Link to="/admin/projects/add">Add a New Project</Link></button>
+      <div className="link-holder">
+        <Link className="success-button" to="/admin/projects/add">Add a New Project</Link>
+      </div>
     </div>
 
-    <div className="list-project">
+    <div className="list-project-wrapper">
       <h2>List of projects</h2>
       <div className="project-list-container">
         <ul className="project-list">{projects.map((project, index) => (
@@ -23,8 +25,8 @@ const ProjectListPanel = ({projects}) => (
             <div className="name">{project.name}</div>
             <div className="description">{clip(project.description, 40)}</div>
             <div className="button-holder">
-              <button>Edit</button>
-              <button>Delete</button>
+              <button className="edit-button">Edit</button>
+              <button className="delete-button">Delete</button>
             </div>
           </li>))}
         </ul>
