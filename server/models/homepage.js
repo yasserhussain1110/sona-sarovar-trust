@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const _ = require('lodash');
+const PicSchema = require('./pic');
 
 const HomePageSchema = new Schema({
-  centerPics: [{
-    url: {
-      type: String,
-      required: true
-    }
-  }],
+  centerPics: {
+    type: [PicSchema],
+    required: true
+  },
 
+  // TODO:- May need to move the following array object to its own caption schema
   captions: [{
     text: {
       type: String,

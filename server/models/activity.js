@@ -1,22 +1,23 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const _ = require('lodash');
+const PicSchema = require('./pic');
 
 const ActivitySchema = new Schema({
   name: {
-    type: String
+    type: String,
+    require: true
   },
 
   description: {
-    type: String
+    type: String,
+    required: true
   },
 
-  pics: [{
-    url: {
-      type: String,
-      required: true
-    }
-  }]
+  pics: {
+    type: [PicSchema],
+    required: true
+  }
 });
 
 // ActivitySchema.methods.toJSON = function () {

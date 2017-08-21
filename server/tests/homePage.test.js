@@ -1,7 +1,11 @@
 const request = require('supertest');
 const app = require('../server');
 const fs = require('fs');
-const {INIT_ADMIN, populateAdmins, populateHomePage, populateTeamMembers, populateProjects} = require('../seed/seedInfo');
+const {
+  INIT_ADMIN,
+  populateAdmins, populateHomePage,
+  populateTeamMembers, populateProjects
+} = require('../seed/seedInfo');
 const {RESOURCES_DIR} = process.env;
 
 before(done => {
