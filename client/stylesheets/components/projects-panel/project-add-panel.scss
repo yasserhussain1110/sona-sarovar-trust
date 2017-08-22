@@ -6,7 +6,7 @@
   .form-holder {
     background-color: yellow;
     display: inline-block;
-    width: 48%;
+    width: 70%;
     padding: 1%;
 
     .field, .field-error {
@@ -21,47 +21,5 @@
     .show-field-error {
       visibility: visible;
     }
-  }
-
-  .status-holder {
-    width: 48%;
-    padding: 1%;
-    vertical-align: top;
-    display: none;
-
-    ul {
-      list-style: initial;
-      margin-left: 40px;
-    }
-
-    strong {
-      font-weight: bolder;
-      color: black;
-      text-decoration: underline;
-    }
-
-    p {
-      margin: 5px 0;
-    }
-
-    .success-status {
-      background-color: lightgreen;
-    }
-
-    .failure-status {
-      background-color: red;
-    }
-
-    .success-status, .failure-status, .non-saved-files {
-      display: none;
-    }
-
-    .show-success-status, .show-failure-status, .show-non-saved-files {
-      display: initial;
-    }
-  }
-
-  .show-status-holder {
-    display: inline-block;
   }
 }

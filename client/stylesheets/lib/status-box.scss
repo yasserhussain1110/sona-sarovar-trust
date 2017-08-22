@@ -1,0 +1,51 @@
+.status-box {
+  background-color: blue;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 0 !important;
+
+  a {
+    color: #A94442;
+    font-weight: 100;
+  }
+
+  a:hover {
+    text-decoration: underline;
+
+  }
+
+  div {
+    margin: 5px;
+  }
+
+  ol {
+    list-style-type: number;
+    margin-left: 30px;
+    margin-top: 10px;
+  }
+}
+
+.non-saved-files {
+  display: none;
+}
+
+.show-non-saved-files {
+  display: initial;
+}
+
+.success-status-box {
+  background-color: #DFF0D8;
+  color: #5E8F5D;
+  a {
+    color: #5E8F5D;
+  }
+
+}
+
+.failure-status-box {
+  background-color: #F2DEDE;
+  color: #A94442;
+  a {
+    color: #A94442;
+  }
+}

@@ -3,6 +3,8 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {addedProjectDone} from '../../../actions';
+import StatusBox from '../../../lib/components/StatusBox';
+import StatusPanel from '../../../lib/components/StatusPanel';
 
 const createInitialProjectAddPanelState = () => ({
   name: "",
@@ -12,8 +14,7 @@ const createInitialProjectAddPanelState = () => ({
   picsError: "",
 
   madeRequest: false,
-  projectAdded: false,
-  nonPicFileNames: []
+  statusBoxes: []
 });
 
 class ProjectAddPanel extends Component {
@@ -26,6 +27,11 @@ class ProjectAddPanel extends Component {
     this.addProject = this.addProject.bind(this);
     this.resetForm = this.resetForm.bind(this);
   }
+
+  // componentDidMount() {
+  //   this.addSuccessStatusBox([]);
+  //   this.addFailureStatusBox();
+  // }
 
   resetForm(e) {
     e.preventDefault();
@@ -62,6 +68,25 @@ class ProjectAddPanel extends Component {
     return isValid;
   }
 
+  addSuccessStatusBox(nonPicFileNames) {
+    this.setState(prevState => {
+      let statusBoxes = prevState.statusBoxes.slice();
+      statusBoxes.push(<SuccessStatus
+        key={prevState.statusBoxes.length}
+        resetForm={this.resetForm}
+        nonPicFileNames={nonPicFileNames}/>);
+      return {statusBoxes};
+    });
+  }
+
+  addFailureStatusBox() {
+    this.setState(prevState => {
+      let statusBoxes = prevState.statusBoxes.slice();
+      statusBoxes.push(<FailureStatus key={prevState.statusBoxes.length} resetForm={this.resetForm}/>);
+      return {statusBoxes};
+    });
+  }
+
   addProject() {
     if (!this.validateFields()) return;
 
@@ -77,12 +102,13 @@ class ProjectAddPanel extends Component {
     axios.put('/api/project', data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
         let {nonPicFileNames, project} = res.data;
-        this.setState({madeRequest: true, nonPicFileNames, projectAdded: true});
+        this.setState({madeRequest: true});
+        this.addSuccessStatusBox(nonPicFileNames);
         this.props.addedProjectDone(project);
       })
       .catch(err => {
         console.log(err);
-        this.setState({madeRequest: true});
+        this.addFailureStatusBox();
       });
   }
 
@@ -104,11 +130,39 @@ class ProjectAddPanel extends Component {
   }
 }
 
+const FailureStatus = ({resetForm}) => (
+  <StatusBox success={false}>
+    <div><h3>Failure!</h3></div>
+    <div><p>Could Not Create New Project.</p></div>
+    <div><span><a onClick={resetForm}><strong>Try Again</strong></a></span></div>
+  </StatusBox>
+);
+
+const SuccessStatus = ({resetForm, nonPicFileNames}) => {
+  return (
+    <StatusBox success={true}>
+      <div><h3>Success!</h3></div>
+      <div><p>New Project Created Successfully.</p></div>
+      <div className={`non-saved-files ${nonPicFileNames.length > 0 ? "show-non-saved-files" : ""}`}>
+        <p>However these files could not be saved as they are not pictures.</p>
+        <ol>{nonPicFileNames.map((fileName, index) => (
+          <li key={index}>{fileName}</li>))}
+        </ol>
+      </div>
+      <div>
+        <span>
+          <p>
+          <Link to="/admin/projects"><strong>Redirect</strong></Link>{" to Project List or "}
+            <a onClick={resetForm}><strong>Add</strong></a> a new project.
+          </p>
+        </span>
+      </div>
+    </StatusBox>
+  );
+};
+
 const PanelView = ({
-  name, description, nameError,
-  descriptionError, picsError, madeRequest,
-  projectAdded, nonPicFileNames, updateStateField,
-  addProject, resetForm
+  name, description, nameError, descriptionError, picsError, madeRequest, updateStateField, addProject, statusBoxes
 }) => (
   <div className="project-add-panel">
     <h2>Add a project</h2>
@@ -122,20 +176,14 @@ const PanelView = ({
       updateStateField={updateStateField}
       addProject={addProject}
     />
-    <StatusBox
-      madeRequest={madeRequest}
-      projectAdded={projectAdded}
-      nonPicFileNames={nonPicFileNames}
-      resetForm={resetForm}
-    />
+
+    <StatusPanel>
+      {statusBoxes}
+    </StatusPanel>
   </div>
 );
 
-const ProjectAddForm = ({
-  name, description, nameError,
-  descriptionError, picsError,
-  madeRequest, updateStateField, addProject
-}) => (
+const ProjectAddForm = ({name, description, nameError, descriptionError, picsError, madeRequest, updateStateField, addProject}) => (
   <div className="form-holder">
     <section className="name">
       <div className="field">
@@ -190,34 +238,6 @@ const ProjectAddForm = ({
     </section>
   </div>
 );
-
-const StatusBox = ({madeRequest, projectAdded, nonPicFileNames, resetForm}) => (
-  <div className={`status-holder ${madeRequest ? "show-status-holder" : ""}`}>
-    <div className={`success-status ${projectAdded ? "show-success-status" : ""}`}>
-      <h3>Success!</h3>
-      <p>New Project Created Successfully.</p>
-      <div className={`non-saved-files ${nonPicFileNames.length > 0 ? "show-non-saved-files" : ""}`}>
-        <p>However these files could not be saved as they are not pictures.</p>
-        <ul>{nonPicFileNames.map((fileName, index) => (
-          <li key={index}>{fileName}</li>))}
-        </ul>
-      </div>
-      <span>
-      <p>
-        <Link to="/admin/projects"><strong>Redirect</strong></Link>{" to Project List or "}
-        <a onClick={resetForm}><strong>Add</strong></a> a new project.
-      </p>
-    </span>
-    </div>
-
-    <div className={`failure-status ${projectAdded ? "" : "show-failure-status"}`}>
-      <h3>Failure!</h3>
-      <Link to="/admin/projects/add"><strong>Try Again</strong></Link>.
-    </div>
-  </div>
-
-);
-
 
 const mapStateToProps = state => (
   {
