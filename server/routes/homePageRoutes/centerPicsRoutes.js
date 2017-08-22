@@ -4,7 +4,7 @@ const HomePage = require('../../models/homepage');
 const fs = require('fs');
 const crypto = require('crypto');
 const upload = multer();
-const {ensureImageAndWriteToDisk, removeExistingImageFile} = require('../../services');
+const {ensurePicAndWriteToDisk, removeExistingPicFile} = require('../../services');
 const {RESOURCES_DIR} = process.env;
 
 const centerPicRoutes = app => {
@@ -13,10 +13,10 @@ const centerPicRoutes = app => {
 
     let file = req.file;
 
-    ensureImageAndWriteToDisk(file, RESOURCES_DIR + '/home')
-      .then(imagePath => {
-        let imageUrl = imagePath.replace(RESOURCES_DIR, "");
-        return addImageFileUrlToDB(imageUrl);
+    ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/home')
+      .then(picPath => {
+        let picUrl = picPath.replace(RESOURCES_DIR, "");
+        return addPicFileUrlToDB(picUrl);
       })
       .then(() => {
         return HomePage.findOne().then(h => {
@@ -44,17 +44,17 @@ const centerPicRoutes = app => {
       })
       .then(homePage => {
         if (!homePage) throw new Error('center pic not found');
-        return ensureImageAndWriteToDisk(file, RESOURCES_DIR + '/home');
+        return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/home');
       })
-      .then(imagePath => {
-        return removeExistingImageFile(HomePage, 'centerPics', _id).then(() => imagePath);
+      .then(picPath => {
+        return removeExistingPicFile(HomePage, 'centerPics', _id).then(() => picPath);
       })
-      .then(imagePath => {
-        let imageUrl = imagePath.replace(RESOURCES_DIR, "");
-        return updateImageFileUrlInDB(imageUrl, _id).then(() => imageUrl);
+      .then(picPath => {
+        let picUrl = picPath.replace(RESOURCES_DIR, "");
+        return updatePicFileUrlInDB(picUrl, _id).then(() => picUrl);
       })
-      .then(imageUrl => {
-        res.status(200).send({url: imageUrl});
+      .then(picUrl => {
+        res.status(200).send({url: picUrl});
       })
       .catch(err => {
         console.log(err);
@@ -69,7 +69,7 @@ const centerPicRoutes = app => {
         'centerPics._id': _id
       })
       .then(() => {
-        return removeExistingImageFile(HomePage, 'centerPics', _id);
+        return removeExistingPicFile(HomePage, 'centerPics', _id);
       })
       .then(() => {
         return HomePage.update({
@@ -88,18 +88,18 @@ const centerPicRoutes = app => {
   });
 };
 
-const updateImageFileUrlInDB = (imageUrl, _id) => {
+const updatePicFileUrlInDB = (picUrl, _id) => {
   return HomePage.update({'centerPics._id': _id}, {
     $set: {
-      'centerPics.$.url': imageUrl
+      'centerPics.$.url': picUrl
     }
   });
 };
 
-const addImageFileUrlToDB = imageUrl => {
+const addPicFileUrlToDB = picUrl => {
   return HomePage.update({
     $push: {
-      centerPics: {url: imageUrl}
+      centerPics: {url: picUrl}
     }
   });
 };

@@ -4,16 +4,16 @@ const magic = new mmm.Magic(mmm.MAGIC_MIME_TYPE);
 const crypto = require('crypto');
 const {RESOURCES_DIR} = process.env;
 
-const ensureImageAndWriteToDisk = (file, dir) => {
+const ensurePicAndWriteToDisk = (file, dir) => {
   let fileBuf = file.buffer;
   let modifiedName = modifyFileName(file.originalname);
   let filePath = `${dir}/${modifiedName}`;
-  return checkIfFileIsImage(fileBuf).then(() => {
+  return checkIfFileIsPic(fileBuf).then(() => {
     return writeBufferToDisk(filePath, fileBuf);
   });
 };
 
-const removeExistingImageFile = (model, arrayField, _id) => {
+const removeExistingPicFile = (model, arrayField, _id) => {
   let subFieldId = `${arrayField}._id`;
   let subFieldQuery = `${arrayField}.$`;
 
@@ -38,11 +38,11 @@ const removeExistingImageFile = (model, arrayField, _id) => {
 
 const modifyFileName = fileName => crypto.pseudoRandomBytes(8).toString('hex') + '-' + fileName;
 
-const checkIfFileIsImage = fileBuf => new Promise((resolve, reject) => {
+const checkIfFileIsPic = fileBuf => new Promise((resolve, reject) => {
   magic.detect(fileBuf, function (err, result) {
     if (err) throw err;
-    let validImageTypes = ["image/gif", "image/jpeg", "image/png"];
-    if (validImageTypes.indexOf(result) > -1) {
+    let validPicTypes = ["image/gif", "image/jpeg", "image/png"];
+    if (validPicTypes.indexOf(result) > -1) {
       resolve(result);
     } else {
       reject();
@@ -58,6 +58,6 @@ const writeBufferToDisk = (filePath, fileBuf) => new Promise(resolve => {
 });
 
 module.exports = {
-  ensureImageAndWriteToDisk,
-  removeExistingImageFile
+  ensurePicAndWriteToDisk,
+  removeExistingPicFile
 };
