@@ -80,17 +80,17 @@ const projectRoutes = app => {
     let file = req.file;
 
     Project.findById(_id)
-      .then(p => {
+      .then(project => {
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/projects')
-          .then(picPath => ({p, picPath}));
+          .then(picPath => ({project, picPath}));
       })
       .then(({project, picPath}) => {
         let picUrl = picPath.replace(RESOURCES_DIR, "");
         project.pics.push({url: picUrl});
-        return project.save().then(() => picUrl);
+        return project.save().then(() => project.pics[project.pics.length - 1]);
       })
-      .then(picUrl => {
-        res.send({url: picUrl});
+      .then(pic => {
+        res.send(pic);
       })
       .catch(e => {
         console.log(e);

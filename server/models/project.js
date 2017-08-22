@@ -20,10 +20,10 @@ const ProjectSchema = new Schema({
   }
 });
 
-ProjectSchema.methods.toJSON = function () {
-  let project = this;
-  return _.pick(project, ['name', 'description', 'pics']);
-};
+// ProjectSchema.methods.toJSON = function () {
+//   let project = this;
+//   return _.pick(project, ['name', 'description', 'pics']);
+// };
 
 const Project = mongoose.model('Project', ProjectSchema);
 module.exports = Project;

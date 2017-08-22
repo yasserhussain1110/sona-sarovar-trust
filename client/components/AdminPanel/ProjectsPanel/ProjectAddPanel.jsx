@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {addedProjectDone} from '../../../actions';
 
 const createInitialProjectAddPanelState = () => ({
   name: "",
   description: "",
-  pics: null,
   nameError: "",
   descriptionError: "",
   picsError: "",
@@ -38,7 +38,7 @@ class ProjectAddPanel extends Component {
   }
 
   validateFields() {
-    let {name, description, pics} = this.state;
+    let {name, description} = this.state;
     this.clearValidation();
 
     let isValid = true;
@@ -53,7 +53,8 @@ class ProjectAddPanel extends Component {
       isValid = false;
     }
 
-    if (!pics) {
+    let pics = document.getElementById("project-add").files;
+    if (pics.length === 0) {
       this.setState({picsError: "Pics field cannot be empty"});
       isValid = false;
     }
@@ -64,17 +65,20 @@ class ProjectAddPanel extends Component {
   addProject() {
     if (!this.validateFields()) return;
 
-    let {name, description, pics} = this.state;
+    let {name, description} = this.state;
+    let pics = document.getElementById("project-add").files;
+
     let data = new FormData();
     data.append('name', name);
     data.append('description', description);
-    for (let i = 0; i < this.state.pics.length; i++) {
+    for (let i = 0; i < pics.length; i++) {
       data.append('pics', pics[i]);
     }
     axios.put('/api/project', data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
-        let {nonPicFileNames} = res.data;
+        let {nonPicFileNames, project} = res.data;
         this.setState({madeRequest: true, nonPicFileNames, projectAdded: true});
+        this.props.addedProjectDone(project);
       })
       .catch(err => {
         console.log(err);
@@ -108,7 +112,7 @@ const PanelView = ({
 }) => (
   <div className="project-add-panel">
     <h2>Add a project</h2>
-    <AddProjectForm
+    <ProjectAddForm
       name={name}
       description={description}
       nameError={nameError}
@@ -127,7 +131,7 @@ const PanelView = ({
   </div>
 );
 
-const AddProjectForm = ({
+const ProjectAddForm = ({
   name, description, nameError,
   descriptionError, picsError,
   madeRequest, updateStateField, addProject
@@ -172,7 +176,7 @@ const AddProjectForm = ({
         </div>
 
         <div className="input">
-          <input id="project-add" type="file" multiple onChange={e => updateStateField('pics', e.target.files)}/>
+          <input id="project-add" type="file" multiple/>
         </div>
       </div>
 
@@ -221,4 +225,6 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps)(ProjectAddPanel);
+const mapDispatchToProps = {addedProjectDone};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectAddPanel);

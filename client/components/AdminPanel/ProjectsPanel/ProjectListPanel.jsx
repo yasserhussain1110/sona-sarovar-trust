@@ -25,7 +25,9 @@ const ProjectListPanel = ({projects}) => (
             <div className="name">{project.name}</div>
             <div className="description">{clip(project.description, 40)}</div>
             <div className="button-holder">
-              <button className="edit-button">Edit</button>
+              <button className="edit-button">
+                <Link to={`/admin/projects/edit/${index}`}>Edit</Link>
+              </button>
               <button className="delete-button">Delete</button>
             </div>
           </li>))}
