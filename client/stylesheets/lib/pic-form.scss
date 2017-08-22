@@ -1,0 +1,38 @@
+.pic-upload-form {
+  margin-top: 20px;
+
+  span {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+  .button-holder {
+    text-align: center;
+  }
+
+  .button-holder > div {
+    display: inline-block;
+  }
+
+  input {
+    padding: 10px;
+  }
+
+  .selection {
+    text-align: center;
+  }
+
+  label {
+    padding: 10px;
+  }
+
+  .error {
+    color: red;
+    background-color: #F7EC74;
+    margin: 10px 0;
+    text-align: center;
+    padding: 5px;
+    font-weight: lighter;
+  }
+}

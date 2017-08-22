@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {updatedProjectNameAndDescription, addedPicToProject} from '../../../actions';
+import StatusBox from '../../../lib/components/StatusBox';
+import StatusPanel from '../../../lib/components/StatusPanel';
+import Modal from '../../../lib/components/Modal';
+import PicForm from '../../../lib/components/PicForm';
 
 const createInitialProjectEditPanelState = project => {
   let name = "", description = "", pics = [];
@@ -14,7 +18,13 @@ const createInitialProjectEditPanelState = project => {
     description: description,
     pics: pics,
     nameError: "",
-    descriptionError: ""
+    descriptionError: "",
+
+    statusBoxes: [],
+
+    editingPic: false,
+    deletingPic: false,
+    selectedPic: null
   };
 };
 
@@ -25,6 +35,16 @@ class ProjectEditPanel extends Component {
     this.state = createInitialProjectEditPanelState(props.project);
     this.updateStateField = this.updateStateField.bind(this);
     this.updateProject = this.updateProject.bind(this);
+    this.editPic = this.editPic.bind(this);
+    this.deletePic = this.deletePic.bind(this);
+  }
+
+  editPic(pic) {
+    this.setState({editingPic: true, selectedPic: pic});
+  }
+
+  deletePic(pic) {
+    this.setState({deletingPic: true, selectedPic: pic});
   }
 
   clearValidation() {
@@ -68,7 +88,7 @@ class ProjectEditPanel extends Component {
   }
 
   uploadMorePics() {
-    let pics = document.getElementById("project-edit").files;
+    let pics = document.getElementById("edit-panel-pic").files;
     if (pics.length === 0) return;
 
     for (let i = 0; i < pics.length; i++) {
@@ -84,7 +104,7 @@ class ProjectEditPanel extends Component {
         });
     }
 
-    document.getElementById("project-edit").value = null;
+    document.getElementById("edit-panel-pic").value = null;
   }
 
   updateProject() {
@@ -106,23 +126,78 @@ class ProjectEditPanel extends Component {
 
   render() {
     return (
-      <div className="project-edit-panel">
-        <h2>Edit a project</h2>
-        <ProjectEditForm
-          {...this.state}
-          updateStateField={this.updateStateField}
-          updateProject={this.updateProject}
-        />
-      </div>
+      <PanelView
+        {...this.state}
+        updateStateField={this.updateStateField}
+        updateProject={this.updateProject}
+        editPic={this.editPic}
+        deletePic={this.deletePic}
+      />
+
     );
   }
 }
 
+const getEditPicModal = pic => (
+  <Modal show={true}>
+    <PicForm
+      close={1}
+      authToken={1}
+      mode="edit"
+      picId={pic === null ? "" : pic._id}
+      onSuccess={1}
+    />
+  </Modal>
+);
+
+const getDeletePicModal = pic => (
+  <Modal show={true}>
+    {`Deleting pic ${pic._id}`}
+  </Modal>
+);
+
+const getModal = (editingPic, deletingPic, selectedPic) => {
+  if (editingPic) {
+    return getEditPicModal(selectedPic);
+  } else if (deletingPic) {
+    return getDeletePicModal(selectedPic);
+  } else {
+    return <Modal show={false}/>
+  }
+};
+
+
+const PanelView = ({
+                     name, description, pics, nameError,
+                     descriptionError, updateStateField, updateProject,
+                     editingPic, deletingPic, selectedPic,
+                     editPic, deletePic
+                   }) => (
+  <div className="project-edit-panel">
+    <h2>Edit Project</h2>
+    <ProjectEditForm
+      name={name}
+      description={description}
+      pics={pics}
+      nameError={nameError}
+      descriptionError={descriptionError}
+      updateStateField={updateStateField}
+      updateProject={updateProject}
+      editPic={editPic}
+      deletePic={deletePic}
+    />
+    {/*<StatusPanel>*/}
+    {/*/!*{statusBoxes}*!/*/}
+    {/*</StatusPanel>*/}
+    {getModal(editingPic, deletingPic, selectedPic)}
+  </div>
+);
+
 const ProjectEditForm = ({
-  name, description, pics, nameError,
-  descriptionError, updateStateField,
-  updateProject
-}) => (
+                           name, description, pics, nameError,
+                           descriptionError, updateStateField, updateProject,
+                           editPic, deletePic
+                         }) => (
   <div className="form-holder">
     <section className="name">
       <div className="field">
@@ -162,8 +237,8 @@ const ProjectEditForm = ({
         <div className="pic-holder" key={pic._id}>
           <img src={pic.url}/>
           <div className="button-holder">
-            <button>Edit</button>
-            <button>Delete</button>
+            <button onClick={e => editPic(pic)}>Edit</button>
+            <button onClick={e => deletePic(pic)}>Delete</button>
           </div>
         </div>))}
       </div>
@@ -176,7 +251,7 @@ const ProjectEditForm = ({
         </div>
 
         <div className="input">
-          <input id="project-edit" type="file" multiple/>
+          <input id="edit-panel-pic" type="file" multiple/>
         </div>
       </div>
     </section>

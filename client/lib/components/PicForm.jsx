@@ -93,7 +93,7 @@ class PicForm extends Component {
 
 
 const Form = ({noPicSelected, fileNotAPic, uploadPic, resetErrors, close}) => (
-  <div className="pic-adder-form">
+  <div className="pic-upload-form">
     <form>
       <div className="selection form-control">
         <label>Select Pic</label>

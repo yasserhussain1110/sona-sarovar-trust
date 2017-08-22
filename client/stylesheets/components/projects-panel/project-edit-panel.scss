@@ -1,6 +1,13 @@
 .project-edit-panel {
+  h2 {
+    margin-bottom: 5px;
+  }
 
   .form-holder {
+    background-color: yellow;
+    width: 70%;
+    padding: 1%;
+
     .pic-holder {
       display: inline-block;
       margin: 5px;
@@ -9,6 +16,19 @@
     img {
       width: 200px;
       height: 200px;
+    }
+
+    .field, .field-error {
+      display: inline-block;
+    }
+
+    .field-error {
+      background-color: red;
+      visibility: hidden;
+    }
+
+    .show-field-error {
+      visibility: visible;
     }
   }
 }

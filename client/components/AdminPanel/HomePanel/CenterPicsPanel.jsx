@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Modal from '../../../lib/components/Modal';
-import PicForm from './CenterPicsPanel/PicForm';
+import PicForm from '../../../lib/components/PicForm';
 import {addedCenterPic, updatedCenterPic, deletedCenterPic} from '../../../actions';
 import {bindActionCreators} from 'redux';
 import axios from 'axios';

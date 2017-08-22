@@ -13,7 +13,6 @@ const createInitialProjectAddPanelState = () => ({
   descriptionError: "",
   picsError: "",
 
-  madeRequest: false,
   statusBoxes: []
 });
 
@@ -33,10 +32,9 @@ class ProjectAddPanel extends Component {
   //   this.addFailureStatusBox();
   // }
 
-  resetForm(e) {
-    e.preventDefault();
+  resetForm() {
     this.setState(createInitialProjectAddPanelState());
-    document.getElementById("project-add").value = null;
+    document.getElementById("add-panel-pic").value = null;
   }
 
   clearValidation() {
@@ -59,7 +57,7 @@ class ProjectAddPanel extends Component {
       isValid = false;
     }
 
-    let pics = document.getElementById("project-add").files;
+    let pics = document.getElementById("add-panel-pic").files;
     if (pics.length === 0) {
       this.setState({picsError: "Pics field cannot be empty"});
       isValid = false;
@@ -91,7 +89,7 @@ class ProjectAddPanel extends Component {
     if (!this.validateFields()) return;
 
     let {name, description} = this.state;
-    let pics = document.getElementById("project-add").files;
+    let pics = document.getElementById("add-panel-pic").files;
 
     let data = new FormData();
     data.append('name', name);
@@ -102,7 +100,7 @@ class ProjectAddPanel extends Component {
     axios.put('/api/project', data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
         let {nonPicFileNames, project} = res.data;
-        this.setState({madeRequest: true});
+        this.resetForm();
         this.addSuccessStatusBox(nonPicFileNames);
         this.props.addedProjectDone(project);
       })
@@ -162,8 +160,8 @@ const SuccessStatus = ({resetForm, nonPicFileNames}) => {
 };
 
 const PanelView = ({
-                     name, description, nameError, descriptionError, picsError,
-                     madeRequest, updateStateField, addProject, statusBoxes
+                     name, description, nameError, descriptionError,
+                     picsError, updateStateField, addProject, statusBoxes
                    }) => (
   <div className="project-add-panel">
     <h2>Add a project</h2>
@@ -173,7 +171,6 @@ const PanelView = ({
       nameError={nameError}
       descriptionError={descriptionError}
       picsError={picsError}
-      madeRequest={madeRequest}
       updateStateField={updateStateField}
       addProject={addProject}
     />
@@ -184,7 +181,10 @@ const PanelView = ({
   </div>
 );
 
-const ProjectAddForm = ({name, description, nameError, descriptionError, picsError, madeRequest, updateStateField, addProject}) => (
+const ProjectAddForm = ({
+                          name, description, nameError, descriptionError,
+                          picsError, updateStateField, addProject
+                        }) => (
   <div className="form-holder">
     <section className="name">
       <div className="field">
@@ -225,7 +225,7 @@ const ProjectAddForm = ({name, description, nameError, descriptionError, picsErr
         </div>
 
         <div className="input">
-          <input id="project-add" type="file" multiple/>
+          <input id="add-panel-pic" type="file" multiple/>
         </div>
       </div>
 
@@ -235,7 +235,7 @@ const ProjectAddForm = ({name, description, nameError, descriptionError, picsErr
     </section>
 
     <section className="button-holder">
-      <button onClick={addProject} disabled={madeRequest}>Add</button>
+      <button onClick={addProject}>Add</button>
     </section>
   </div>
 );
