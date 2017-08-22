@@ -162,8 +162,9 @@ const SuccessStatus = ({resetForm, nonPicFileNames}) => {
 };
 
 const PanelView = ({
-  name, description, nameError, descriptionError, picsError, madeRequest, updateStateField, addProject, statusBoxes
-}) => (
+                     name, description, nameError, descriptionError, picsError,
+                     madeRequest, updateStateField, addProject, statusBoxes
+                   }) => (
   <div className="project-add-panel">
     <h2>Add a project</h2>
     <ProjectAddForm
