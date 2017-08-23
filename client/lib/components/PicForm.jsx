@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class PicForm extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class PicForm extends Component {
     }
     let data = new FormData();
     data.append('pic', pic);
-    axios.put('/api/home-page/center-pic', data, {headers: {'x-auth': this.props.authToken}})
+    axios.put(this.props.url, data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
         this.props.onSuccess(res.data);
       })
@@ -65,9 +66,9 @@ class PicForm extends Component {
     }
     let data = new FormData();
     data.append('pic', pic);
-    axios.patch(`/api/home-page/center-pic/${this.props.picId}`, data, {headers: {'x-auth': this.props.authToken}})
+    axios.patch(this.props.url, data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
-        this.props.onSuccess(res.data.url);
+        this.props.onSuccess(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -120,5 +121,14 @@ const Form = ({noPicSelected, fileNotAPic, uploadPic, resetErrors, close}) => (
     </form>
   </div>
 );
+
+PicForm.propTypes = {
+  authToken: PropTypes.string.isRequired,
+  mode: PropTypes.oneOf(['update', 'add']),
+  url: PropTypes.string.isRequired,
+  close: PropTypes.func.isRequired,
+  onSuccess: PropTypes.func.isRequired,
+  onFailure: PropTypes.func
+};
 
 export default PicForm;

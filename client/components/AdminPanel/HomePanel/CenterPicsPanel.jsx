@@ -33,15 +33,15 @@ class CenterPicsPanel extends Component {
     this.setState({showModalForm: false, selectedCenterPic: -1, picFormMode: ""});
   }
 
-  picUpdateSuccess(url) {
+  picUpdateSuccess({url}) {
     this.setState({showModalForm: false});
     this.props.updatedCenterPic(this.state.selectedCenterPicIndex, url);
     this.close();
   }
 
-  picAddSuccess(centerPic) {
+  picAddSuccess(newCenterPic) {
     this.setState({showModalForm: false});
-    this.props.addedCenterPic(centerPic);
+    this.props.addedCenterPic(newCenterPic);
     this.close();
   }
 
@@ -143,16 +143,16 @@ const DeletePic = ({pic, close, authToken, onDelete}) => {
         <button
           className="delete"
           onClick={e => {
-          e.preventDefault();
-          deletePic(pic._id, authToken, onDelete)
-        }}>Yes
+            e.preventDefault();
+            deletePic(pic._id, authToken, onDelete)
+          }}>Yes
         </button>
         <button
           className="no-delete"
           onClick={e => {
-          e.preventDefault();
-          close()
-        }}>No
+            e.preventDefault();
+            close()
+          }}>No
         </button>
       </div>
     </div>
@@ -162,18 +162,18 @@ const DeletePic = ({pic, close, authToken, onDelete}) => {
 const AddOrUpdatePic = ({pic, close, authToken, mode, onSuccess}) => {
   return (
     <div className={mode === 'add' ? 'add-pic-form' : 'update-pic-form'}>{mode === 'add' ? (
-        <div className="message">
-          <span>Adding Pic</span>
-        </div>) : (
-        <div className="message">
-          <span>Modifying Pic</span>
-          <img src={pic.url}/>
-        </div>)}
+      <div className="message">
+        <span>Adding Pic</span>
+      </div>) : (
+      <div className="message">
+        <span>Modifying Pic</span>
+        <img src={pic.url}/>
+      </div>)}
       <PicForm
         close={close}
         authToken={authToken}
         mode={mode}
-        picId={pic === null ? "" : pic._id}
+        url={`/api/home-page/center-pic${mode === "update" ? `/${pic._id}` : ""}`}
         onSuccess={onSuccess}
       />
     </div>
