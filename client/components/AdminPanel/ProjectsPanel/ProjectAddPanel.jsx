@@ -6,7 +6,7 @@ import {addedProjectDone} from '../../../actions';
 import StatusBox from '../../../lib/components/StatusBox';
 import StatusPanel from '../../../lib/components/StatusPanel';
 
-const createInitialProjectAddPanelState = () => ({
+const createInitState = () => ({
   name: "",
   description: "",
   nameError: "",
@@ -20,7 +20,7 @@ class ProjectAddPanel extends Component {
   constructor(props) {
     super(props);
 
-    this.state = createInitialProjectAddPanelState();
+    this.state = createInitState();
 
     this.updateStateField = this.updateStateField.bind(this);
     this.addProject = this.addProject.bind(this);
@@ -33,7 +33,7 @@ class ProjectAddPanel extends Component {
   // }
 
   resetForm() {
-    this.setState(createInitialProjectAddPanelState());
+    this.setState(createInitState());
     document.getElementById("add-panel-pic").value = null;
   }
 
@@ -67,22 +67,24 @@ class ProjectAddPanel extends Component {
   }
 
   addSuccessStatusBox(nonPicFileNames) {
-    this.setState(prevState => {
-      let statusBoxes = prevState.statusBoxes.slice();
-      statusBoxes.push(<SuccessStatus
-        key={prevState.statusBoxes.length}
-        resetForm={this.resetForm}
-        nonPicFileNames={nonPicFileNames}/>);
-      return {statusBoxes};
-    });
+    this.setState(prevState => ({
+      statusBoxes: [
+        ...prevState.statusBoxes,
+        <SuccessStatus
+          key={prevState.statusBoxes.length}
+          resetForm={this.resetForm}
+          nonPicFileNames={nonPicFileNames}/>
+      ]
+    }));
   }
 
   addFailureStatusBox() {
-    this.setState(prevState => {
-      let statusBoxes = prevState.statusBoxes.slice();
-      statusBoxes.push(<FailureStatus key={prevState.statusBoxes.length} resetForm={this.resetForm}/>);
-      return {statusBoxes};
-    });
+    this.setState(prevState => ({
+      statusBoxes: [
+        ...prevState.statusBoxes,
+        <FailureStatus key={prevState.statusBoxes.length} resetForm={this.resetForm}/>
+      ]
+    }));
   }
 
   addProject() {

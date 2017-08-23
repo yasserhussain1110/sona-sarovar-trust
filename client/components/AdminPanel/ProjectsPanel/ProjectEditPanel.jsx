@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, cloneElement} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {updatedProjectNameAndDescription, addedPicToProject, updatedProjectPic} from '../../../actions';
@@ -7,44 +7,71 @@ import StatusPanel from '../../../lib/components/StatusPanel';
 import Modal from '../../../lib/components/Modal';
 import PicForm from '../../../lib/components/PicForm';
 
-const createInitialProjectEditPanelState = project => {
+const createStateFromProject = project => {
   let name = "", description = "", pics = [];
   if (project) {
     ({name, description, pics} = project);
   }
-
-  return {
-    name: name,
-    description: description,
-    pics: pics,
-    nameError: "",
-    descriptionError: "",
-
-    statusBoxes: [],
-
-    updatingPic: false,
-    deletingPic: false,
-    selectedPic: null
-  };
+  return {name, description, pics};
 };
+
+const createInitState = () => ({
+  nameError: "",
+  descriptionError: "",
+
+  statusBoxes: [],
+
+  updatingPic: false,
+  deletingPic: false,
+  selectedPic: null
+});
 
 class ProjectEditPanel extends Component {
   constructor(props) {
     super(props);
 
-    this.state = createInitialProjectEditPanelState(props.project);
+    this.state = {
+      ...createInitState(),
+      ...createStateFromProject(props.project)
+    };
+
     this.updateStateField = this.updateStateField.bind(this);
     this.updateProject = this.updateProject.bind(this);
     this.updatePic = this.updatePic.bind(this);
     this.deletePic = this.deletePic.bind(this);
     this.updatedProjectPic = this.updatedProjectPic.bind(this);
+    this.updateProjectPicFailed = this.updateProjectPicFailed.bind(this);
+  }
+
+  updateProjectPicFailed() {
+    this.setState({updatingPic: false, deletingPic: false});
+    this.addStatusBox(
+      <StatusBox success={false}>
+        <div><h3>Failure!</h3></div>
+        <div>Project Pic could not be updated</div>
+      </StatusBox>
+    );
   }
 
   updatedProjectPic({url}) {
     this.props.updatedProjectPic(this.props.match.params.index, this.state.selectedPic._id, url);
     this.setState({updatingPic: false, deletingPic: false});
+    this.addStatusBox(
+      <StatusBox success={true}>
+        <div><h3>Success!</h3></div>
+        <div>Project Pic Updated Successfully</div>
+      </StatusBox>
+    );
   }
 
+  addStatusBox(statusBox) {
+    this.setState({
+      statusBoxes: [
+        ...this.state.statusBoxes,
+        cloneElement(statusBox, {key: this.state.statusBoxes.length})
+      ]
+    });
+  }
 
   updatePic(pic) {
     this.setState({updatingPic: true, selectedPic: pic});
@@ -88,9 +115,21 @@ class ProjectEditPanel extends Component {
       })
       .then(res => {
         this.props.updatedProjectNameAndDescription(name, description, this.props.match.params.index);
+        this.addStatusBox(
+          <StatusBox success={true}>
+            <div><h3>Success!</h3></div>
+            <div>Updated Project Name and Description</div>
+          </StatusBox>
+        )
       })
       .catch(err => {
         console.log(err);
+        this.addStatusBox(
+          <StatusBox success={false}>
+            <div><h3>Failure!</h3></div>
+            <div>Project Name and Description updation failed</div>
+          </StatusBox>
+        )
       });
   }
 
@@ -105,9 +144,21 @@ class ProjectEditPanel extends Component {
       axios.put(`/api/project/pic/${this.props.project._id}`, data, {headers: {'x-auth': this.props.authToken}})
         .then(res => {
           this.props.addedPicToProject(res.data, this.props.match.params.index);
+          this.addStatusBox(
+            <StatusBox success={true}>
+              <div><h3>Success!</h3></div>
+              <div>More Pics added to Project</div>
+            </StatusBox>
+          )
         })
         .catch(err => {
           console.log(err);
+          this.addStatusBox(
+            <StatusBox success={false}>
+              <div><h3>Failure!</h3></div>
+              <div>Adding more pics to project failed!</div>
+            </StatusBox>
+          )
         });
     }
 
@@ -128,7 +179,7 @@ class ProjectEditPanel extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    this.setState(createInitialProjectEditPanelState(nextProps.project));
+    this.setState(createStateFromProject(nextProps.project));
   }
 
   render() {
@@ -141,14 +192,14 @@ class ProjectEditPanel extends Component {
         deletePic={this.deletePic}
         closeModal={() => this.setState({updatingPic: false, deletingPic: false})}
         authToken={this.props.authToken}
-        onSuccess={this.updatedProjectPic}
-        onFailure={() => 2}
+        updatedProjectPic={this.updatedProjectPic}
+        updateProjectPicFailed={this.updateProjectPicFailed}
       />
     );
   }
 }
 
-const getUpdatePicModal = (pic, closeModal, authToken, onSuccess, onFailure) => (
+const getUpdatePicModal = (pic, closeModal, authToken, updatedProjectPic, updateProjectPicFailed) => (
   <Modal show={true}>
     <div className="update-pic-form">
       <div className="message">
@@ -160,24 +211,24 @@ const getUpdatePicModal = (pic, closeModal, authToken, onSuccess, onFailure) => 
         authToken={authToken}
         mode="update"
         url={`/api/project/pic/${pic._id}`}
-        onSuccess={onSuccess}
-        onFailure={onFailure}
+        onSuccess={updatedProjectPic}
+        onFailure={updateProjectPicFailed}
       />
     </div>
   </Modal>
 );
 
-const getDeletePicModal = (pic, closeModal, authToken, onSuccess, onFailure) => (
+const getDeletePicModal = (pic, closeModal, authToken, updatedProjectPic, updateProjectPicFailed) => (
   <Modal show={true}>
     {`Deleting pic ${pic._id}`}
   </Modal>
 );
 
-const getModal = (updatingPic, deletingPic, selectedPic, closeModal, authToken, onSuccess, onFailure) => {
+const getModal = (updatingPic, deletingPic, selectedPic, closeModal, authToken, updatedProjectPic, updateProjectPicFailed) => {
   if (updatingPic) {
-    return getUpdatePicModal(selectedPic, closeModal, authToken, onSuccess, onFailure);
+    return getUpdatePicModal(selectedPic, closeModal, authToken, updatedProjectPic, updateProjectPicFailed);
   } else if (deletingPic) {
-    return getDeletePicModal(selectedPic, closeModal, authToken, onSuccess, onFailure);
+    return getDeletePicModal(selectedPic, closeModal, authToken, updatedProjectPic, updateProjectPicFailed);
   } else {
     return <Modal show={false}/>
   }
@@ -187,9 +238,9 @@ const getModal = (updatingPic, deletingPic, selectedPic, closeModal, authToken, 
 const PanelView = ({
                      name, description, pics, nameError,
                      descriptionError, updateStateField, updateProject,
-                     updatingPic, deletingPic, selectedPic,
+                     statusBoxes, updatingPic, deletingPic, selectedPic,
                      updatePic, deletePic, closeModal, authToken,
-                     onSuccess, onFailure
+                     updatedProjectPic, updateProjectPicFailed
                    }) => (
   <div className="project-edit-panel">
     <h2>Edit Project</h2>
@@ -204,10 +255,10 @@ const PanelView = ({
       updatePic={updatePic}
       deletePic={deletePic}
     />
-    {/*<StatusPanel>*/}
-    {/*/!*{statusBoxes}*!/*/}
-    {/*</StatusPanel>*/}
-    {getModal(updatingPic, deletingPic, selectedPic, closeModal, authToken, onSuccess, onFailure)}
+    <StatusPanel>
+      {statusBoxes}
+    </StatusPanel>
+    {getModal(updatingPic, deletingPic, selectedPic, closeModal, authToken, updatedProjectPic, updateProjectPicFailed)}
   </div>
 );
 
