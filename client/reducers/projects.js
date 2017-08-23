@@ -1,3 +1,5 @@
+import {updateSingleObjectInArray} from '../lib/helpers/functions';
+
 const defaultState = {
   projectsDone: []
 };
@@ -17,29 +19,31 @@ const projects = (state = defaultState, action) => {
       };
     case 'UPDATED_PROJECT_NAME_AND_DESCRIPTION':
       return {
-        projectsDone: [
-          ...state.projectsDone.slice(0, action.index),
-          {
-            ...state.projectsDone[action.index],
-            name: action.name,
-            description: action.description
-          },
-          ...state.projectsDone.slice(action.index + 1)
-        ]
+        projectsDone: updateSingleObjectInArray(
+          state.projectsDone,
+          action.index,
+          project => {
+            project.name = action.name;
+            project.description = action.description;
+          })
       };
     case 'ADDED_PIC_TO_PROJECT':
       return {
-        projectsDone: [
-          ...state.projectsDone.slice(0, action.index),
-          {
-            ...state.projectsDone[action.index],
-            pics: [
-              ...state.projectsDone[action.index].pics,
-              action.pic
-            ]
-          },
-          ...state.projectsDone.slice(action.index + 1)
-        ]
+        projectsDone: updateSingleObjectInArray(state.projectsDone, action.index, project => {
+          project.pics = updateSingleObjectInArray(project.pics, project.pics.length,
+            picElement => Object.assign(picElement, action.pic));
+        })
+      };
+    case 'UPDATED_PROJECT_PIC':
+      let selectedProject = state.projectsDone[action.projectIndex];
+      let picIndex = selectedProject.pics.findIndex(pic => pic._id === action.picId);
+      return {
+        projectsDone: updateSingleObjectInArray(state.projectsDone, action.projectIndex,
+          project => {
+            project.pics = updateSingleObjectInArray(project.pics, picIndex, pic => {
+              pic.url = action.url;
+            });
+          })
       };
     default:
       return state;

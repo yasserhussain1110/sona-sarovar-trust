@@ -20,3 +20,10 @@ export const addedPicToProject = (pic, index) => ({
   pic,
   index
 });
+
+export const updatedProjectPic = (projectIndex, picId, url) => ({
+  type: "UPDATED_PROJECT_PIC",
+  projectIndex,
+  picId,
+  url
+});

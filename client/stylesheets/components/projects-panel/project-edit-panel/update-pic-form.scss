@@ -1,0 +1,19 @@
+.update-pic-form {
+  .message {
+    width: 70%;
+    margin: auto;
+    text-align: center;
+
+    span {
+      vertical-align: top;
+      padding: 10px;
+      font-size: 20px;
+      font-weight: bolder;
+    }
+  }
+
+  img {
+    height: 200px;
+    width: 200px;
+  }
+}

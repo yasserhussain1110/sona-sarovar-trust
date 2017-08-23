@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {updatedProjectNameAndDescription, addedPicToProject} from '../../../actions';
+import {updatedProjectNameAndDescription, addedPicToProject, updatedProjectPic} from '../../../actions';
 import StatusBox from '../../../lib/components/StatusBox';
 import StatusPanel from '../../../lib/components/StatusPanel';
 import Modal from '../../../lib/components/Modal';
@@ -22,7 +22,7 @@ const createInitialProjectEditPanelState = project => {
 
     statusBoxes: [],
 
-    editingPic: false,
+    updatingPic: false,
     deletingPic: false,
     selectedPic: null
   };
@@ -35,12 +35,19 @@ class ProjectEditPanel extends Component {
     this.state = createInitialProjectEditPanelState(props.project);
     this.updateStateField = this.updateStateField.bind(this);
     this.updateProject = this.updateProject.bind(this);
-    this.editPic = this.editPic.bind(this);
+    this.updatePic = this.updatePic.bind(this);
     this.deletePic = this.deletePic.bind(this);
+    this.updatedProjectPic = this.updatedProjectPic.bind(this);
   }
 
-  editPic(pic) {
-    this.setState({editingPic: true, selectedPic: pic});
+  updatedProjectPic({url}) {
+    this.props.updatedProjectPic(this.props.match.params.index, this.state.selectedPic._id, url);
+    this.setState({updatingPic: false, deletingPic: false});
+  }
+
+
+  updatePic(pic) {
+    this.setState({updatingPic: true, selectedPic: pic});
   }
 
   deletePic(pic) {
@@ -130,37 +137,47 @@ class ProjectEditPanel extends Component {
         {...this.state}
         updateStateField={this.updateStateField}
         updateProject={this.updateProject}
-        editPic={this.editPic}
+        updatePic={this.updatePic}
         deletePic={this.deletePic}
+        closeModal={() => this.setState({updatingPic: false, deletingPic: false})}
+        authToken={this.props.authToken}
+        onSuccess={this.updatedProjectPic}
+        onFailure={() => 2}
       />
-
     );
   }
 }
 
-const getEditPicModal = pic => (
+const getUpdatePicModal = (pic, closeModal, authToken, onSuccess, onFailure) => (
   <Modal show={true}>
-    <PicForm
-      close={1}
-      authToken={1}
-      mode="edit"
-      picId={pic === null ? "" : pic._id}
-      onSuccess={1}
-    />
+    <div className="update-pic-form">
+      <div className="message">
+        <span>Modifying Pic</span>
+        <img src={pic.url}/>
+      </div>
+      <PicForm
+        close={closeModal}
+        authToken={authToken}
+        mode="update"
+        url={`/api/project/pic/${pic._id}`}
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+      />
+    </div>
   </Modal>
 );
 
-const getDeletePicModal = pic => (
+const getDeletePicModal = (pic, closeModal, authToken, onSuccess, onFailure) => (
   <Modal show={true}>
     {`Deleting pic ${pic._id}`}
   </Modal>
 );
 
-const getModal = (editingPic, deletingPic, selectedPic) => {
-  if (editingPic) {
-    return getEditPicModal(selectedPic);
+const getModal = (updatingPic, deletingPic, selectedPic, closeModal, authToken, onSuccess, onFailure) => {
+  if (updatingPic) {
+    return getUpdatePicModal(selectedPic, closeModal, authToken, onSuccess, onFailure);
   } else if (deletingPic) {
-    return getDeletePicModal(selectedPic);
+    return getDeletePicModal(selectedPic, closeModal, authToken, onSuccess, onFailure);
   } else {
     return <Modal show={false}/>
   }
@@ -170,8 +187,9 @@ const getModal = (editingPic, deletingPic, selectedPic) => {
 const PanelView = ({
                      name, description, pics, nameError,
                      descriptionError, updateStateField, updateProject,
-                     editingPic, deletingPic, selectedPic,
-                     editPic, deletePic
+                     updatingPic, deletingPic, selectedPic,
+                     updatePic, deletePic, closeModal, authToken,
+                     onSuccess, onFailure
                    }) => (
   <div className="project-edit-panel">
     <h2>Edit Project</h2>
@@ -183,20 +201,20 @@ const PanelView = ({
       descriptionError={descriptionError}
       updateStateField={updateStateField}
       updateProject={updateProject}
-      editPic={editPic}
+      updatePic={updatePic}
       deletePic={deletePic}
     />
     {/*<StatusPanel>*/}
     {/*/!*{statusBoxes}*!/*/}
     {/*</StatusPanel>*/}
-    {getModal(editingPic, deletingPic, selectedPic)}
+    {getModal(updatingPic, deletingPic, selectedPic, closeModal, authToken, onSuccess, onFailure)}
   </div>
 );
 
 const ProjectEditForm = ({
                            name, description, pics, nameError,
                            descriptionError, updateStateField, updateProject,
-                           editPic, deletePic
+                           updatePic, deletePic
                          }) => (
   <div className="form-holder">
     <section className="name">
@@ -237,7 +255,7 @@ const ProjectEditForm = ({
         <div className="pic-holder" key={pic._id}>
           <img src={pic.url}/>
           <div className="button-holder">
-            <button onClick={e => editPic(pic)}>Edit</button>
+            <button onClick={e => updatePic(pic)}>Update</button>
             <button onClick={e => deletePic(pic)}>Delete</button>
           </div>
         </div>))}
@@ -267,6 +285,6 @@ const mapStateToProps = (state, ownProps) => ({
   authToken: state.userAuth.authToken
 });
 
-const mapDispatchToProps = {updatedProjectNameAndDescription, addedPicToProject};
+const mapDispatchToProps = {updatedProjectNameAndDescription, addedPicToProject, updatedProjectPic};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectEditPanel);
