@@ -301,15 +301,19 @@ const ProjectEditForm = ({
     </section>
 
     <section className="current-pics">
-      <h4>Project Pics</h4>
-      <div className="picture-holder-wrapper">{pics.map(pic => (
-        <div className="pic-holder" key={pic._id}>
-          <img src={pic.url}/>
-          <div className="button-holder">
-            <button onClick={e => updatePic(pic)}>Update</button>
-            <button onClick={e => deletePic(pic)}>Delete</button>
-          </div>
-        </div>))}
+      <div className="current-pics-content">
+        <div className="label">
+          <h4>Project Pics</h4>
+        </div>
+        <div className="picture-holder-wrapper">{pics.map(pic => (
+          <div className="pic-holder" key={pic._id}>
+            <img src={pic.url}/>
+            <div className="button-holder">
+              <button className="update-button" onClick={e => updatePic(pic)}>Update</button>
+              <button className="delete-button" onClick={e => deletePic(pic)}>Delete</button>
+            </div>
+          </div>))}
+        </div>
       </div>
     </section>
 

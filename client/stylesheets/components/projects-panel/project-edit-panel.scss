@@ -1,21 +1,91 @@
 .project-edit-panel {
+  box-shadow: 0 0 1px black;
+
   h2 {
     margin-bottom: 5px;
   }
 
   .form-holder {
-    background-color: yellow;
-    width: 70%;
+    width: 80%;
     padding: 1%;
 
     .pic-holder {
       display: inline-block;
       margin: 5px;
+      padding: 5px;
+      background-color: #88A2AA;
+    }
+
+    .pic-holder > .button-holder {
+      text-align: center;
+    }
+
+    .update-button {
+      background-color: yellow;
+    }
+
+    .delete-button {
+      background-color: red;
+      color: white;
     }
 
     img {
       width: 200px;
       height: 200px;
+    }
+
+    .field {
+      width: 60%;
+      margin-left: 2%;
+      margin-right: 3%;
+      padding: 5px;
+    }
+
+    .field > div {
+      margin: 5px;
+      padding: 5px;
+    }
+
+    .current-pics-content {
+      margin-left: 2%;
+      margin-right: 3%;
+      padding: 5px;
+    }
+
+    .current-pics-content > * {
+      margin: 5px;
+      padding: 5px;
+    }
+
+    .current-pics-content > h2 {
+      font-size: 18px;
+    }
+
+    .label {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    input[type="text"] {
+      border-radius: 0;
+      height: 30px;
+      font-size: 18px;
+    }
+
+    input[type="text"]:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 5px blue, 0 0 2px #2184C7;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 60px;
+      border-radius: 0;
+      font-size: 18px;
+    }
+
+    input, textarea {
+      width: 100%;
     }
 
     .field, .field-error {
@@ -25,10 +95,30 @@
     .field-error {
       background-color: red;
       visibility: hidden;
+      margin-left: 2%;
+      margin-top: 6%;
+      vertical-align: top;
+      padding: 5px;
+      color: white;
     }
 
     .show-field-error {
       visibility: visible;
+    }
+
+    section.button-holder {
+      text-align: center;
+      button {
+        background-color: #316E5C;
+        box-shadow: 0 2px gray;
+        color: white;
+        width: 70px;
+      }
+
+      button:active {
+        transform: translate(0, 2px);
+        box-shadow: none;
+      }
     }
   }
 
