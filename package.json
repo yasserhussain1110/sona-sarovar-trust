@@ -7,7 +7,7 @@
     "start": "per-env",
     "start:production": "node server/server",
     "start:development": "nodemon server/server",
-    "test": "NODE_ENV=test mocha server/tests/*.test.js",
+    "test": "NODE_ENV=test mocha test/**/*.test.js",
     "postinstall": "per-env",
     "postinstall:production": "npm run build",
     "postinstall:development": "echo 'skipping postinstall as in dev env'",

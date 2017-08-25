@@ -1,12 +1,12 @@
 const request = require('supertest');
 const expect = require('expect');
-const app = require('../server');
+const app = require('../../server/server');
 const fs = require('fs');
-const Project = require('../models/project');
+const Project = require('../../server/models/project');
 const {
   INIT_PROJECTS, INIT_ADMIN,
   populateAdmins, populateHomePage, populateTeamMembers, populateProjects
-} = require('../seed/seedInfo');
+} = require('../../server/seed/seedInfo');
 const {RESOURCES_DIR} = process.env;
 
 before(done => {

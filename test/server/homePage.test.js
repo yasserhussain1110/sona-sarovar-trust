@@ -1,11 +1,11 @@
 const request = require('supertest');
-const app = require('../server');
+const app = require('../../server/server');
 const fs = require('fs');
 const {
   INIT_ADMIN,
   populateAdmins, populateHomePage,
   populateTeamMembers, populateProjects
-} = require('../seed/seedInfo');
+} = require('../../server/seed/seedInfo');
 const {RESOURCES_DIR} = process.env;
 
 before(done => {
@@ -26,7 +26,7 @@ describe('Testing path PUT /home-page/center-pic', () => {
     request(app)
       .put('/api/home-page/center-pic')
       .set('x-auth', INIT_ADMIN.tokens[0])
-      .attach('pic', 'server/tests/files/sun.jpg')
+      .attach('pic', 'test/server/files/sun.jpg')
       .expect(200)
       .end(done);
   });

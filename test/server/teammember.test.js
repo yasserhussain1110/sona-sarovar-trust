@@ -1,12 +1,12 @@
 const request = require('supertest');
 const expect = require('expect');
-const app = require('../server');
+const app = require('../../server/server');
 const fs = require('fs');
-const TeamMember = require('../models/teammember');
+const TeamMember = require('../../server/models/teammember');
 const {
   INIT_TEAM_MEMBERS, INIT_ADMIN,
   populateAdmins, populateHomePage, populateTeamMembers, populateProjects
-} = require('../seed/seedInfo');
+} = require('../../server/seed/seedInfo');
 const {RESOURCES_DIR} = process.env;
 
 before(done => {
@@ -31,7 +31,7 @@ describe('Testing path PUT /teammember', () => {
       .set('x-auth', INIT_ADMIN.tokens[0])
       .field('name', 'Yasser Hussain')
       .field('info', 'Yasser Hussain is awesome person')
-      .attach('pic', 'server/tests/files/sun.jpg')
+      .attach('pic', 'test/server/files/sun.jpg')
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
@@ -93,7 +93,7 @@ describe('Testing path PATCH /teammember/:_id', () => {
       .set('x-auth', INIT_ADMIN.tokens[0])
       .field('name', 'Member 1 modified')
       .field('info', 'Roman Infantry 1 got modified')
-      .attach('pic', 'server/tests/files/sun.jpg')
+      .attach('pic', 'test/server/files/sun.jpg')
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
