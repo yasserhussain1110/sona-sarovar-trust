@@ -51,7 +51,8 @@
   }
 
   input:focus {
-    outline-color: #2184C7;
+    outline: none;
+    box-shadow: 0 0 5px blue, 0 0 2px #2184C7;
   }
 
   input::placeholder { /* Chrome/Opera/Safari */
