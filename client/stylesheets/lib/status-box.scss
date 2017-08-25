@@ -19,7 +19,7 @@
   }
 
   ol {
-    list-style-type: number;
+    list-style-type: decimal;
     margin-left: 30px;
     margin-top: 10px;
   }
@@ -30,7 +30,7 @@
 }
 
 .show-non-saved-files {
-  display: initial;
+  display: block;
 }
 
 .success-status-box {

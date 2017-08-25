@@ -28,7 +28,7 @@ class ProjectAddPanel extends Component {
   }
 
   // componentDidMount() {
-  //   this.addSuccessStatusBox([]);
+  //   this.addSuccessStatusBox(["yippee", "roman"]);
   //   this.addFailureStatusBox();
   // }
 
@@ -138,7 +138,7 @@ const FailureStatus = ({resetForm}) => (
   </StatusBox>
 );
 
-const SuccessStatus = ({resetForm, nonPicFileNames}) => {
+const SuccessStatus = ({nonPicFileNames}) => {
   return (
     <StatusBox success={true}>
       <div><h3>Success!</h3></div>
@@ -152,8 +152,7 @@ const SuccessStatus = ({resetForm, nonPicFileNames}) => {
       <div>
         <span>
           <p>
-          <Link to="/admin/projects"><strong>Redirect</strong></Link>{" to Project List or "}
-            <a onClick={resetForm}><strong>Add</strong></a> a new project.
+          <Link to="/admin/projects"><strong>Redirect</strong></Link> to project list to see the newly added Project!
           </p>
         </span>
       </div>
