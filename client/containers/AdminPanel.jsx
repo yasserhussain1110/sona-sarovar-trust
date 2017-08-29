@@ -2,6 +2,7 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import HomePanel from '../components/AdminPanel/HomePanel';
 import ProjectsPanel from '../components/AdminPanel/ProjectsPanel';
+import ActivitiesPanel from '../components/AdminPanel/ActivitiesPanel';
 import SideNavContainer from '../components/AdminPanel/SideNavContainer';
 
 const AdminPanel = () => {
@@ -12,6 +13,7 @@ const AdminPanel = () => {
         <div className="controller-holder">
           <Route path="/admin/home" component={HomePanel}/>
           <Route path="/admin/projects" component={ProjectsPanel}/>
+          <Route path="/admin/activities" component={ActivitiesPanel}/>
         </div>
       </div>
     </main>

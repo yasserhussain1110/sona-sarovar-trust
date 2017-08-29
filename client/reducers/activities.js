@@ -1,3 +1,5 @@
+import {updateSingleObjectInArray} from '../lib/helpers/functions';
+
 const defaultState = {
   activitiesUndertaken: []
 };
@@ -8,7 +10,42 @@ const activities = (state = defaultState, action) => {
       return {
         activitiesUndertaken: action.activitiesUndertaken
       };
-
+    case 'ADDED_ACTIVITY_UNDERTAKEN':
+      return {
+        activitiesUndertaken: [
+          ...state.activitiesUndertaken,
+          action.activityUndertaken
+        ]
+      };
+    case 'UPDATED_ACTIVITY_NAME_AND_DESCRIPTION':
+      return {
+        activitiesUndertaken: updateSingleObjectInArray(
+          state.activitiesUndertaken, action.index,
+          activity => {
+            activity.name = action.name;
+            activity.description = action.description;
+          })
+      };
+    case 'ADDED_PIC_TO_ACTIVITY':
+      return {
+        activitiesUndertaken: updateSingleObjectInArray(state.activitiesUndertaken, action.index,
+          activity => {
+            activity.pics = updateSingleObjectInArray(activity.pics, activity.pics.length,
+              picElement => Object.assign(picElement, action.pic));
+          })
+      };
+    case 'UPDATED_ACTIVITY_PIC':
+      let selectedActivity = state.activitiesUndertaken[action.activityIndex];
+      let picIndex = selectedActivity.pics.findIndex(pic => pic._id === action.picId);
+      return {
+        activitiesUndertaken: updateSingleObjectInArray(state.activitiesUndertaken,
+          action.activityIndex,
+          activity => {
+            activity.pics = updateSingleObjectInArray(activity.pics, picIndex, pic => {
+              pic.url = action.url;
+            });
+          })
+      };
     default:
       return state;
   }

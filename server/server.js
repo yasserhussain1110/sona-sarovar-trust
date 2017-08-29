@@ -16,6 +16,7 @@ require('./routes/adminRoutes')(app);
 require('./routes/appStateRoutes')(app);
 require('./routes/homePageRoutes')(app);
 require('./routes/projectRoutes')(app);
+require('./routes/activityRoutes')(app);
 require('./routes/teammemberRoutes')(app);
 
 /* Set up development server if required */
