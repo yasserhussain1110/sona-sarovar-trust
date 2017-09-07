@@ -59,6 +59,7 @@ describe('Testing path PUT /teammember', () => {
             });
             done();
           })
+          .catch(done);
       });
   });
 });
@@ -87,9 +88,9 @@ describe('Testing path PATCH /teammember/:_id', () => {
               info: "Roman Infantry 1 got modified",
               pic: INIT_TEAM_MEMBERS[0].pic
             });
-
             done();
-          });
+          })
+          .catch(done);
       });
   });
 
