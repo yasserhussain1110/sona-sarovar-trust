@@ -1,0 +1,15 @@
+.brand-logo-panel {
+  box-shadow: 0 0 1px black;
+  margin-bottom: 10px;
+
+  img {
+    height: 60px;
+    width: 100px;
+    margin: 20px 0;
+  }
+
+  .current-logo, .new-logo {
+    padding: 5px;
+    margin: 5px;
+  }
+}

@@ -74,6 +74,11 @@ const home = (state = defaultState, action) => {
         ...state,
         mainTextPara2: action.mainTextPara2
       };
+    case 'UPDATED_BRAND_LOGO_URL':
+      return {
+        ...state,
+        brandLogoUrl: action.brandLogoUrl
+      };
     default:
       return state;
   }

@@ -5,6 +5,13 @@ export const receivedHomePageContent = homePage => (
   }
 );
 
+export const updatedBrandLogoUrl = brandLogoUrl => (
+  {
+    type: "UPDATED_BRAND_LOGO_URL",
+    brandLogoUrl
+  }
+);
+
 export const updatedCenterPic = (centerPicIndex, centerPicUrl) => (
   {
     type: "UPDATED_CENTER_PIC",
