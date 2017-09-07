@@ -1,16 +1,17 @@
 const defaultState = {
   centerPics: [],
   captions: [],
+  brandLogoUrl: "",
   mainTextPara1: "",
   mainTextPara2: ""
 };
 
 const home = (state = defaultState, action) => {
   switch (action.type) {
-    case 'RECEIVED_CENTER_PICS':
+    case 'RECEIVED_HOME_PAGE_CONTENT':
       return {
         ...state,
-        centerPics: action.centerPics
+        ...action.homePage
       };
     case 'ADDED_CENTER_PIC':
       return {
@@ -38,11 +39,6 @@ const home = (state = defaultState, action) => {
           ...state.centerPics.slice(action.centerPicIndex + 1)
         ]
       };
-    case 'RECEIVED_CENTER_PIC_CAPTIONS':
-      return {
-        ...state,
-        captions: action.captions
-      };
     case 'UPDATED_CENTER_PIC_CAPTION':
       return {
         ...state,
@@ -67,12 +63,6 @@ const home = (state = defaultState, action) => {
       return {
         ...state,
         captions: [...state.captions, action.caption]
-      };
-    case 'RECEIVED_MAIN_TEXTS':
-      return {
-        ...state,
-        mainTextPara1: action.mainTextPara1,
-        mainTextPara2: action.mainTextPara2
       };
     case 'UPDATED_MAIN_TEXT_PARA1':
       return {

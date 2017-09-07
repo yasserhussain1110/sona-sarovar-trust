@@ -1,15 +1,15 @@
 .header {
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 50px;
 
   .active {
     color: #F7DB07;
   }
 
-  .logo {
-    font: $main-font;
-    font-weight: bold;
+  .logo > img {
+    height: 60px;
+    width: 100px;
   }
 
   /*
@@ -40,6 +40,6 @@
   }
 
   .nav {
-    margin-top: 100px;
+    padding-top: 50px;
   }
 }

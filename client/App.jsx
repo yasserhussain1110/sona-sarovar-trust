@@ -24,11 +24,8 @@ class App extends Component {
     axios.get('/api/init-state')
       .then(response => {
         let {homePage, projects, activities, teamMembers} = response.data;
-        let {captions, centerPics, mainTextPara1, mainTextPara2} = homePage;
 
-        this.props.receivedCenterPicCaptions(captions);
-        this.props.receivedCenterPics(centerPics);
-        this.props.receivedMainTexts(mainTextPara1, mainTextPara2);
+        this.props.receivedHomePageContent(homePage);
         this.props.receivedTeamMembers(teamMembers);
         this.props.receivedActivitiesUndertaken(activities);
         this.props.receivedProjectsDone(projects);

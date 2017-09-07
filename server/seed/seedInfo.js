@@ -24,6 +24,7 @@ const INIT_HOME_PAGE = {
     _id: new ObjectID(),
     url: "/home/IMG2.jpg"
   }],
+  brandLogoUrl: "/home/logo.jpg",
   captions: [
     {text: "66% of street children in Mumbai never receive any education."},
     {text: "You can make a difference in their lives."},

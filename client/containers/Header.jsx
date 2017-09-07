@@ -1,11 +1,11 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-export default ({match}) => (
+const Header = ({match, brandLogoUrl}) => (
   <div className="header">
     <div className="logo">
-      <div className="top-portion">SONA</div>
-      <div className="bottom-portion">TRUST</div>
+      <img src={brandLogoUrl} />
     </div>
 
     <div className="nav">
@@ -20,3 +20,9 @@ export default ({match}) => (
     </div>
   </div>
 );
+
+const mapStateToProps = state => ({
+  brandLogoUrl: state.home.brandLogoUrl
+});
+
+export default connect(mapStateToProps)(Header);

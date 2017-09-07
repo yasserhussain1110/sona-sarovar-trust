@@ -9,6 +9,11 @@ const HomePageSchema = new Schema({
     required: true
   },
 
+  brandLogoUrl: {
+    type: String,
+    required: true
+  },
+
   // TODO:- May need to move the following array object to its own caption schema
   captions: [{
     text: {
@@ -33,7 +38,7 @@ const HomePageSchema = new Schema({
 
 HomePageSchema.methods.toJSON = function () {
   let homePage = this;
-  return _.pick(homePage, ["centerPics", "captions", "mainTextPara1", "mainTextPara2"]);
+  return _.pick(homePage, ["centerPics", "brandLogoUrl", "captions", "mainTextPara1", "mainTextPara2"]);
 };
 
 const HomePage = mongoose.model('HomePage', HomePageSchema);

@@ -1,7 +1,7 @@
-export const receivedCenterPics = centerPics => (
+export const receivedHomePageContent = homePage => (
   {
-    type: "RECEIVED_CENTER_PICS",
-    centerPics
+    type: "RECEIVED_HOME_PAGE_CONTENT",
+    homePage
   }
 );
 
@@ -27,13 +27,6 @@ export const deletedCenterPic = centerPicIndex => (
   }
 );
 
-export const receivedCenterPicCaptions = captions => (
-  {
-    type: "RECEIVED_CENTER_PIC_CAPTIONS",
-    captions
-  }
-);
-
 export const updatedCenterPicCaption = (captionIndex, captionText) => (
   {
     type: "UPDATED_CENTER_PIC_CAPTION",
@@ -53,14 +46,6 @@ export const deletedCenterPicCaption = captionIndex => (
   {
     type: "DELETED_CENTER_PIC_CAPTION",
     captionIndex
-  }
-);
-
-export const receivedMainTexts = (mainTextPara1, mainTextPara2) => (
-  {
-    type: "RECEIVED_MAIN_TEXTS",
-    mainTextPara1,
-    mainTextPara2
   }
 );
 
