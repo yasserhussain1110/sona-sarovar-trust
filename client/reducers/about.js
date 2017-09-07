@@ -1,3 +1,5 @@
+import {updateSingleObjectInArray} from '../lib/helpers/functions';
+
 const defaultState = {
   teamMembers: []
 };
@@ -8,7 +10,15 @@ const about = (state = defaultState, action) => {
       return {
         teamMembers: action.teamMembers
       };
+    case 'UPDATED_TEAM_MEMBER':
+      let teamMemberIndex =
+        state.teamMembers.findIndex(teamMember => teamMember._id === action.teamMember._id);
 
+      return {
+        teamMembers: updateSingleObjectInArray(state.teamMembers, teamMemberIndex, teamMember => {
+          Object.assign(teamMember, action.teamMember);
+        })
+      };
     default:
       return state;
   }
