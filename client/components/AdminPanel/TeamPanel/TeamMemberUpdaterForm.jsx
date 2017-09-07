@@ -3,8 +3,8 @@ import TextFieldsHolder from './TextFieldsHolder';
 import PicFieldHolder from './PicFieldHolder';
 import axios from 'axios';
 
-const getFileListFromCorrespondingFileInput = e =>
-  e.target.parentElement.parentElement.querySelector("input[type='file']").files;
+const getFileInputCorrespondingToForm = e =>
+  e.target.parentElement.parentElement.querySelector("input[type='file']");
 
 class TeamMemberUpdater extends Component {
   constructor(props) {
@@ -23,6 +23,11 @@ class TeamMemberUpdater extends Component {
     this.updateName = this.updateName.bind(this);
     this.updateInfo = this.updateInfo.bind(this);
     this.update = this.update.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let {name, info, pic} = nextProps.member;
+    this.setState({name, info, pic});
   }
 
   resetValidationErrors() {
@@ -49,7 +54,8 @@ class TeamMemberUpdater extends Component {
   }
 
   update(e) {
-    let fileList = getFileListFromCorrespondingFileInput(e);
+    let fileInput = getFileInputCorrespondingToForm(e);
+    let fileList = fileInput.files;
     if (!this.validateAndUpdateErrorState()) return;
 
     let formData = new FormData();
@@ -67,6 +73,8 @@ class TeamMemberUpdater extends Component {
       .catch(err => {
         console.log(err);
       });
+
+    fileInput.value = null;
   }
 
   updateName(e) {

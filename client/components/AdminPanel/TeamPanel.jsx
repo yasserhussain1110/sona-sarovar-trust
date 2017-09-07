@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import TeamMemberUpdater from './TeamPanel/TeamMemberUpdater';
+import TeamMemberUpdaterForm from './TeamPanel/TeamMemberUpdaterForm';
 import {updatedTeamMember} from '../../actions';
 
 const TeamPanel = ({teamMembers, authToken, updatedTeamMember}) => (
@@ -8,7 +8,7 @@ const TeamPanel = ({teamMembers, authToken, updatedTeamMember}) => (
     <h1>Team Members Panel</h1>
     <h2>Update Team Member Info</h2>
     <section className="member-info-holder">{teamMembers.map(member => (
-      <TeamMemberUpdater
+      <TeamMemberUpdaterForm
         key={member._id}
         member={member}
         authToken={authToken}

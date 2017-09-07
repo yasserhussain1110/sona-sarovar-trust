@@ -48,8 +48,11 @@ describe('Testing path PUT /teammember', () => {
           })
           .then(member => {
             expect(member).toExist();
+            expect(member.pic).toInclude("sun.jpg");
             expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);
-            expect(res.body).toEqual({
+            let newMember = res.body;
+            delete newMember._id;
+            expect(newMember).toEqual({
               name: "Yasser Hussain",
               info: "Yasser Hussain is awesome person",
               pic: member.pic
@@ -76,7 +79,10 @@ describe('Testing path PATCH /teammember/:_id', () => {
             expect(member.name).toBe("Member 1 modified");
             expect(member.info).toBe("Roman Infantry 1 got modified");
             expect(member.pic).toBe(INIT_TEAM_MEMBERS[0].pic);
-            expect(res.body).toEqual({
+            expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);
+            let newMember = res.body;
+            delete newMember._id;
+            expect(newMember).toEqual({
               name: "Member 1 modified",
               info: "Roman Infantry 1 got modified",
               pic: INIT_TEAM_MEMBERS[0].pic
@@ -103,7 +109,9 @@ describe('Testing path PATCH /teammember/:_id', () => {
             expect(member.name).toBe("Member 1 modified");
             expect(member.info).toBe("Roman Infantry 1 got modified");
             expect(member.pic).toNotBe(INIT_TEAM_MEMBERS[0].pic);
-            expect(res.body).toEqual({
+            let newMember = res.body;
+            delete newMember._id;
+            expect(newMember).toEqual({
               name: "Member 1 modified",
               info: "Roman Infantry 1 got modified",
               pic: member.pic
@@ -111,7 +119,8 @@ describe('Testing path PATCH /teammember/:_id', () => {
             expect(fs.existsSync(RESOURCES_DIR + INIT_TEAM_MEMBERS[0].pic)).toBe(false);
             expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);
             done();
-          });
+          })
+          .catch(done);
       });
   });
 });
