@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {addedProjectDone} from '../../../actions';
 import StatusBox from '../../../lib/components/StatusBox';
 import StatusPanel from '../../../lib/components/StatusPanel';
+import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
 const createInitState = () => ({
   name: "",
@@ -108,6 +109,7 @@ class ProjectAddPanel extends Component {
       })
       .catch(err => {
         console.log(err);
+        handleCommonErrors(err);
         this.addFailureStatusBox();
       });
   }

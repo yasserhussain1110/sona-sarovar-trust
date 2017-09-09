@@ -6,6 +6,7 @@ import {createStore} from 'redux';
 import rootReducer from './reducers';
 import App from './App';
 import './stylesheets/main.scss';
+import {initializeHandler} from './lib/handlers/commonErrorsHandler';
 
 const configureStore = initialState => {
   const store = createStore(rootReducer, initialState);
@@ -22,6 +23,8 @@ const configureStore = initialState => {
 };
 
 const store = configureStore();
+
+initializeHandler(store.dispatch);
 
 render(
   <AppContainer>

@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {addedActivityUnderTaken} from '../../../actions';
 import StatusBox from '../../../lib/components/StatusBox';
 import StatusPanel from '../../../lib/components/StatusPanel';
+import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
 const createInitState = () => ({
   name: "",
@@ -108,6 +109,7 @@ class ActivityAddPanel extends Component {
       })
       .catch(err => {
         console.log(err);
+        handleCommonErrors(err);
         this.addFailureStatusBox();
       });
   }
@@ -183,9 +185,9 @@ const PanelView = ({
 );
 
 const ActivityAddForm = ({
-                          name, description, nameError, descriptionError,
-                          picsError, updateStateField, addActivity
-                        }) => (
+                           name, description, nameError, descriptionError,
+                           picsError, updateStateField, addActivity
+                         }) => (
   <div className="form-holder">
     <section className="name">
       <div className="field">

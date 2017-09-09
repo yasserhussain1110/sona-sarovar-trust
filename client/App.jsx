@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 import axios from 'axios';
+import handleCommonErrors from './lib/handlers/commonErrorsHandler';
 
 import Web from './routes/Web';
 import Admin from './routes/Admin';
@@ -31,6 +32,7 @@ class App extends Component {
         this.props.receivedProjectsDone(projects);
       })
       .catch(error => {
+        handleCommonErrors(error);
         console.log(error);
       });
   }

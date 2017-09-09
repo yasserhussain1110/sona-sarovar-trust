@@ -6,6 +6,7 @@ import StatusBox from '../../../lib/components/StatusBox';
 import StatusPanel from '../../../lib/components/StatusPanel';
 import Modal from '../../../lib/components/Modal';
 import PicForm from '../../../lib/components/PicForm';
+import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
 const createStateFromActivity = activity => {
   let name = "", description = "", pics = [];
@@ -106,13 +107,9 @@ class ActivityEditPanel extends Component {
 
   updateNameAndDescription() {
     let {name, description} = this.state;
-    axios
-      .patch(`/api/activity/${this.props.activity._id}`, {
-        name,
-        description
-      }, {
-        headers: {'x-auth': this.props.authToken}
-      })
+    axios.patch(`/api/activity/${this.props.activity._id}`, {name, description}, {
+      headers: {'x-auth': this.props.authToken}
+    })
       .then(res => {
         this.props.updatedActivityNameAndDescription(name, description, this.props.match.params.index);
         this.addStatusBox(
@@ -124,6 +121,7 @@ class ActivityEditPanel extends Component {
       })
       .catch(err => {
         console.log(err);
+        handleCommonErrors(err);
         this.addStatusBox(
           <StatusBox success={false}>
             <div><h3>Failure!</h3></div>
@@ -153,6 +151,7 @@ class ActivityEditPanel extends Component {
         })
         .catch(err => {
           console.log(err);
+          handleCommonErrors(err);
           this.addStatusBox(
             <StatusBox success={false}>
               <div><h3>Failure!</h3></div>

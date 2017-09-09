@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {updatedBrandLogoUrl} from '../../../actions'
 import axios from 'axios';
+import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
 const BrandLogoPanel = ({brandLogoUrl, authToken, updatedBrandLogoUrl}) => (
   <div className="brand-logo-panel">
@@ -40,6 +41,7 @@ const updateLogo = (authToken, updatedBrandLogoUrl) => {
       updatedBrandLogoUrl(res.data.url);
     })
     .catch(e => {
+      handleCommonErrors(e);
       console.log(e);
     });
 
