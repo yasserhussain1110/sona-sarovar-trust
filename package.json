@@ -6,7 +6,7 @@
   "scripts": {
     "start": "per-env",
     "start:production": "forever server/server.js",
-    "start:development": "nodemon server/server.js",
+    "start:development": "nodemon --watch server server/server.js",
     "test": "NODE_ENV=test mocha test/**/*.test.js",
     "seed": "node server/seed/seed.js",
     "build": "webpack"
