@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import handleCommonErrors from '../../../../lib/handlers/commonErrorsHandler';
 
 const DeleteCaptionForm = ({caption, authToken, onSuccess, close}) => (
   <div className="delete-caption-form">
@@ -18,6 +19,7 @@ const deleteCaption = (_id, onSuccess, authToken) => {
       onSuccess();
     })
     .catch(err => {
+      handleCommonErrors(err);
       console.log(err);
     });
 };

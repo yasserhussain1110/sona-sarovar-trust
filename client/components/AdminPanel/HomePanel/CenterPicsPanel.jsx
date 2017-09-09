@@ -5,6 +5,7 @@ import PicForm from '../../../lib/components/PicForm';
 import {addedCenterPic, updatedCenterPic, deletedCenterPic} from '../../../actions';
 import {bindActionCreators} from 'redux';
 import axios from 'axios';
+import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
 class CenterPicsPanel extends Component {
   constructor(props) {
@@ -186,6 +187,7 @@ const deletePic = (picId, authToken, onDelete) => {
       onDelete();
     })
     .catch(err => {
+      handleCommonErrors(err);
       console.log(err);
     });
 };

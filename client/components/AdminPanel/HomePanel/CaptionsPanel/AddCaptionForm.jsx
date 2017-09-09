@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import handleCommonErrors from '../../../../lib/handlers/commonErrorsHandler';
 
 class AddCaptionForm extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class AddCaptionForm extends Component {
         this.props.onSuccess(res.data);
       })
       .catch(err => {
+        handleCommonErrors(err);
         console.log(err);
       });
 

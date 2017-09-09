@@ -4,6 +4,7 @@ import {logIn} from '../actions';
 import {Redirect} from 'react-router-dom';
 import LoginForm from '../components/AdminAuth/LoginForm';
 import axios from 'axios';
+import handleCommonErrors from '../lib/handlers/commonErrorsHandler';
 
 class AdminAuth extends Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class AdminAuth extends Component {
         this.props.logIn(authToken);
       })
       .catch(error => {
+        handleCommonErrors(error);
         console.log(error);
         this.setState({error: "Username or Password Invalid", username: "", password: ""});
       });

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import handleCommonErrors from '../../../../lib/handlers/commonErrorsHandler';
 
 class UpdateMainTextForm extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class UpdateMainTextForm extends Component {
         onSuccess(data.text);
       })
       .catch(err => {
+        handleCommonErrors(err);
         console.log(err);
       });
   }

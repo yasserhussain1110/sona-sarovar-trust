@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TextFieldsHolder from './TextFieldsHolder';
 import PicFieldHolder from './PicFieldHolder';
 import axios from 'axios';
+import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
 const getFileInputCorrespondingToForm = e =>
   e.target.parentElement.parentElement.querySelector("input[type='file']");
@@ -71,6 +72,7 @@ class TeamMemberUpdater extends Component {
         this.props.updatedTeamMember(res.data);
       })
       .catch(err => {
+        handleCommonErrors(err);
         console.log(err);
       });
 

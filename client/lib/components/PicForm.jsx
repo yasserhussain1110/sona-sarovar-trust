@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import handleCommonErrors from '../../lib/handlers/commonErrorsHandler';
 
 class PicForm extends Component {
   constructor(props) {
@@ -55,6 +56,7 @@ class PicForm extends Component {
         this.props.onSuccess(res.data);
       })
       .catch(err => {
+        handleCommonErrors(err);
         console.log(err);
       });
   }
@@ -71,6 +73,7 @@ class PicForm extends Component {
         this.props.onSuccess(res.data);
       })
       .catch(err => {
+        handleCommonErrors(err);
         console.log(err);
         this.props.onFailure ? this.props.onFailure() : "";
       });
