@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "per-env",
-    "start:production": "forever server/server.js",
+    "start:production": "forever start server/server.js",
     "start:development": "nodemon --watch server server/server.js",
     "test": "NODE_ENV=test mocha test/**/*.test.js",
     "seed": "node server/seed/seed.js",
@@ -67,7 +67,6 @@
     "body-parser": "^1.17.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
-    "forever": "^0.15.3",
     "jsonwebtoken": "^7.4.1",
     "lodash": "^4.17.4",
     "mmmagic": "^0.4.5",
