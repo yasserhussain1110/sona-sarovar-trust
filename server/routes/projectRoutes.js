@@ -111,6 +111,8 @@ const projectRoutes = app => {
         name,
         description
       }
+    }, {
+      runValidators: true
     }).then(() => {
       res.status(200).send();
     })
@@ -134,6 +136,8 @@ const projectRoutes = app => {
           $set: {
             "pics.$.url": picUrl
           }
+        }, {
+          runValidators: true
         }).then(() => picUrl);
       })
       .then(picUrl => {

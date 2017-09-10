@@ -68,7 +68,10 @@ const centerPicRoutes = app => {
       .findOne({
         'centerPics._id': _id
       })
-      .then(() => {
+      .then(h => {
+        if (h.centerPics.length === 1) {
+          throw new Error("Only one pic remaining. Cannot delete it.");
+        }
         return removeExistingPicFile(HomePage, 'centerPics', _id);
       })
       .then(() => {
@@ -93,6 +96,8 @@ const updatePicFileUrlInDB = (picUrl, _id) => {
     $set: {
       'centerPics.$.url': picUrl
     }
+  }, {
+    runValidators: true
   });
 };
 
@@ -101,6 +106,8 @@ const addPicFileUrlToDB = picUrl => {
     $push: {
       centerPics: {url: picUrl}
     }
+  }, {
+    runValidators: true
   });
 };
 

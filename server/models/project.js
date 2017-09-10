@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const _ = require('lodash');
-const PicSchema = require('./pic');
+const PicSchema = require('./subschema/pic');
 
 const ProjectSchema = new Schema({
   name: {
