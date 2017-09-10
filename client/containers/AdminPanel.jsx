@@ -5,6 +5,7 @@ import ProjectsPanel from '../components/AdminPanel/ProjectsPanel';
 import ActivitiesPanel from '../components/AdminPanel/ActivitiesPanel';
 import TeamPanel from '../components/AdminPanel/TeamPanel';
 import SideNavContainer from '../components/AdminPanel/SideNavContainer';
+import Previewer from '../components/AdminPanel/Previewer';
 
 const AdminPanel = () => {
   return (
@@ -16,6 +17,7 @@ const AdminPanel = () => {
           <Route path="/admin/projects" component={ProjectsPanel}/>
           <Route path="/admin/activities" component={ActivitiesPanel}/>
           <Route path="/admin/team" component={TeamPanel}/>
+          <Route path="/admin/preview" component={Previewer}/>
         </div>
       </div>
     </main>

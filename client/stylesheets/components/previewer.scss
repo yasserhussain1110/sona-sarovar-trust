@@ -1,0 +1,56 @@
+.previewer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  overflow-y: scroll;
+  background-color: rgba(255, 255, 255, 1);
+
+  .preview-note {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background-color: black;
+    padding: 5px;
+    color: #FFE363;
+    border-radius: 0;
+  }
+
+  .preview-note > div {
+    text-align: center;
+  }
+
+  .preview-note > .main {
+    font-size: 20px;
+  }
+
+  .nav {
+    padding: 5px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+  }
+
+  .nav > a {
+    color: black;
+    font-size: 22px;
+    padding-top: 2px;
+    padding-bottom: 4px;
+    border-radius: 5px;
+  }
+
+  .nav > a:hover {
+    box-shadow: 0 0 2px black;
+  }
+
+  .icon-holder, .caption-holder {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+
+  .nav > a > * {
+    margin: 2px;
+    padding: 2px;
+  }
+}
