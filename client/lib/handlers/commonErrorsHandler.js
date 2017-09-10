@@ -8,7 +8,7 @@ const logOut = () => {
 };
 
 const handleCommonErrors = e => {
-  if (e.response.status === 401) {
+  if (e.response && e.response.status && e.response.status === 401) {
     logOut();
   }
 };
