@@ -49,7 +49,7 @@ class ProjectEditPanel extends Component {
     this.addStatusBox(
       <StatusBox success={false}>
         <div><h3>Failure!</h3></div>
-        <div>Project Pic could not be updated</div>
+        <div>Project Pic could not be updated.</div>
       </StatusBox>
     );
   }
@@ -60,7 +60,7 @@ class ProjectEditPanel extends Component {
     this.addStatusBox(
       <StatusBox success={true}>
         <div><h3>Success!</h3></div>
-        <div>Project Pic Updated Successfully</div>
+        <div>Project Pic Updated Successfully.</div>
       </StatusBox>
     );
   }
@@ -115,7 +115,7 @@ class ProjectEditPanel extends Component {
         this.addStatusBox(
           <StatusBox success={true}>
             <div><h3>Success!</h3></div>
-            <div>Updated Project Name and Description</div>
+            <div>Updated Project Name and Description.</div>
           </StatusBox>
         )
       })
@@ -125,7 +125,7 @@ class ProjectEditPanel extends Component {
         this.addStatusBox(
           <StatusBox success={false}>
             <div><h3>Failure!</h3></div>
-            <div>Project Name and Description updation failed</div>
+            <div>Project Name and Description updation failed.</div>
           </StatusBox>
         )
       });
@@ -145,7 +145,7 @@ class ProjectEditPanel extends Component {
           this.addStatusBox(
             <StatusBox success={true}>
               <div><h3>Success!</h3></div>
-              <div>More Pics added to Project</div>
+              <div>More Pics added to Project.</div>
             </StatusBox>
           )
         })
@@ -154,7 +154,7 @@ class ProjectEditPanel extends Component {
           this.addStatusBox(
             <StatusBox success={false}>
               <div><h3>Failure!</h3></div>
-              <div>Adding more pics to project failed!</div>
+              <div>Adding more pics to project failed.</div>
             </StatusBox>
           )
         });
