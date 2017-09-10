@@ -58,6 +58,7 @@ class PicForm extends Component {
       .catch(err => {
         handleCommonErrors(err);
         console.log(err);
+        this.props.onFailure ? this.props.onFailure() : "";
       });
   }
 

@@ -4,6 +4,7 @@ import Modal from '../../../lib/components/Modal';
 import PicForm from '../../../lib/components/PicForm';
 import {addedCenterPic, updatedCenterPic, deletedCenterPic} from '../../../actions';
 import {bindActionCreators} from 'redux';
+import StatusBox from '../../../lib/components/StatusBox';
 import axios from 'axios';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
@@ -17,33 +18,81 @@ class CenterPicsPanel extends Component {
       selectedCenterPicIndex: -1
     };
 
-    this.close = this.close.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.getModalContent = this.getModalContent.bind(this);
     this.picAddSuccess = this.picAddSuccess.bind(this);
+    this.picAddFailure = this.picAddFailure.bind(this);
     this.picUpdateSuccess = this.picUpdateSuccess.bind(this);
+    this.picUpdateFailure = this.picUpdateFailure.bind(this);
     this.picDeletedSuccess = this.picDeletedSuccess.bind(this);
-  }
-
-  picDeletedSuccess() {
-    this.setState({showModalForm: false});
-    this.props.deletedCenterPic(this.state.selectedCenterPicIndex);
-    this.close();
-  }
-
-  close() {
-    this.setState({showModalForm: false, selectedCenterPic: -1, picFormMode: ""});
-  }
-
-  picUpdateSuccess({url}) {
-    this.setState({showModalForm: false});
-    this.props.updatedCenterPic(this.state.selectedCenterPicIndex, url);
-    this.close();
+    this.picDeletedFailure = this.picDeletedFailure.bind(this);
   }
 
   picAddSuccess(newCenterPic) {
-    this.setState({showModalForm: false});
+    this.closeModal();
     this.props.addedCenterPic(newCenterPic);
-    this.close();
+    this.props.addStatusBox(
+      <StatusBox success={true}>
+        <div><h3>Success!</h3></div>
+        <div>Pic added to Central Panel.</div>
+      </StatusBox>
+    );
+  }
+
+  picAddFailure() {
+    this.closeModal();
+    this.props.addStatusBox(
+      <StatusBox success={false}>
+        <div><h3>Failure!</h3></div>
+        <div>Pic could not be added to Central Panel.</div>
+      </StatusBox>
+    );
+  }
+
+  picUpdateSuccess({url}) {
+    this.closeModal();
+    this.props.updatedCenterPic(this.state.selectedCenterPicIndex, url);
+    this.props.addStatusBox(
+      <StatusBox success={true}>
+        <div><h3>Success!</h3></div>
+        <div>Center Panel Pic updated successfully.</div>
+      </StatusBox>
+    );
+  }
+
+  picUpdateFailure() {
+    this.closeModal();
+    this.props.addStatusBox(
+      <StatusBox success={false}>
+        <div><h3>Failure!</h3></div>
+        <div>Center Panel Pic could not be updated.</div>
+      </StatusBox>
+    );
+  }
+
+  picDeletedSuccess() {
+    this.closeModal();
+    this.props.deletedCenterPic(this.state.selectedCenterPicIndex);
+    this.props.addStatusBox(
+      <StatusBox success={true}>
+        <div><h3>Success!</h3></div>
+        <div>Center Panel Pic deleted successfully.</div>
+      </StatusBox>
+    );
+  }
+
+  picDeletedFailure() {
+    this.closeModal();
+    this.props.addStatusBox(
+      <StatusBox success={false}>
+        <div><h3>Failure!</h3></div>
+        <div>Center Panel Pic could not be deleted.</div>
+      </StatusBox>
+    );
+  }
+
+  closeModal() {
+    this.setState({showModalForm: false, picFormMode: ""});
   }
 
   getModalContent() {
@@ -52,7 +101,7 @@ class CenterPicsPanel extends Component {
         return (
           <DeletePic
             pic={this.props.centerPics[this.state.selectedCenterPicIndex]}
-            close={this.close}
+            closeModal={this.closeModal}
             onDelete={this.picDeletedSuccess}
             authToken={this.props.authToken}
           />
@@ -61,20 +110,22 @@ class CenterPicsPanel extends Component {
         return (
           <AddOrUpdatePic
             pic={this.props.centerPics[this.state.selectedCenterPicIndex]}
-            close={this.close}
+            closeModal={this.closeModal}
             authToken={this.props.authToken}
             mode="update"
             onSuccess={this.picUpdateSuccess}
+            onFailure={this.picUpdateFailure}
           />
         );
       case "add":
         return (
           <AddOrUpdatePic
             pic={null}
-            close={this.close}
+            closeModal={this.closeModal}
             authToken={this.props.authToken}
             mode="add"
             onSuccess={this.picAddSuccess}
+            onFailure={this.picAddFailure}
           />
         );
       default:
@@ -135,7 +186,7 @@ class CenterPicsPanel extends Component {
   }
 }
 
-const DeletePic = ({pic, close, authToken, onDelete}) => {
+const DeletePic = ({pic, closeModal, authToken, onDelete}) => {
   return (
     <div className="delete-pic-form">
       <label>Do you really want to delete this image?</label>
@@ -145,14 +196,14 @@ const DeletePic = ({pic, close, authToken, onDelete}) => {
           className="delete"
           onClick={e => {
             e.preventDefault();
-            deletePic(pic._id, authToken, onDelete)
+            deletePic(pic._id, authToken, onDelete);
           }}>Yes
         </button>
         <button
           className="no-delete"
           onClick={e => {
             e.preventDefault();
-            close()
+            closeModal();
           }}>No
         </button>
       </div>
@@ -160,7 +211,7 @@ const DeletePic = ({pic, close, authToken, onDelete}) => {
   );
 };
 
-const AddOrUpdatePic = ({pic, close, authToken, mode, onSuccess}) => {
+const AddOrUpdatePic = ({pic, closeModal, authToken, mode, onSuccess, onFailure}) => {
   return (
     <div className={mode === 'add' ? 'add-pic-form' : 'update-pic-form'}>{mode === 'add' ? (
       <div className="message">
@@ -171,11 +222,12 @@ const AddOrUpdatePic = ({pic, close, authToken, mode, onSuccess}) => {
         <img src={pic.url}/>
       </div>)}
       <PicForm
-        close={close}
+        close={closeModal}
         authToken={authToken}
         mode={mode}
         url={`/api/home-page/center-pic${mode === "update" ? `/${pic._id}` : ""}`}
         onSuccess={onSuccess}
+        onFailure={onFailure}
       />
     </div>
   );
