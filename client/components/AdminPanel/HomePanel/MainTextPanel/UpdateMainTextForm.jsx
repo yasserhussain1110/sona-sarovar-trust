@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import handleCommonErrors from '../../../../lib/handlers/commonErrorsHandler';
+import PropTypes from 'prop-types';
 
 class UpdateMainTextForm extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class UpdateMainTextForm extends Component {
       return;
     }
 
-    let {paraNumber, authToken, onSuccess} = this.props;
+    let {paraNumber, authToken, onSuccess, onFailure} = this.props;
     let data = {text: this.state.textAreaValue};
     axios.patch(`/api/home-page/mainText/para${paraNumber}`, data, {headers: {'x-auth': authToken}})
       .then(res => {
@@ -46,6 +47,7 @@ class UpdateMainTextForm extends Component {
       })
       .catch(err => {
         handleCommonErrors(err);
+        onFailure ? onFailure() : "";
         console.log(err);
       });
   }
@@ -72,5 +74,14 @@ class UpdateMainTextForm extends Component {
     );
   }
 }
+
+UpdateMainTextForm.propTypes = {
+  authToken: PropTypes.string.isRequired,
+  mainText: PropTypes.string.isRequired,
+  paraNumber: PropTypes.number.isRequired,
+  close: PropTypes.func.isRequired,
+  onSuccess: PropTypes.func.isRequired,
+  onFailure: PropTypes.func
+};
 
 export default UpdateMainTextForm;

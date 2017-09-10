@@ -102,7 +102,8 @@ class CenterPicsPanel extends Component {
           <DeletePic
             pic={this.props.centerPics[this.state.selectedCenterPicIndex]}
             closeModal={this.closeModal}
-            onDelete={this.picDeletedSuccess}
+            onSuccess={this.picDeletedSuccess}
+            onFailure={this.picDeletedFailure}
             authToken={this.props.authToken}
           />
         );
@@ -186,7 +187,7 @@ class CenterPicsPanel extends Component {
   }
 }
 
-const DeletePic = ({pic, closeModal, authToken, onDelete}) => {
+const DeletePic = ({pic, closeModal, authToken, onSuccess, onFailure}) => {
   return (
     <div className="delete-pic-form">
       <label>Do you really want to delete this image?</label>
@@ -196,7 +197,7 @@ const DeletePic = ({pic, closeModal, authToken, onDelete}) => {
           className="delete"
           onClick={e => {
             e.preventDefault();
-            deletePic(pic._id, authToken, onDelete);
+            deletePic(pic._id, authToken, onSuccess, onFailure);
           }}>Yes
         </button>
         <button
@@ -233,13 +234,14 @@ const AddOrUpdatePic = ({pic, closeModal, authToken, mode, onSuccess, onFailure}
   );
 };
 
-const deletePic = (picId, authToken, onDelete) => {
+const deletePic = (picId, authToken, onSuccess, onFailure) => {
   axios.delete(`/api/home-page/center-pic/${picId}`, {headers: {'x-auth': authToken}})
     .then(res => {
-      onDelete();
+      onSuccess();
     })
     .catch(err => {
       handleCommonErrors(err);
+      onFailure();
       console.log(err);
     });
 };

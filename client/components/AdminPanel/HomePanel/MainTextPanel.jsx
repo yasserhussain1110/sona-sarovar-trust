@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {updatedMainTextPara1, updatedMainTextPara2} from '../../../actions';
 import Modal from '../../../lib/components/Modal';
 import UpdateMainTextForm from './MainTextPanel/UpdateMainTextForm';
+import StatusBox from '../../../lib/components/StatusBox';
 
 class MainTextPanel extends Component {
   constructor(props) {
@@ -14,27 +15,46 @@ class MainTextPanel extends Component {
     };
 
     this.updatedMainText = this.updatedMainText.bind(this);
+    this.updateMainTextFailed = this.updateMainTextFailed.bind(this);
     this.close = this.close.bind(this);
     this.showFormToUpdateMainText = this.showFormToUpdateMainText.bind(this);
   }
 
+  updateMainTextFailed() {
+    this.close();
+    this.props.addStatusBox(
+      <StatusBox success={false}>
+        <div><h3>Failure!</h3></div>
+        <div>Failed to updated Main Text #{this.state.selectedMainTextParaNumber}.</div>
+      </StatusBox>
+    );
+  }
+
   close() {
-    this.setState({showModalForm: false, selectedMainTextParaNumber: -1});
+    this.setState({showModalForm: false});
   }
 
   updatedMainText(text) {
     switch (this.state.selectedMainTextParaNumber) {
       case 1:
-        this.props.updatedMainTextPara1(text);
         this.close();
+        this.props.updatedMainTextPara1(text);
         break;
       case 2:
-        this.props.updatedMainTextPara2(text);
         this.close();
+        this.props.updatedMainTextPara2(text);
         break;
       default:
-        return null;
+        console.log("Main Text neither 1 nor 2, something is wrong");
+        return;
     }
+
+    this.props.addStatusBox(
+      <StatusBox success={true}>
+        <div><h3>Success!</h3></div>
+        <div>Main Text #{this.state.selectedMainTextParaNumber} updated successfully.</div>
+      </StatusBox>
+    );
   }
 
   showFormToUpdateMainText(number) {
@@ -71,11 +91,12 @@ class MainTextPanel extends Component {
         </div>
         <Modal show={this.state.showModalForm}>
           <UpdateMainTextForm
-            paraNumber={this.state.selectedMainTextParaNumber}
-            onSuccess={this.updatedMainText}
-            mainText={this.state.selectedMainTextParaNumber === 1 ? mainTextPara1 : mainTextPara2}
-            close={this.close}
             authToken={authToken}
+            mainText={this.state.selectedMainTextParaNumber === 1 ? mainTextPara1 : mainTextPara2}
+            paraNumber={this.state.selectedMainTextParaNumber}
+            close={this.close}
+            onSuccess={this.updatedMainText}
+            onFailure={this.updateMainTextFailed}
           />
         </Modal>
       </div>
