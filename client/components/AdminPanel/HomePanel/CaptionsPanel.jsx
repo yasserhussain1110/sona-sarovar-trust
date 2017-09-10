@@ -4,6 +4,7 @@ import Modal from '../../../lib/components/Modal';
 import AddCaptionForm from './CaptionsPanel/AddCaptionForm';
 import UpdateCaptionForm from './CaptionsPanel/UpdateCaptionForm';
 import DeleteCaptionForm from './CaptionsPanel/DeleteCaptionForm';
+import StatusBox from '../../../lib/components/StatusBox';
 import {addedCenterPicCaption, updatedCenterPicCaption, deletedCenterPicCaption} from '../../../actions';
 
 class CaptionsPanel extends Component {
@@ -46,6 +47,21 @@ class CaptionsPanel extends Component {
             onSuccess={caption => {
               this.props.addedCenterPicCaption(caption);
               this.close();
+              this.props.addStatusBox(
+                <StatusBox success={true}>
+                  <div><h3>Success!</h3></div>
+                  <div>Added Caption to HomePanel successfully.</div>
+                </StatusBox>
+              );
+            }}
+            onFailure={() => {
+              this.close();
+              this.props.addStatusBox(
+                <StatusBox success={false}>
+                  <div><h3>Failure!</h3></div>
+                  <div>Caption could not be added to HomePanel.</div>
+                </StatusBox>
+              );
             }}
             authToken={this.props.authToken}
             close={this.close}
@@ -57,6 +73,21 @@ class CaptionsPanel extends Component {
             onSuccess={captionText => {
               this.props.updatedCenterPicCaption(this.state.selectedCaptionIndex, captionText);
               this.close();
+              this.props.addStatusBox(
+                <StatusBox success={true}>
+                  <div><h3>Success!</h3></div>
+                  <div>HomePanel Caption updated successfully.</div>
+                </StatusBox>
+              );
+            }}
+            onFailure={() => {
+              this.close();
+              this.props.addStatusBox(
+                <StatusBox success={false}>
+                  <div><h3>Failure!</h3></div>
+                  <div>HomePanel Caption could not be updated.</div>
+                </StatusBox>
+              );
             }}
             caption={this.props.captions[this.state.selectedCaptionIndex]}
             authToken={this.props.authToken}
@@ -70,6 +101,21 @@ class CaptionsPanel extends Component {
               let selectCaptionIndex = this.state.selectedCaptionIndex;
               this.close();
               this.props.deletedCenterPicCaption(selectCaptionIndex);
+              this.props.addStatusBox(
+                <StatusBox success={true}>
+                  <div><h3>Success!</h3></div>
+                  <div>HomePanel Caption deleted successfully.</div>
+                </StatusBox>
+              );
+            }}
+            onFailure={() => {
+              this.close();
+              this.props.addStatusBox(
+                <StatusBox success={false}>
+                  <div><h3>Failure!</h3></div>
+                  <div>HomePanel Caption could not be deleted.</div>
+                </StatusBox>
+              );
             }}
             close={this.close}
             caption={this.props.captions[this.state.selectedCaptionIndex]}

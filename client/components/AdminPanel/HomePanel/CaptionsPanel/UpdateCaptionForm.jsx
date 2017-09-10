@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import handleCommonErrors from '../../../../lib/handlers/commonErrorsHandler';
 
 class UpdateCaptionForm extends Component {
@@ -49,6 +50,7 @@ class UpdateCaptionForm extends Component {
       .catch(err => {
         handleCommonErrors(err);
         console.log(err);
+        this.props.onFailure ? this.props.onFailure() : "";
       });
   }
 
@@ -72,5 +74,12 @@ class UpdateCaptionForm extends Component {
     );
   }
 }
+
+UpdateCaptionForm.propTypes = {
+  authToken: PropTypes.string.isRequired,
+  close: PropTypes.func.isRequired,
+  onSuccess: PropTypes.func.isRequired,
+  onFailure: PropTypes.func
+};
 
 export default UpdateCaptionForm;
