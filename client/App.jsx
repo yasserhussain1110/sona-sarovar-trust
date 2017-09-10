@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 import axios from 'axios';
-import handleCommonErrors from './lib/handlers/commonErrorsHandler';
+import {logOut} from './lib/handlers/commonErrorsHandler';
 
 import Web from './routes/Web';
 import Admin from './routes/Admin';
@@ -34,7 +34,7 @@ class App extends Component {
       this.props.logIn(authToken);
       axios.get('/api/admin/isLoggedIn', {headers: {'x-auth': authToken}})
         .catch(e => {
-          handleCommonErrors(e);
+          logOut();
           console.log(e, "Not logged In");
         });
     }
