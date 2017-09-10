@@ -1,7 +1,8 @@
 const Admin = require('../models/admin');
+const auth = require('../middleware/auth');
 
 const adminRoutes = app => {
-  app.post('/api/login', (req, res) => {
+  app.post('/api/admin/login', (req, res) => {
     let {username, password} = req.body;
 
     Admin.findByCreds(username, password)
@@ -13,6 +14,10 @@ const adminRoutes = app => {
         console.log(e);
         res.status(400).send();
       });
+  });
+
+  app.get('/api/admin/isLoggedIn', auth, (req, res) => {
+    res.send({loggedIn: true});
   });
 };
 

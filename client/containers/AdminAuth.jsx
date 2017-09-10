@@ -39,7 +39,7 @@ class AdminAuth extends Component {
     if (!this.validateInputAndUpdateError()) return;
 
     if (!username || !password) return;
-    axios.post('/api/login', {username, password})
+    axios.post('/api/admin/login', {username, password})
       .then(response => {
         let authToken = response.headers['x-auth'];
         localStorage.setItem('auth-token', authToken);
