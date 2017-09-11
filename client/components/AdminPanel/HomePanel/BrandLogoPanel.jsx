@@ -5,7 +5,7 @@ import axios from 'axios';
 import StatusBox from '../../../lib/components/StatusBox';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
-const BrandLogoPanel = ({brandLogoUrl, authToken, updatedBrandLogoUrl, addStatusBox, removeStatusBox}) => (
+const BrandLogoPanel = ({brandLogoUrl, authToken, updatedBrandLogoUrl, addStatusBox}) => (
   <div className="brand-logo-panel">
     <h2>Brand Logo Panel</h2>
     <div className="current-logo">
@@ -22,7 +22,7 @@ const BrandLogoPanel = ({brandLogoUrl, authToken, updatedBrandLogoUrl, addStatus
         <input type="file"/>
       </div>
       <div className="button-holder">
-        <button onClick={e => updateLogo(authToken, updatedBrandLogoUrl, addStatusBox, removeStatusBox)}>
+        <button onClick={e => updateLogo(authToken, updatedBrandLogoUrl, addStatusBox)}>
           Update Logo
         </button>
       </div>
@@ -30,7 +30,7 @@ const BrandLogoPanel = ({brandLogoUrl, authToken, updatedBrandLogoUrl, addStatus
   </div>
 );
 
-const updateLogo = (authToken, updatedBrandLogoUrl, addStatusBox, removeStatusBox) => {
+const updateLogo = (authToken, updatedBrandLogoUrl, addStatusBox) => {
   let fileInput = document.querySelector(".brand-logo-panel input[type=file]");
   let file = fileInput.files[0];
   if (!file) return;
@@ -42,7 +42,7 @@ const updateLogo = (authToken, updatedBrandLogoUrl, addStatusBox, removeStatusBo
     .then(res => {
       updatedBrandLogoUrl(res.data.url);
       addStatusBox(
-        <StatusBox success={true} removeStatusBox={removeStatusBox}>
+        <StatusBox success={true}>
           <div><h3>Success!</h3></div>
           <div>Brand Logo Updated Successfully.</div>
         </StatusBox>
@@ -52,7 +52,7 @@ const updateLogo = (authToken, updatedBrandLogoUrl, addStatusBox, removeStatusBo
       console.log(e);
       handleCommonErrors(e);
       addStatusBox(
-        <StatusBox success={false} removeStatusBox={removeStatusBox}>
+        <StatusBox success={false}>
           <div><h3>Failure!</h3></div>
           <div>Could not update Logo.</div>
         </StatusBox>

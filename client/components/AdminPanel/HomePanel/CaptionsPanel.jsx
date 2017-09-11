@@ -48,7 +48,7 @@ class CaptionsPanel extends Component {
               this.props.addedCenterPicCaption(caption);
               this.close();
               this.props.addStatusBox(
-                <StatusBox success={true} removeStatusBox={this.props.removeStatusBox}>
+                <StatusBox success={true}>
                   <div><h3>Success!</h3></div>
                   <div>Added Caption to HomePanel successfully.</div>
                 </StatusBox>
@@ -57,7 +57,7 @@ class CaptionsPanel extends Component {
             onFailure={() => {
               this.close();
               this.props.addStatusBox(
-                <StatusBox success={false} removeStatusBox={this.props.removeStatusBox}>
+                <StatusBox success={false}>
                   <div><h3>Failure!</h3></div>
                   <div>Caption could not be added to HomePanel.</div>
                 </StatusBox>
@@ -74,7 +74,7 @@ class CaptionsPanel extends Component {
               this.props.updatedCenterPicCaption(this.state.selectedCaptionIndex, captionText);
               this.close();
               this.props.addStatusBox(
-                <StatusBox success={true} removeStatusBox={this.props.removeStatusBox}>
+                <StatusBox success={true}>
                   <div><h3>Success!</h3></div>
                   <div>HomePanel Caption updated successfully.</div>
                 </StatusBox>
@@ -83,7 +83,7 @@ class CaptionsPanel extends Component {
             onFailure={() => {
               this.close();
               this.props.addStatusBox(
-                <StatusBox success={false} removeStatusBox={this.props.removeStatusBox}>
+                <StatusBox success={false}>
                   <div><h3>Failure!</h3></div>
                   <div>HomePanel Caption could not be updated.</div>
                 </StatusBox>
@@ -102,7 +102,7 @@ class CaptionsPanel extends Component {
               this.close();
               this.props.deletedCenterPicCaption(selectCaptionIndex);
               this.props.addStatusBox(
-                <StatusBox success={true} removeStatusBox={this.props.removeStatusBox}>
+                <StatusBox success={true}>
                   <div><h3>Success!</h3></div>
                   <div>HomePanel Caption deleted successfully.</div>
                 </StatusBox>
@@ -111,7 +111,7 @@ class CaptionsPanel extends Component {
             onFailure={() => {
               this.close();
               this.props.addStatusBox(
-                <StatusBox success={false} removeStatusBox={this.props.removeStatusBox}>
+                <StatusBox success={false}>
                   <div><h3>Failure!</h3></div>
                   <div>HomePanel Caption could not be deleted.</div>
                 </StatusBox>
