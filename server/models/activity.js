@@ -20,10 +20,10 @@ const ActivitySchema = new Schema({
   }
 });
 
-// ActivitySchema.methods.toJSON = function () {
-//   let project = this;
-//   return _.pick(project, ['name', 'description', 'pics']);
-// };
+ActivitySchema.methods.toJSON = function () {
+  let project = this;
+  return _.pick(project, ['_id', 'name', 'description', 'pics']);
+};
 
 const Activity = mongoose.model('Activity', ActivitySchema);
 module.exports = Activity;
