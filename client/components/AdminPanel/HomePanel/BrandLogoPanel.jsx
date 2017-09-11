@@ -5,7 +5,7 @@ import axios from 'axios';
 import StatusBox from '../../../lib/components/StatusBox';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
-const BrandLogoPanel = ({brandLogoUrl, authToken, updatedBrandLogoUrl, addStatusBox}) => (
+const BrandLogoPanel = ({brandLogoUrl, authToken, updatedBrandLogoUrl, addStatusBox, removeStatusBox}) => (
   <div className="brand-logo-panel">
     <h2>Brand Logo Panel</h2>
     <div className="current-logo">
@@ -22,13 +22,15 @@ const BrandLogoPanel = ({brandLogoUrl, authToken, updatedBrandLogoUrl, addStatus
         <input type="file"/>
       </div>
       <div className="button-holder">
-        <button onClick={e => updateLogo(authToken, updatedBrandLogoUrl, addStatusBox)}>Update Logo</button>
+        <button onClick={e => updateLogo(authToken, updatedBrandLogoUrl, addStatusBox, removeStatusBox)}>
+          Update Logo
+        </button>
       </div>
     </div>
   </div>
 );
 
-const updateLogo = (authToken, updatedBrandLogoUrl, addStatusBox) => {
+const updateLogo = (authToken, updatedBrandLogoUrl, addStatusBox, removeStatusBox) => {
   let fileInput = document.querySelector(".brand-logo-panel input[type=file]");
   let file = fileInput.files[0];
   if (!file) return;
@@ -40,7 +42,7 @@ const updateLogo = (authToken, updatedBrandLogoUrl, addStatusBox) => {
     .then(res => {
       updatedBrandLogoUrl(res.data.url);
       addStatusBox(
-        <StatusBox success={true}>
+        <StatusBox success={true} removeStatusBox={removeStatusBox}>
           <div><h3>Success!</h3></div>
           <div>Brand Logo Updated Successfully.</div>
         </StatusBox>
@@ -50,7 +52,7 @@ const updateLogo = (authToken, updatedBrandLogoUrl, addStatusBox) => {
       console.log(e);
       handleCommonErrors(e);
       addStatusBox(
-        <StatusBox success={false}>
+        <StatusBox success={false} removeStatusBox={removeStatusBox}>
           <div><h3>Failure!</h3></div>
           <div>Could not update Logo.</div>
         </StatusBox>

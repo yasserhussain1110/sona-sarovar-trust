@@ -1,8 +1,11 @@
 import React from 'react';
 
-const StatusBox = props => (
-  <div className={`status-box ${props.success ? "success-status-box" : "failure-status-box"}`}>
-    {props.children}
+const StatusBox = ({uuid, success, children, removeStatusBox}) => (
+  <div className={`status-box ${success ? "success-status-box" : "failure-status-box"}`}>
+    {children}
+    <div className="dismiss">
+      <span onClick={()=>removeStatusBox(uuid)} className="dismiss-button">×</span>
+    </div>
   </div>
 );
 

@@ -32,7 +32,7 @@ class CenterPicsPanel extends Component {
     this.closeModal();
     this.props.addedCenterPic(newCenterPic);
     this.props.addStatusBox(
-      <StatusBox success={true}>
+      <StatusBox success={true} removeStatusBox={this.props.removeStatusBox}>
         <div><h3>Success!</h3></div>
         <div>Pic added to Central Panel.</div>
       </StatusBox>
@@ -42,7 +42,7 @@ class CenterPicsPanel extends Component {
   picAddFailure() {
     this.closeModal();
     this.props.addStatusBox(
-      <StatusBox success={false}>
+      <StatusBox success={false} removeStatusBox={this.props.removeStatusBox}>
         <div><h3>Failure!</h3></div>
         <div>Pic could not be added to Central Panel.</div>
       </StatusBox>
@@ -53,7 +53,7 @@ class CenterPicsPanel extends Component {
     this.closeModal();
     this.props.updatedCenterPic(this.state.selectedCenterPicIndex, url);
     this.props.addStatusBox(
-      <StatusBox success={true}>
+      <StatusBox success={true} removeStatusBox={this.props.removeStatusBox}>
         <div><h3>Success!</h3></div>
         <div>Center Panel Pic updated successfully.</div>
       </StatusBox>
@@ -63,7 +63,7 @@ class CenterPicsPanel extends Component {
   picUpdateFailure() {
     this.closeModal();
     this.props.addStatusBox(
-      <StatusBox success={false}>
+      <StatusBox success={false} removeStatusBox={this.props.removeStatusBox}>
         <div><h3>Failure!</h3></div>
         <div>Center Panel Pic could not be updated.</div>
       </StatusBox>
@@ -74,7 +74,7 @@ class CenterPicsPanel extends Component {
     this.closeModal();
     this.props.deletedCenterPic(this.state.selectedCenterPicIndex);
     this.props.addStatusBox(
-      <StatusBox success={true}>
+      <StatusBox success={true} removeStatusBox={this.props.removeStatusBox}>
         <div><h3>Success!</h3></div>
         <div>Center Panel Pic deleted successfully.</div>
       </StatusBox>
@@ -84,7 +84,7 @@ class CenterPicsPanel extends Component {
   picDeletedFailure() {
     this.closeModal();
     this.props.addStatusBox(
-      <StatusBox success={false}>
+      <StatusBox success={false} removeStatusBox={this.props.removeStatusBox}>
         <div><h3>Failure!</h3></div>
         <div>Center Panel Pic could not be deleted.</div>
       </StatusBox>

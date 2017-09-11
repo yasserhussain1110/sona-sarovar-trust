@@ -42,3 +42,12 @@ export const updateSingleObjectInArray = (array, elementIndex, updator) => {
     ...array.slice(elementIndex + 1)
   ];
 };
+
+export const random = (lowerLimit, upperLimit) => (   // upper limit is inclusive here
+  ((Math.random() * (upperLimit - lowerLimit + 1)) | 0) + lowerLimit
+);
+
+export const generateRandomHexadecimalStringOfLength = stringLength => random(
+  parseInt('1' + '0'.repeat(stringLength - 1), 16),
+  parseInt('f'.repeat(stringLength), 16)
+).toString(16);

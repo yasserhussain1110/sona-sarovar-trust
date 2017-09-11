@@ -3,6 +3,7 @@
   padding: 5px;
   margin: 5px;
   border-radius: 0 !important;
+  position: relative;
 
   a {
     color: #A94442;
@@ -22,6 +23,31 @@
     list-style-type: decimal;
     margin-left: 30px;
     margin-top: 10px;
+  }
+
+  .dismiss {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    cursor: default;
+  }
+
+  .dismiss-button {
+    font-size: 30px;
+    text-decoration: none;
+    opacity: 0.4;
+    position: relative;
+    top: -6px;
+    right: 2px;
+  }
+
+  .dismiss-button:hover {
+    color: black;
+    text-decoration: none;
+    opacity: 0.8;
+    cursor: pointer;
   }
 }
 

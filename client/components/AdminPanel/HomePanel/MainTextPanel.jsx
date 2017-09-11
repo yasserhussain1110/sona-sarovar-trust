@@ -23,7 +23,7 @@ class MainTextPanel extends Component {
   updateMainTextFailed() {
     this.close();
     this.props.addStatusBox(
-      <StatusBox success={false}>
+      <StatusBox success={false} removeStatusBox={this.props.removeStatusBox}>
         <div><h3>Failure!</h3></div>
         <div>Failed to updated Main Text #{this.state.selectedMainTextParaNumber}.</div>
       </StatusBox>
@@ -50,7 +50,7 @@ class MainTextPanel extends Component {
     }
 
     this.props.addStatusBox(
-      <StatusBox success={true}>
+      <StatusBox success={true} removeStatusBox={this.props.removeStatusBox}>
         <div><h3>Success!</h3></div>
         <div>Main Text #{this.state.selectedMainTextParaNumber} updated successfully.</div>
       </StatusBox>
