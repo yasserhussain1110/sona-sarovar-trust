@@ -1,9 +1,9 @@
 import React from 'react';
-import Modal from '../../../../lib/components/Modal';
+import Modal from './Modal';
 import axios from 'axios';
-import handleCommonErrors from '../../../../lib/handlers/commonErrorsHandler';
+import handleCommonErrors from '../handlers/commonErrorsHandler';
 
-const DeletePicModal = ({selectedPic, closeModal, authToken, deletedProjectPic, deleteProjectPicFailed}) => (
+const DeletePicModal = ({selectedPic, closeModal, authToken, onSuccess, onFailure}) => (
   <Modal show={true}>
     <div className="delete-pic-form">
       <div className="message">
@@ -17,7 +17,7 @@ const DeletePicModal = ({selectedPic, closeModal, authToken, deletedProjectPic, 
           <button
             onClick={() => deletePic(
               selectedPic._id, authToken,
-              deletedProjectPic, deleteProjectPicFailed
+              onSuccess, onFailure
             )}
             className="yes">Yes
           </button>
@@ -28,14 +28,14 @@ const DeletePicModal = ({selectedPic, closeModal, authToken, deletedProjectPic, 
   </Modal>
 );
 
-const deletePic = (selectedPicId, authToken, deletedProjectPic, deleteProjectPicFailed) => {
+const deletePic = (selectedPicId, authToken, onSuccess, onFailure) => {
   axios.delete(`/api/project/pic/${selectedPicId}`, {
     headers: {'x-auth': authToken}
   }).then(() => {
-    deletedProjectPic();
+    onSuccess();
   }).catch(err => {
     handleCommonErrors(err);
-    deleteProjectPicFailed();
+    onFailure();
     console.log(err);
   })
 };

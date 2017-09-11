@@ -1,7 +1,7 @@
 import React from 'react';
 import ProjectEditForm from './ProjectEditForm';
-import UpdatePicModal from './UpdatePicModal';
-import DeletePicModal from './DeletePicModal';
+import UpdatePicModal from '../../../../lib/components/UpdatePicModal';
+import DeletePicModal from '../../../../lib/components/DeletePicModal';
 import StatusPanel from '../../../../lib/components/StatusPanel';
 
 const ProjectEditPanelView = ({
@@ -44,8 +44,8 @@ const getModalContent = (updatingPic, deletingPic, selectedPic, closeModal, auth
         selectedPic={selectedPic}
         closeModal={closeModal}
         authToken={authToken}
-        updatedProjectPic={updatedProjectPic}
-        updateProjectPicFailed={updateProjectPicFailed}
+        onSuccess={updatedProjectPic}
+        onFailure={updateProjectPicFailed}
       />
     );
   } else if (deletingPic) {
@@ -54,8 +54,8 @@ const getModalContent = (updatingPic, deletingPic, selectedPic, closeModal, auth
         selectedPic={selectedPic}
         closeModal={closeModal}
         authToken={authToken}
-        deletedProjectPic={deletedProjectPic}
-        deleteProjectPicFailed={deleteProjectPicFailed}
+        onSuccess={deletedProjectPic}
+        onFailure={deleteProjectPicFailed}
       />
     );
   } else {

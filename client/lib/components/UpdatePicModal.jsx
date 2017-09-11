@@ -1,8 +1,8 @@
 import React from 'react';
-import Modal from '../../../../lib/components/Modal';
-import PicForm from '../../../../lib/components/PicForm';
+import Modal from './Modal';
+import PicForm from './PicForm';
 
-const UpdatePicModal = ({selectedPic, closeModal, authToken, updatedProjectPic, updateProjectPicFailed}) => (
+const UpdatePicModal = ({selectedPic, closeModal, authToken, onSuccess, onFailure}) => (
   <Modal show={true}>
     <div className="update-pic-form">
       <div className="message">
@@ -14,8 +14,8 @@ const UpdatePicModal = ({selectedPic, closeModal, authToken, updatedProjectPic, 
         authToken={authToken}
         mode="update"
         url={`/api/project/pic/${selectedPic._id}`}
-        onSuccess={updatedProjectPic}
-        onFailure={updateProjectPicFailed}
+        onSuccess={onSuccess}
+        onFailure={onFailure}
       />
     </div>
   </Modal>
