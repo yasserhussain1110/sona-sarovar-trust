@@ -28,7 +28,7 @@ const projects = (state = defaultState, action) => {
       return {
         projectsDone: updateSingleObjectInArray(
           state.projectsDone,
-          action.index,
+          action.projectIndex,
           project => {
             project.name = action.name;
             project.description = action.description;
@@ -36,9 +36,15 @@ const projects = (state = defaultState, action) => {
       };
     case 'ADDED_PIC_TO_PROJECT':
       return {
-        projectsDone: updateSingleObjectInArray(state.projectsDone, action.index, project => {
+        projectsDone: updateSingleObjectInArray(state.projectsDone, action.projectIndex, project => {
           project.pics = updateSingleObjectInArray(project.pics, project.pics.length,
             picElement => Object.assign(picElement, action.pic));
+        })
+      };
+    case 'DELETED_PIC_FROM_PROJECT':
+      return {
+        projectsDone: updateSingleObjectInArray(state.projectsDone, action.projectIndex, project => {
+          project.pics = project.pics.filter(pic => pic !== action.pic);
         })
       };
     case 'UPDATED_PROJECT_PIC':

@@ -8,22 +8,28 @@ export const addedProjectDone = projectDone => ({
   projectDone
 });
 
-export const deletedProjectDone = (projectIndex) => ({
+export const deletedProjectDone = projectIndex => ({
   type: "DELETED_PROJECT_DONE",
   projectIndex
 });
 
-export const updatedProjectNameAndDescription = (name, description, index) => ({
+export const updatedProjectNameAndDescription = (name, description, projectIndex) => ({
   type: "UPDATED_PROJECT_NAME_AND_DESCRIPTION",
   name,
   description,
-  index
+  projectIndex
 });
 
-export const addedPicToProject = (pic, index) => ({
+export const addedPicToProject = (pic, projectIndex) => ({
   type: "ADDED_PIC_TO_PROJECT",
   pic,
-  index
+  projectIndex
+});
+
+export const deletedPicFromProject = (pic, projectIndex) => ({
+  type: "DELETED_PIC_FROM_PROJECT",
+  pic,
+  projectIndex
 });
 
 export const updatedProjectPic = (projectIndex, picId, url) => ({
