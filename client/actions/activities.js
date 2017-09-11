@@ -10,6 +10,11 @@ export const addedActivityUnderTaken = activityUndertaken => ({
   activityUndertaken
 });
 
+export const deletedActivityUnderTaken = activityIndex => ({
+  type: "DELETED_ACTIVITY_UNDERTAKEN",
+  activityIndex
+});
+
 export const updatedActivityNameAndDescription = (name, description, index) => ({
   type: "UPDATED_ACTIVITY_NAME_AND_DESCRIPTION",
   name,
@@ -21,6 +26,12 @@ export const addedPicToActivity = (pic, index) => ({
   type: "ADDED_PIC_TO_ACTIVITY",
   pic,
   index
+});
+
+export const deletedPicFromActivity = (pic, activityIndex) => ({
+  type: "DELETED_PIC_FROM_ACTIVITY",
+  pic,
+  activityIndex
 });
 
 export const updatedActivityPic = (activityIndex, picId, url) => ({

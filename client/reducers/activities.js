@@ -17,6 +17,13 @@ const activities = (state = defaultState, action) => {
           action.activityUndertaken
         ]
       };
+    case 'DELETED_ACTIVITY_UNDERTAKEN':
+      return {
+        activitiesUndertaken: [
+          ...state.activitiesUndertaken.slice(0, action.activityIndex),
+          ...state.activitiesUndertaken.slice(action.activityIndex + 1)
+        ]
+      };
     case 'UPDATED_ACTIVITY_NAME_AND_DESCRIPTION':
       return {
         activitiesUndertaken: updateSingleObjectInArray(
@@ -32,6 +39,13 @@ const activities = (state = defaultState, action) => {
           activity => {
             activity.pics = updateSingleObjectInArray(activity.pics, activity.pics.length,
               picElement => Object.assign(picElement, action.pic));
+          })
+      };
+    case 'DELETED_PIC_FROM_PROJECT':
+      return {
+        activitiesUndertaken: updateSingleObjectInArray(state.activitiesUndertaken,
+          action.activityIndex, activity => {
+            activity.pics = activity.pics.filter(pic => pic !== action.pic);
           })
       };
     case 'UPDATED_ACTIVITY_PIC':
