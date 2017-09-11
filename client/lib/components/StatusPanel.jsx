@@ -40,6 +40,10 @@ class StatusPanel extends Component {
       return;
     }
 
+    if (this.props.statusBoxToAdd === nextProps.statusBoxToAdd) {
+      return;
+    }
+
     let newStatusBox = this.addPropsToStatusBox(nextProps.statusBoxToAdd);
 
     this.setState({

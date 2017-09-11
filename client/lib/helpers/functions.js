@@ -51,3 +51,5 @@ export const generateRandomHexadecimalStringOfLength = stringLength => random(
   parseInt('1' + '0'.repeat(stringLength - 1), 16),
   parseInt('f'.repeat(stringLength), 16)
 ).toString(16);
+
+export const clip = (str, length) => str.length < length ? str : str.substring(0, length - 3) + "...";

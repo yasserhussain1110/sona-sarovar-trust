@@ -8,6 +8,11 @@ export const addedProjectDone = projectDone => ({
   projectDone
 });
 
+export const deletedProjectDone = (projectIndex) => ({
+  type: "DELETED_PROJECT_DONE",
+  projectIndex
+});
+
 export const updatedProjectNameAndDescription = (name, description, index) => ({
   type: "UPDATED_PROJECT_NAME_AND_DESCRIPTION",
   name,

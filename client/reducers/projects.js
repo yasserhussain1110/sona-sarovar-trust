@@ -17,6 +17,13 @@ const projects = (state = defaultState, action) => {
           action.projectDone
         ]
       };
+    case 'DELETED_PROJECT_DONE':
+      return {
+        projectsDone: [
+          ...state.projectsDone.slice(0, action.projectIndex),
+          ...state.projectsDone.slice(action.projectIndex + 1)
+        ]
+      };
     case 'UPDATED_PROJECT_NAME_AND_DESCRIPTION':
       return {
         projectsDone: updateSingleObjectInArray(
