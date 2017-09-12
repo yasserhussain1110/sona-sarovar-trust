@@ -10,7 +10,8 @@ const statusBoxPropertyAdder = moreProps => statusBox => {
   });
 };
 
-const statusBoxFadeOutInterval = 8000;
+const statusBoxMoveUpInWaitPeriod = 8000;
+const statusBoxRemoveWaitPeriod = 1000;
 
 /**
  * Earlier the StatusPanel was being handled within each panels (ex:- ProjectEditPanel).
@@ -73,24 +74,42 @@ class StatusPanel extends Component {
     super(props);
 
     this.removeStatusBox = this.removeStatusBox.bind(this);
-    this.addPropsToStatusBox = statusBoxPropertyAdder({removeStatusBox: this.removeStatusBox});
+    this.addPropsToStatusBox = statusBoxPropertyAdder({
+      removeStatusBox: this.removeStatusBox,
+      adding: true
+    });
 
     this.state = {
       statusBoxes: props.statusBoxToAdd === null ? [] : [this.addPropsToStatusBox(props.statusBoxToAdd)]
     };
 
     this.intervalHandlers = this.state.statusBoxes.map(
-      statusBox => setInterval(() => this.removeStatusBox(statusBox.props.uuid), statusBoxFadeOutInterval)
+      statusBox => setTimeout(() => this.removeStatusBox(statusBox.props.uuid), statusBoxMoveUpInWaitPeriod)
     );
   }
 
-  removeStatusBox(uuid) {
-    let statusBoxes = this.state.statusBoxes.filter(statusBox => statusBox.props.uuid !== uuid);
-    this.setState({statusBoxes});
+  componentWillUnmount() {
+    this.intervalHandlers.map(intervalHandler => clearTimeout(intervalHandler));
   }
 
-  componentWillUnmount() {
-    this.intervalHandlers.map(intervalHandler => clearInterval(intervalHandler));
+  removeStatusBox(uuid) {
+    let statusBoxIndex = this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
+    this.setState({
+      statusBoxes: [
+        ...this.state.statusBoxes.slice(0, statusBoxIndex),
+        cloneElement(this.state.statusBoxes[statusBoxIndex], {adding: false}),
+        ...this.state.statusBoxes.slice(statusBoxIndex + 1)
+      ]
+    });
+
+    let intervalHandler = setTimeout(() => this.setState({
+      statusBoxes: [
+        ...this.state.statusBoxes.slice(0, statusBoxIndex),
+        ...this.state.statusBoxes.slice(statusBoxIndex + 1)
+      ]
+    }), statusBoxRemoveWaitPeriod);
+
+    this.intervalHandlers.push(intervalHandler);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -113,7 +132,7 @@ class StatusPanel extends Component {
     });
 
     this.intervalHandlers.push(
-      setInterval(() => this.removeStatusBox(newStatusBox.props.uuid), statusBoxFadeOutInterval)
+      setTimeout(() => this.removeStatusBox(newStatusBox.props.uuid), statusBoxMoveUpInWaitPeriod)
     );
   }
 

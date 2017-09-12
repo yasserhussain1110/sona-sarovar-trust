@@ -52,6 +52,29 @@
   }
 }
 
+.status-box.adding {
+  @keyframes slideupinto {
+    from {
+      margin-top: 100%;
+    }
+  }
+
+  animation-duration: 1.5s;
+  animation-name: slideupinto;
+}
+
+.status-box.removing {
+  @keyframes slideupout {
+    to {
+      margin-top: -65px;
+    }
+  }
+
+  animation-duration: 1.2s;
+  animation-name: slideupout;
+  z-index: -1;
+}
+
 .non-saved-files {
   display: none;
 }
