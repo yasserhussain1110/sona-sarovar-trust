@@ -9,7 +9,7 @@ import StatusBox from '../../../lib/components/StatusBox';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 import ActivityEditPanelView from './ActivityEditPanel/ActivityEditPanelView';
 
-const createStateFromActivity = activity => {
+const createStateFromActivityProp = activity => {
   let name = "", description = "", pics = [];
   if (activity) {
     ({name, description, pics} = activity);
@@ -17,15 +17,18 @@ const createStateFromActivity = activity => {
   return {name, description, pics};
 };
 
-const createInitState = () => ({
+const createUXState = () => ({
   nameError: "",
   descriptionError: "",
-
-  statusBoxToAdd: null,
-
   updatingPic: false,
   deletingPic: false,
   selectedPic: null
+});
+
+const createInitState = props => ({
+  ...createStateFromActivityProp(props.activity),
+  ...createUXState(),
+  statusBoxToAdd: null
 });
 
 class ActivityEditPanel extends Component {
@@ -33,8 +36,7 @@ class ActivityEditPanel extends Component {
     super(props);
 
     this.state = {
-      ...createInitState(),
-      ...createStateFromActivity(props.activity)
+      ...createInitState(props)
     };
 
     this.updateStateField = this.updateStateField.bind(this);
@@ -46,6 +48,10 @@ class ActivityEditPanel extends Component {
     this.deletedActivityPic = this.deletedActivityPic.bind(this);
     this.deleteActivityPicFailed = this.deleteActivityPicFailed.bind(this);
     this.closeModal = this.closeModal.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(createStateFromActivityProp(nextProps.activity));
   }
 
   closeModal() {
@@ -199,10 +205,6 @@ class ActivityEditPanel extends Component {
     updateObj[field] = value;
     this.setState(updateObj);
   };
-
-  componentWillReceiveProps(nextProps) {
-    this.setState(createStateFromActivity(nextProps.activity));
-  }
 
   render() {
     return (
