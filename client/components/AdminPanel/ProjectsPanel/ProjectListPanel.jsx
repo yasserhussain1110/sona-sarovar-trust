@@ -88,7 +88,7 @@ class ProjectListPanel extends Component {
 const ProjectListPanelView = ({projects, modalContent, showingModal, showDeleteModal, statusBoxToAdd}) => (
   <div className="project-list-panel">
     <div className="add-project-wrapper">
-      <h2>Add a project</h2>
+      <h2>Add a Project</h2>
       <div className="link-holder">
         <Link className="success-button" to="/admin/projects/add">Add a New Project</Link>
       </div>

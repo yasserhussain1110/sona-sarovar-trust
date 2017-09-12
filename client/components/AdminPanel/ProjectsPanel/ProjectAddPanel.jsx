@@ -160,7 +160,7 @@ const PanelView = ({
                      picsError, updateStateField, addProject, statusBoxToAdd
                    }) => (
   <div className="project-add-panel">
-    <h2>Add a project</h2>
+    <h2>Add a Project</h2>
     <ProjectAddForm
       name={name}
       description={description}
