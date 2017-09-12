@@ -7,14 +7,17 @@ import StatusBox from '../../../lib/components/StatusBox';
 import StatusPanel from '../../../lib/components/StatusPanel';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
-const createInitState = () => ({
+const createUXState = () => ({
   name: "",
   description: "",
   nameError: "",
   descriptionError: "",
-  picsError: "",
+  picsError: ""
+});
 
-  statusBoxes: []
+const createInitState = () => ({
+  ...createUXState(),
+  statusBoxToAdd: null
 });
 
 class ActivityAddPanel extends Component {
@@ -28,13 +31,8 @@ class ActivityAddPanel extends Component {
     this.resetForm = this.resetForm.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.addSuccessStatusBox(["yippee", "roman"]);
-  //   this.addFailureStatusBox();
-  // }
-
   resetForm() {
-    this.setState(createInitState());
+    this.setState(createUXState());
     document.getElementById("add-panel-pic").value = null;
   }
 
@@ -69,22 +67,17 @@ class ActivityAddPanel extends Component {
 
   addSuccessStatusBox(nonPicFileNames) {
     this.setState(prevState => ({
-      statusBoxes: [
-        ...prevState.statusBoxes,
-        <SuccessStatus
-          key={prevState.statusBoxes.length}
-          resetForm={this.resetForm}
-          nonPicFileNames={nonPicFileNames}/>
-      ]
+      statusBoxToAdd: (
+        getSuccessStatusBox({nonPicFileNames})
+      )
     }));
   }
 
   addFailureStatusBox() {
     this.setState(prevState => ({
-      statusBoxes: [
-        ...prevState.statusBoxes,
-        <FailureStatus key={prevState.statusBoxes.length} resetForm={this.resetForm}/>
-      ]
+      statusBoxToAdd: (
+        getFailureStatusBox({resetForm: this.resetForm})
+      )
     }));
   }
 
@@ -132,7 +125,7 @@ class ActivityAddPanel extends Component {
   }
 }
 
-const FailureStatus = ({resetForm}) => (
+const getFailureStatusBox = ({resetForm}) => (
   <StatusBox success={false}>
     <div><h3>Failure!</h3></div>
     <div><p>Could Not Create New Activity.</p></div>
@@ -140,7 +133,7 @@ const FailureStatus = ({resetForm}) => (
   </StatusBox>
 );
 
-const SuccessStatus = ({nonPicFileNames}) => {
+const getSuccessStatusBox = ({nonPicFileNames}) => {
   return (
     <StatusBox success={true}>
       <div><h3>Success!</h3></div>
@@ -154,7 +147,7 @@ const SuccessStatus = ({nonPicFileNames}) => {
       <div>
         <span>
           <p>
-          <Link to="/admin/activities"><strong>Redirect</strong></Link> to Activities list to see the newly added Activity!
+          <Link to="/admin/activities"><strong>Redirect</strong></Link> to activity list to see the newly added Activity!
           </p>
         </span>
       </div>
@@ -164,7 +157,7 @@ const SuccessStatus = ({nonPicFileNames}) => {
 
 const PanelView = ({
                      name, description, nameError, descriptionError,
-                     picsError, updateStateField, addActivity, statusBoxes
+                     picsError, updateStateField, addActivity, statusBoxToAdd
                    }) => (
   <div className="project-add-panel">
     <h2>Add an Activity</h2>
@@ -178,16 +171,14 @@ const PanelView = ({
       addActivity={addActivity}
     />
 
-    <StatusPanel>
-      {statusBoxes}
-    </StatusPanel>
+    <StatusPanel statusBoxToAdd={statusBoxToAdd}/>
   </div>
 );
 
 const ActivityAddForm = ({
-                           name, description, nameError, descriptionError,
-                           picsError, updateStateField, addActivity
-                         }) => (
+                          name, description, nameError, descriptionError,
+                          picsError, updateStateField, addActivity
+                        }) => (
   <div className="form-holder">
     <section className="name">
       <div className="field">
