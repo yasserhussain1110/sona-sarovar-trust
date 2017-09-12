@@ -9,7 +9,7 @@ import StatusBox from '../../../lib/components/StatusBox';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 import ProjectEditPanelView from './ProjectEditPanel/ProjectEditPanelView';
 
-const createStateFromProject = project => {
+const createStateFromProjectProp = project => {
   let name = "", description = "", pics = [];
   if (project) {
     ({name, description, pics} = project);
@@ -17,15 +17,18 @@ const createStateFromProject = project => {
   return {name, description, pics};
 };
 
-const createInitState = () => ({
+const createUXState = () => ({
   nameError: "",
   descriptionError: "",
-
-  statusBoxToAdd: null,
-
   updatingPic: false,
   deletingPic: false,
   selectedPic: null
+});
+
+const createInitState = props => ({
+  ...createStateFromProjectProp(props.project),
+  ...createUXState(),
+  statusBoxToAdd: null
 });
 
 class ProjectEditPanel extends Component {
@@ -33,8 +36,7 @@ class ProjectEditPanel extends Component {
     super(props);
 
     this.state = {
-      ...createInitState(),
-      ...createStateFromProject(props.project)
+      ...createInitState(props)
     };
 
     this.updateStateField = this.updateStateField.bind(this);
@@ -46,6 +48,10 @@ class ProjectEditPanel extends Component {
     this.deletedProjectPic = this.deletedProjectPic.bind(this);
     this.deleteProjectPicFailed = this.deleteProjectPicFailed.bind(this);
     this.closeModal = this.closeModal.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(createStateFromProjectProp(nextProps.project));
   }
 
   closeModal() {
@@ -199,10 +205,6 @@ class ProjectEditPanel extends Component {
     updateObj[field] = value;
     this.setState(updateObj);
   };
-
-  componentWillReceiveProps(nextProps) {
-    this.setState(createStateFromProject(nextProps.project));
-  }
 
   render() {
     return (
