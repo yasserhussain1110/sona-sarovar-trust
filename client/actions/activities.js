@@ -5,12 +5,12 @@ export const receivedActivitiesUndertaken = activitiesUndertaken => (
   }
 );
 
-export const addedActivityUnderTaken = activityUndertaken => ({
+export const addedActivityUndertaken = activityUndertaken => ({
   type: "ADDED_ACTIVITY_UNDERTAKEN",
   activityUndertaken
 });
 
-export const deletedActivityUnderTaken = activityIndex => ({
+export const deletedActivityUndertaken = activityIndex => ({
   type: "DELETED_ACTIVITY_UNDERTAKEN",
   activityIndex
 });

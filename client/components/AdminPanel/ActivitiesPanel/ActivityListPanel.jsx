@@ -1,10 +1,91 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {clip} from '../../../lib/helpers/functions';
+import Modal from '../../../lib/components/Modal';
+import axios from 'axios';
+import {deletedActivityUndertaken} from '../../../actions';
+import StatusBox from '../../../lib/components/StatusBox';
+import StatusPanel from '../../../lib/components/StatusPanel';
+import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
-const clip = (str, length) => str.length < length ? str : str.substring(0, length - 3) + "...";
+class ActivityListPanel extends Component {
+  constructor(props) {
+    super(props);
 
-const ActivityListPanel = ({activities}) => (
+    this.state = {
+      showingModal: false,
+      selectedActivityIndex: -1,
+      statusBoxToAdd: null
+    };
+
+    this.closeDeleteModal = this.closeDeleteModal.bind(this);
+    this.showDeleteModal = this.showDeleteModal.bind(this);
+    this.deleteActivity = this.deleteActivity.bind(this);
+  }
+
+  addStatusBox(statusBox) {
+    this.setState({statusBoxToAdd: statusBox});
+  }
+
+  deleteActivity() {
+    axios.delete(`/api/activity/${this.props.activities[this.state.selectedActivityIndex]._id}`, {
+      headers: {'x-auth': this.props.authToken}
+    }).then(() => {
+      this.closeDeleteModal();
+      this.props.deletedActivityUndertaken(this.state.selectedActivityIndex);
+      this.addStatusBox(
+        <StatusBox success={true}>
+          <div><h3>Success!</h3></div>
+          <div><span>Activity deleted successfully.</span></div>
+        </StatusBox>
+      );
+    }).catch(err => {
+      handleCommonErrors(err);
+      this.addStatusBox(
+        <StatusBox success={false}>
+          <div><h3>Failure!</h3></div>
+          <div><span>Activity could not be deleted.</span></div>
+        </StatusBox>
+      );
+      console.log(err);
+    });
+  }
+
+  closeDeleteModal() {
+    this.setState({showingModal: false});
+  }
+
+  showDeleteModal(index) {
+    this.setState({showingModal: true, selectedActivityIndex: index});
+  }
+
+  getModalContent() {
+    let selectedActivity = this.props.activities[this.state.selectedActivityIndex];
+
+    return this.state.showingModal ? (
+      <DeleteActivityForm
+        deleteActivity={this.deleteActivity}
+        closeDeleteModal={this.closeDeleteModal}
+        selectedActivity={selectedActivity}
+      />
+    ) : null;
+  }
+
+  render() {
+    return (
+      <ActivityListPanelView
+        activities={this.props.activities}
+        modalContent={this.getModalContent()}
+        showingModal={this.state.showingModal}
+        statusBoxToAdd={this.state.statusBoxToAdd}
+        showDeleteModal={this.showDeleteModal}
+      />
+    );
+  }
+}
+
+const ActivityListPanelView = ({activities, modalContent, showingModal, showDeleteModal, statusBoxToAdd}) => (
   <div className="project-list-panel">
     <div className="add-project-wrapper">
       <h2>Add an Activity</h2>
@@ -14,7 +95,7 @@ const ActivityListPanel = ({activities}) => (
     </div>
 
     <div className="list-project-wrapper">
-      <h2>List of Activities</h2>
+      <h2>List of activities</h2>
       <div className="project-list-container">
         <ul className="project-list">{activities.map((activity, index) => (
           <li key={index} className="project">
@@ -28,19 +109,36 @@ const ActivityListPanel = ({activities}) => (
               <button className="edit-button">
                 <Link to={`/admin/activities/edit/${index}`}>Edit</Link>
               </button>
-              <button className="delete-button">Delete</button>
+              <button onClick={() => showDeleteModal(index)} className="delete-button">Delete</button>
             </div>
           </li>))}
         </ul>
       </div>
+    </div>
+    <Modal show={showingModal}>
+      {modalContent}
+    </Modal>
+    <StatusPanel statusBoxToAdd={statusBoxToAdd}/>
+  </div>
+);
+
+const DeleteActivityForm = ({selectedActivity, closeDeleteModal, deleteActivity}) => (
+  <div className="delete-project-form">
+    <p>Are you sure you want do delete activities <strong>{selectedActivity.name}</strong>?</p>
+    <div className="button-holder">
+      <button onClick={deleteActivity}>Yes</button>
+      <button onClick={closeDeleteModal}>No</button>
     </div>
   </div>
 );
 
 const mapStateToProps = state => (
   {
-    activities: state.activities.activitiesUndertaken
+    activities: state.activities.activitiesUndertaken,
+    authToken: state.userAuth.authToken
   }
 );
 
-export default connect(mapStateToProps)(ActivityListPanel);
+const mapDispatchToProps = {deletedActivityUndertaken};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityListPanel);

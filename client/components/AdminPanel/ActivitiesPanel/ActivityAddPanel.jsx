@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {addedActivityUnderTaken} from '../../../actions';
+import {addedActivityUndertaken} from '../../../actions';
 import StatusBox from '../../../lib/components/StatusBox';
 import StatusPanel from '../../../lib/components/StatusPanel';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
@@ -98,7 +98,7 @@ class ActivityAddPanel extends Component {
         let {nonPicFileNames, activity} = res.data;
         this.resetForm();
         this.addSuccessStatusBox(nonPicFileNames);
-        this.props.addedActivityUnderTaken(activity);
+        this.props.addedActivityUndertaken(activity);
       })
       .catch(err => {
         console.log(err);
@@ -240,6 +240,6 @@ const mapStateToProps = state => (
   }
 );
 
-const mapDispatchToProps = {addedActivityUnderTaken};
+const mapDispatchToProps = {addedActivityUndertaken};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityAddPanel);
