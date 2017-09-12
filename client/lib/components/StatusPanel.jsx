@@ -10,6 +10,8 @@ const statusBoxPropertyAdder = moreProps => statusBox => {
   });
 };
 
+const statusBoxFadeOutInterval = 8000;
+
 /**
  * Earlier the StatusPanel was being handled within each panels (ex:- ProjectEditPanel).
  * This caused much code repetition.
@@ -78,7 +80,7 @@ class StatusPanel extends Component {
     };
 
     this.intervalHandlers = this.state.statusBoxes.map(
-      statusBox => setInterval(() => this.removeStatusBox(statusBox.props.uuid), 10000)
+      statusBox => setInterval(() => this.removeStatusBox(statusBox.props.uuid), statusBoxFadeOutInterval)
     );
   }
 
@@ -110,7 +112,9 @@ class StatusPanel extends Component {
       ]
     });
 
-    this.intervalHandlers.push(setInterval(() => this.removeStatusBox(newStatusBox.props.uuid), 10000));
+    this.intervalHandlers.push(
+      setInterval(() => this.removeStatusBox(newStatusBox.props.uuid), statusBoxFadeOutInterval)
+    );
   }
 
   render() {
