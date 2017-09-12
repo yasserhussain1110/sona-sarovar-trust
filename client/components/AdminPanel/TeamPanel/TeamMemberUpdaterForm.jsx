@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TextFieldsHolder from './TextFieldsHolder';
 import PicFieldHolder from './PicFieldHolder';
 import axios from 'axios';
+import StatusBox from '../../../lib/components/StatusBox';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
 const getFileInputCorrespondingToForm = e =>
@@ -70,10 +71,22 @@ class TeamMemberUpdater extends Component {
     axios.patch(`/api/teammember/${this.props.member._id}`, formData, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
         this.props.updatedTeamMember(res.data);
+        this.props.addStatusBox(
+          <StatusBox success={true}>
+            <div><h3>Success!</h3></div>
+            <div>Info updated for {this.props.member.name} successfully.</div>
+          </StatusBox>
+        );
       })
       .catch(err => {
         handleCommonErrors(err);
         console.log(err);
+        this.props.addStatusBox(
+          <StatusBox success={false}>
+            <div><h3>Failure!</h3></div>
+            <div>Info update for {this.props.member.name} failed.</div>
+          </StatusBox>
+        );
       });
 
     fileInput.value = null;
