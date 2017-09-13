@@ -55,7 +55,7 @@
 .status-box.adding {
   @keyframes slideupinto {
     from {
-      margin-top: 100%;
+      margin-top: 150%;
     }
   }
 
@@ -64,15 +64,23 @@
 }
 
 .status-box.removing {
-  @keyframes slideupout {
+  @keyframes verticalCollapse {
+    from {
+      max-height: 200px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
     to {
-      margin-top: -65px;
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
 
-  animation-duration: 1.2s;
-  animation-name: slideupout;
-  z-index: -1;
+  animation-duration: 1s;
+  animation-name: verticalCollapse;
+  overflow-y: hidden;
 }
 
 .non-saved-files {
