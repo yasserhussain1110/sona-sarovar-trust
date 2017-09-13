@@ -41,7 +41,7 @@ const activities = (state = defaultState, action) => {
               picElement => Object.assign(picElement, action.pic));
           })
       };
-    case 'DELETED_PIC_FROM_PROJECT':
+    case 'DELETED_PIC_FROM_ACTIVITY':
       return {
         activitiesUndertaken: updateSingleObjectInArray(state.activitiesUndertaken,
           action.activityIndex, activity => {
