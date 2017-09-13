@@ -1,66 +1,113 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {updatedBrandLogoUrl} from '../../../actions'
-import axios from 'axios';
 import StatusBox from '../../../lib/components/StatusBox';
-import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
+import PicForm from '../../../lib/components/PicForm';
+import Modal from '../../../lib/components/Modal';
 
-const BrandLogoPanel = ({brandLogoUrl, authToken, updatedBrandLogoUrl, addStatusBox}) => (
+class BrandLogoPanel extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showingUpdateLogoModal: false
+    };
+
+    this.showUpdateLogoModal = this.showUpdateLogoModal.bind(this);
+    this.closeUpdateLogoModal = this.closeUpdateLogoModal.bind(this);
+    this.updateLogoSuccess = this.updateLogoSuccess.bind(this);
+    this.updateLogoFailure = this.updateLogoFailure.bind(this);
+  }
+
+  closeUpdateLogoModal() {
+    this.setState({showingUpdateLogoModal: false});
+
+  }
+
+  showUpdateLogoModal() {
+    this.setState({showingUpdateLogoModal: true});
+  }
+
+  updateLogoSuccess(data) {
+    this.closeUpdateLogoModal();
+    this.props.updatedBrandLogoUrl(data.url);
+    this.props.addStatusBox(
+      <StatusBox success={true}>
+        <div><h3>Success!</h3></div>
+        <div>Brand Logo Updated Successfully.</div>
+      </StatusBox>
+    );
+  }
+
+  updateLogoFailure() {
+    this.closeUpdateLogoModal();
+    this.props.addStatusBox(
+      <StatusBox success={false}>
+        <div><h3>Failure!</h3></div>
+        <div>Could not update Logo.</div>
+      </StatusBox>
+    );
+  }
+
+  getModalContent() {
+    if (this.state.showingUpdateLogoModal) {
+      return (
+        <div className="update-logo-form">
+          <div className="message">
+            <span>Updating Brand Logo</span>
+            <img src={this.props.brandLogoUrl}/>
+          </div>
+
+          <PicForm
+            authToken={this.props.authToken}
+            url="/api/home-page/brand-logo"
+            mode="update"
+            close={this.closeUpdateLogoModal}
+            onSuccess={this.updateLogoSuccess}
+            onFailure={this.updateLogoFailure}
+          />
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
+  render() {
+    return (
+      <BrandLogoPanelView
+        brandLogoUrl={this.props.brandLogoUrl}
+        showUpdateLogoModal={this.showUpdateLogoModal}
+        showingUpdateLogoModal={this.state.showingUpdateLogoModal}
+        modalContent={this.getModalContent()}
+      />
+    );
+  }
+}
+
+const BrandLogoPanelView = ({brandLogoUrl, showUpdateLogoModal, showingUpdateLogoModal, modalContent}) => (
   <div className="brand-logo-panel">
     <h2>Brand Logo Panel</h2>
     <div className="current-logo">
       <h3>Current Logo</h3>
-      <img src={brandLogoUrl}/>
+      {brandLogoUrl ? <img src={brandLogoUrl}/> : ""}
     </div>
 
     <div className="new-logo">
       <h3>Update Logo</h3>
       <div className="label">
-        <label>Select a new picture and click <span className="info">Update Logo</span> to update Logo</label>
-      </div>
-      <div className="input">
-        <input type="file"/>
+        <span>Click on the <span className="info">Update Logo</span> button below to update Logo.</span>
       </div>
       <div className="button-holder">
-        <button onClick={e => updateLogo(authToken, updatedBrandLogoUrl, addStatusBox)}>
-          Update Logo
-        </button>
+        <button onClick={showUpdateLogoModal}>Update Logo</button>
       </div>
     </div>
+
+    <Modal show={showingUpdateLogoModal}>
+      {modalContent}
+    </Modal>
   </div>
 );
-
-const updateLogo = (authToken, updatedBrandLogoUrl, addStatusBox) => {
-  let fileInput = document.querySelector(".brand-logo-panel input[type=file]");
-  let file = fileInput.files[0];
-  if (!file) return;
-
-  let data = new FormData();
-  data.append('pic', file);
-
-  axios.patch("/api/home-page/brand-logo", data, {headers: {'x-auth': authToken}})
-    .then(res => {
-      updatedBrandLogoUrl(res.data.url);
-      addStatusBox(
-        <StatusBox success={true}>
-          <div><h3>Success!</h3></div>
-          <div>Brand Logo Updated Successfully.</div>
-        </StatusBox>
-      );
-    })
-    .catch(e => {
-      console.log(e);
-      handleCommonErrors(e);
-      addStatusBox(
-        <StatusBox success={false}>
-          <div><h3>Failure!</h3></div>
-          <div>Could not update Logo.</div>
-        </StatusBox>
-      );
-    });
-
-  fileInput.value = null;
-};
 
 const mapStateToProps = state => (
   {

@@ -20,7 +20,29 @@
     padding: 0 5px;
   }
 
+  .message {
+    width: 70%;
+    margin: auto;
+    text-align: center;
+  }
+
+  .message > span {
+    vertical-align: top;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+  .message > img {
+    box-shadow: 0 0 1px black;
+    margin: 0;
+  }
+
+  .label {
+    margin-top: 10px;
+  }
+
   button {
-    margin: 5px 0;
+    margin: 10px 0;
   }
 }
