@@ -11,7 +11,7 @@ const statusBoxPropertyAdder = moreProps => statusBox => {
 };
 
 const statusBoxMoveUpInWaitPeriod = 8000;
-const statusBoxRemoveWaitPeriod = 500;
+const statusBoxRemoveWaitPeriod = 490;
 
 /**
  * Earlier the StatusPanel was being handled within each panels (ex:- ProjectEditPanel).
@@ -92,11 +92,9 @@ class StatusPanel extends Component {
     this.timeoutHandlers.map(timeoutHandler => clearTimeout(timeoutHandler));
   }
 
-  removeStatusBox(uuid) {
+  showStatusBoxRemoveAnimation(uuid) {
     let statusBoxIndex = this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
-
     if (statusBoxIndex === -1) return;
-
     this.setState({
       statusBoxes: [
         ...this.state.statusBoxes.slice(0, statusBoxIndex),
@@ -104,15 +102,24 @@ class StatusPanel extends Component {
         ...this.state.statusBoxes.slice(statusBoxIndex + 1)
       ]
     });
+  }
 
-    let timeoutHandler = setTimeout(() => this.setState({
+  actuallyRemoveStatusBoxFromStatusPanel(uuid) {
+    let statusBoxIndex = this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
+    if (statusBoxIndex === -1) return;
+    this.setState({
       statusBoxes: [
         ...this.state.statusBoxes.slice(0, statusBoxIndex),
         ...this.state.statusBoxes.slice(statusBoxIndex + 1)
       ]
-    }), statusBoxRemoveWaitPeriod);
+    });
+  }
 
-    this.timeoutHandlers.push(timeoutHandler);
+  removeStatusBox(uuid) {
+    this.showStatusBoxRemoveAnimation(uuid);
+    this.timeoutHandlers.push(
+      setTimeout(() => this.actuallyRemoveStatusBoxFromStatusPanel(uuid), statusBoxRemoveWaitPeriod)
+    );
   }
 
   componentWillReceiveProps(nextProps) {
