@@ -29,7 +29,8 @@ class ActivityListPanel extends Component {
   }
 
   deleteActivity() {
-    axios.delete(`/api/activity/${this.props.activities[this.state.selectedActivityIndex]._id}`, {
+    let activity = this.props.activities[this.state.selectedActivityIndex];
+    axios.delete(`/api/activity/${activity._id}`, {
       headers: {'x-auth': this.props.authToken}
     }).then(() => {
       this.closeDeleteModal();
@@ -37,7 +38,7 @@ class ActivityListPanel extends Component {
       this.addStatusBox(
         <StatusBox success={true}>
           <div><h3>Success!</h3></div>
-          <div><span>Activity deleted successfully.</span></div>
+          <div><span>Activity <strong>{activity.name}</strong> deleted successfully.</span></div>
         </StatusBox>
       );
     }).catch(err => {
@@ -124,10 +125,10 @@ const ActivityListPanelView = ({activities, modalContent, showingModal, showDele
 
 const DeleteActivityForm = ({selectedActivity, closeDeleteModal, deleteActivity}) => (
   <div className="delete-project-form">
-    <p>Are you sure you want do delete activities <strong>{selectedActivity.name}</strong>?</p>
+    <p className="question">Are you sure you want do delete activity <strong>{selectedActivity.name}</strong>?</p>
     <div className="button-holder">
-      <button onClick={deleteActivity}>Yes</button>
-      <button onClick={closeDeleteModal}>No</button>
+      <button className="yes" onClick={deleteActivity}>Yes</button>
+      <button className="no" onClick={closeDeleteModal}>No</button>
     </div>
   </div>
 );

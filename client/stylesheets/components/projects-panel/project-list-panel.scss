@@ -102,4 +102,28 @@
     background-color: #F42C04;
     color: white;
   }
+
+  .delete-project-form {
+    .question {
+      text-align: center;
+      padding: 5px;
+    }
+
+    .button-holder {
+      background-color: white;
+      text-align: center;
+    }
+
+    button {
+      color: white;
+    }
+
+    .yes {
+      background-color: #F42C04;
+    }
+
+    .no {
+      background-color: #316E5C;
+    }
+  }
 }

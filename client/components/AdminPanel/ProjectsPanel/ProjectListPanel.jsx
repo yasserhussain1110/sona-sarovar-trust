@@ -29,7 +29,8 @@ class ProjectListPanel extends Component {
   }
 
   deleteProject() {
-    axios.delete(`/api/project/${this.props.projects[this.state.selectedProjectIndex]._id}`, {
+    let project = this.props.projects[this.state.selectedProjectIndex];
+    axios.delete(`/api/project/${project._id}`, {
       headers: {'x-auth': this.props.authToken}
     }).then(() => {
       this.closeDeleteModal();
@@ -37,7 +38,7 @@ class ProjectListPanel extends Component {
       this.addStatusBox(
         <StatusBox success={true}>
           <div><h3>Success!</h3></div>
-          <div><span>Project deleted successfully.</span></div>
+          <div><span>Project <strong>{project.name}</strong> deleted successfully.</span></div>
         </StatusBox>
       );
     }).catch(err => {
@@ -124,10 +125,10 @@ const ProjectListPanelView = ({projects, modalContent, showingModal, showDeleteM
 
 const DeleteProjectForm = ({selectedProject, closeDeleteModal, deleteProject}) => (
   <div className="delete-project-form">
-    <p>Are you sure you want do delete project <strong>{selectedProject.name}</strong>?</p>
+    <p className="question">Are you sure you want do delete project <strong>{selectedProject.name}</strong>?</p>
     <div className="button-holder">
-      <button onClick={deleteProject}>Yes</button>
-      <button onClick={closeDeleteModal}>No</button>
+      <button className="yes" onClick={deleteProject}>Yes</button>
+      <button className="no" onClick={closeDeleteModal}>No</button>
     </div>
   </div>
 );
