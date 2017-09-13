@@ -1,4 +1,21 @@
 .team-member-updater {
+  box-shadow: 0 0 2px black;
+  padding: 10px 10px;
+  margin: 5px 0;
+
+  h2 {
+    background-color: white;
+    box-shadow: none;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+
+  .button-holder {
+    text-align: center;
+  }
+
   @import './text-fields-holder';
   @import './pic-field-holder';
 }

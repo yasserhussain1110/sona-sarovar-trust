@@ -19,7 +19,8 @@ class TeamMemberUpdater extends Component {
       info,
       pic,
       nameError: "",
-      infoError: ""
+      infoError: "",
+      picError: ""
     };
 
     this.updateName = this.updateName.bind(this);
@@ -33,10 +34,10 @@ class TeamMemberUpdater extends Component {
   }
 
   resetValidationErrors() {
-    this.setState({nameError: "", infoError: ""});
+    this.setState({nameError: "", infoError: "", picError: ""});
   }
 
-  validateAndUpdateErrorState() {
+  validateAndUpdateErrorState(e) {
     this.resetValidationErrors();
 
     let {name, info} = this.state;
@@ -52,13 +53,27 @@ class TeamMemberUpdater extends Component {
       isValid = false;
     }
 
+    let fileInput = getFileInputCorrespondingToForm(e);
+    let fileList = fileInput.files;
+
+    if (fileList.length > 0) {
+      let validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+      if (validImageTypes.indexOf(fileList[0]["type"]) === -1) {
+        this.setState({
+          picError: "Picture must have an image type extension."
+        });
+
+        isValid = false;
+      }
+    }
+
     return isValid;
   }
 
   update(e) {
     let fileInput = getFileInputCorrespondingToForm(e);
     let fileList = fileInput.files;
-    if (!this.validateAndUpdateErrorState()) return;
+    if (!this.validateAndUpdateErrorState(e)) return;
 
     let formData = new FormData();
     formData.append('name', this.state.name);
@@ -101,9 +116,10 @@ class TeamMemberUpdater extends Component {
   }
 
   render() {
-    let {name, info, pic, nameError, infoError} = this.state;
+    let {name, info, pic, nameError, infoError, picError} = this.state;
     return (
       <section className="team-member-updater">
+        <h2>Member #{this.props.index + 1}</h2>
         <TextFieldsHolder
           name={name}
           info={info}
@@ -112,7 +128,7 @@ class TeamMemberUpdater extends Component {
           updateName={this.updateName}
           updateInfo={this.updateInfo}
         />
-        <PicFieldHolder pic={pic}/>
+        <PicFieldHolder pic={pic} picError={picError}/>
         <div className="button-holder">
           <button onClick={this.update}>Update</button>
         </div>

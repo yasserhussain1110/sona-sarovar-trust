@@ -1,6 +1,47 @@
 .pic-field-holder {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5%;
+  background-color: white;
+  width: 40%;
+
+  .shown {
+    visibility: visible;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  .img-holder {
+    margin: 10px 20px 10px 0;
+  }
+
+  .error-holder {
+    vertical-align: top;
+    margin: 35px 0 10px 10px;
+    padding: 5px;
+    background-color: #FEFDBA;
+    border-radius: 0;
+    color: #F42C04;
+    max-height: 60px;
+    width: 60%;
+    font-size: 16px;
+    box-shadow: 0 0 2px gray;
+    overflow-y: hidden;
+  }
+
+  .img-holder, .error-holder {
+    display: inline-block;
+  }
+
   img {
     height: 100px;
     width: 100px;
+    box-shadow: 0 0 2px black;
+  }
+
+  .label {
+    padding: 5px 0;
   }
 }

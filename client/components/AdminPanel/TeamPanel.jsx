@@ -34,9 +34,10 @@ const TeamPanelView = ({teamMembers, authToken, updatedTeamMember, statusBoxToAd
   <div className="controller team-panel">
     <h1>Team Members Panel</h1>
     <h2>Update Team Member Info</h2>
-    <section className="member-info-holder">{teamMembers.map(member => (
+    <section className="member-info-holder">{teamMembers.map((member, index) => (
       <TeamMemberUpdaterForm
         key={member._id}
+        index={index}
         member={member}
         authToken={authToken}
         updatedTeamMember={updatedTeamMember}
