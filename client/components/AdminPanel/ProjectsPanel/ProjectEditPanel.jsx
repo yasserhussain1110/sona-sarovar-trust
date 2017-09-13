@@ -165,17 +165,18 @@ class ProjectEditPanel extends Component {
     let pics = document.getElementById("edit-panel-pic").files;
     if (pics.length === 0) return;
 
-    for (let i = 0; i < pics.length; i++) {
+    let uploadPicPromises = Object.keys(pics).map(key => {
+      let pic = pics[key];
       let data = new FormData();
-      data.append('pic', pics[i]);
+      data.append('pic', pic);
 
-      axios.put(`/api/project/pic/${this.props.project._id}`, data, {headers: {'x-auth': this.props.authToken}})
+      return axios.put(`/api/project/pic/${this.props.project._id}`, data, {headers: {'x-auth': this.props.authToken}})
         .then(res => {
           this.props.addedPicToProject(res.data, this.props.match.params.index);
           this.addStatusBox(
             <StatusBox success={true}>
               <div><h3>Success!</h3></div>
-              <div>New Pic added to Project.</div>
+              <div>{pic.name} added to Project successfully.</div>
             </StatusBox>
           )
         })
@@ -184,13 +185,14 @@ class ProjectEditPanel extends Component {
           this.addStatusBox(
             <StatusBox success={false}>
               <div><h3>Failure!</h3></div>
-              <div>Adding more pics to project failed.</div>
+              <div>Adding pic {pic.name} to project failed.</div>
             </StatusBox>
           )
-        });
-    }
+        })
+    });
 
-    document.getElementById("edit-panel-pic").value = null;
+    Promise.all(uploadPicPromises).then(() =>
+      document.getElementById("edit-panel-pic").value = null);
   }
 
   updateProject() {

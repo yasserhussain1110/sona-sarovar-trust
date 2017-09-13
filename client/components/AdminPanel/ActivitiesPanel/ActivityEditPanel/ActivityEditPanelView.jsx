@@ -41,6 +41,8 @@ const getModalContent = (updatingPic, deletingPic, selectedPic, closeModal, auth
   if (updatingPic) {
     return (
       <UpdatePicModal
+        picUrl={selectedPic.url}
+        requestUrl={`/api/activity/pic/${selectedPic._id}`}
         selectedPic={selectedPic}
         closeModal={closeModal}
         authToken={authToken}
@@ -51,7 +53,8 @@ const getModalContent = (updatingPic, deletingPic, selectedPic, closeModal, auth
   } else if (deletingPic) {
     return (
       <DeletePicModal
-        selectedPic={selectedPic}
+        picUrl={selectedPic.url}
+        requestUrl={`/api/activity/pic/${selectedPic._id}`}
         closeModal={closeModal}
         authToken={authToken}
         onSuccess={deletedActivityPic}

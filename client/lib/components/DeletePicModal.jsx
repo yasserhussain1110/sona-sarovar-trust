@@ -2,13 +2,14 @@ import React from 'react';
 import Modal from './Modal';
 import axios from 'axios';
 import handleCommonErrors from '../handlers/commonErrorsHandler';
+import PropTypes from 'prop-types';
 
-const DeletePicModal = ({selectedPic, closeModal, authToken, onSuccess, onFailure}) => (
+const DeletePicModal = ({picUrl, requestUrl, closeModal, authToken, onSuccess, onFailure}) => (
   <Modal show={true}>
     <div className="delete-pic-form">
       <div className="message">
         <span>Deleting Pic</span>
-        <img src={selectedPic.url}/>
+        <img src={picUrl}/>
       </div>
 
       <div className="action">
@@ -16,7 +17,7 @@ const DeletePicModal = ({selectedPic, closeModal, authToken, onSuccess, onFailur
         <div className="button-holder">
           <button
             onClick={() => deletePic(
-              selectedPic._id, authToken,
+              requestUrl, authToken,
               onSuccess, onFailure
             )}
             className="yes">Yes
@@ -28,8 +29,8 @@ const DeletePicModal = ({selectedPic, closeModal, authToken, onSuccess, onFailur
   </Modal>
 );
 
-const deletePic = (selectedPicId, authToken, onSuccess, onFailure) => {
-  axios.delete(`/api/project/pic/${selectedPicId}`, {
+const deletePic = (requestUrl, authToken, onSuccess, onFailure) => {
+  axios.delete(requestUrl, {
     headers: {'x-auth': authToken}
   }).then(() => {
     onSuccess();
@@ -38,6 +39,15 @@ const deletePic = (selectedPicId, authToken, onSuccess, onFailure) => {
     onFailure();
     console.log(err);
   })
+};
+
+DeletePicModal.proptypes = {
+  picUrl: PropTypes.string.isRequired,
+  requestUrl: PropTypes.string.isRequired,
+  authToken: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  onSuccess: PropTypes.func.isRequired,
+  onFailure: PropTypes.func.isRequired
 };
 
 export default DeletePicModal;

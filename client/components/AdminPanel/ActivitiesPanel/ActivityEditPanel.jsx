@@ -165,17 +165,18 @@ class ActivityEditPanel extends Component {
     let pics = document.getElementById("edit-panel-pic").files;
     if (pics.length === 0) return;
 
-    for (let i = 0; i < pics.length; i++) {
+    let uploadPicPromises = Object.keys(pics).map(key => {
+      let pic = pics[key];
       let data = new FormData();
-      data.append('pic', pics[i]);
+      data.append('pic', pic);
 
-      axios.put(`/api/activity/pic/${this.props.activity._id}`, data, {headers: {'x-auth': this.props.authToken}})
+      return axios.put(`/api/activity/pic/${this.props.activity._id}`, data, {headers: {'x-auth': this.props.authToken}})
         .then(res => {
           this.props.addedPicToActivity(res.data, this.props.match.params.index);
           this.addStatusBox(
             <StatusBox success={true}>
               <div><h3>Success!</h3></div>
-              <div>New Pic added to Activity.</div>
+              <div>{pic.name} added to Activity successfully.</div>
             </StatusBox>
           )
         })
@@ -184,13 +185,14 @@ class ActivityEditPanel extends Component {
           this.addStatusBox(
             <StatusBox success={false}>
               <div><h3>Failure!</h3></div>
-              <div>Adding more pics to activity failed.</div>
+              <div>Adding pic {pic.name} to activity failed.</div>
             </StatusBox>
           )
-        });
-    }
+        })
+    });
 
-    document.getElementById("edit-panel-pic").value = null;
+    Promise.all(uploadPicPromises).then(() =>
+      document.getElementById("edit-panel-pic").value = null);
   }
 
   updateActivity() {
@@ -226,7 +228,7 @@ class ActivityEditPanel extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  activity: state.activitys.activitysDone[ownProps.match.params.index],
+  activity: state.activities.activitiesUndertaken[ownProps.match.params.index],
   authToken: state.userAuth.authToken
 });
 
