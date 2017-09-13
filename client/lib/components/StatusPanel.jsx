@@ -83,13 +83,13 @@ class StatusPanel extends Component {
       statusBoxes: props.statusBoxToAdd === null ? [] : [this.addPropsToStatusBox(props.statusBoxToAdd)]
     };
 
-    this.intervalHandlers = this.state.statusBoxes.map(
+    this.timeoutHandlers = this.state.statusBoxes.map(
       statusBox => setTimeout(() => this.removeStatusBox(statusBox.props.uuid), statusBoxMoveUpInWaitPeriod)
     );
   }
 
   componentWillUnmount() {
-    this.intervalHandlers.map(intervalHandler => clearTimeout(intervalHandler));
+    this.timeoutHandlers.map(timeoutHandler => clearTimeout(timeoutHandler));
   }
 
   removeStatusBox(uuid) {
@@ -105,14 +105,14 @@ class StatusPanel extends Component {
       ]
     });
 
-    let intervalHandler = setTimeout(() => this.setState({
+    let timeoutHandler = setTimeout(() => this.setState({
       statusBoxes: [
         ...this.state.statusBoxes.slice(0, statusBoxIndex),
         ...this.state.statusBoxes.slice(statusBoxIndex + 1)
       ]
     }), statusBoxRemoveWaitPeriod);
 
-    this.intervalHandlers.push(intervalHandler);
+    this.timeoutHandlers.push(timeoutHandler);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -134,7 +134,7 @@ class StatusPanel extends Component {
       ]
     });
 
-    this.intervalHandlers.push(
+    this.timeoutHandlers.push(
       setTimeout(() => this.removeStatusBox(newStatusBox.props.uuid), statusBoxMoveUpInWaitPeriod)
     );
   }
