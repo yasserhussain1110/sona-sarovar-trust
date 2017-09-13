@@ -11,7 +11,7 @@ const statusBoxPropertyAdder = moreProps => statusBox => {
 };
 
 const statusBoxMoveUpInWaitPeriod = 8000;
-const statusBoxRemoveWaitPeriod = 1000;
+const statusBoxRemoveWaitPeriod = 500;
 
 /**
  * Earlier the StatusPanel was being handled within each panels (ex:- ProjectEditPanel).
@@ -94,6 +94,9 @@ class StatusPanel extends Component {
 
   removeStatusBox(uuid) {
     let statusBoxIndex = this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
+
+    if (statusBoxIndex === -1) return;
+
     this.setState({
       statusBoxes: [
         ...this.state.statusBoxes.slice(0, statusBoxIndex),
