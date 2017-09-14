@@ -4,7 +4,7 @@ import ActivityListPanel from './ActivitiesPanel/ActivityListPanel';
 import ActivityAddPanel from './ActivitiesPanel/ActivityAddPanel';
 import ActivityEditPanel from './ActivitiesPanel/ActivityEditPanel';
 
-const ProjectsPanel = () => (
+const ActivitiesPanel = () => (
   <div className="controller projects-panel">
     <h1>Activities Panel</h1>
     <Switch>
@@ -15,4 +15,4 @@ const ProjectsPanel = () => (
   </div>
 );
 
-export default ProjectsPanel;
+export default ActivitiesPanel;
