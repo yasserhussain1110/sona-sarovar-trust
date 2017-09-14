@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {logIn} from '../actions';
 import {Redirect} from 'react-router-dom';
-import LoginForm from '../components/AdminAuth/LoginForm';
+import LoginForm from '../components/LoginController/LoginForm';
 import axios from 'axios';
 import handleCommonErrors from '../lib/handlers/commonErrorsHandler';
 
-class AdminAuth extends Component {
+class LoginController extends Component {
   constructor(props) {
     super(props);
 
@@ -83,4 +83,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminAuth);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginController);

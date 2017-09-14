@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import HomePanel from '../components/AdminPanel/HomePanel';
 import ProjectsPanel from '../components/AdminPanel/ProjectsPanel';
 import ActivitiesPanel from '../components/AdminPanel/ActivitiesPanel';
@@ -13,11 +13,14 @@ const AdminPanel = () => {
       <div className="admin-panel-wrapper" style={{display: 'flex'}}>
         <SideNavContainer/>
         <div className="controller-holder">
-          <Route path="/admin/home" component={HomePanel}/>
-          <Route path="/admin/projects" component={ProjectsPanel}/>
-          <Route path="/admin/activities" component={ActivitiesPanel}/>
-          <Route path="/admin/team" component={TeamPanel}/>
-          <Route path="/admin/preview" component={Previewer}/>
+          <Switch>
+            <Route path="/admin/home" component={HomePanel}/>
+            <Route path="/admin/projects" component={ProjectsPanel}/>
+            <Route path="/admin/activities" component={ActivitiesPanel}/>
+            <Route path="/admin/team" component={TeamPanel}/>
+            <Route path="/admin/preview" component={Previewer}/>
+            <Route path="/" render={() => <Redirect to="/admin/home" push/>}/>
+          </Switch>
         </div>
       </div>
     </main>

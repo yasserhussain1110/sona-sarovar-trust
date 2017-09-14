@@ -13,7 +13,7 @@ const SideNavContainer = props => (
     <SideNav to="/admin/activities" icon={calendar}>Activities</SideNav>
     <SideNav to="/admin/team" icon={user}>Team</SideNav>
     <SideNav to="/admin/preview" icon={eye}>Preview</SideNav>
-    <SideNav to="/admin/auth" onClick={logOut} icon={signOut}>Log Out</SideNav>
+    <SideNav to="/admin/login" onClick={logOut} icon={signOut}>Log Out</SideNav>
   </SideNavBar>
 );
 

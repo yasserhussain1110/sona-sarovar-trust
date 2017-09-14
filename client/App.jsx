@@ -23,7 +23,7 @@ class App extends Component {
        * logged in happens asynchronously so there is a short
        * duration where app is in not logged in state, so
        * urls like 'http://localhost:8080/admin/home' will be
-       * redirected to 'http://localhost:8080/admin/auth' and
+       * redirected to 'http://localhost:8080/admin/login' and
        * soon after the login is complete is redirected again to
        * the specified page. This leads to a bad UX.
        *
