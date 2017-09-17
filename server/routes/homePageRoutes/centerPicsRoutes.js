@@ -27,7 +27,7 @@ const centerPicRoutes = app => {
         res.status(200).send(pic);
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.stack);
         res.status(400).send();
       });
   });
@@ -57,7 +57,7 @@ const centerPicRoutes = app => {
         res.status(200).send({url: picUrl});
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.stack);
         res.status(400).send();
       });
   });
@@ -85,7 +85,7 @@ const centerPicRoutes = app => {
         res.status(200).send();
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.stack);
         res.status(400).send();
       });
   });

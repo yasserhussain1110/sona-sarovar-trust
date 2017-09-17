@@ -68,7 +68,7 @@ const projectRoutes = app => {
         });
       })
       .catch(e => {
-        console.log(e);
+        console.log(e.stack);
         res.status(400).send();
       });
   });
@@ -93,7 +93,7 @@ const projectRoutes = app => {
         res.send(pic);
       })
       .catch(e => {
-        console.log(e);
+        console.log(e.stack);
         res.status(400).send();
       });
   });
@@ -144,7 +144,7 @@ const projectRoutes = app => {
         res.send({url: picUrl});
       })
       .catch(e => {
-        console.log(e);
+        console.log(e.stack);
         res.status(400).send();
       });
   });
@@ -162,7 +162,7 @@ const projectRoutes = app => {
     }).then(() => {
       res.status(200).send();
     }).catch(e => {
-      console.log(e);
+      console.log(e.stack);
       res.status(400).send();
     });
   });
@@ -183,7 +183,7 @@ const projectRoutes = app => {
     }).then(() => {
       res.status(200).send();
     }).catch(e => {
-      console.log(e);
+      console.log(e.stack);
       res.status(400).send();
     });
   });
