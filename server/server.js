@@ -18,6 +18,7 @@ require('./routes/homePageRoutes')(app);
 require('./routes/projectRoutes')(app);
 require('./routes/activityRoutes')(app);
 require('./routes/teammemberRoutes')(app);
+require('./routes/paymentRoutes')(app);
 
 /* Set up development server if required */
 if (process.env.NODE_ENV === "development") {

@@ -7,6 +7,8 @@ import Projects from '../containers/Projects';
 import ProjectHolder from '../containers/ProjectHolder';
 import Activities from '../containers/Activities';
 import ActivityHolder from '../containers/ActivityHolder';
+import DonationBox from '../containers/DonationBox';
+import DonationDoneBox from '../containers/DonationDoneBox';
 
 export default ({match}) => (
   <main id="web">
@@ -17,5 +19,7 @@ export default ({match}) => (
     <Route path={`${match.url}/projects/:index`} component={ProjectHolder}/>
     <Route exact path={`${match.url}/activities`} component={Activities}/>
     <Route path={`${match.url}/activities/:index`} component={ActivityHolder}/>
+    <Route path={`${match.url}/donate`} component={DonationBox}/>
+    <Route path={`${match.url}/donate/done`} component={DonationDoneBox}/>
   </main>
 );

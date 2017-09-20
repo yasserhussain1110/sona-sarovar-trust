@@ -1,4 +1,5 @@
 module.exports = Object.assign(
   {},
-  require('./fileServices')
+  require('./fileServices'),
+  require('./validationServices')
 );
