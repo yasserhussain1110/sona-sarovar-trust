@@ -38,7 +38,7 @@ const activityRoutes = app => {
       return res.status(400).send();
     }
 
-    Activity
+    Promise
       .all(files.map(file => {
         let fileWritePromise = ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/activities');
         return reflectFilePromise(fileWritePromise, file)
