@@ -8,6 +8,8 @@ const {
   populateAdmins, populateHomePage, populateTeamMembers, populateProjects
 } = require('../../server/seed/seedInfo');
 const {RESOURCES_DIR} = process.env;
+const testFileName = "sun.jpg";
+const constructFullPath = name => 'test/server/files/' + testFileName;
 
 before(done => {
   if (!fs.existsSync(RESOURCES_DIR)) {
@@ -31,7 +33,7 @@ describe('Testing path PUT /teammember', () => {
       .set('x-auth', INIT_ADMIN.tokens[0])
       .field('name', 'Yasser Hussain')
       .field('info', 'Yasser Hussain is awesome person')
-      .attach('pic', 'test/server/files/sun.jpg')
+      .attach('pic', constructFullPath(testFileName))
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
@@ -48,7 +50,7 @@ describe('Testing path PUT /teammember', () => {
           })
           .then(member => {
             expect(member).toExist();
-            expect(member.pic).toInclude("sun.jpg");
+            expect(member.pic).toInclude(testFileName);
             expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);
             let newMember = res.body;
             delete newMember._id;
@@ -100,7 +102,7 @@ describe('Testing path PATCH /teammember/:_id', () => {
       .set('x-auth', INIT_ADMIN.tokens[0])
       .field('name', 'Member 1 modified')
       .field('info', 'Roman Infantry 1 got modified')
-      .attach('pic', 'test/server/files/sun.jpg')
+      .attach('pic', constructFullPath(testFileName))
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
@@ -110,6 +112,7 @@ describe('Testing path PATCH /teammember/:_id', () => {
             expect(member.name).toBe("Member 1 modified");
             expect(member.info).toBe("Roman Infantry 1 got modified");
             expect(member.pic).toNotBe(INIT_TEAM_MEMBERS[0].pic);
+            expect(member.pic).toInclude(testFileName);
             let newMember = res.body;
             delete newMember._id;
             expect(newMember).toEqual({

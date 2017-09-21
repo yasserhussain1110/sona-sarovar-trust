@@ -7,6 +7,8 @@ const {
   populateTeamMembers, populateProjects
 } = require('../../server/seed/seedInfo');
 const {RESOURCES_DIR} = process.env;
+const testFileName = "sun.jpg";
+const constructFullPath = name => 'test/server/files/' + testFileName;
 
 before(done => {
   if (!fs.existsSync(RESOURCES_DIR)) {
@@ -26,7 +28,7 @@ describe('Testing path PUT /home-page/center-pic', () => {
     request(app)
       .put('/api/home-page/center-pic')
       .set('x-auth', INIT_ADMIN.tokens[0])
-      .attach('pic', 'test/server/files/sun.jpg')
+      .attach('pic', constructFullPath(testFileName))
       .expect(200)
       .end(done);
   });
