@@ -18,7 +18,8 @@ class DonationBox extends Component {
     this.donate = this.donate.bind(this);
   }
 
-  donate() {
+  donate(e) {
+    e.preventDefault();
     if (!this.validate()) return;
 
     axios.post('/api/payment/start', {
@@ -71,8 +72,8 @@ class DonationBox extends Component {
       return false;
     }
 
-    if (Number(amount) <= 0) {
-      this.setState({amountError: "Must be greater than 0."});
+    if (Number(amount) < 9) {
+      this.setState({amountError: "Must be at least ₹9."});
       return false;
     }
 
@@ -96,39 +97,41 @@ const DonationBoxView = ({email, amount, emailError, amountError, updateAmount, 
     <h3><span>Donate</span></h3>
     <div className="donation-form">
       <h2 className="heading">Support Sona Sarovar Trust</h2>
-      <div className="field">
-        <div className="label">
-          <label>Email:</label>
-        </div>
-        <div className="input">
-          <input type="text" onChange={updateEmail} value={email}/>
-        </div>
-        <div className="error-holder">
-          <div className={`error ${emailError ? "show" : "hide"}`}>
-            <span>{emailError}</span>
+      <form onSubmit={donate}>
+        <div className="field">
+          <div className="label">
+            <label>Email:</label>
+          </div>
+          <div className="input">
+            <input type="text" onChange={updateEmail} value={email}/>
+          </div>
+          <div className="error-holder">
+            <div className={`error ${emailError ? "show" : "hide"}`}>
+              <span>{emailError}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="field">
-        <div className="label">
-          <label>Amount:</label>
-        </div>
-        <div className="input">
-          <input type="text" onChange={updateAmount} value={amount}/>
-        </div>
-        <div className="error-holder">
-          <div className={`error ${amountError ? "show" : "hide"}`}>
-            <span>{amountError}</span>
+        <div className="field">
+          <div className="label">
+            <label>Amount:</label>
+          </div>
+          <div className="input">
+            <input type="text" onChange={updateAmount} value={amount}/>
+          </div>
+          <div className="error-holder">
+            <div className={`error ${amountError ? "show" : "hide"}`}>
+              <span>{amountError}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="field">
-        <div className="button-holder">
-          <button onClick={donate} className="donate-button">Donate!</button>
+        <div className="field">
+          <div className="button-holder">
+            <button className="donate-button">Donate!</button>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 );

@@ -28,6 +28,7 @@ const paymentRoutes = app => {
     }).catch(e => {
       console.log(e);
       console.log(e.stack);
+      if (e.response) console.log(e.response.data);
       res.status(400).send();
     });
   });
@@ -49,6 +50,7 @@ const paymentRoutes = app => {
     }).catch(e => {
       console.log(e);
       console.log(e.stack);
+      if (e.response) console.log(e.response.data);
       res.status(400).send();
     });
   });
