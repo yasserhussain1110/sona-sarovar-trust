@@ -6,6 +6,7 @@ const captionRoutes = app => {
     let captionText = req.body.text;
 
     HomePage.findOne().then(h => {
+      if (!h) throw new Error("HomePage not found");
       h.captions.push({text: captionText});
       return h.save().then(h => h.captions[h.captions.length - 1]);
     }).then(caption => {
@@ -48,13 +49,12 @@ const captionRoutes = app => {
      */
 
     HomePage.findOne().then(h => {
+      if (!h) throw new Error("HomePage not found.");
       let originalLength = h.captions.length;
       h.captions = h.captions.filter(caption => !caption._id.equals(_id));
       return h.save().then(() => ({originalLength, newLength: h.captions.length}));
     }).then(({originalLength, newLength}) => {
-      if (newLength >= originalLength) {
-        throw new Error("No match. Same Number of captions");
-      }
+      if (newLength >= originalLength) throw new Error("No match. Same Number of captions");
       res.status(200).send();
     }).catch(e => {
       console.log(e);

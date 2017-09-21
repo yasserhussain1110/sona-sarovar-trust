@@ -81,6 +81,7 @@ const projectRoutes = app => {
 
     Project.findById(_id)
       .then(project => {
+        if (!project) throw new Error("Could not find project.");
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/projects')
           .then(picPath => ({project, picPath}));
       })
@@ -125,7 +126,8 @@ const projectRoutes = app => {
     let file = req.file;
 
     Project.findOne({'pics._id': _id})
-      .then(() => {
+      .then(p => {
+        if (!p) throw new Error("Could not find project pic.");
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/projects');
       })
       .then(picPath => {
@@ -153,6 +155,7 @@ const projectRoutes = app => {
     let _id = req.params._id;
 
     Project.findById(_id).then(project => {
+      if (!project) throw new Error("Could not find project.");
       let projectPicIds = project.pics.map(picObj => picObj._id);
       return Promise.all(projectPicIds.map(_id => {
         return removeExistingPicFile(Project, 'pics', _id);
@@ -172,7 +175,9 @@ const projectRoutes = app => {
 
     Project.findOne({
       'pics._id': _id
-    }).then(() => {
+    }).then(p => {
+      if (!p) throw new Error("Could not find project pic.");
+      if (p.pics.length === 1) throw new Error("Only one pic remaining. Cannot delete it.");
       return removeExistingPicFile(Project, 'pics', _id);
     }).then(() => {
       return Project.update({'pics._id': _id}, {

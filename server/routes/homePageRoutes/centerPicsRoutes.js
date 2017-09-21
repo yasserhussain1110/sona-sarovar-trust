@@ -13,15 +13,15 @@ const centerPicRoutes = app => {
 
     let file = req.file;
 
-    ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/home')
-      .then(picPath => {
-        let picUrl = picPath.replace(RESOURCES_DIR, "");
-        return addPicFileUrlToDB(picUrl);
+    HomePage.findOne()
+      .then(h => {
+        if (!h) throw new Error("Could not find a HomePage.");
+        return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/home').then(picPath => ({picPath, h}));
       })
-      .then(() => {
-        return HomePage.findOne().then(h => {
-          return h.centerPics[h.centerPics.length - 1]
-        });
+      .then(({picPath, h}) => {
+        let picUrl = picPath.replace(RESOURCES_DIR, "");
+        h.centerPics.push({url: picUrl});
+        return h.save().then(h => h.centerPics[h.centerPics.length - 1]);
       })
       .then(pic => {
         res.status(200).send(pic);
@@ -69,9 +69,8 @@ const centerPicRoutes = app => {
         'centerPics._id': _id
       })
       .then(h => {
-        if (h.centerPics.length === 1) {
-          throw new Error("Only one pic remaining. Cannot delete it.");
-        }
+        if (!h) throw new Error("Could not find center pic.");
+        if (h.centerPics.length === 1) throw new Error("Only one pic remaining. Cannot delete it.");
         return removeExistingPicFile(HomePage, 'centerPics', _id);
       })
       .then(() => {
@@ -95,16 +94,6 @@ const updatePicFileUrlInDB = (picUrl, _id) => {
   return HomePage.update({'centerPics._id': _id}, {
     $set: {
       'centerPics.$.url': picUrl
-    }
-  }, {
-    runValidators: true
-  });
-};
-
-const addPicFileUrlToDB = picUrl => {
-  return HomePage.update({
-    $push: {
-      centerPics: {url: picUrl}
     }
   }, {
     runValidators: true
