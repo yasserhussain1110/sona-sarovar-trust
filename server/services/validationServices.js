@@ -49,7 +49,6 @@ const validatePaymentRequest = obj => {
     delete validatedObj.redirectUrl;
     delete validationResult.errors;
     validationResult.paymentRequestObject = validatedObj;
-    validationResult.allow_repeated_payments = false;
     return validationResult;
   } else {
     return validationResult;
