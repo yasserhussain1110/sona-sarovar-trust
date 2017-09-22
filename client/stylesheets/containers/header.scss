@@ -1,53 +1,106 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50px;
-  margin-bottom: 10px;
+  background-color: #32302F;
 
-  a {
+  .quick-links-holder {
+    margin-left: 55%;
     padding: 5px;
   }
 
-  .active {
-    color: #F7DB07;
-    font-weight: bolder;
-    background-color: gray;
-    box-shadow: 2px 2px 5px gray;
+  .social-button-holder {
+    margin: 10px 20px;
   }
 
-  .logo > img {
-    height: 60px;
-    width: 100px;
+  .social-button-holder, .action-button-holder {
+    display: inline-block;
+    vertical-align: middle;
   }
 
-  /*
-   font-family: Charcoal, Impact, sans-serif;
-   font-size: 40px;
-   font-weight: normal;
-   line-height: 1.1em;
-  */
-
-  .top-portion, .bottom-portion {
-    margin: 5px 0;
-    padding: 0 5px;
-    color: white;
+  .button {
     background-color: black;
+    border-radius: 0;
+    color: #D6B014;
+    font-size: 12px;
+    padding: 15px 30px;
   }
 
-  .list-item {
-    display: inline;
-    font: $secondary-font;
-    font-size: 15px;
-    line-height: 1.4em;
+  .social-buttons {
+    color: white;
+    padding: 5px;
     margin: 5px;
+  }
+
+  ul {
+    background-color: #ECC731;
+    padding: 10px 20px;
+    text-align: center;
+  }
+
+  a {
+    //color: #26211d;
+    color: #45403c;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.6;
+    font-family: 'Lato', sans-serif;
+  }
+
+  li {
+    display: inline-block;
     padding: 0 10px;
-  }
-
-  .list-item:hover {
-    color: #F7DB07;
-  }
-
-  .nav {
-    padding-top: 50px;
+    margin: 0 10px;
   }
 }
+
+//.header {
+//  display: flex;
+//  justify-content: space-between;
+//  margin-bottom: 10px;
+//  background-color: #32302F;
+//
+//  a {
+//    padding: 5px;
+//  }
+//
+//  .active {
+//    color: #F7DB07;
+//    font-weight: bolder;
+//    background-color: gray;
+//    box-shadow: 2px 2px 5px gray;
+//  }
+//
+//  .logo > img {
+//    height: 60px;
+//    width: 100px;
+//  }
+//
+//  /*
+//   font-family: Charcoal, Impact, sans-serif;
+//   font-size: 40px;
+//   font-weight: normal;
+//   line-height: 1.1em;
+//  */
+//
+//  .top-portion, .bottom-portion {
+//    margin: 5px 0;
+//    padding: 0 5px;
+//    color: white;
+//    background-color: black;
+//  }
+//
+//  .list-item {
+//    display: inline;
+//    font: $secondary-font;
+//    font-size: 15px;
+//    line-height: 1.4em;
+//    margin: 5px;
+//    padding: 0 10px;
+//  }
+//
+//  .list-item:hover {
+//    color: #F7DB07;
+//  }
+//
+//  .nav {
+//    padding-top: 50px;
+//  }
+//}
