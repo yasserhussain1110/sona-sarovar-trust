@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class ImageCarousal extends Component {
   constructor(props) {
@@ -38,5 +39,16 @@ class ImageCarousal extends Component {
     );
   }
 }
+
+ImageCarousal.propTypes = {
+  imageLinks: PropTypes.arrayOf(PropTypes.string).isRequired,
+  dots: PropTypes.bool.isRequired,
+  arrows: PropTypes.bool.isRequired
+};
+
+ImageCarousal.defaultProps = {
+  dots: false,
+  arrows: false,
+};
 
 export default ImageCarousal;
