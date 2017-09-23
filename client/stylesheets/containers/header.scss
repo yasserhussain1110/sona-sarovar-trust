@@ -23,20 +23,38 @@
     padding: 15px 30px;
   }
 
+  .button:nth-of-type(1) {
+    border: 2px solid black;
+    padding: 13px 28px;
+    transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+  }
+
+  .button:nth-of-type(1):hover {
+    border-color: #ECC731;
+    background-color: #32302F;
+  }
+
+  .button:nth-of-type(2) {
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+  }
+
+  .button:nth-of-type(2):hover {
+    background-color: #ECC731;
+    color: black;
+  }
+
   .social-buttons {
     color: white;
     padding: 5px;
     margin: 5px;
   }
 
-  ul {
+  .nav-bar {
     background-color: #ECC731;
-    padding: 10px 20px;
     text-align: center;
   }
 
   a {
-    //color: #26211d;
     color: #45403c;
     font-size: 16px;
     font-weight: 700;
@@ -44,63 +62,53 @@
     font-family: 'Lato', sans-serif;
   }
 
-  li {
+  .list-item {
     display: inline-block;
-    padding: 0 10px;
+    padding: 10px;
     margin: 0 10px;
   }
-}
 
-//.header {
-//  display: flex;
-//  justify-content: space-between;
-//  margin-bottom: 10px;
-//  background-color: #32302F;
-//
-//  a {
-//    padding: 5px;
-//  }
-//
-//  .active {
-//    color: #F7DB07;
-//    font-weight: bolder;
-//    background-color: gray;
-//    box-shadow: 2px 2px 5px gray;
-//  }
-//
-//  .logo > img {
-//    height: 60px;
-//    width: 100px;
-//  }
-//
-//  /*
-//   font-family: Charcoal, Impact, sans-serif;
-//   font-size: 40px;
-//   font-weight: normal;
-//   line-height: 1.1em;
-//  */
-//
-//  .top-portion, .bottom-portion {
-//    margin: 5px 0;
-//    padding: 0 5px;
-//    color: white;
-//    background-color: black;
-//  }
-//
-//  .list-item {
-//    display: inline;
-//    font: $secondary-font;
-//    font-size: 15px;
-//    line-height: 1.4em;
-//    margin: 5px;
-//    padding: 0 10px;
-//  }
-//
-//  .list-item:hover {
-//    color: #F7DB07;
-//  }
-//
-//  .nav {
-//    padding-top: 50px;
-//  }
-//}
+  .nav-link {
+    position: relative;
+  }
+
+  .sub-link-dropdown {
+    position: absolute;
+    top: 35px;
+    z-index: 1;
+    background-color: #EAC11A;
+    width: 500%;
+    text-align: left;
+    display: none;
+  }
+
+  .list-item:hover .sub-link-dropdown {
+    display: block;
+  }
+
+  .sub-link-nav-bar {
+    padding: 5px;
+  }
+
+  .sub-link-nav-bar > li:last-child {
+    border: none;
+  }
+
+  .sub-item {
+    padding: 10px 10px;
+    border-bottom: 1px solid #ecc731;
+
+    > a {
+      font-weight: 300;
+      color: #26211d;
+      display: inline-block;
+      width: 100%;
+      -webkit-transition: all 250ms ease-in;
+    }
+
+    > a:hover {
+      font-weight: 700;
+      padding-left: 3px;
+    }
+  }
+}
