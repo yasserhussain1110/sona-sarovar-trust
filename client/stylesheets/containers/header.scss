@@ -1,8 +1,22 @@
-.header {
+.header.top {
   background-color: #32302F;
 
+  .logo-holder {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5%;
+  }
+
+  .logo-holder > img {
+    height: 40px;
+    width: 60px;
+    box-shadow: 0 0 2px white;
+    border-radius: 5px;
+  }
+
   .quick-links-holder {
-    margin-left: 55%;
+    display: inline-block;
+    margin-left: 50%;
     padding: 5px;
   }
 
@@ -13,6 +27,14 @@
   .social-button-holder, .action-button-holder {
     display: inline-block;
     vertical-align: middle;
+  }
+
+  .donate {
+    margin-right: 5px;
+  }
+
+  .volunteer {
+    margin-left: 5px;
   }
 
   .button {
@@ -43,7 +65,7 @@
     color: black;
   }
 
-  .social-buttons {
+  .social-button {
     color: white;
     padding: 5px;
     margin: 5px;
@@ -66,18 +88,15 @@
     display: inline-block;
     padding: 10px;
     margin: 0 10px;
-  }
-
-  .nav-link {
     position: relative;
   }
 
   .sub-link-dropdown {
     position: absolute;
-    top: 35px;
+    top: 40px;
     z-index: 1;
     background-color: #EAC11A;
-    width: 500%;
+    width: 250px;
     text-align: left;
     display: none;
   }
@@ -90,7 +109,7 @@
     padding: 5px;
   }
 
-  .sub-link-nav-bar > li:last-child {
+  .sub-link-nav-bar > .sub-item:last-child {
     border: none;
   }
 
@@ -102,8 +121,156 @@
       font-weight: 300;
       color: #26211d;
       display: inline-block;
-      width: 100%;
       -webkit-transition: all 250ms ease-in;
+    }
+
+    > a:hover {
+      font-weight: 700;
+      padding-left: 3px;
+    }
+  }
+}
+
+.header.scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #32302F;
+  color: #EAC11A;
+
+  .logo-holder {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5%;
+  }
+
+  .logo-holder > img {
+    height: 40px;
+    width: 60px;
+    box-shadow: 0 0 5px black;
+    border-radius: 5px;
+  }
+
+  .quick-links-holder {
+    float: right;
+    margin-right: 50px;
+  }
+
+  .social-button-holder, .action-button-holder {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .social-button {
+    color: black;
+    border-radius: 50%;
+    background-color: #EFC337;
+    padding: 4px;
+    margin: 10px 5px;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .fb:hover {
+    background-color: #395C97;
+    color: white;
+  }
+
+  .tw:hover {
+    background-color: #00A4F1;
+    color: white;
+  }
+
+  .li:hover {
+    background-color: #007AB3;
+    color: white;
+  }
+
+  .yt:hover {
+    background-color: #C42814;
+    color: white;
+  }
+
+  .donate {
+    background: url(/static/donate.png) center center no-repeat #ffde00;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 0;
+    margin: 0 5px;
+    padding: 25px 0;
+    width: 50px;
+    display: inline-block;
+    vertical-align: bottom; // This removes extra whitespace in the bottom
+  }
+
+  .volunteer {
+    background: url(/static/volunteer.png) center center no-repeat #ffde00;
+    background-size: 30px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 50px;
+    padding: 25px 0;
+    margin: 0 5px;
+    border-radius: 0;
+    display: inline-block;
+    vertical-align: bottom; // This removes extra whitespace in the bottom
+  }
+
+  .nav {
+    display: inline-block;
+    margin: 25px;
+  }
+
+  .nav-bar {
+    margin-left: 100px;
+  }
+
+  .list-item {
+    padding: 15px;
+    display: inline;
+    position: relative;
+
+  }
+
+  .list-item > a {
+    color: #FACC11;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .list-item:hover > a {
+    color: #FEFDBA;
+  }
+
+  .sub-link-dropdown {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    background-color: #EFC337;
+    width: 250px;
+    text-align: left;
+    display: none;
+  }
+
+  .list-item:hover .sub-link-dropdown {
+    display: block;
+  }
+
+  .sub-link-nav-bar > .sub-item:last-child {
+    border: none;
+  }
+
+  .sub-item {
+    padding: 10px 10px;
+    border-bottom: 1px solid #ecc731;
+
+    > a {
+      font-weight: 300;
+      color: black;
+      display: inline-block;
+      transition: all 250ms ease-in;
     }
 
     > a:hover {
