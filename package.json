@@ -81,6 +81,7 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.1",
+    "scrollbar-width": "^3.1.1",
     "styled-components": "^2.1.1",
     "typeface-kelly-slab": "0.0.22",
     "url-loader": "^0.5.8",
