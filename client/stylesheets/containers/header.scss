@@ -69,6 +69,28 @@
     color: white;
     padding: 5px;
     margin: 5px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .fb:hover {
+    background-color: #395C97;
+    color: white;
+  }
+
+  .tw:hover {
+    background-color: #00A4F1;
+    color: white;
+  }
+
+  .li:hover {
+    background-color: #007AB3;
+    color: white;
+  }
+
+  .yt:hover {
+    background-color: #C42814;
+    color: white;
   }
 
   .nav-bar {
@@ -149,7 +171,7 @@
   .logo-holder > img {
     height: 40px;
     width: 60px;
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 2px white;
     border-radius: 5px;
   }
 
