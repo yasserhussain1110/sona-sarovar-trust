@@ -4,10 +4,10 @@ import MessageCarousal from '../../lib/components/MessageCarousal';
 import getScrollbarWidth from 'scrollbar-width';
 import addHandler from '../../lib/helpers/addHandler';
 
-const getSizeSubState = () => {
-  let scrollbarWidth = getScrollbarWidth(true) || 0;
-  let ratio = 0.4;
-  let width = window.innerWidth - scrollbarWidth;
+const getSizeSubStateFromSrollBarWidth = scrollbarWidth => {
+  scrollbarWidth = scrollbarWidth || 0;
+  const ratio = 0.4;
+  const width = window.innerWidth - scrollbarWidth;
   return {
     width,
     height: ratio * width
@@ -18,14 +18,25 @@ class Carousal extends Component {
   constructor(props) {
     super(props);
 
+    this.scrollbarWidth = null;
+
     this.state = {
-      ...getSizeSubState(),
+      ...getSizeSubStateFromSrollBarWidth(this.scrollbarWidth),
       scrollState: "top"    // "top", "scrolled"
     };
 
-    document.addEventListener('DOMContentLoaded', () => this.setState(getSizeSubState()), false);
+    /*
+     * This optimisation will not work in the following edge case -
+     *   When vertical scrollbar wasn't present originally but
+     *   appears because of vertical resize of screen.
+     */
 
-    window.onresize = () => this.setState(getSizeSubState());
+    document.addEventListener('DOMContentLoaded', () => {
+      this.scrollbarWidth = getScrollbarWidth(true);
+      this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth));
+    }, false);
+
+    window.onresize = () => this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth));
 
     addHandler(window, "onscroll", () => {
       if (window.scrollY > 100) {
