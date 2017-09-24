@@ -1,13 +1,15 @@
 .home {
   .carousal {
     position: relative;
-    width: 1035px;
-    height: 590px;
+  }
+
+  .carousal.scrolled {
+    margin-top: 170px;
   }
 
   .info {
     background-color: #F1F4ED;
-    padding: 10px 0px 10px 20px;
+    padding: 10px 0 10px 20px;
 
     .short-bio {
       width: 35%;
