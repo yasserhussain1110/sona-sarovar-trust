@@ -4,14 +4,10 @@
   position: relative;
 
   .inactive {
-    animation-duration: 2s;
-    animation-name: hide;
     opacity: 0;
   }
 
   .active {
-    animation-duration: 2s;
-    animation-name: show;
     opacity: 1;
   }
 
@@ -19,6 +15,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    transition: opacity 2s ease-in-out;
   }
 
   .arrow {
@@ -32,7 +29,7 @@
   }
 
   .arrow:hover {
-    background: rgba(0,0,0,1);
+    background: rgba(0, 0, 0, 1);
     cursor: pointer;
   }
 
@@ -56,5 +53,32 @@
     color: white;
     margin-top: 11px;
     background: transparent;
+  }
+
+  .dots-holder {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 20px;
+    line-height: 0; // was creating vertical space. see - https://stackoverflow.com/questions/20024993/why-display-inline-block-adds-uncontrollable-vertical-margins
+  }
+
+  .dot {
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    border: 2px solid #EFC337;
+    border-radius: 50%;
+    margin: 0 2px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .dot.selected {
+    background-color: #EFC337;
+  }
+
+  .dot:hover {
+    cursor: pointer;
+    background-color: #EFC337;
   }
 }

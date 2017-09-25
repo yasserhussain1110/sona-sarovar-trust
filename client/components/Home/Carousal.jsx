@@ -52,8 +52,8 @@ class Carousal extends Component {
     const {height, width, scrollState} = this.state;
     return (
       <div style={{height, width}} className={`carousal ${scrollState}`}>
-        <ImageCarousal imageLinks={imageLinks} viewDuration={4000}/>
-        <MessageCarousal messages={messages} viewDuration={4000}/>
+        <ImageCarousal arrows={true} dots={true} imageLinks={imageLinks} viewDuration={10000}/>
+        <MessageCarousal messages={messages} viewDuration={6000}/>
       </div>
     );
   }
