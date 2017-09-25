@@ -1,15 +1,13 @@
 .carousal-message-container {
-  background-color: #316E5C;
+  background-color: #FAD81B;
   position: absolute;
-  color: #EEEEEE;
+  color: $black;
   right: 20px;
   bottom: 20px;
-  width: 40%;
+  width: 30%;
   height: 15%;
   font: $main-font;
   font-size: 24px;
-  line-height: 1.4em;
-  border-radius: 10px;
 
   .message {
     position: absolute;
