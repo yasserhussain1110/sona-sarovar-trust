@@ -7,8 +7,8 @@ const MediaEventsBlog = () => (
     <div className="link-holder">
       <div className="donate">
         <h3>Donate to help</h3>
-        <div className="img-holder">
-          <img src="/home/IMG2.jpg"/>
+        <div className="iframe-holder">
+          <iframe width="400" height="250" src="https://www.youtube.com/embed/VT3SRGNr22I"/>
         </div>
         <NavLink to="" className="button">Donate Now</NavLink>
       </div>
