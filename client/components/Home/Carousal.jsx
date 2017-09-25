@@ -6,7 +6,7 @@ import addHandler from '../../lib/helpers/addHandler';
 
 const getSizeSubStateFromSrollBarWidth = scrollbarWidth => {
   scrollbarWidth = scrollbarWidth || 0;
-  const ratio = 0.4;
+  const ratio = 0.35;
   const width = window.innerWidth - scrollbarWidth;
   return {
     width,
