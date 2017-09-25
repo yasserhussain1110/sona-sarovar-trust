@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import SvgIcon from 'react-icons-kit';
+import {chevronLeft, chevronRight} from 'react-icons-kit/fa';
 
 class ImageCarousal extends Component {
   constructor(props) {
@@ -35,6 +37,13 @@ class ImageCarousal extends Component {
     return (
       <div className="carousal-image-container">{this.props.imageLinks.map((link, index) => (
         <img key={index} className={this.isImageShowing(index) ? "active" : "inactive"} src={link}/>))}
+        <div className="arrow arrow-left">
+          <SvgIcon className="icon-holder" icon={chevronLeft} size={20}/>
+        </div>
+
+        <div className="arrow arrow-right">
+          <SvgIcon className="icon-holder" icon={chevronRight} size={20}/>
+        </div>
       </div>
     );
   }

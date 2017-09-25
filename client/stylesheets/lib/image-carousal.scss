@@ -20,4 +20,41 @@
     width: 100%;
     height: 100%;
   }
+
+  .arrow {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    top: 50%;
+    transition: background 0.4s ease-in-out;
+  }
+
+  .arrow:hover {
+    background: rgba(0,0,0,1);
+    cursor: pointer;
+  }
+
+  .arrow-left {
+    left: 2%;
+  }
+
+  .arrow-left > .icon-holder {
+    margin-left: 8px;
+  }
+
+  .arrow-right {
+    right: 2%;
+  }
+
+  .arrow-right > .icon-holder {
+    margin-left: 12px;
+  }
+
+  .icon-holder {
+    color: white;
+    margin-top: 11px;
+    background: transparent;
+  }
 }
