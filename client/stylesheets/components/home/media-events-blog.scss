@@ -1,0 +1,56 @@
+.media-events-blog {
+  margin-top: 30px;
+  text-align: center;
+  font-family: 'Lato';
+
+  > h2 {
+    font-size: 28px;
+  }
+
+  > .link-holder > div {
+    display: inline-block;
+    margin: 40px 10px;
+  }
+
+  .img-holder {
+    width: 400px;
+    height: 250px;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  img:hover {
+    transform: scale(1.1);
+  }
+
+  h3 {
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-sizing: border-box;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 15px 0;
+    margin: 10px;
+    text-transform: uppercase;
+    background-color: black;
+    border-radius: 0;
+    color: #D6B014;
+    font-size: 12px;
+    width: 140px;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .button:hover {
+    background-color: #ECC731;
+    color: black;
+  }
+}
