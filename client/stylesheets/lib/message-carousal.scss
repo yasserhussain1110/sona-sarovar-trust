@@ -13,17 +13,14 @@
   .message {
     position: absolute;
     padding: 10px;
+    transition: all 0.6s ease-in-out;
   }
 
   .inactive {
-    animation-duration: 1s;
-    animation-name: hide;
     opacity: 0;
   }
 
   .active {
-    animation-duration: 1s;
-    animation-name: show;
     opacity: 1;
   }
 }
