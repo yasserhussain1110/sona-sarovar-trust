@@ -38,6 +38,12 @@ const OurImpact = () => (
           </li>
         </ul>
       </div>
+
+      <div className="registration-number-holder">
+        <ul>
+          <li>Public Trust Reg.No.F-5208</li>
+        </ul>
+      </div>
     </div>
   </div>
 );

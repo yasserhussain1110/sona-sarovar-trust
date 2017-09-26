@@ -1,5 +1,5 @@
 .our-impact {
-  font-family: 'Lato';
+  font-family: 'Lato', sans-serif;
   margin: 0 20px;
   text-align: center;
 
@@ -58,5 +58,23 @@
   .message {
     font-weight: 600;
     color: gray;
+  }
+
+  .registration-number-holder {
+    margin: 20px;
+
+    li::before {
+      content: "•";
+      color: #7C7C7C;
+      margin-right: 15px;
+      font-weight: bolder;
+      font-size: 20px;
+    }
+
+    li {
+      color: #7C7C7C;
+      font-size: 18px;
+      line-height: 1.2;
+    }
   }
 }
