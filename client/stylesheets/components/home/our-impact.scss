@@ -1,0 +1,62 @@
+.our-impact {
+  font-family: 'Lato';
+  margin: 0 20px;
+  text-align: center;
+
+  li {
+    width: auto;
+  }
+
+  > h2 {
+    font-size: 28px;
+  }
+
+  > .child-icon-holder {
+    margin: 20px;
+  }
+
+  .icon-list-holder {
+    background-color: #EFC337;
+    padding: 25px 20px;
+    height: 110px;
+  }
+
+  .message-list-holder {
+    padding: 10px 10px;
+    height: 120px;
+  }
+
+  .icon-list-holder li {
+    color: $black;
+    opacity: 0.7;
+    padding-bottom: 20px;
+  }
+
+  .icon-list-holder li:last-of-type {
+    padding-bottom: 0;
+  }
+
+  .message-list-holder li {
+    padding-bottom: 25px;
+    text-align: left;
+  }
+
+  .message-list-holder li:last-of-type {
+    padding-bottom: 0;
+    text-align: left;
+  }
+
+  .icon-list-holder, .message-list-holder {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .message-holder {
+    width: 250px;
+  }
+
+  .message {
+    font-weight: 600;
+    color: gray;
+  }
+}
