@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {facebook, twitter, linkedin, youtube} from 'react-icons-kit/fa';
 import SvgIcon from 'react-icons-kit';
-import addHandler from '../lib/helpers/addHandler';
+import {addHandler} from '../lib/helpers/domHelpers';
 
 class Header extends Component {
   constructor(props) {
@@ -13,11 +13,14 @@ class Header extends Component {
       scrollState: "top"  // "top", "scrolled"
     };
 
-    addHandler(window, "onscroll", () => {
-      if (window.scrollY > 100) {
-        this.setState({scrollState: "scrolled"});
-      } else {
-        this.setState({scrollState: "top"});
+    addHandler(window, "onscroll", {
+      name: "headerFixedOrTop",
+      func: () => {
+        if (window.scrollY > 100) {
+          this.setState({scrollState: "scrolled"});
+        } else {
+          this.setState({scrollState: "top"});
+        }
       }
     });
   }

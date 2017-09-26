@@ -1,11 +1,13 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import {addHandler, getScrollHandlerForParallax} from '../../lib/helpers/domHelpers';
 
-window.onscroll = () => {
-  const parallaxElement = document.getElementsByClassName('volunteer-parallax')[0];
-  const scrollFacter = window.scrollY / 20;
-  parallaxElement.style.backgroundPositionY = (50 - scrollFacter) + '%';
-};
+document.addEventListener('DOMContentLoaded', () => {
+  addHandler(window, 'onscroll', {
+    name: 'genericScrollHandler',
+    func: getScrollHandlerForParallax()
+  });
+});
 
 const VolunteerParallax = () => (
   <div className="volunteer-parallax">

@@ -4,10 +4,11 @@
   width: 100%;
   background-attachment: fixed;
   background-position-x: 50%;
-  background-position-y: 50%;
+  background-position-y: 195px;
   background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Lato';
+  margin-bottom: 1000px;
   transition: background-position-y .5s ease;
 
   .parallax-content {
