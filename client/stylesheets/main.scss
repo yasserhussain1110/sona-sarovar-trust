@@ -16,3 +16,6 @@
 @import 'lib/status-panel';
 @import 'lib/status-box';
 @import 'lib/pic-form';
+$fa-font-path: "../../node_modules/font-awesome/fonts";
+@import "../../node_modules/font-awesome/scss/font-awesome";
+@import "../../node_modules/typeface-kelly-slab/index.css";

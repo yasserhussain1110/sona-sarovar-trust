@@ -7,7 +7,6 @@ import Web from './routes/Web';
 import Admin from './routes/Admin';
 import * as actions from './actions';
 import {connect} from 'react-redux';
-import 'typeface-kelly-slab';
 
 class App extends Component {
   constructor(props) {
