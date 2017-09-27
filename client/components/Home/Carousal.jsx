@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import ImageCarousal from '../../lib/components/ImageCarousal';
 import MessageCarousal from '../../lib/components/MessageCarousal';
 import getScrollbarWidth from 'scrollbar-width';
-import {addHandler} from '../../lib/helpers/domHelpers';
+import {viewPortWidth} from '../../lib/helpers/domHelpers';
 
 const getSizeSubStateFromSrollBarWidth = scrollbarWidth => {
   scrollbarWidth = scrollbarWidth || 0;
   const ratio = 0.35;
-  const width = window.innerWidth - scrollbarWidth;
+  const width = viewPortWidth - scrollbarWidth;
   return {
     width,
     height: ratio * width
@@ -36,16 +36,13 @@ class Carousal extends Component {
       this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth));
     });
 
-    window.onresize = () => this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth));
+    window.addEventListener("resize", () => this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth)));
 
-    addHandler(window, "onscroll", {
-      name: 'carousalMargin',
-      func: () => {
-        if (window.scrollY > 100) {
-          this.setState({scrollState: "scrolled"});
-        } else {
-          this.setState({scrollState: "top"});
-        }
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        this.setState({scrollState: "scrolled"});
+      } else {
+        this.setState({scrollState: "top"});
       }
     });
   }
