@@ -1,1 +1,6 @@
-@import "~font-awesome/css/font-awesome.css";
+.testimonials {
+  blockquote {
+    @extend .fa;
+    @extend .fa-twitter;
+  }
+}
