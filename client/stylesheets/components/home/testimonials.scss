@@ -1,13 +1,75 @@
 //@import '~font-awesome/css/font-awesome.css';
 
 .testimonials {
-  p::after {
-    @extend .fa;
-    @extend .fa-quote-right:before;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  color: $black;
+
+  > h2 {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 40px;
+  }
+
+  p {
+    font-style: italic;
+    line-height: 1.5;
+    padding: 0 10px;
   }
 
   p::before {
     @extend .fa;
     @extend .fa-quote-left:before;
+    display: block;
+    text-align: left;
+    font-style: italic;
+    position: relative;
+    top: -10px;
+    left: -20px;
+  }
+
+  p::after {
+    @extend .fa;
+    @extend .fa-quote-right:before;
+    font-style: italic;
+    display: block;
+    text-align: right;
+    position: relative;
+  }
+
+  footer {
+    > span {
+      text-transform: uppercase;
+      font-size: 24px;
+      display: block;
+      margin-top: 20px;
+    }
+
+    > cite {
+      display: block;
+      font-size: 12px;
+      font-style: normal;
+    }
+
+    > .button {
+      display: inline-block;
+      padding: 15px;
+      text-align: center;
+      margin: 20px 0;
+      text-transform: uppercase;
+      background-color: black;
+      border-radius: 0;
+      color: #D6B014;
+      font-size: 12px;
+      width: 120px;
+      transition: all 0.4s ease-in-out;
+    }
+
+    > .button:hover {
+      background-color: #ECC731;
+      color: black;
+    }
   }
 }

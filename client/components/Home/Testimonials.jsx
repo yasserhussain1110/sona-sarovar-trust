@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 const Testimonials = () => (
   <div className="testimonials">
@@ -11,6 +12,11 @@ const Testimonials = () => (
         help, time as well as other resources.
         I believe in continuity and devotion without deviation. CRY is doing just that.
       </p>
+      <footer>
+        <span>Pawan Gupta</span>
+        <cite>(Donor, Mumbai)</cite>
+        <NavLink to="" className="button">More</NavLink>
+      </footer>
     </blockquote>
   </div>
 );
