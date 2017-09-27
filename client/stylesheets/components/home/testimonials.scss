@@ -1,12 +1,12 @@
 //@import '~font-awesome/css/font-awesome.css';
 
 .testimonials {
-  blockquote::after {
+  p::after {
     @extend .fa;
     @extend .fa-quote-right:before;
   }
 
-  blockquote::before {
+  p::before {
     @extend .fa;
     @extend .fa-quote-left:before;
   }
