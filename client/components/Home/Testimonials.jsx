@@ -5,7 +5,7 @@ import SvgIcon from 'react-icons-kit';
 const Testimonials = () => (
   <div className="testimonials">
     <h2>Donor Speak</h2>
-    <i className="fa fa-twitter fa-2x" aria-hidden="true"></i>
+    <p></p>
 
     <blockquote>
       {/*<SvgIcon icon={quoteLeft} size={20}/>*/}
