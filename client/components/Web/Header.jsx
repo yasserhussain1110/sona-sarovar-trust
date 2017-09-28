@@ -53,8 +53,8 @@ const HeaderView = ({match, scrollState, brandLogoUrl}) => (
         </a>
       </div>
       <div className="action-button-holder">
-        <NavLink to="/web/donate" className="button donate">DONATE NOW</NavLink>
-        <NavLink to="/web/volunteer" className="button volunteer">VOLUNTEER</NavLink>
+        <NavLink to={`${match.url}/involve/donate`} className="button donate">DONATE NOW</NavLink>
+        <NavLink to={`${match.url}/involve/volunteer`} className="button volunteer">VOLUNTEER</NavLink>
       </div>
     </div>
 
@@ -64,52 +64,49 @@ const HeaderView = ({match, scrollState, brandLogoUrl}) => (
           <NavLink exact to={`${match.url}`} activeClassName="active">HOME</NavLink>
         </li>
         <li className="list-item">
-          <NavLink to={`${match.url}/about`} activeClassName="active">ABOUT US</NavLink>
+          <NavLink to="#" activeClassName="active">ABOUT US</NavLink>
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">
-                <NavLink to={`${match.url}/about`} activeClassName="active">HISTORY</NavLink>
+                <NavLink to={`${match.url}/about/history`} activeClassName="active">HISTORY</NavLink>
               </li>
               <li className="sub-item">
-                <NavLink to={`${match.url}/about`} activeClassName="active">VISION AND MISSION</NavLink>
+                <NavLink to={`${match.url}/about/vision`} activeClassName="active">VISION AND MISSION</NavLink>
               </li>
               <li className="sub-item">
-                <NavLink to={`${match.url}/about`} activeClassName="active">TEAM</NavLink>
+                <NavLink to={`${match.url}/about/team`} activeClassName="active">TEAM</NavLink>
               </li>
             </ul>
           </div>
         </li>
         <li className="list-item">
-          <NavLink to={`${match.url}/projects`} activeClassName="active">WHAT WE DO</NavLink>
+          <NavLink to="#" activeClassName="active">WHAT WE DO</NavLink>
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">
-                <NavLink to={`${match.url}/about`} activeClassName="active">HEALTH PROGRAM</NavLink>
-              </li>
-              <li className="sub-item">
-                <NavLink to={`${match.url}/about`} activeClassName="active">EDUCATION PROGRAM</NavLink>
+                <NavLink to={`${match.url}/projects`} activeClassName="active">PROJECTS</NavLink>
               </li>
             </ul>
           </div>
         </li>
         <li className="list-item">
-          <NavLink to={`${match.url}/involve`} activeClassName="active">GET INVOLVED</NavLink>
+          <NavLink to="#" activeClassName="active">GET INVOLVED</NavLink>
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">
-                <NavLink to={`${match.url}/about`} activeClassName="active">DONATE</NavLink>
+                <NavLink to={`${match.url}/involve/donate`} activeClassName="active">DONATE</NavLink>
               </li>
               <li className="sub-item">
-                <NavLink to={`${match.url}/about`} activeClassName="active">VOLUNTEER</NavLink>
+                <NavLink to={`${match.url}/involve/volunteer`} activeClassName="active">VOLUNTEER</NavLink>
               </li>
             </ul>
           </div>
         </li>
         <li className="list-item">
-          <NavLink to={`${match.url}/donate`} activeClassName="active">BLOG</NavLink>
+          <NavLink to={`${match.url}/blog`} activeClassName="active">BLOG</NavLink>
         </li>
         <li className="list-item">
-          <NavLink to={`${match.url}/donate`} activeClassName="active">CONTACT US</NavLink>
+          <NavLink to={`${match.url}/contact`} activeClassName="active">CONTACT US</NavLink>
         </li>
       </ul>
     </div>
