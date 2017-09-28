@@ -6,24 +6,24 @@
   z-index: 1;
   background-color: #32302F;
   color: #EAC11A;
+  display: flex;
 
   .logo-holder {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 5%;
-    margin-right: 5%;
+    flex: 0 0 60px;
+    height: 40px;
+    padding-top: 14px;
+    padding-left: 15px;
   }
 
   .logo-holder > img {
-    height: 40px;
-    width: 60px;
+    width: 100%;
+    height: 100%;
     box-shadow: 0 0 2px white;
     border-radius: 5px;
   }
 
   .quick-links-holder {
-    float: right;
-    margin-right: 50px;
+    flex: 0 0 300px;
   }
 
   .social-button-holder, .action-button-holder {
@@ -61,7 +61,7 @@
   }
 
   .donate {
-    background: url(../../../static/img/donate.png) center center no-repeat #ffde00;
+    background: url(../../../../static/img/donate.png) center center no-repeat #ffde00;
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -74,7 +74,7 @@
   }
 
   .volunteer {
-    background: url(../../../static/img/volunteer.png) center center no-repeat #ffde00;
+    background: url(../../../../static/img/volunteer.png) center center no-repeat #ffde00;
     background-size: 30px;
     text-indent: 100%;
     white-space: nowrap;
@@ -88,8 +88,7 @@
   }
 
   .nav {
-    display: inline-block;
-    margin: 25px;
+    margin: auto;
   }
 
   .nav-bar {
@@ -147,14 +146,4 @@
       padding-left: 3px;
     }
   }
-}
-
-.floater {
-  display: inline;
-}
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
 }

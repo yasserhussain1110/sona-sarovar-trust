@@ -3,32 +3,10 @@ import {NavLink} from 'react-router-dom';
 import {facebook, twitter, linkedin, youtube} from 'react-icons-kit/fa';
 import SvgIcon from 'react-icons-kit';
 
-const FloatingHeader = ({scrollState, brandLogoUrl, match}) => (
-  <div style={{visibility: scrollState === "scrolled" ? "visible" : "hidden"}}
-       className="floating-header">
+const FloatingHeader = ({visibilityClass, brandLogoUrl, match}) => (
+  <div className={`floating-header ${visibilityClass}`}>
     <div className="logo-holder">
       <img src={brandLogoUrl}/>
-    </div>
-
-    <div className="quick-links-holder">
-      <div className="social-button-holder">
-        <a href="https://www.facebook.com">
-          <SvgIcon className="social-button fb" size={20} icon={facebook}/>
-        </a>
-        <a href="https://www.twitter.com">
-          <SvgIcon className="social-button tw" size={20} icon={twitter}/>
-        </a>
-        <a href="https://www.linkedin.com">
-          <SvgIcon className="social-button li" size={20} icon={linkedin}/>
-        </a>
-        <a href="https://www.youtube.com">
-          <SvgIcon className="social-button yt" size={20} icon={youtube}/>
-        </a>
-      </div>
-      <div className="action-button-holder">
-        <NavLink to={`${match.url}/involve/donate`} className="button donate">DONATE NOW</NavLink>
-        <NavLink to={`${match.url}/involve/volunteer`} className="button volunteer">VOLUNTEER</NavLink>
-      </div>
     </div>
 
     <div className="nav">
@@ -82,6 +60,27 @@ const FloatingHeader = ({scrollState, brandLogoUrl, match}) => (
           <NavLink to={`${match.url}/contact`} activeClassName="active">CONTACT US</NavLink>
         </li>
       </ul>
+    </div>
+
+    <div className="quick-links-holder">
+      <div className="social-button-holder">
+        <a href="https://www.facebook.com">
+          <SvgIcon className="social-button fb" size={20} icon={facebook}/>
+        </a>
+        <a href="https://www.twitter.com">
+          <SvgIcon className="social-button tw" size={20} icon={twitter}/>
+        </a>
+        <a href="https://www.linkedin.com">
+          <SvgIcon className="social-button li" size={20} icon={linkedin}/>
+        </a>
+        <a href="https://www.youtube.com">
+          <SvgIcon className="social-button yt" size={20} icon={youtube}/>
+        </a>
+      </div>
+      <div className="action-button-holder">
+        <NavLink to={`${match.url}/involve/donate`} className="button donate">DONATE NOW</NavLink>
+        <NavLink to={`${match.url}/involve/volunteer`} className="button volunteer">VOLUNTEER</NavLink>
+      </div>
     </div>
   </div>
 );

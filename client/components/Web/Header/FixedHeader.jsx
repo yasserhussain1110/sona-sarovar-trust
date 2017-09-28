@@ -3,9 +3,8 @@ import {NavLink} from 'react-router-dom';
 import {facebook, twitter, linkedin, youtube} from 'react-icons-kit/fa';
 import SvgIcon from 'react-icons-kit';
 
-const FixedHeader = ({brandLogoUrl, match, scrollState}) => (
-  <div style={{visibility: scrollState === "top" ? "visible" : "hidden"}}
-       className="fixed-header">
+const FixedHeader = ({brandLogoUrl, match, visibilityClass}) => (
+  <div className={`fixed-header ${visibilityClass}`}>
     <div className="logo-holder">
       <img src={brandLogoUrl}/>
     </div>

@@ -1,4 +1,16 @@
 .header {
+  > div {
+    display: block;
+  }
+
+  .shown {
+    visibility: visible;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
   @import "./header/fixed-header";
   @import "./header/floating-header";
 }
