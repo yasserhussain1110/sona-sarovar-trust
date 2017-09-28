@@ -31,7 +31,7 @@ class Header extends Component {
         <FixedHeader
           match={this.props.match}
           brandLogoUrl={this.props.brandLogoUrl}
-          visibilityClass={this.state.scrollState === "top" ? "shown" : "shown"}
+          visibilityClass={this.state.scrollState === "top" ? "shown" : "hidden"}
         />
       </div>
     );
