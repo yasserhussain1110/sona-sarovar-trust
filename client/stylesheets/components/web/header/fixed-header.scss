@@ -48,22 +48,22 @@
     padding: 15px 30px;
   }
 
-  .button:nth-of-type(1) {
+  .donate {
     border: 2px solid black;
     padding: 13px 28px;
     transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
   }
 
-  .button:nth-of-type(1):hover {
+  .donate:hover {
     border-color: #ECC731;
     background-color: #32302F;
   }
 
-  .button:nth-of-type(2) {
+  .volunteer {
     transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
   }
 
-  .button:nth-of-type(2):hover {
+  .volunteer:hover {
     background-color: #ECC731;
     color: black;
   }
@@ -152,6 +152,54 @@
     > a:hover {
       font-weight: 700;
       padding-left: 3px;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    .quick-links-holder {
+      padding: 0 5px;
+      margin-top: 0;
+    }
+
+    .logo-holder {
+      padding-top: 7px;
+      padding-bottom: 0;
+      margin-top: 3px;
+    }
+
+    .donate {
+      background: url(../../../../static/img/donate.png) center center no-repeat #ffde00;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 50px;
+      padding: 25px 0;
+      display: inline-block;
+      vertical-align: bottom; // This removes extra whitespace in the bottom
+      color: white;
+      border: none;
+    }
+
+    .donate:hover {
+      background-color: #ffde00;
+    }
+
+    .volunteer {
+      background: url(../../../../static/img/volunteer.png) center center no-repeat #ffde00;
+      background-size: 30px;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 50px;
+      padding: 25px 0;
+      display: inline-block;
+      vertical-align: bottom; // This removes extra whitespace in the bottom
+      color: white;
+      border: none;
+    }
+
+    .volunteer:hover {
+      background-color: #ffde00;
     }
   }
 }
