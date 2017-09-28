@@ -94,6 +94,16 @@ const HeaderView = ({match, scrollState, brandLogoUrl}) => (
         </li>
         <li className="list-item">
           <NavLink to={`${match.url}/involve`} activeClassName="active">GET INVOLVED</NavLink>
+          <div className="sub-link-dropdown">
+            <ul className="sub-link-nav-bar">
+              <li className="sub-item">
+                <NavLink to={`${match.url}/about`} activeClassName="active">DONATE</NavLink>
+              </li>
+              <li className="sub-item">
+                <NavLink to={`${match.url}/about`} activeClassName="active">VOLUNTEER</NavLink>
+              </li>
+            </ul>
+          </div>
         </li>
         <li className="list-item">
           <NavLink to={`${match.url}/donate`} activeClassName="active">BLOG</NavLink>
