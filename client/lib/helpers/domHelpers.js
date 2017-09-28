@@ -13,9 +13,9 @@ export const isElementInViewport = (el, viewPortHeight) => {
  *                         viewPortHeight - 70
  */
 
-export const viewPortWidth = window.innerWidth || document.documentElement.clientWidth;
+export const getViewPortWidth = () => window.innerWidth || document.documentElement.clientWidth;
 
-export const viewPortHeight = window.innerHeight || document.documentElement.clientHeight;
+export const getViewPortHeight = () => window.innerHeight || document.documentElement.clientHeight;
 
 const start = 195;
 const end = 65;
@@ -25,7 +25,7 @@ start + (((clientRectTop - viewPortHeight) * (start - end)) / (viewPortHeight - 
 
 const parallaxHandler = parallaxElement => {
   parallaxElement.style.backgroundPositionY =
-    mapElementTopToImageBackgroundPosition(parallaxElement.getBoundingClientRect().top, viewPortHeight) + 'px'
+    mapElementTopToImageBackgroundPosition(parallaxElement.getBoundingClientRect().top, getViewPortHeight()) + 'px'
 };
 
 export const getScrollHandlerForParallax = () => {
@@ -33,11 +33,11 @@ export const getScrollHandlerForParallax = () => {
   const parallaxElement = document.getElementsByClassName('volunteer-parallax')[0];
   const boundParallaxHandler = parallaxHandler.bind(null, parallaxElement);
   return () => {
-    if (isElementInViewport(parallaxElement, viewPortHeight) && !parallaxHandlerAdded) {
+    if (isElementInViewport(parallaxElement, getViewPortHeight()) && !parallaxHandlerAdded) {
       console.log("Parallax in view. Attaching handler.");
       window.addEventListener('scroll', boundParallaxHandler);
       parallaxHandlerAdded = true;
-    } else if (!isElementInViewport(parallaxElement, viewPortHeight) && parallaxHandlerAdded) {
+    } else if (!isElementInViewport(parallaxElement, getViewPortHeight()) && parallaxHandlerAdded) {
       console.log("Parallax out of view. Removing handler.");
       window.removeEventListener('scroll', boundParallaxHandler);
       parallaxHandlerAdded = false;

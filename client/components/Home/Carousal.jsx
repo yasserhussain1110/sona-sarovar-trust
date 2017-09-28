@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import ImageCarousal from '../../lib/components/ImageCarousal';
 import MessageCarousal from '../../lib/components/MessageCarousal';
 import getScrollbarWidth from 'scrollbar-width';
-import {viewPortWidth} from '../../lib/helpers/domHelpers';
+import {getViewPortWidth} from '../../lib/helpers/domHelpers';
 
 const getSizeSubStateFromSrollBarWidth = scrollbarWidth => {
   scrollbarWidth = scrollbarWidth || 0;
   const ratio = 0.35;
-  const width = viewPortWidth - scrollbarWidth;
+  const width = getViewPortWidth() - scrollbarWidth;
   return {
     width,
     height: ratio * width
