@@ -1,0 +1,160 @@
+.floating-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #32302F;
+  color: #EAC11A;
+
+  .logo-holder {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .logo-holder > img {
+    height: 40px;
+    width: 60px;
+    box-shadow: 0 0 2px white;
+    border-radius: 5px;
+  }
+
+  .quick-links-holder {
+    float: right;
+    margin-right: 50px;
+  }
+
+  .social-button-holder, .action-button-holder {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .social-button {
+    color: black;
+    border-radius: 50%;
+    background-color: #EFC337;
+    padding: 4px;
+    margin: 10px 5px;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .fb:hover {
+    background-color: #395C97;
+    color: white;
+  }
+
+  .tw:hover {
+    background-color: #00A4F1;
+    color: white;
+  }
+
+  .li:hover {
+    background-color: #007AB3;
+    color: white;
+  }
+
+  .yt:hover {
+    background-color: #C42814;
+    color: white;
+  }
+
+  .donate {
+    background: url(../../../static/img/donate.png) center center no-repeat #ffde00;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 0;
+    margin: 0 5px;
+    padding: 25px 0;
+    width: 50px;
+    display: inline-block;
+    vertical-align: bottom; // This removes extra whitespace in the bottom
+  }
+
+  .volunteer {
+    background: url(../../../static/img/volunteer.png) center center no-repeat #ffde00;
+    background-size: 30px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 50px;
+    padding: 25px 0;
+    margin: 0 5px;
+    border-radius: 0;
+    display: inline-block;
+    vertical-align: bottom; // This removes extra whitespace in the bottom
+  }
+
+  .nav {
+    display: inline-block;
+    margin: 25px;
+  }
+
+  .nav-bar {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .list-item {
+    padding: 15px;
+    display: inline;
+    position: relative;
+
+  }
+
+  .list-item > a {
+    color: #FACC11;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .list-item:hover > a {
+    color: #FEFDBA;
+  }
+
+  .sub-link-dropdown {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    background-color: #EFC337;
+    width: 250px;
+    text-align: left;
+    display: none;
+  }
+
+  .list-item:hover .sub-link-dropdown {
+    display: block;
+  }
+
+  .sub-link-nav-bar > .sub-item:last-child {
+    border: none;
+  }
+
+  .sub-item {
+    padding: 10px 10px;
+    border-bottom: 1px solid #ecc731;
+
+    > a {
+      font-weight: 300;
+      color: black;
+      display: inline-block;
+      transition: all 250ms ease-in;
+    }
+
+    > a:hover {
+      font-weight: 700;
+      padding-left: 3px;
+    }
+  }
+}
+
+.floater {
+  display: inline;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}

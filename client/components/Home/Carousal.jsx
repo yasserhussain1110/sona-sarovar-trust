@@ -20,10 +20,7 @@ class Carousal extends Component {
 
     this.scrollbarWidth = null;
 
-    this.state = {
-      ...getSizeSubStateFromSrollBarWidth(this.scrollbarWidth),
-      scrollState: "top"    // "top", "scrolled"
-    };
+    this.state = getSizeSubStateFromSrollBarWidth(this.scrollbarWidth);
 
     /*
      * This optimisation will not work in the following edge case -
@@ -37,21 +34,13 @@ class Carousal extends Component {
     });
 
     window.addEventListener("resize", () => this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth)));
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 100) {
-        this.setState({scrollState: "scrolled"});
-      } else {
-        this.setState({scrollState: "top"});
-      }
-    });
   }
 
   render() {
     const {imageLinks, messages} = this.props;
     const {height, width, scrollState} = this.state;
     return (
-      <div style={{height, width}} className={`carousal ${scrollState}`}>
+      <div style={{height, width}} className="carousal">
         <ImageCarousal arrows={true} dots={true} imageLinks={imageLinks} viewDuration={10000}/>
         <MessageCarousal messages={messages} viewDuration={6000}/>
       </div>
