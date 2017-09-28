@@ -28,9 +28,10 @@
     margin-right: 0.5%;
   }
 
-  @import '../components/home-panel';
-  @import '../components/projects-panel';
-  @import '../components/team-panel';
-  @import '../components/side-nav-bar';
-  @import '../components/previewer';
+  @import '../components/admin-panel/home-panel';
+  @import '../components/admin-panel/projects-panel';
+  @import '../components/admin-panel/team-panel';
+  @import '../components/admin-panel/side-nav-bar';
+  @import '../components/admin-panel/previewer';
+  @import '../components/admin-panel/activities-panel';
 }
