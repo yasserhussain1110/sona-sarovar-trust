@@ -1,0 +1,45 @@
+.footer {
+  font-family: Lato;
+  .links {
+    padding: 80px 40px;
+    background-color: #363433;
+    display: flex;
+
+    h6 {
+      color: white;
+      margin-bottom: 30px;
+      font-size: 26px;
+      font-weight: normal;
+    }
+
+    li {
+      padding: 3px 0;
+    }
+
+    li > a {
+      color: #8f8b89;
+      transition: color 0.4s ease;
+    }
+
+    li > a:hover {
+      color: #ecc731;
+    }
+
+    > div {
+      flex: 1;
+      margin-right: 10px;
+      background-color: inherit;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .copyright-info {
+    background-color: #2E2D2D;
+    color: #575352;
+    font-size: 15px;
+    padding: 20px 0 20px 40px;
+  }
+}

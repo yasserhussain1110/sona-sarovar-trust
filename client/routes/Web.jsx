@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom';
 import Home from '../containers/Home';
 import About from '../containers/About';
 import Header from '../components/Web/Header';
+import Footer from '../components/Web/Footer';
 import Projects from '../containers/Projects';
 import ProjectHolder from '../containers/ProjectHolder';
 import Activities from '../containers/Activities';
@@ -21,5 +22,6 @@ export default ({match}) => (
     <Route path={`${match.url}/activities/:index`} component={ActivityHolder}/>
     <Route path={`${match.url}/donate`} component={DonationBox}/>
     <Route path={`${match.url}/donate/done`} component={DonationDoneBox}/>
+    <Footer/>
   </main>
 );
