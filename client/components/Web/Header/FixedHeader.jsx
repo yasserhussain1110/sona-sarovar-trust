@@ -32,6 +32,76 @@ const FixedHeader = ({brandLogoUrl, match, visibilityClass}) => (
       </div>
     </div>
 
+    <div className="hamburger-nav">
+      <div className="hamburger">
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
+      </div>
+
+      <div className="nav">
+        <ul className="nav-bar">
+          <li className="list-item">
+            <NavLink exact to={`${match.url}`} activeClassName="active">HOME</NavLink>
+          </li>
+          <li className="list-item">
+            <label htmlFor="checkbox1" className="dropper-label noselect">
+              ABOUT US
+            </label>
+            <input id="checkbox1" type="checkbox" className="toggler"/>
+            <div className="sub-link-dropdown">
+              <ul className="sub-link-nav-bar">
+                <li className="sub-item">
+                  <NavLink to={`${match.url}/about/history`} activeClassName="active">HISTORY</NavLink>
+                </li>
+                <li className="sub-item">
+                  <NavLink to={`${match.url}/about/vision`} activeClassName="active">VISION AND MISSION</NavLink>
+                </li>
+                <li className="sub-item">
+                  <NavLink to={`${match.url}/about/team`} activeClassName="active">TEAM</NavLink>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="list-item">
+            <label htmlFor="checkbox2" className="dropper-label noselect">
+              WHAT WE DO
+            </label>
+            <input id="checkbox2" type="checkbox" className="toggler"/>
+            <div className="sub-link-dropdown">
+              <ul className="sub-link-nav-bar">
+                <li className="sub-item">
+                  <NavLink to={`${match.url}/projects`} activeClassName="active">PROJECTS</NavLink>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="list-item">
+            <label htmlFor="checkbox3" className="dropper-label noselect">
+              GET INVOLVED
+            </label>
+            <input id="checkbox3" type="checkbox" className="toggler"/>
+            <div className="sub-link-dropdown">
+              <ul className="sub-link-nav-bar">
+                <li className="sub-item">
+                  <NavLink to={`${match.url}/involve/donate`} activeClassName="active">DONATE</NavLink>
+                </li>
+                <li className="sub-item">
+                  <NavLink to={`${match.url}/involve/volunteer`} activeClassName="active">VOLUNTEER</NavLink>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="list-item">
+            <NavLink to={`${match.url}/blog`} activeClassName="active">BLOG</NavLink>
+          </li>
+          <li className="list-item">
+            <NavLink to={`${match.url}/contact`} activeClassName="active">CONTACT US</NavLink>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <div className="nav">
       <ul className="nav-bar">
         <li className="list-item">
