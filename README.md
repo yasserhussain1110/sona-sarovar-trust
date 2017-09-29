@@ -12,6 +12,11 @@
 Please use **Node 7** for this project, as other node versions may cause
 inconsistent behaviour. 
 
+(If you use nvm)
+```shell
+  nvm install 7
+```
+
 ### Deploying the Project
 
 #### Setting Up Your System
