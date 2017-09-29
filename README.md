@@ -73,7 +73,10 @@ Then fill it up with appropriate values.
    git fetch origin ui-steroids
    git checkout ui-steroids
 ```
-
+2. Install additional dependencies
+```shell
+   npm i
+```
 2. Run npm's `start` command
 ```shell
    npm start
