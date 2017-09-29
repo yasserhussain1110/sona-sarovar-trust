@@ -59,3 +59,17 @@ Then fill it up with appropriate values.
 ```
 
 2. Go to url - [http://localhost:8080](http://localhost:8080) to see the live project
+
+#### Deploying the new ui
+
+1. Fetch the new ui branch and switch to it
+
+```shell
+   git fetch origin ui-steroids
+   git checkout ui-steroids
+```
+
+2. Run npm's `start` command
+```shell
+   npm start
+```
