@@ -24,6 +24,8 @@ inconsistent behaviour.
 
 4. Create and fill a `.env` file.
 
+First copy the `sample.env` file
+
 ```shell
    cp sample.env .env
 ```
