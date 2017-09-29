@@ -28,17 +28,25 @@ class Carousal extends Component {
      *   appears because of vertical resize of screen.
      */
 
+    this.resizeHandler = () => this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth));
+
     document.addEventListener('DOMContentLoaded', () => {
       this.scrollbarWidth = getScrollbarWidth(true);
       this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth));
     });
+  }
 
-    window.addEventListener("resize", () => this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth)));
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resizeHandler);
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.resizeHandler);
   }
 
   render() {
     const {imageLinks, messages} = this.props;
-    const {height, width, scrollState} = this.state;
+    const {height, width} = this.state;
     return (
       <div style={{height, width}} className="carousal">
         <ImageCarousal arrows={true} dots={true} imageLinks={imageLinks} viewDuration={10000}/>

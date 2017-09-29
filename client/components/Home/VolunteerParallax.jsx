@@ -1,12 +1,29 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import {getScrollHandlerForParallax} from '../../lib/helpers/domHelpers';
 
-document.addEventListener('DOMContentLoaded', () => {
-  window.addEventListener('scroll', getScrollHandlerForParallax());
-});
+class VolunteerParallax extends Component {
+  constructor(props) {
+    super(props);
 
-const VolunteerParallax = () => (
+    this.scrollHandler = null;
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.scrollHandler);
+  }
+
+  componentDidMount() {
+    this.scrollHandler = getScrollHandlerForParallax();
+    window.addEventListener('scroll', this.scrollHandler);
+  }
+
+  render() {
+    return <VolunteerParallaxView />;
+  }
+}
+
+const VolunteerParallaxView = () => (
   <div className="volunteer-parallax">
     <div className="parallax-content">
       <h1>Volunteer</h1>

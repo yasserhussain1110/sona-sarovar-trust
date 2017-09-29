@@ -11,13 +11,21 @@ class Header extends Component {
       scrollState: "top"  // "top", "scrolled"
     };
 
-    window.addEventListener('scroll', () => {
+    this.scrollHandler = () => {
       if (window.scrollY > 100) {
         this.setState({scrollState: "scrolled"});
       } else {
         this.setState({scrollState: "top"});
       }
-    });
+    };
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.scrollHandler);
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.scrollHandler);
   }
 
   render() {
