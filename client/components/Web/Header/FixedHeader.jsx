@@ -94,7 +94,7 @@ const NormalNav = ({match}) => (
 
 const DropdownNav = ({match}) => (
   <div className="hamburger-nav">
-    <label htmlFor="drop-down">
+    <label htmlFor="drop-down" className="noselect">
       <div className="hamburger">
         <div className="line"></div>
         <div className="line"></div>
@@ -111,10 +111,10 @@ const DropdownNav = ({match}) => (
           <NavLink exact to={`${match.url}`} activeClassName="active">HOME</NavLink>
         </li>
         <li className="list-item">
-          <label htmlFor="checkbox1" className="dropper-label noselect">
+          <label htmlFor="fixed-checkbox1" className="dropper-label noselect">
             ABOUT US
           </label>
-          <input id="checkbox1" type="checkbox" className="toggler"/>
+          <input id="fixed-checkbox1" type="checkbox" className="toggler"/>
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">
@@ -130,10 +130,10 @@ const DropdownNav = ({match}) => (
           </div>
         </li>
         <li className="list-item">
-          <label htmlFor="checkbox2" className="dropper-label noselect">
+          <label htmlFor="fixed-checkbox2" className="dropper-label noselect">
             WHAT WE DO
           </label>
-          <input id="checkbox2" type="checkbox" className="toggler"/>
+          <input id="fixed-checkbox2" type="checkbox" className="toggler"/>
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">
@@ -143,10 +143,10 @@ const DropdownNav = ({match}) => (
           </div>
         </li>
         <li className="list-item">
-          <label htmlFor="checkbox3" className="dropper-label noselect">
+          <label htmlFor="fixed-checkbox3" className="dropper-label noselect">
             GET INVOLVED
           </label>
-          <input id="checkbox3" type="checkbox" className="toggler"/>
+          <input id="fixed-checkbox3" type="checkbox" className="toggler"/>
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">

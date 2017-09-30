@@ -97,7 +97,7 @@
   }
 
   .nav-bar {
-    background-color: #ECC731;
+    background-color: #F3BF3C;
     text-align: center;
   }
 
@@ -171,17 +171,6 @@
   display: table;
 }
 
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently
-                                   supported by Chrome and Opera */
-}
-
 @media screen and (min-width: 380px) and (max-width: 462px) {
   .fixed-header {
     .logo-holder {
@@ -223,7 +212,7 @@
       display: inline-block;
       width: calc(100% - 10px);
       padding: 5px;
-      background-color: #EFC337;
+      background-color: #F3BF3C;
 
       .hamburger:hover {
         cursor: pointer;
