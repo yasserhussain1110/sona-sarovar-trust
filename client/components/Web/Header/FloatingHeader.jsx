@@ -32,7 +32,7 @@ const FloatingHeader = ({visibilityClass, brandLogoUrl, match}) => (
       </div>
     </div>
 
-    <label className="noselect" htmlFor="float-dropper">
+    <label className="noselect drop-down-button" htmlFor="float-dropper">
       <SvgIcon icon={caretDown} size={20}/>
     </label>
 
