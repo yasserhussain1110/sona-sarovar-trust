@@ -43,3 +43,20 @@
     padding: 20px 0 20px 40px;
   }
 }
+
+@media screen and (max-width: 932px) {
+  .footer {
+    .links {
+      display: inline-block;
+      width: calc(100% - 80px);
+    }
+
+    .links h6 {
+      margin-bottom: 10px;
+    }
+
+    .links > div {
+      margin: 20px 0;
+    }
+  }
+}

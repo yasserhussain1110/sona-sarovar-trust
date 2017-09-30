@@ -283,3 +283,91 @@
     }
   }
 }
+
+@media screen and (max-width: 690px) {
+  .floating-header {
+    .quick-links-holder {
+      width: 70%;
+    }
+  }
+
+  .drop-down-button {
+    float: right;
+    margin: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .floating-header {
+    .quick-links-holder {
+      width: 70%;
+    }
+  }
+
+  .drop-down-button {
+    float: right;
+    margin: 20px 10px;
+  }
+}
+
+@media screen and (max-width: 531px) {
+  .floating-header {
+    .quick-links-holder {
+      width: 60%;
+      margin-left: 5%;
+    }
+  }
+
+  .drop-down-button {
+    float: right;
+    margin: 20px 10px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .floating-header {
+    .quick-links-holder {
+      width: 70%;
+      margin-left: 0%;
+    }
+  }
+
+  .drop-down-button {
+    float: right;
+    margin: 20px 0;
+  }
+}
+
+@media screen and (min-width: 380px) and (max-width: 464px) {
+  .floating-header {
+    .logo-holder {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 57px;
+    }
+
+    .logo-holder > img {
+      width: 100px;
+      height: 70px;
+    }
+
+    .quick-links-holder {
+      width: 80%;
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+
+    .drop-down-button {
+      float: none;
+      text-align: center;
+      width: 100%;
+      display: inline-block;
+    }
+
+    .drop-down-button svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+}
