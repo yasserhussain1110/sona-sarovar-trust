@@ -346,3 +346,19 @@
     }
   }
 }
+
+@media screen and (min-width: 600px) and (max-width: 680px) {
+  .fixed-header {
+    .sub-link-dropdown {
+      max-width: 140%;
+    }
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .fixed-header {
+    .sub-link-dropdown {
+      max-width: 100%;
+    }
+  }
+}
