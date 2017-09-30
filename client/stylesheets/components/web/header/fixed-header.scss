@@ -157,17 +157,33 @@
 
   .hamburger-nav {
     display: none;
+    text-align: right;
   }
+}
 
-  .hamburger {
-    .line {
-      width: 25px;
-      height: 4px;
-      border-bottom: 2px solid white;
-    }
-  }
+.floater {
+  display: inline;
+}
 
-  @media screen and (max-width: 462px) {
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                   supported by Chrome and Opera */
+}
+
+@media screen and (min-width: 380px) and (max-width: 462px) {
+  .fixed-header {
     .logo-holder {
       display: block;
       margin: 0;
@@ -199,16 +215,43 @@
       width: 300px;
     }
 
-    .hamburger {
-      display: inline-block;
+    .normal-nav {
+      display: none;
     }
 
     .hamburger-nav {
       display: inline-block;
-      text-align: right;
       width: calc(100% - 10px);
       padding: 5px;
       background-color: #EFC337;
+
+      .hamburger:hover {
+        cursor: pointer;
+      }
+
+      .hamburger {
+        display: inline-block;
+        .line {
+          width: 25px;
+          height: 4px;
+          border-bottom: 2px solid white;
+
+          &:last-of-type {
+            border-bottom: none;
+          }
+        }
+      }
+      .nav {
+        display: none;
+      }
+
+      #drop-down {
+        display: none;
+      }
+
+      #drop-down:checked + .nav {
+        display: inline;
+      }
 
       .list-item {
         display: block;
@@ -252,8 +295,10 @@
       }
     }
   }
+}
 
-  @media screen and (min-width: 463px) and (max-width: 650px) {
+@media screen and (min-width: 463px) and (max-width: 650px) {
+  .fixed-header {
     .quick-links-holder {
       padding: 0 5px;
       margin-top: 0;
@@ -300,24 +345,4 @@
       background-color: #ffde00;
     }
   }
-}
-
-.floater {
-  display: inline;
-}
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
 }

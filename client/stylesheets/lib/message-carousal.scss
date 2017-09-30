@@ -1,19 +1,21 @@
 .carousal-message-container {
-  background-color: #FAD81B;
   position: absolute;
   color: $black;
   right: 20px;
-  bottom: 20px;
+  bottom: 5px;
+  height: 120px;
+  overflow: hidden;
   width: 30%;
-  height: 15%;
   font: $main-font;
   font-size: 24px;
   line-height: 1.0em;
+  display: inline;
 
   .message {
+    background-color: #FAD81B;
     position: absolute;
-    padding: 10px;
-    transition: all 0.6s ease-in-out;
+    padding: 5px;
+    transition: opacity 0.6s ease-in-out;
   }
 
   .inactive {
@@ -22,5 +24,33 @@
 
   .active {
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 380px) and (max-width: 462px) {
+  .carousal-message-container {
+    font-size: 12px;
+    right: 5px;
+    width: 40%;
+    height: 60px;
+    overflow: hidden;
+  }
+}
+
+@media screen and (min-width: 463px) and (max-width: 650px) {
+  .carousal-message-container {
+    font-size: 16px;
+    right: 5px;
+    width: 40%;
+    height: 80px;
+  }
+}
+
+@media screen and (min-width: 651px) and (max-width: 950px) {
+  .carousal-message-container {
+    font-size: 16px;
+    right: 5px;
+    width: 40%;
+    height: 80px;
   }
 }

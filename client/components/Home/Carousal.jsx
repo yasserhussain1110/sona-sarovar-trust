@@ -4,9 +4,21 @@ import MessageCarousal from '../../lib/components/MessageCarousal';
 import getScrollbarWidth from 'scrollbar-width';
 import {getViewPortWidth} from '../../lib/helpers/domHelpers';
 
+const getHeightRatio = viewPortWidth => {
+  if (viewPortWidth >= 380 && viewPortWidth <= 462) {
+    return 0.8;
+  } else if (viewPortWidth >= 463 && viewPortWidth <= 650) {
+    return 0.8;
+  } else if (viewPortWidth >= 651) {
+    return 0.35;
+  }
+};
+
 const getSizeSubStateFromSrollBarWidth = scrollbarWidth => {
   scrollbarWidth = scrollbarWidth || 0;
-  const ratio = 0.35;
+  const viewPortWidth = getViewPortWidth();
+  const heightRatio = getHeightRatio(viewPortWidth);
+  const ratio = heightRatio;
   const width = getViewPortWidth() - scrollbarWidth;
   return {
     width,
