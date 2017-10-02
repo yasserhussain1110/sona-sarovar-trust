@@ -32,9 +32,18 @@ class Carousal extends Component {
   constructor(props) {
     super(props);
 
-    this.scrollbarWidth = null;
+    this.state = getSizeSubStateFromSrollBarWidth();
 
-    this.state = getSizeSubStateFromSrollBarWidth(this.scrollbarWidth);
+    const scrollBarWidth = getScrollbarWidth(true);
+    if (scrollBarWidth) {
+      this.scrollbarWidth = scrollBarWidth;
+      this.state = getSizeSubStateFromSrollBarWidth(this.scrollbarWidth);
+    } else {
+      document.addEventListener('DOMContentLoaded', () => {
+        this.scrollbarWidth = getScrollbarWidth(true);
+        this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth));
+      });
+    }
 
     /*
      * This optimisation will not work in the following edge case -
@@ -43,11 +52,6 @@ class Carousal extends Component {
      */
 
     this.resizeHandler = () => this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth));
-
-    document.addEventListener('DOMContentLoaded', () => {
-      this.scrollbarWidth = getScrollbarWidth(true);
-      this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth));
-    });
   }
 
   componentWillUnmount() {
