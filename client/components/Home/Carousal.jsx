@@ -11,6 +11,8 @@ const getHeightRatio = viewPortWidth => {
     return 0.8;
   } else if (viewPortWidth >= 651) {
     return 0.35;
+  } else {
+    return 0.8;
   }
 };
 
