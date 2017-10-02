@@ -46,3 +46,33 @@
     }
   }
 }
+
+@media screen and (min-width: 571px) and (max-width: 1040px) {
+  .volunteer-parallax {
+    .parallax-content {
+      p {
+        width: 60%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .volunteer-parallax {
+    .parallax-content {
+      p {
+        width: 80%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .volunteer-parallax {
+    .parallax-content {
+      p {
+        width: 90%;
+      }
+    }
+  }
+}

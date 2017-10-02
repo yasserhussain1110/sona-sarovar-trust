@@ -12,6 +12,17 @@
     margin: 40px 10px;
   }
 
+  .iframe-holder {
+    width: 400px;
+    height: 250px;
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
   .img-holder {
     width: 400px;
     height: 250px;
@@ -52,5 +63,27 @@
   .button:hover {
     background-color: #ECC731;
     color: black;
+  }
+}
+
+@media screen and (max-width: 438px) {
+  .media-events-blog {
+    > .link-holder > div {
+      margin: 40px 0;
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .media-events-blog {
+    .img-holder {
+      width: 350px;
+      height: 250px;
+    }
+
+    .iframe-holder {
+      width: 350px;
+      height: 250px;
+    }
   }
 }
