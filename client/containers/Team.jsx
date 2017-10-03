@@ -11,29 +11,29 @@ const Team = () => (
           Each one of our Trustees holds CRY’s interest above everything else,
           sharing a firm belief in values of public trust, collective …
           <div className="button-holder">
-            <button className="button">READ MORE</button>
+            <NavLink to="trustees" className="button">READ MORE</NavLink>
           </div>
         </div>
       </div>
 
       <div className="technical-team sub-team">
-        <h2><NavLink to="technical">TECHNICAL TEAM</NavLink></h2>
+        <h2><NavLink to="technical-team">TECHNICAL TEAM</NavLink></h2>
         <div className="details">
           Each one of our Trustees holds CRY’s interest above everything else,
           sharing a firm belief in values of public trust, collective …
           <div className="button-holder">
-            <button className="button">READ MORE</button>
+            <NavLink to="technical-team" className="button">READ MORE</NavLink>
           </div>
         </div>
       </div>
 
       <div className="brand-ambassador sub-team">
-        <h2><NavLink to="ambassador">BRAND AMBASSADOR</NavLink></h2>
+        <h2><NavLink to="brand-ambassador">BRAND AMBASSADOR</NavLink></h2>
         <div className="details">
           Each one of our Trustees holds CRY’s interest above everything else,
           sharing a firm belief in values of public trust, collective …
           <div className="button-holder">
-            <button className="button">READ MORE</button>
+            <NavLink to="brand-ambassador" className="button">READ MORE</NavLink>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ const Team = () => (
           Each one of our Trustees holds CRY’s interest above everything else,
           sharing a firm belief in values of public trust, collective …
           <div className="button-holder">
-            <button className="button">READ MORE</button>
+            <NavLink to="volunteers" className="button">READ MORE</NavLink>
           </div>
         </div>
       </div>
