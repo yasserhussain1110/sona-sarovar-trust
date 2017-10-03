@@ -1,0 +1,62 @@
+.team {
+  font-family: 'Lato', sans-serif;
+
+  > h1 {
+    color: white;
+    background-color: #5D5D5D;
+    padding: 30px;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  > .page-content {
+    width: 100%;
+    margin: 30px auto;
+    text-align: center;
+  }
+
+  .sub-team {
+    border: 1px solid #cccccc;
+    display: inline-block;
+    padding: 20px;
+    width: 330px;
+    height: 180px;
+    text-align: left;
+    margin: 15px;
+    vertical-align: top;
+    > h2 {
+      > a {
+        color: black;
+      }
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    > .details {
+      color: #727272;
+    }
+  }
+
+  .button-holder {
+    width: 100%;
+    margin-top: 40px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .button {
+    background-color: black;
+    color: #D6B014;
+    border-radius: 0;
+    padding: 10px 40px;
+    font-size: 12px;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .button:hover {
+    background-color: #EFC337;
+    color: black;
+  }
+
+}
