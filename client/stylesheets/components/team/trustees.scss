@@ -16,44 +16,15 @@
   }
 
   .trustee-info {
-    text-align: left;
-    padding: 10px;
-    border: 1px dotted #c3c3c3;
     display: inline-block;
-    width: calc(50% - 42px);
-    margin: 15px 10px;
+    width: calc(50% - 20px);
+    margin: 10px;
     vertical-align: top;
-    border-radius: 5px;
 
-    .more {
-      margin-top: 5px;
-      padding: 10px;
-    }
-
-    h2 {
-      color: #32302f;
-      font-size: 24px;
-      font-weight: 400;
-    }
-
-    .designation {
-      font-style: italic;
-      font-size: 16px;
-      color: #6b6864;
-    }
-
-    .trustee-details {
-      color: #727272;
-      font-size: 14px;
+    > .img-holder {
       display: inline-block;
-      width: calc(100% - 70px);
-      margin-bottom: 20px;
-    }
-
-    .img-holder {
-      display: inline-block;
-      width: 50px;
-      height: 50px;
+      width: 200px;
+      height: 200px;
       margin-right: 20px;
       vertical-align: top;
     }
@@ -61,6 +32,30 @@
     img {
       width: 100%;
       height: 100%;
+      border-radius: 50%;
+    }
+
+    > .info-holder {
+      display: inline-block;
+      width: calc(100% - 220px);
+
+      > .name > h2 {
+        font-size: 24px;
+        color: #878787;
+      }
+
+      > .designation {
+        font-style: italic;
+        font-size: 16px;
+        color: #6b6864;
+        margin: 5px 0;
+      }
+
+      > .details {
+        color: #727272;
+        font-size: 14px;
+        line-height: 20px;
+      }
     }
   }
 }

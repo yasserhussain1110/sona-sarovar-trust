@@ -5,48 +5,64 @@ const Trustees = () => (
     <h1>Trustees</h1>
     <div className="page-content">
       <div className="trustee-info">
-        <div className="name">
-          <h2>Ratan Batliboi</h2>
+        <div className="img-holder">
+          <img src="https://www.cry.org/images/img-015.jpg"/>
         </div>
-        <div className="designation">
-          <span>Board Chair & Hon. Trustee, Mumbai</span>
-        </div>
-        <div className="more">
-          <div className="img-holder">
-            <img src="https://www.cry.org/images/img-013.jpg" />
+        <div className="info-holder">
+          <div className="name">
+            <h2>Xyz Kumar</h2>
           </div>
 
-          <div className="trustee-details">
+          <div className="designation">
+            <span>Chief Of Opera</span>
+          </div>
+
+          <div className="details">
             <p>
-              Rippan’s junior in school, Ratan has had a long association with him till in 1991,
-              Ratan joined CRY as a trustee. Ever since, he has been like a steady rock for CRY.
+              adhas da skdhask dhajd kja dkjah dsk
+              asghd as dhkjahsdkh ajkshd jkasasd asd
+              asdasjdh kjash djkasdjk jaksdkasj d
+
+              adhas da skdhask dhajd kja dkjah dsk
+              asghd as dhkjahsdkh ajkshd jkasasd asd
+              asdasjdh kjash djkasdjk jaksdkasj d
+
+              adhas da skdhask dhajd kja dkjah dsk
+              asghd as dhkjahsdkh ajkshd jkasasd asd
+              asdasjdh kjash djkasdjk jaksdkasj d
+            </p>
+            <p>
+              adhas da skdhask dhajd kja dkjah dsk
+              asghd as dhkjahsdkh ajkshd jkasasd asd
+              asdasjdh kjash djkasdjk jaksdkasj d
             </p>
           </div>
         </div>
       </div>
 
       <div className="trustee-info">
-        <div className="name">
-          <h2>Mahnaz Curmally</h2>
+        <div className="img-holder">
+          <img src="https://www.cry.org/images/img-015.jpg"/>
         </div>
-        <div className="designation">
-          <span>Trustee, Mumbai</span>
-        </div>
-        <div className="more">
-          <div className="img-holder">
-            <img src="https://www.cry.org/images/img-015.jpg" />
+        <div className="info-holder">
+          <div className="name">
+            <h2>Xyz Kumar</h2>
           </div>
 
+          <div className="designation">
+            <span>Chief Of Opera</span>
+          </div>
 
-          <div className="trustee-details">
+          <div className="details">
             <p>
-              A skilled writer with acknowledged strategy and consulting skills, communication experience
-              of over 30 years that extends across specialist PR practices like opinion mobilization,
-              advocacy strategy and more.
+              adhas da skdhask dhajd kja dkjah dsk
+              asghd as dhkjahsdkh ajkshd jkasasd asd
+              asdasjdh kjash djkasdjk jaksdkasj d
             </p>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 );
