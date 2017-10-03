@@ -59,4 +59,8 @@
     color: black;
   }
 
+  @import "../components/team/brand-ambassador";
+  @import "../components/team/technical-team";
+  @import "../components/team/trustees";
+  @import "../components/team/volunteer";
 }
