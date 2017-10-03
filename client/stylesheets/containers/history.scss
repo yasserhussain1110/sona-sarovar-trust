@@ -1,0 +1,55 @@
+.history {
+  font-family: 'Lato', sans-serif;
+
+  > h1 {
+    color: white;
+    background-color: #5D5D5D;
+    padding: 30px;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  > .page-content {
+    width: 85%;
+    margin: 30px auto;
+    padding: 10px 30px;
+    border: 1px solid #cccccc;
+  }
+
+  .iframe-holder {
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  .text-holder {
+    width: 1000px;
+    margin: 10px auto;
+  }
+
+  p {
+    line-height: 30px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  .quote {
+    font-weight: 700;
+    font-size: 22px;
+    color: #6B686D;
+    width: 800px;
+    text-align: center;
+    margin: 0 auto;
+
+    small {
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  }
+}
