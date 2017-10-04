@@ -48,7 +48,7 @@ const activities = (state = defaultState, action) => {
             activity.pics = activity.pics.filter(pic => pic !== action.pic);
           })
       };
-    case 'UPDATED_ACTIVITY_PIC':
+    case 'UPDATED_ACTIVITY_PIC': {
       const selectedActivity = state.activitiesUndertaken[action.activityIndex];
       const picIndex = selectedActivity.pics.findIndex(pic => pic._id === action.picId);
       return {
@@ -60,6 +60,7 @@ const activities = (state = defaultState, action) => {
             });
           })
       };
+    }
     default:
       return state;
   }

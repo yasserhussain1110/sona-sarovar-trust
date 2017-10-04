@@ -10,7 +10,7 @@ const about = (state = defaultState, action) => {
       return {
         teamMembers: action.teamMembers
       };
-    case 'UPDATED_TEAM_MEMBER':
+    case 'UPDATED_TEAM_MEMBER': {
       const teamMemberIndex =
         state.teamMembers.findIndex(teamMember => teamMember._id === action.teamMember._id);
 
@@ -19,6 +19,7 @@ const about = (state = defaultState, action) => {
           Object.assign(teamMember, action.teamMember);
         })
       };
+    }
     default:
       return state;
   }

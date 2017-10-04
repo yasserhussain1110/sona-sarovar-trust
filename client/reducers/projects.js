@@ -47,7 +47,7 @@ const projects = (state = defaultState, action) => {
           project.pics = project.pics.filter(pic => pic !== action.pic);
         })
       };
-    case 'UPDATED_PROJECT_PIC':
+    case 'UPDATED_PROJECT_PIC': {
       const selectedProject = state.projectsDone[action.projectIndex];
       const picIndex = selectedProject.pics.findIndex(pic => pic._id === action.picId);
       return {
@@ -58,6 +58,7 @@ const projects = (state = defaultState, action) => {
             });
           })
       };
+    }
     default:
       return state;
   }
