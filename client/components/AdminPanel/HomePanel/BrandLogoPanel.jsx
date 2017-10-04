@@ -90,7 +90,7 @@ const BrandLogoPanelView = ({brandLogoUrl, showUpdateLogoModal, showingUpdateLog
     <h2>Brand Logo Panel</h2>
     <div className="current-logo">
       <h3>Current Logo</h3>
-      {brandLogoUrl ? <img src={brandLogoUrl}/> : ""}
+      {brandLogoUrl ? <img src={brandLogoUrl}/> : ''}
     </div>
 
     <div className="new-logo">

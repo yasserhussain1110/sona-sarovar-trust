@@ -13,7 +13,7 @@ class CaptionsPanel extends Component {
 
     this.state = {
       showModalForm: false,
-      formMode: "",   // "add", "update", "delete"
+      formMode: '',   // "add", "update", "delete"
       selectedCaptionIndex: -1
     };
 
@@ -24,24 +24,24 @@ class CaptionsPanel extends Component {
   }
 
   close() {
-    this.setState({showModalForm: false, formMode: "", selectedCaptionIndex: -1});
+    this.setState({showModalForm: false, formMode: '', selectedCaptionIndex: -1});
   }
 
   addCaption() {
-    this.setState({showModalForm: true, formMode: "add", selectedCaptionIndex: -1});
+    this.setState({showModalForm: true, formMode: 'add', selectedCaptionIndex: -1});
   }
 
   deleteCaption(captionIndex) {
-    this.setState({showModalForm: true, formMode: "delete", selectedCaptionIndex: captionIndex});
+    this.setState({showModalForm: true, formMode: 'delete', selectedCaptionIndex: captionIndex});
   }
 
   updateCaption(captionIndex) {
-    this.setState({showModalForm: true, formMode: "update", selectedCaptionIndex: captionIndex});
+    this.setState({showModalForm: true, formMode: 'update', selectedCaptionIndex: captionIndex});
   }
 
   getModalContent() {
     switch (this.state.formMode) {
-      case "add":
+      case 'add':
         return (
           <AddCaptionForm
             onSuccess={caption => {
@@ -67,7 +67,7 @@ class CaptionsPanel extends Component {
             close={this.close}
           />
         );
-      case "update":
+      case 'update':
         return (
           <UpdateCaptionForm
             onSuccess={captionText => {
@@ -94,7 +94,7 @@ class CaptionsPanel extends Component {
             close={this.close}
           />
         );
-      case "delete":
+      case 'delete':
         return (
           <DeleteCaptionForm
             onSuccess={() => {

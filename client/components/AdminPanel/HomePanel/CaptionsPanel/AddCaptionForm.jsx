@@ -9,7 +9,7 @@ class AddCaptionForm extends Component {
 
     this.state = {
       errorTextAreaEmpty: false,
-      textAreaValue: ""
+      textAreaValue: ''
     };
 
     this.addCaption = this.addCaption.bind(this);
@@ -45,7 +45,7 @@ class AddCaptionForm extends Component {
       .catch(err => {
         handleCommonErrors(err);
         console.log(err);
-        this.props.onFailure ? this.props.onFailure() : "";
+        this.props.onFailure ? this.props.onFailure() : '';
       });
 
   }
@@ -60,7 +60,7 @@ class AddCaptionForm extends Component {
           value={this.state.textAreaValue}
           onChange={this.updateTextAreaValue}/> {this.state.errorTextAreaEmpty ?
         <span className="error">TextArea should not be empty</span>
-        : ""}
+        : ''}
         <div className="button-holder">
           <button className="add-button" onClick={this.addCaption}>Add</button>
           <button className="cancel-button" onClick={this.close}>Cancel</button>

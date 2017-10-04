@@ -6,7 +6,7 @@ import StatusBox from '../../../lib/components/StatusBox';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
 const getFileInputCorrespondingToForm = e =>
-  e.target.parentElement.parentElement.querySelector("input[type='file']");
+  e.target.parentElement.parentElement.querySelector('input[type=\'file\']');
 
 class TeamMemberUpdater extends Component {
   constructor(props) {
@@ -18,9 +18,9 @@ class TeamMemberUpdater extends Component {
       name,
       info,
       pic,
-      nameError: "",
-      infoError: "",
-      picError: ""
+      nameError: '',
+      infoError: '',
+      picError: ''
     };
 
     this.updateName = this.updateName.bind(this);
@@ -34,7 +34,7 @@ class TeamMemberUpdater extends Component {
   }
 
   resetValidationErrors() {
-    this.setState({nameError: "", infoError: "", picError: ""});
+    this.setState({nameError: '', infoError: '', picError: ''});
   }
 
   validateAndUpdateErrorState(e) {
@@ -44,12 +44,12 @@ class TeamMemberUpdater extends Component {
     let isValid = true;
 
     if (!name) {
-      this.setState({nameError: "Name cannot be empty"});
+      this.setState({nameError: 'Name cannot be empty'});
       isValid = false;
     }
 
     if (!info) {
-      this.setState({infoError: "Info cannot be empty"});
+      this.setState({infoError: 'Info cannot be empty'});
       isValid = false;
     }
 
@@ -57,10 +57,10 @@ class TeamMemberUpdater extends Component {
     let fileList = fileInput.files;
 
     if (fileList.length > 0) {
-      let validImageTypes = ["image/gif", "image/jpeg", "image/png"];
-      if (validImageTypes.indexOf(fileList[0]["type"]) === -1) {
+      let validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+      if (validImageTypes.indexOf(fileList[0]['type']) === -1) {
         this.setState({
-          picError: "Picture must have an image type extension."
+          picError: 'Picture must have an image type extension.'
         });
 
         isValid = false;

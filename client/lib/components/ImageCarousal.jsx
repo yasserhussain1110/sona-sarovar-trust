@@ -33,7 +33,7 @@ class ImageCarousal extends Component {
   render() {
     return (
       <div className="carousal-image-container">{this.props.imageLinks.map((link, index) => (
-        <img key={index} className={this.isImageShowing(index) ? "active" : "inactive"} src={link}/>))}
+        <img key={index} className={this.isImageShowing(index) ? 'active' : 'inactive'} src={link}/>))}
       </div>
     );
   }

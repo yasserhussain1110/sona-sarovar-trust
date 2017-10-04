@@ -9,7 +9,7 @@ const TextFieldsHolder = ({name, info, updateName, updateInfo, nameError, infoEr
       <div className="input">
         <input type="text" onChange={updateName} value={name}/>
       </div>
-      <div className={`error-holder ${nameError ? "shown" : "hidden"}`}>
+      <div className={`error-holder ${nameError ? 'shown' : 'hidden'}`}>
         <span className="error">{nameError}</span>
       </div>
     </div>
@@ -21,7 +21,7 @@ const TextFieldsHolder = ({name, info, updateName, updateInfo, nameError, infoEr
       <div className="input">
         <input type="text" onChange={updateInfo} value={info}/>
       </div>
-      <div className={`error-holder ${infoError ? "shown" : "hidden"}`}>
+      <div className={`error-holder ${infoError ? 'shown' : 'hidden'}`}>
         <span className="error">{infoError}</span>
       </div>
     </div>

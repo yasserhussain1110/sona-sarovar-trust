@@ -21,7 +21,7 @@ export default ({username, password, updateUsername, updatePassword, submitForm,
       </div>
 
       <div className="last-row">
-        <div className="error-box" style={{visibility: error ? "initial" : "hidden"}}>
+        <div className="error-box" style={{visibility: error ? 'initial' : 'hidden'}}>
           <span className="error">{error}</span>
         </div>
 

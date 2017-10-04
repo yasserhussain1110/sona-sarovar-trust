@@ -32,8 +32,8 @@ class PicForm extends Component {
       return false;
     }
 
-    let validImageTypes = ["image/gif", "image/jpeg", "image/png"];
-    if (validImageTypes.indexOf(file["type"]) === -1) {
+    let validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+    if (validImageTypes.indexOf(file['type']) === -1) {
       this.setState({
         fileNotAPic: true
       });
@@ -58,7 +58,7 @@ class PicForm extends Component {
       .catch(err => {
         handleCommonErrors(err);
         console.log(err);
-        this.props.onFailure ? this.props.onFailure() : "";
+        this.props.onFailure ? this.props.onFailure() : '';
       });
   }
 
@@ -76,13 +76,13 @@ class PicForm extends Component {
       .catch(err => {
         handleCommonErrors(err);
         console.log(err);
-        this.props.onFailure ? this.props.onFailure() : "";
+        this.props.onFailure ? this.props.onFailure() : '';
       });
   }
 
   uploadPic(e) {
     e.preventDefault();
-    this.props.mode === "add" ? this.putPic() : this.patchPic();
+    this.props.mode === 'add' ? this.putPic() : this.patchPic();
   };
 
   render() {
@@ -106,11 +106,11 @@ const Form = ({noPicSelected, fileNotAPic, uploadPic, resetErrors, close}) => (
         <input id="pic" name="pic" type="file" onChange={resetErrors}/>
       </div>
 
-      <div className={`error uploading-without-pic ${noPicSelected ? "" : "hidden" }`}>
+      <div className={`error uploading-without-pic ${noPicSelected ? '' : 'hidden' }`}>
         <span>Please select a picture to continue uploading</span>
       </div>
 
-      <div className={`error file-not-pic ${fileNotAPic ? "" : "hidden"}`}>
+      <div className={`error file-not-pic ${fileNotAPic ? '' : 'hidden'}`}>
         <span>Must upload a picture</span>
       </div>
 

@@ -11,12 +11,12 @@ class DonationDoneBox extends Component {
     this.state = {
       receivedResult: false,
       paymentSucceeded: false,
-      paymentId: ""
+      paymentId: ''
     };
   }
 
   componentDidMount() {
-    const paymentId = getParameterByName("payment_id");
+    const paymentId = getParameterByName('payment_id');
     this.setState({paymentId});
 
     if (!paymentId) return;
@@ -44,17 +44,17 @@ class DonationDoneBox extends Component {
 const DonationDoneBoxView = ({paymentSucceeded, receivedResult, paymentId}) => (
   <div className="donation-done-box">
     <Modal show={true}>
-      <div className={`wait-box ${receivedResult ? "hide" : "show"}`}>
+      <div className={`wait-box ${receivedResult ? 'hide' : 'show'}`}>
         <p>We are fetching payment status. Please wait...</p>
       </div>
 
-      <div className={`donation-status ${receivedResult ? "show" : "hide"}`}>
+      <div className={`donation-status ${receivedResult ? 'show' : 'hide'}`}>
         <div className="message">
-          <div className={`success-message ${paymentSucceeded ? "show" : "hide"}`}>
+          <div className={`success-message ${paymentSucceeded ? 'show' : 'hide'}`}>
             <span><h3>Thank You! Your donation was received successfully.</h3></span>
           </div>
 
-          <div className={`failure-message ${paymentSucceeded ? "hide" : "show"}`}>
+          <div className={`failure-message ${paymentSucceeded ? 'hide' : 'show'}`}>
             <span><h3>Sorry! Your donation could not be received.</h3></span>
           </div>
 

@@ -45,7 +45,7 @@ class MainTextPanel extends Component {
         this.props.updatedMainTextPara2(text);
         break;
       default:
-        console.log("Main Text neither 1 nor 2, something is wrong");
+        console.log('Main Text neither 1 nor 2, something is wrong');
         return;
     }
 
@@ -61,7 +61,7 @@ class MainTextPanel extends Component {
     if (number === 1 || number === 2) {
       this.setState({selectedMainTextParaNumber: number, showModalForm: true});
     } else {
-      console.log("Number should not have been " + number);
+      console.log('Number should not have been ' + number);
     }
   }
 

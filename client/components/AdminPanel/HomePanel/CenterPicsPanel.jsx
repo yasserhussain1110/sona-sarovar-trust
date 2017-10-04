@@ -14,7 +14,7 @@ class CenterPicsPanel extends Component {
 
     this.state = {
       showModalForm: false,
-      picFormMode: "",   // "update", "add", "delete"
+      picFormMode: '',   // "update", "add", "delete"
       selectedCenterPicIndex: -1
     };
 
@@ -92,12 +92,12 @@ class CenterPicsPanel extends Component {
   }
 
   closeModal() {
-    this.setState({showModalForm: false, picFormMode: ""});
+    this.setState({showModalForm: false, picFormMode: ''});
   }
 
   getModalContent() {
     switch (this.state.picFormMode) {
-      case "delete":
+      case 'delete':
         return (
           <DeletePic
             pic={this.props.centerPics[this.state.selectedCenterPicIndex]}
@@ -107,7 +107,7 @@ class CenterPicsPanel extends Component {
             authToken={this.props.authToken}
           />
         );
-      case "update":
+      case 'update':
         return (
           <AddOrUpdatePic
             pic={this.props.centerPics[this.state.selectedCenterPicIndex]}
@@ -118,7 +118,7 @@ class CenterPicsPanel extends Component {
             onFailure={this.picUpdateFailure}
           />
         );
-      case "add":
+      case 'add':
         return (
           <AddOrUpdatePic
             pic={null}
@@ -149,7 +149,7 @@ class CenterPicsPanel extends Component {
               <button
                 onClick={e => this.setState({
                   showModalForm: true,
-                  picFormMode: "update",
+                  picFormMode: 'update',
                   selectedCenterPicIndex: index
                 })}
                 className="button update-button">
@@ -159,7 +159,7 @@ class CenterPicsPanel extends Component {
               <button
                 onClick={e => this.setState({
                   showModalForm: true,
-                  picFormMode: "delete",
+                  picFormMode: 'delete',
                   selectedCenterPicIndex: index
                 })}
                 className="button delete-button">
@@ -173,7 +173,7 @@ class CenterPicsPanel extends Component {
             className="add-pic-button"
             onClick={e => this.setState({
               showModalForm: true,
-              picFormMode: "add",
+              picFormMode: 'add',
               selectedCenterPicIndex: -1
             })}>
             Add Pic
@@ -226,7 +226,7 @@ const AddOrUpdatePic = ({pic, closeModal, authToken, mode, onSuccess, onFailure}
         close={closeModal}
         authToken={authToken}
         mode={mode}
-        url={`/api/home-page/center-pic${mode === "update" ? `/${pic._id}` : ""}`}
+        url={`/api/home-page/center-pic${mode === 'update' ? `/${pic._id}` : ''}`}
         onSuccess={onSuccess}
         onFailure={onFailure}
       />

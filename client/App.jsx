@@ -35,7 +35,7 @@ class App extends Component {
       axios.get('/api/admin/isLoggedIn', {headers: {'x-auth': authToken}})
         .catch(e => {
           logOut();
-          console.log(e, "Not logged In");
+          console.log(e, 'Not logged In');
         });
     }
   }

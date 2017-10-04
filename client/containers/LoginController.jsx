@@ -11,9 +11,9 @@ class LoginController extends Component {
     super(props);
 
     this.state = {
-      username: "",
-      password: "",
-      error: ""
+      username: '',
+      password: '',
+      error: ''
     };
 
     this.submitForm = this.submitForm.bind(this);
@@ -22,9 +22,9 @@ class LoginController extends Component {
   validateInputAndUpdateError() {
     let {username, password} = this.state;
     if (!username) {
-      this.setState({error: "Username cannot be empty"});
+      this.setState({error: 'Username cannot be empty'});
     } else if (!password) {
-      this.setState({error: "Password cannot be empty"});
+      this.setState({error: 'Password cannot be empty'});
     } else {
       return true;
     }
@@ -48,7 +48,7 @@ class LoginController extends Component {
       .catch(error => {
         handleCommonErrors(error);
         console.log(error);
-        this.setState({error: "Username or Password Invalid", username: "", password: ""});
+        this.setState({error: 'Username or Password Invalid', username: '', password: ''});
       });
   }
 

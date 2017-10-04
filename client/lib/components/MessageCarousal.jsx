@@ -33,7 +33,7 @@ class MessageCarousal extends Component {
   render() {
     return (
       <div className="carousal-message-container">{this.props.messages.map((message, index) => (
-        <div key={index} className={`${this.isMessageShowing(index) ? "active" : "inactive"} message`}>
+        <div key={index} className={`${this.isMessageShowing(index) ? 'active' : 'inactive'} message`}>
           {message}
         </div>))}
       </div>

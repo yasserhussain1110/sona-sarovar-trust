@@ -47,7 +47,7 @@ class UpdateMainTextForm extends Component {
       })
       .catch(err => {
         handleCommonErrors(err);
-        onFailure ? onFailure() : "";
+        onFailure ? onFailure() : '';
         console.log(err);
       });
   }
@@ -60,7 +60,7 @@ class UpdateMainTextForm extends Component {
           value={this.state.textAreaValue}
           onChange={this.updateTextAreaValue}
           onFocus={e => this.setState({errorTextAreaEmpty: false})}/>{this.state.errorTextAreaEmpty ?
-        <span className="error">Text area must not be empty.</span> : ""}
+        <span className="error">Text area must not be empty.</span> : ''}
         <div className="button-holder">
           <button onClick={this.updateMainText}>Update</button>
           <button onClick={this.reset}>Reset</button>

@@ -8,11 +8,11 @@ import StatusPanel from '../../../lib/components/StatusPanel';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
 const createUXState = () => ({
-  name: "",
-  description: "",
-  nameError: "",
-  descriptionError: "",
-  picsError: ""
+  name: '',
+  description: '',
+  nameError: '',
+  descriptionError: '',
+  picsError: ''
 });
 
 const createInitState = () => ({
@@ -33,11 +33,11 @@ class ActivityAddPanel extends Component {
 
   resetForm() {
     this.setState(createUXState());
-    document.getElementById("add-panel-pic").value = null;
+    document.getElementById('add-panel-pic').value = null;
   }
 
   clearValidation() {
-    this.setState({nameError: "", descriptionError: "", picsError: ""});
+    this.setState({nameError: '', descriptionError: '', picsError: ''});
   }
 
   validateFields() {
@@ -47,18 +47,18 @@ class ActivityAddPanel extends Component {
     let isValid = true;
 
     if (!name) {
-      this.setState({nameError: "Name field cannot be empty"});
+      this.setState({nameError: 'Name field cannot be empty'});
       isValid = false;
     }
 
     if (!description) {
-      this.setState({descriptionError: "Description field cannot be empty"});
+      this.setState({descriptionError: 'Description field cannot be empty'});
       isValid = false;
     }
 
-    let pics = document.getElementById("add-panel-pic").files;
+    let pics = document.getElementById('add-panel-pic').files;
     if (pics.length === 0) {
-      this.setState({picsError: "Pics field cannot be empty"});
+      this.setState({picsError: 'Pics field cannot be empty'});
       isValid = false;
     }
 
@@ -85,7 +85,7 @@ class ActivityAddPanel extends Component {
     if (!this.validateFields()) return;
 
     let {name, description} = this.state;
-    let pics = document.getElementById("add-panel-pic").files;
+    let pics = document.getElementById('add-panel-pic').files;
 
     let data = new FormData();
     data.append('name', name);
@@ -138,7 +138,7 @@ const getSuccessStatusBox = ({nonPicFileNames}) => {
     <StatusBox success={true}>
       <div><h3>Success!</h3></div>
       <div><p>New Activity Created Successfully.</p></div>
-      <div className={`non-saved-files ${nonPicFileNames.length > 0 ? "show-non-saved-files" : ""}`}>
+      <div className={`non-saved-files ${nonPicFileNames.length > 0 ? 'show-non-saved-files' : ''}`}>
         <p>However these files could not be saved as they are not pictures.</p>
         <ol>{nonPicFileNames.map((fileName, index) => (
           <li key={index}>{fileName}</li>))}
@@ -191,7 +191,7 @@ const ActivityAddForm = ({
         </div>
       </div>
 
-      <div className={`field-error ${nameError ? "show-field-error" : ""}`}>
+      <div className={`field-error ${nameError ? 'show-field-error' : ''}`}>
         {nameError}
       </div>
     </section>
@@ -207,7 +207,7 @@ const ActivityAddForm = ({
         </div>
       </div>
 
-      <div className={`field-error ${descriptionError ? "show-field-error" : ""}`}>
+      <div className={`field-error ${descriptionError ? 'show-field-error' : ''}`}>
         {descriptionError}
       </div>
     </section>
@@ -223,7 +223,7 @@ const ActivityAddForm = ({
         </div>
       </div>
 
-      <div className={`field-error ${picsError ? "show-field-error" : ""}`}>
+      <div className={`field-error ${picsError ? 'show-field-error' : ''}`}>
         {picsError}
       </div>
     </section>

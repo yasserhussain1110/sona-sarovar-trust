@@ -18,7 +18,7 @@ const ActivityEditForm = ({
         </div>
       </div>
 
-      <div className={`field-error ${nameError ? "show-field-error" : ""}`}>
+      <div className={`field-error ${nameError ? 'show-field-error' : ''}`}>
         {nameError}
       </div>
     </section>
@@ -34,7 +34,7 @@ const ActivityEditForm = ({
         </div>
       </div>
 
-      <div className={`field-error ${descriptionError ? "show-field-error" : ""}`}>
+      <div className={`field-error ${descriptionError ? 'show-field-error' : ''}`}>
         {descriptionError}
       </div>
     </section>

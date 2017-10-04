@@ -5,7 +5,7 @@ const PicFieldHolder = ({pic, picError}) => (
     <div className="img-holder">
       <img src={pic}/>
     </div>
-    <div className={`error-holder ${picError ? "shown" : "hidden"}`}>
+    <div className={`error-holder ${picError ? 'shown' : 'hidden'}`}>
       <span className="error">{picError}</span>
     </div>
     <div className="updater-holder">

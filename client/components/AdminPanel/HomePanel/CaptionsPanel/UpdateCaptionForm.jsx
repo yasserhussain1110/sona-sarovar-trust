@@ -50,7 +50,7 @@ class UpdateCaptionForm extends Component {
       .catch(err => {
         handleCommonErrors(err);
         console.log(err);
-        this.props.onFailure ? this.props.onFailure() : "";
+        this.props.onFailure ? this.props.onFailure() : '';
       });
   }
 
@@ -64,7 +64,7 @@ class UpdateCaptionForm extends Component {
           onFocus={e => this.setState({errorTextAreaEmpty: false})}
           value={this.state.textAreaValue}
           onChange={this.updateTextAreaValue}/> {this.state.errorTextAreaEmpty ?
-        <span className="error">TextArea should not be empty</span> : ""}
+        <span className="error">TextArea should not be empty</span> : ''}
         <div className="button-holder">
           <button className="update-button" onClick={this.updateCaption}>Update</button>
           <button className="reset-button" onClick={this.resetCaption}>Reset</button>

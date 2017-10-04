@@ -10,7 +10,7 @@ import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 import ProjectEditPanelView from './ProjectEditPanel/ProjectEditPanelView';
 
 const createStateFromProjectProp = project => {
-  let name = "", description = "", pics = [];
+  let name = '', description = '', pics = [];
   if (project) {
     ({name, description, pics} = project);
   }
@@ -18,8 +18,8 @@ const createStateFromProjectProp = project => {
 };
 
 const createUXState = () => ({
-  nameError: "",
-  descriptionError: "",
+  nameError: '',
+  descriptionError: '',
   updatingPic: false,
   deletingPic: false,
   selectedPic: null
@@ -113,7 +113,7 @@ class ProjectEditPanel extends Component {
   }
 
   clearValidation() {
-    this.setState({nameError: "", descriptionError: ""});
+    this.setState({nameError: '', descriptionError: ''});
   }
 
   validateFields() {
@@ -123,12 +123,12 @@ class ProjectEditPanel extends Component {
     let isValid = true;
 
     if (!name) {
-      this.setState({nameError: "Name field cannot be empty"});
+      this.setState({nameError: 'Name field cannot be empty'});
       isValid = false;
     }
 
     if (!description) {
-      this.setState({descriptionError: "Description field cannot be empty"});
+      this.setState({descriptionError: 'Description field cannot be empty'});
       isValid = false;
     }
 
@@ -162,7 +162,7 @@ class ProjectEditPanel extends Component {
   }
 
   uploadMorePics() {
-    let pics = document.getElementById("edit-panel-pic").files;
+    let pics = document.getElementById('edit-panel-pic').files;
     if (pics.length === 0) return;
 
     let uploadPicPromises = Object.keys(pics).map(key => {
@@ -192,7 +192,7 @@ class ProjectEditPanel extends Component {
     });
 
     Promise.all(uploadPicPromises).then(() =>
-      document.getElementById("edit-panel-pic").value = null);
+      document.getElementById('edit-panel-pic').value = null);
   }
 
   updateProject() {

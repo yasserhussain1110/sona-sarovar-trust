@@ -7,10 +7,10 @@ class DonationBox extends Component {
     super(props);
 
     this.state = {
-      email: "",
-      amount: "",
-      emailError: "",
-      amountError: ""
+      email: '',
+      amount: '',
+      emailError: '',
+      amountError: ''
     };
 
     this.updateAmount = this.updateAmount.bind(this);
@@ -25,8 +25,8 @@ class DonationBox extends Component {
     axios.post('/api/payment/start', {
       email: this.state.email,
       amount: Number(this.state.amount),
-      purpose: "SonaSarovarDonation",
-      redirectUrl: window.location.href + "/done"
+      purpose: 'SonaSarovarDonation',
+      redirectUrl: window.location.href + '/done'
     }).then(res => {
       const {paymentRequestUrl} = res.data;
       window.location = paymentRequestUrl;
@@ -44,7 +44,7 @@ class DonationBox extends Component {
   }
 
   clearValidation() {
-    this.setState({emailError: "", amountError: ""});
+    this.setState({emailError: '', amountError: ''});
   }
 
   validate() {
@@ -53,27 +53,27 @@ class DonationBox extends Component {
     let {email, amount} = this.state;
 
     if (!email) {
-      this.setState({emailError: "Email cannot be empty."});
+      this.setState({emailError: 'Email cannot be empty.'});
       return false;
     }
 
     if (!isEmail(email)) {
-      this.setState({emailError: "Must be a valid email."});
+      this.setState({emailError: 'Must be a valid email.'});
       return false;
     }
 
     if (!amount) {
-      this.setState({amountError: "Amount cannot be empty."});
+      this.setState({amountError: 'Amount cannot be empty.'});
       return false;
     }
 
     if (isNaN(Number(amount))) {
-      this.setState({amountError: "Must be a number."});
+      this.setState({amountError: 'Must be a number.'});
       return false;
     }
 
     if (Number(amount) < 9) {
-      this.setState({amountError: "Must be at least ₹9."});
+      this.setState({amountError: 'Must be at least ₹9.'});
       return false;
     }
 
@@ -106,7 +106,7 @@ const DonationBoxView = ({email, amount, emailError, amountError, updateAmount, 
             <input type="text" onChange={updateEmail} value={email}/>
           </div>
           <div className="error-holder">
-            <div className={`error ${emailError ? "show" : "hide"}`}>
+            <div className={`error ${emailError ? 'show' : 'hide'}`}>
               <span>{emailError}</span>
             </div>
           </div>
@@ -120,7 +120,7 @@ const DonationBoxView = ({email, amount, emailError, amountError, updateAmount, 
             <input type="text" onChange={updateAmount} value={amount}/>
           </div>
           <div className="error-holder">
-            <div className={`error ${amountError ? "show" : "hide"}`}>
+            <div className={`error ${amountError ? 'show' : 'hide'}`}>
               <span>{amountError}</span>
             </div>
           </div>

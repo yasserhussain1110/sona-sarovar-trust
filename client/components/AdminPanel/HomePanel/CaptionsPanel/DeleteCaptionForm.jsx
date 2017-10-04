@@ -21,7 +21,7 @@ const deleteCaption = (_id, onSuccess, onFailure, authToken) => {
     })
     .catch(err => {
       handleCommonErrors(err);
-      onFailure ? onFailure() : "";
+      onFailure ? onFailure() : '';
       console.log(err);
     });
 };
