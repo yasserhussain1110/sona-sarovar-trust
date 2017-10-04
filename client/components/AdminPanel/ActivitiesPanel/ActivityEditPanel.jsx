@@ -55,7 +55,7 @@ class ActivityEditPanel extends Component {
   }
 
   closeModal() {
-    this.setState({updatingPic: false, deletingPic: false})
+    this.setState({updatingPic: false, deletingPic: false});
   }
 
   deleteActivityPicFailed() {
@@ -147,7 +147,7 @@ class ActivityEditPanel extends Component {
             <div><h3>Success!</h3></div>
             <div>Updated Activity Name and Description.</div>
           </StatusBox>
-        )
+        );
       })
       .catch(err => {
         console.log(err);
@@ -157,7 +157,7 @@ class ActivityEditPanel extends Component {
             <div><h3>Failure!</h3></div>
             <div>Activity Name and Description updation failed.</div>
           </StatusBox>
-        )
+        );
       });
   }
 
@@ -178,7 +178,7 @@ class ActivityEditPanel extends Component {
               <div><h3>Success!</h3></div>
               <div>{pic.name} added to Activity successfully.</div>
             </StatusBox>
-          )
+          );
         })
         .catch(err => {
           console.log(err);
@@ -187,8 +187,8 @@ class ActivityEditPanel extends Component {
               <div><h3>Failure!</h3></div>
               <div>Adding pic {pic.name} to activity failed.</div>
             </StatusBox>
-          )
-        })
+          );
+        });
     });
 
     Promise.all(uploadPicPromises).then(() =>

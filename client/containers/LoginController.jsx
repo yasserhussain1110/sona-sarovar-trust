@@ -54,7 +54,7 @@ class LoginController extends Component {
 
   render() {
     if (this.props.userAuth.loggedIn) {
-      return <Redirect to="/admin" push/>
+      return <Redirect to="/admin" push/>;
     }
 
     return (
@@ -72,13 +72,13 @@ class LoginController extends Component {
 const mapStateToProps = state => {
   return {
     userAuth: state.userAuth
-  }
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     logIn: authToken => {
-      dispatch(logIn(authToken))
+      dispatch(logIn(authToken));
     }
   };
 };

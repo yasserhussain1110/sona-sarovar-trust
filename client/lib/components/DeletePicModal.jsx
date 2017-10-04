@@ -38,7 +38,7 @@ const deletePic = (requestUrl, authToken, onSuccess, onFailure) => {
     handleCommonErrors(err);
     onFailure();
     console.log(err);
-  })
+  });
 };
 
 DeletePicModal.proptypes = {

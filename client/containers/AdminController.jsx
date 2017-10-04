@@ -10,7 +10,7 @@ const AdminController = ({userAuth, match}) => {
 const mapStateToProps = state => {
   return {
     userAuth: state.userAuth
-  }
+  };
 };
 
 export default connect(mapStateToProps)(AdminController);

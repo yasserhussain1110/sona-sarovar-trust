@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {updatedBrandLogoUrl} from '../../../actions'
+import {updatedBrandLogoUrl} from '../../../actions';
 import StatusBox from '../../../lib/components/StatusBox';
 import PicForm from '../../../lib/components/PicForm';
 import Modal from '../../../lib/components/Modal';

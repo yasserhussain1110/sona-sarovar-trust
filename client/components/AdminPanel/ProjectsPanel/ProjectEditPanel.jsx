@@ -55,7 +55,7 @@ class ProjectEditPanel extends Component {
   }
 
   closeModal() {
-    this.setState({updatingPic: false, deletingPic: false})
+    this.setState({updatingPic: false, deletingPic: false});
   }
 
   deleteProjectPicFailed() {
@@ -147,7 +147,7 @@ class ProjectEditPanel extends Component {
             <div><h3>Success!</h3></div>
             <div>Updated Project Name and Description.</div>
           </StatusBox>
-        )
+        );
       })
       .catch(err => {
         console.log(err);
@@ -157,7 +157,7 @@ class ProjectEditPanel extends Component {
             <div><h3>Failure!</h3></div>
             <div>Project Name and Description updation failed.</div>
           </StatusBox>
-        )
+        );
       });
   }
 
@@ -178,7 +178,7 @@ class ProjectEditPanel extends Component {
               <div><h3>Success!</h3></div>
               <div>{pic.name} added to Project successfully.</div>
             </StatusBox>
-          )
+          );
         })
         .catch(err => {
           console.log(err);
@@ -187,8 +187,8 @@ class ProjectEditPanel extends Component {
               <div><h3>Failure!</h3></div>
               <div>Adding pic {pic.name} to project failed.</div>
             </StatusBox>
-          )
-        })
+          );
+        });
     });
 
     Promise.all(uploadPicPromises).then(() =>
