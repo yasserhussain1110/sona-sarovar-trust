@@ -12,7 +12,12 @@ if (!fs.existsSync(RESOURCES_DIR)) {
   fs.mkdirSync(RESOURCES_DIR);
 }
 
-Promise.all([populateAdmins(), populateHomePage(), populateTeamMembers(), populateProjects(), populateActivities()])
-  .then(() => {
-    mongoose.connection.close();
-  });
+Promise.all([
+  populateAdmins(),
+  populateHomePage(),
+  populateTeamMembers(),
+  populateProjects(),
+  populateActivities()
+]).then(() => {
+  mongoose.connection.close();
+});

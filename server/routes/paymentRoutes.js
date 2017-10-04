@@ -17,12 +17,13 @@ const paymentRoutes = app => {
 
     if (!validationResult.isValid) return res.status(400).send();
 
-    axios.post(INSTAMOJO_PAYMENT_REQUEST_CREATION_URL, stringify(validationResult.paymentRequestObject), {
-      headers: {
-        'X-Api-Key': INSTAMOJO_API_KEY,
-        'X-Auth-Token': INSTAMOJO_AUTH_TOKEN
-      }
-    }).then(result => {
+    axios.post(
+      INSTAMOJO_PAYMENT_REQUEST_CREATION_URL, stringify(validationResult.paymentRequestObject), {
+        headers: {
+          'X-Api-Key': INSTAMOJO_API_KEY,
+          'X-Auth-Token': INSTAMOJO_AUTH_TOKEN
+        }
+      }).then(result => {
       const paymentRequestUrl = result.data.payment_request.longurl;
       res.send({paymentRequestUrl});
     }).catch(e => {
