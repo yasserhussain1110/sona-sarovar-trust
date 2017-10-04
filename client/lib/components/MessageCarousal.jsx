@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class MessageCarousal extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class MessageCarousal extends Component {
 
   updateMessage() {
     this.setState({
-      currentShowingMessageIndex: (this.state.currentShowingMessageIndex + 1) % this.props.messages.length
+      currentShowingMessageIndex:
+      (this.state.currentShowingMessageIndex + 1) % this.props.messages.length
     });
   }
 
@@ -40,5 +42,11 @@ class MessageCarousal extends Component {
     );
   }
 }
+
+MessageCarousal.propTypes = {
+  viewDuration: PropTypes.number.isRequired,
+  messages: PropTypes.array.isRequired
+};
+
 
 export default MessageCarousal;

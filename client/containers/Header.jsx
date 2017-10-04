@@ -1,11 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 const Header = ({match, brandLogoUrl}) => (
   <div className="header">
     <div className="logo">
-      <img src={brandLogoUrl} />
+      <img alt="" src={brandLogoUrl} />
     </div>
 
     <div className="nav">
@@ -24,5 +25,10 @@ const Header = ({match, brandLogoUrl}) => (
 const mapStateToProps = state => ({
   brandLogoUrl: state.home.brandLogoUrl
 });
+
+Header.propTypes = {
+  match: PropTypes.object.isRequired,
+  brandLogoUrl: PropTypes.string.isRequired
+};
 
 export default connect(mapStateToProps)(Header);

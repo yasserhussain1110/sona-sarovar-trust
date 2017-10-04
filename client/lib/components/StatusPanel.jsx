@@ -1,4 +1,5 @@
 import React, {Component, cloneElement} from 'react';
+import PropTypes from 'prop-types';
 import {generateRandomHexadecimalStringOfLength} from '../../lib/helpers/functions';
 
 const statusBoxPropertyAdder = moreProps => statusBox => {
@@ -80,45 +81,13 @@ class StatusPanel extends Component {
     });
 
     this.state = {
-      statusBoxes: props.statusBoxToAdd === null ? [] : [this.addPropsToStatusBox(props.statusBoxToAdd)]
+      statusBoxes: props.statusBoxToAdd === null ?
+        [] : [this.addPropsToStatusBox(props.statusBoxToAdd)]
     };
 
     this.timeoutHandlers = this.state.statusBoxes.map(
-      statusBox => setTimeout(() => this.removeStatusBox(statusBox.props.uuid), statusBoxMoveUpInWaitPeriod)
-    );
-  }
-
-  componentWillUnmount() {
-    this.timeoutHandlers.map(timeoutHandler => clearTimeout(timeoutHandler));
-  }
-
-  showStatusBoxRemoveAnimation(uuid) {
-    const statusBoxIndex = this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
-    if (statusBoxIndex === -1) return;
-    this.setState({
-      statusBoxes: [
-        ...this.state.statusBoxes.slice(0, statusBoxIndex),
-        cloneElement(this.state.statusBoxes[statusBoxIndex], {adding: false}),
-        ...this.state.statusBoxes.slice(statusBoxIndex + 1)
-      ]
-    });
-  }
-
-  actuallyRemoveStatusBoxFromStatusPanel(uuid) {
-    const statusBoxIndex = this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
-    if (statusBoxIndex === -1) return;
-    this.setState({
-      statusBoxes: [
-        ...this.state.statusBoxes.slice(0, statusBoxIndex),
-        ...this.state.statusBoxes.slice(statusBoxIndex + 1)
-      ]
-    });
-  }
-
-  removeStatusBox(uuid) {
-    this.showStatusBoxRemoveAnimation(uuid);
-    this.timeoutHandlers.push(
-      setTimeout(() => this.actuallyRemoveStatusBoxFromStatusPanel(uuid), statusBoxRemoveWaitPeriod)
+      statusBox => setTimeout(() =>
+        this.removeStatusBox(statusBox.props.uuid), statusBoxMoveUpInWaitPeriod)
     );
   }
 
@@ -128,7 +97,8 @@ class StatusPanel extends Component {
      * necessary because React according to docs sometimes passes old
      * props to components.
      */
-    if (nextProps.statusBoxToAdd === null || nextProps.statusBoxToAdd === this.props.statusBoxToAdd) {
+    if (nextProps.statusBoxToAdd === null ||
+      nextProps.statusBoxToAdd === this.props.statusBoxToAdd) {
       return;
     }
 
@@ -146,6 +116,43 @@ class StatusPanel extends Component {
     );
   }
 
+  componentWillUnmount() {
+    this.timeoutHandlers.map(timeoutHandler => clearTimeout(timeoutHandler));
+  }
+
+  showStatusBoxRemoveAnimation(uuid) {
+    const statusBoxIndex =
+      this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
+    if (statusBoxIndex === -1) return;
+    this.setState({
+      statusBoxes: [
+        ...this.state.statusBoxes.slice(0, statusBoxIndex),
+        cloneElement(this.state.statusBoxes[statusBoxIndex], {adding: false}),
+        ...this.state.statusBoxes.slice(statusBoxIndex + 1)
+      ]
+    });
+  }
+
+  actuallyRemoveStatusBoxFromStatusPanel(uuid) {
+    const statusBoxIndex =
+      this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
+    if (statusBoxIndex === -1) return;
+    this.setState({
+      statusBoxes: [
+        ...this.state.statusBoxes.slice(0, statusBoxIndex),
+        ...this.state.statusBoxes.slice(statusBoxIndex + 1)
+      ]
+    });
+  }
+
+  removeStatusBox(uuid) {
+    this.showStatusBoxRemoveAnimation(uuid);
+    this.timeoutHandlers.push(
+      setTimeout(() => this.actuallyRemoveStatusBoxFromStatusPanel(uuid), statusBoxRemoveWaitPeriod)
+    );
+  }
+
+
   render() {
     return (
       <div className="status-panel">
@@ -154,5 +161,13 @@ class StatusPanel extends Component {
     );
   }
 }
+
+StatusPanel.defaultProps = {
+  statusBoxToAdd: null
+};
+
+StatusPanel.propTypes = {
+  statusBoxToAdd: PropTypes.element
+};
 
 export default StatusPanel;

@@ -44,13 +44,13 @@ class UpdateCaptionForm extends Component {
     const data = {text: this.state.textAreaValue};
 
     axios.patch(`/api/home-page/caption/${this.props.caption._id}`, data, {headers: {'x-auth': this.props.authToken}})
-      .then(res => {
+      .then(() => {
         this.props.onSuccess(data.text);
       })
       .catch(err => {
         handleCommonErrors(err);
         console.log(err);
-        this.props.onFailure ? this.props.onFailure() : '';
+        if (this.props.onFailure) this.props.onFailure();
       });
   }
 
@@ -61,10 +61,12 @@ class UpdateCaptionForm extends Component {
         <h3>Updating Caption</h3>
         <span className="message">Update Caption below and click Update</span>
         <textarea
-          onFocus={e => this.setState({errorTextAreaEmpty: false})}
+          onFocus={() => this.setState({errorTextAreaEmpty: false})}
           value={this.state.textAreaValue}
-          onChange={this.updateTextAreaValue}/> {this.state.errorTextAreaEmpty ?
-        <span className="error">TextArea should not be empty</span> : ''}
+          onChange={this.updateTextAreaValue}
+        />
+        {this.state.errorTextAreaEmpty ?
+          <span className="error">TextArea should not be empty</span> : ''}
         <div className="button-holder">
           <button className="update-button" onClick={this.updateCaption}>Update</button>
           <button className="reset-button" onClick={this.resetCaption}>Reset</button>
@@ -75,10 +77,15 @@ class UpdateCaptionForm extends Component {
   }
 }
 
+UpdateCaptionForm.defaultProps = {
+  onFailure: null
+};
+
 UpdateCaptionForm.propTypes = {
   authToken: PropTypes.string.isRequired,
   close: PropTypes.func.isRequired,
   onSuccess: PropTypes.func.isRequired,
+  caption: PropTypes.object.isRequired,
   onFailure: PropTypes.func
 };
 

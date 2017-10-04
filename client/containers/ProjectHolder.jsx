@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import ImageCarousal from '../lib/components/ImageCarousal';
 
 const ProjectHolder = ({project}) => {
@@ -12,7 +13,7 @@ const ProjectHolder = ({project}) => {
     <div className="project-holder">
       <h3><span>{name}</span></h3>
       <div className="project-carousal">
-        <ImageCarousal imageLinks={pics.map(p => p.url)} viewDuration={5000}/>
+        <ImageCarousal imageLinks={pics.map(p => p.url)} viewDuration={5000} />
       </div>
       <div className="project-info">
         <p>{description}</p>
@@ -26,5 +27,9 @@ const mapStateToProps = (state, ownProps) => (
     project: state.projects.projectsDone[ownProps.match.params.index]
   }
 );
+
+ProjectHolder.propTypes = {
+  project: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps)(ProjectHolder);

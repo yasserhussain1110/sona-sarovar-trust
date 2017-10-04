@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Modal = props => {
   return (
@@ -34,5 +35,14 @@ const Modal = props => {
   </div>
 </Modal>
 */
+
+Modal.defaultProps = {
+  children: null
+};
+
+Modal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  children: PropTypes.element
+};
 
 export default Modal;

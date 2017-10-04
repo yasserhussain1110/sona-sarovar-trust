@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import axios from 'axios';
+import PropTypes from 'prop-types';
 import {clip} from '../../../lib/helpers/functions';
 import Modal from '../../../lib/components/Modal';
-import axios from 'axios';
 import {deletedActivityUndertaken} from '../../../actions';
 import StatusBox from '../../../lib/components/StatusBox';
 import StatusPanel from '../../../lib/components/StatusPanel';
@@ -24,6 +25,18 @@ class ActivityListPanel extends Component {
     this.deleteActivity = this.deleteActivity.bind(this);
   }
 
+  getModalContent() {
+    const selectedActivity = this.props.activities[this.state.selectedActivityIndex];
+
+    return this.state.showingModal ? (
+      <DeleteActivityForm
+        deleteActivity={this.deleteActivity}
+        closeDeleteModal={this.closeDeleteModal}
+        selectedActivity={selectedActivity}
+      />
+    ) : null;
+  }
+
   addStatusBox(statusBox) {
     this.setState({statusBoxToAdd: statusBox});
   }
@@ -36,7 +49,7 @@ class ActivityListPanel extends Component {
       this.closeDeleteModal();
       this.props.deletedActivityUndertaken(this.state.selectedActivityIndex);
       this.addStatusBox(
-        <StatusBox success={true}>
+        <StatusBox success>
           <div><h3>Success!</h3></div>
           <div><span>Activity <strong>{activity.name}</strong> deleted successfully.</span></div>
         </StatusBox>
@@ -61,18 +74,6 @@ class ActivityListPanel extends Component {
     this.setState({showingModal: true, selectedActivityIndex: index});
   }
 
-  getModalContent() {
-    const selectedActivity = this.props.activities[this.state.selectedActivityIndex];
-
-    return this.state.showingModal ? (
-      <DeleteActivityForm
-        deleteActivity={this.deleteActivity}
-        closeDeleteModal={this.closeDeleteModal}
-        selectedActivity={selectedActivity}
-      />
-    ) : null;
-  }
-
   render() {
     return (
       <ActivityListPanelView
@@ -86,46 +87,53 @@ class ActivityListPanel extends Component {
   }
 }
 
-const ActivityListPanelView = ({activities, modalContent, showingModal, showDeleteModal, statusBoxToAdd}) => (
-  <div className="project-list-panel">
-    <div className="add-project-wrapper">
-      <h2>Add an Activity</h2>
-      <div className="link-holder">
-        <Link className="success-button" to="/admin/activities/add">Add a New Activity</Link>
+const ActivityListPanelView =
+  ({activities, modalContent, showingModal, showDeleteModal, statusBoxToAdd}) => (
+    <div className="project-list-panel">
+      <div className="add-project-wrapper">
+        <h2>Add an Activity</h2>
+        <div className="link-holder">
+          <Link className="success-button" to="/admin/activities/add">Add a New Activity</Link>
+        </div>
       </div>
-    </div>
 
-    <div className="list-project-wrapper">
-      <h2>List of activities</h2>
-      <div className="project-list-container">
-        <ul className="project-list">{activities.map((activity, index) => (
-          <li key={index} className="project">
-            <div className="sl">#{index + 1}</div>
-            <div className="img-holder">
-              <img src={activity.pics[0].url}/>
-            </div>
-            <div className="name">{activity.name}</div>
-            <div className="description">{clip(activity.description, 40)}</div>
-            <div className="button-holder">
-              <button className="edit-button">
-                <Link to={`/admin/activities/edit/${index}`}>Edit</Link>
-              </button>
-              <button onClick={() => showDeleteModal(index)} className="delete-button">Delete</button>
-            </div>
-          </li>))}
-        </ul>
+      <div className="list-project-wrapper">
+        <h2>List of activities</h2>
+        <div className="project-list-container">
+          <ul className="project-list">{activities.map((activity, index) => (
+            <li key={index} className="project">
+              <div className="sl">#{index + 1}</div>
+              <div className="img-holder">
+                <img alt="" src={activity.pics[0].url} />
+              </div>
+              <div className="name">{activity.name}</div>
+              <div className="description">{clip(activity.description, 40)}</div>
+              <div className="button-holder">
+                <button className="edit-button">
+                  <Link to={`/admin/activities/edit/${index}`}>Edit</Link>
+                </button>
+                <button
+                  onClick={() => showDeleteModal(index)}
+                  className="delete-button"
+                >
+                  Delete
+                </button>
+              </div>
+            </li>))}
+          </ul>
+        </div>
       </div>
+      <Modal show={showingModal}>
+        {modalContent}
+      </Modal>
+      <StatusPanel statusBoxToAdd={statusBoxToAdd} />
     </div>
-    <Modal show={showingModal}>
-      {modalContent}
-    </Modal>
-    <StatusPanel statusBoxToAdd={statusBoxToAdd}/>
-  </div>
-);
+  );
 
 const DeleteActivityForm = ({selectedActivity, closeDeleteModal, deleteActivity}) => (
   <div className="delete-project-form">
-    <p className="question">Are you sure you want do delete activity <strong>{selectedActivity.name}</strong>?</p>
+    <p className="question">Are you sure you want do delete activity
+      <strong>{selectedActivity.name}</strong>?</p>
     <div className="button-holder">
       <button className="yes" onClick={deleteActivity}>Yes</button>
       <button className="no" onClick={closeDeleteModal}>No</button>
@@ -141,5 +149,30 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToProps = {deletedActivityUndertaken};
+
+ActivityListPanelView.defaultProps = {
+  modalContent: null,
+  statusBoxToAdd: null
+};
+
+ActivityListPanelView.propTypes = {
+  activities: PropTypes.arrayOf(PropTypes.object).isRequired,
+  showingModal: PropTypes.bool.isRequired,
+  showDeleteModal: PropTypes.func.isRequired,
+  modalContent: PropTypes.element,
+  statusBoxToAdd: PropTypes.element
+};
+
+DeleteActivityForm.propTypes = {
+  selectedActivity: PropTypes.object.isRequired,
+  closeDeleteModal: PropTypes.func.isRequired,
+  deleteActivity: PropTypes.func.isRequired
+};
+
+ActivityListPanel.propTypes = {
+  activities: PropTypes.arrayOf(PropTypes.object).isRequired,
+  authToken: PropTypes.string.isRequired,
+  deletedActivityUndertaken: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityListPanel);

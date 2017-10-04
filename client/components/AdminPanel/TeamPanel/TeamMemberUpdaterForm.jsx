@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+import PropTypes from 'prop-types';
 import TextFieldsHolder from './TextFieldsHolder';
 import PicFieldHolder from './PicFieldHolder';
-import axios from 'axios';
 import StatusBox from '../../../lib/components/StatusBox';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 
@@ -58,7 +59,7 @@ class TeamMemberUpdater extends Component {
 
     if (fileList.length > 0) {
       const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
-      if (validImageTypes.indexOf(fileList[0]['type']) === -1) {
+      if (validImageTypes.indexOf(fileList[0].type) === -1) {
         this.setState({
           picError: 'Picture must have an image type extension.'
         });
@@ -87,7 +88,7 @@ class TeamMemberUpdater extends Component {
       .then(res => {
         this.props.updatedTeamMember(res.data);
         this.props.addStatusBox(
-          <StatusBox success={true}>
+          <StatusBox success>
             <div><h3>Success!</h3></div>
             <div>Info updated for {this.props.member.name} successfully.</div>
           </StatusBox>
@@ -128,7 +129,7 @@ class TeamMemberUpdater extends Component {
           updateName={this.updateName}
           updateInfo={this.updateInfo}
         />
-        <PicFieldHolder pic={pic} picError={picError}/>
+        <PicFieldHolder pic={pic} picError={picError} />
         <div className="button-holder">
           <button onClick={this.update}>Update</button>
         </div>
@@ -136,5 +137,13 @@ class TeamMemberUpdater extends Component {
     );
   }
 }
+
+TeamMemberUpdater.propTypes = {
+  member: PropTypes.object.isRequired,
+  authToken: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  updatedTeamMember: PropTypes.func.isRequired,
+  addStatusBox: PropTypes.func.isRequired
+};
 
 export default TeamMemberUpdater;

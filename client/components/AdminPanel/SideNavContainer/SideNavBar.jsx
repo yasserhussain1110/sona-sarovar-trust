@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const SideNavBar = ({children, location}) => (
   <div className="side-nav-bar">
@@ -10,5 +11,10 @@ const SideNavBar = ({children, location}) => (
     </ul>
   </div>
 );
+
+SideNavBar.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  location: PropTypes.object.isRequired
+};
 
 export default withRouter(SideNavBar);

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {isEmail} from 'validator';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class DonationBox extends Component {
   constructor(props) {
@@ -92,48 +93,59 @@ class DonationBox extends Component {
   }
 }
 
-const DonationBoxView = ({email, amount, emailError, amountError, updateAmount, updateEmail, donate}) => (
-  <div className="donation-box">
-    <h3><span>Donate</span></h3>
-    <div className="donation-form">
-      <h2 className="heading">Support Sona Sarovar Trust</h2>
-      <form onSubmit={donate}>
-        <div className="field">
-          <div className="label">
-            <label>Email:</label>
-          </div>
-          <div className="input">
-            <input type="text" onChange={updateEmail} value={email}/>
-          </div>
-          <div className="error-holder">
-            <div className={`error ${emailError ? 'show' : 'hide'}`}>
-              <span>{emailError}</span>
+const DonationBoxView =
+  ({email, amount, emailError, amountError, updateAmount, updateEmail, donate}) => (
+    <div className="donation-box">
+      <h3><span>Donate</span></h3>
+      <div className="donation-form">
+        <h2 className="heading">Support Sona Sarovar Trust</h2>
+        <form onSubmit={donate}>
+          <div className="field">
+            <div className="label">
+              <label htmlFor="donation-email">Email:</label>
+            </div>
+            <div className="input">
+              <input id="donation-email" type="text" onChange={updateEmail} value={email} />
+            </div>
+            <div className="error-holder">
+              <div className={`error ${emailError ? 'show' : 'hide'}`}>
+                <span>{emailError}</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="field">
-          <div className="label">
-            <label>Amount:</label>
-          </div>
-          <div className="input">
-            <input type="text" onChange={updateAmount} value={amount}/>
-          </div>
-          <div className="error-holder">
-            <div className={`error ${amountError ? 'show' : 'hide'}`}>
-              <span>{amountError}</span>
+          <div className="field">
+            <div className="label">
+              <label htmlFor="donation-amount">Amount:</label>
+            </div>
+            <div className="input">
+              <input id="donation-amount" type="text" onChange={updateAmount} value={amount} />
+            </div>
+            <div className="error-holder">
+              <div className={`error ${amountError ? 'show' : 'hide'}`}>
+                <span>{amountError}</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="field">
-          <div className="button-holder">
-            <button className="donate-button">Donate!</button>
+          <div className="field">
+            <div className="button-holder">
+              <button className="donate-button">Donate!</button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
-);
+  );
+
+DonationBoxView.propTypes = {
+  email: PropTypes.string.isRequired,
+  amount: PropTypes.string.isRequired,
+  emailError: PropTypes.string.isRequired,
+  amountError: PropTypes.string.isRequired,
+  updateAmount: PropTypes.func.isRequired,
+  updateEmail: PropTypes.func.isRequired,
+  donate: PropTypes.func.isRequired
+};
 
 export default DonationBox;

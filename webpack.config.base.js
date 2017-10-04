@@ -22,6 +22,15 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.jsx$/,
+        enforce: 'pre',
+
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: true
+        }
+      },
+      {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         include: [resolve('client'), resolve('test')]

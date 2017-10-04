@@ -1,17 +1,22 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 import axios from 'axios';
-import {logOut} from './lib/handlers/commonErrorsHandler';
-
+import {connect} from 'react-redux';
+import 'typeface-kelly-slab/index.css';
+import handleCommonErrors, {logOut} from './lib/handlers/commonErrorsHandler';
 import Web from './routes/Web';
 import Admin from './routes/Admin';
 import * as actions from './actions';
-import {connect} from 'react-redux';
-import 'typeface-kelly-slab';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    this.init();
   }
 
   initializeAuth() {
@@ -61,22 +66,26 @@ class App extends Component {
     this.initializeApp();
   }
 
-  componentWillMount() {
-    this.init();
-  }
-
   render() {
     return (
       <BrowserRouter>
         <main>
-          <Route path="/web" component={Web}/>
-          <Route path="/admin" component={Admin}/>
-          <Route exact path="/" render={() => <Redirect to="/web"/>}/>
+          <Route path="/web" component={Web} />
+          <Route path="/admin" component={Admin} />
+          <Route exact path="/" render={() => <Redirect to="/web" />} />
         </main>
       </BrowserRouter>
     );
   }
 }
+
+App.propTypes = {
+  logIn: PropTypes.func.isRequired,
+  receivedHomePageContent: PropTypes.func.isRequired,
+  receivedTeamMembers: PropTypes.func.isRequired,
+  receivedActivitiesUndertaken: PropTypes.func.isRequired,
+  receivedProjectsDone: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = actions;
 

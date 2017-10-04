@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import {
   updatedActivityNameAndDescription, addedPicToActivity,
   updatedActivityPic, deletedPicFromActivity
@@ -10,7 +11,9 @@ import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 import ActivityEditPanelView from './ActivityEditPanel/ActivityEditPanelView';
 
 const createStateFromActivityProp = activity => {
-  let name = '', description = '', pics = [];
+  let name = '';
+  let description = '';
+  let pics = [];
   if (activity) {
     ({name, description, pics} = activity);
   }
@@ -72,7 +75,7 @@ class ActivityEditPanel extends Component {
     this.closeModal();
     this.props.deletedPicFromActivity(this.state.selectedPic, this.props.match.params.index);
     this.addStatusBox(
-      <StatusBox success={true}>
+      <StatusBox success>
         <div><h3>Success!</h3></div>
         <div><span>Deleted Activity pic Successfully</span></div>
       </StatusBox>
@@ -93,7 +96,7 @@ class ActivityEditPanel extends Component {
     this.props.updatedActivityPic(this.props.match.params.index, this.state.selectedPic._id, url);
     this.setState({updatingPic: false, deletingPic: false});
     this.addStatusBox(
-      <StatusBox success={true}>
+      <StatusBox success>
         <div><h3>Success!</h3></div>
         <div>Activity Pic Updated Successfully.</div>
       </StatusBox>
@@ -141,9 +144,11 @@ class ActivityEditPanel extends Component {
       headers: {'x-auth': this.props.authToken}
     })
       .then(() => {
-        this.props.updatedActivityNameAndDescription(name, description, this.props.match.params.index);
+        this.props.updatedActivityNameAndDescription(
+          name, description, this.props.match.params.index
+        );
         this.addStatusBox(
-          <StatusBox success={true}>
+          <StatusBox success>
             <div><h3>Success!</h3></div>
             <div>Updated Activity Name and Description.</div>
           </StatusBox>
@@ -174,7 +179,7 @@ class ActivityEditPanel extends Component {
         .then(res => {
           this.props.addedPicToActivity(res.data, this.props.match.params.index);
           this.addStatusBox(
-            <StatusBox success={true}>
+            <StatusBox success>
               <div><h3>Success!</h3></div>
               <div>{pic.name} added to Activity successfully.</div>
             </StatusBox>
@@ -191,8 +196,9 @@ class ActivityEditPanel extends Component {
         });
     });
 
-    Promise.all(uploadPicPromises).then(() =>
-      document.getElementById('edit-panel-pic').value = null);
+    Promise.all(uploadPicPromises).then(() => {
+      document.getElementById('edit-panel-pic').value = null;
+    });
   }
 
   updateActivity() {
@@ -206,7 +212,7 @@ class ActivityEditPanel extends Component {
     const updateObj = {};
     updateObj[field] = value;
     this.setState(updateObj);
-  };
+  }
 
   render() {
     return (
@@ -237,6 +243,20 @@ const mapDispatchToProps = {
   addedPicToActivity,
   updatedActivityPic,
   deletedPicFromActivity
+};
+
+ActivityEditPanel.defaultProps = {
+  activity: null
+};
+
+ActivityEditPanel.propTypes = {
+  deletedPicFromActivity: PropTypes.func.isRequired,
+  updatedActivityPic: PropTypes.func.isRequired,
+  updatedActivityNameAndDescription: PropTypes.func.isRequired,
+  addedPicToActivity: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  authToken: PropTypes.string.isRequired,
+  activity: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityEditPanel);

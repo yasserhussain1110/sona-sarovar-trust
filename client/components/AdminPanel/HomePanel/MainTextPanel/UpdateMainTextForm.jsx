@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import handleCommonErrors from '../../../../lib/handlers/commonErrorsHandler';
 import PropTypes from 'prop-types';
+import handleCommonErrors from '../../../../lib/handlers/commonErrorsHandler';
 
 class UpdateMainTextForm extends Component {
   constructor(props) {
@@ -42,12 +42,12 @@ class UpdateMainTextForm extends Component {
     const {paraNumber, authToken, onSuccess, onFailure} = this.props;
     const data = {text: this.state.textAreaValue};
     axios.patch(`/api/home-page/mainText/para${paraNumber}`, data, {headers: {'x-auth': authToken}})
-      .then(res => {
+      .then(() => {
         onSuccess(data.text);
       })
       .catch(err => {
         handleCommonErrors(err);
-        onFailure ? onFailure() : '';
+        if (onFailure) onFailure();
         console.log(err);
       });
   }
@@ -59,21 +59,27 @@ class UpdateMainTextForm extends Component {
         <textarea
           value={this.state.textAreaValue}
           onChange={this.updateTextAreaValue}
-          onFocus={e => this.setState({errorTextAreaEmpty: false})}/>{this.state.errorTextAreaEmpty ?
-        <span className="error">Text area must not be empty.</span> : ''}
+          onFocus={() => this.setState({errorTextAreaEmpty: false})}
+        />{this.state.errorTextAreaEmpty ?
+          <span className="error">Text area must not be empty.</span> : ''}
         <div className="button-holder">
           <button onClick={this.updateMainText}>Update</button>
           <button onClick={this.reset}>Reset</button>
           <button onClick={e => {
             e.preventDefault();
             this.props.close();
-          }}>Close
+          }}
+          >Close
           </button>
         </div>
       </div>
     );
   }
 }
+
+UpdateMainTextForm.defaultProps = {
+  onFailure: null
+};
 
 UpdateMainTextForm.propTypes = {
   authToken: PropTypes.string.isRequired,

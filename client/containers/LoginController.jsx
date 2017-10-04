@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {logIn} from '../actions';
 import {Redirect} from 'react-router-dom';
-import LoginForm from '../components/LoginController/LoginForm';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import {logIn} from '../actions';
+import LoginForm from '../components/LoginController/LoginForm';
 import handleCommonErrors from '../lib/handlers/commonErrorsHandler';
 
 class LoginController extends Component {
@@ -54,7 +55,7 @@ class LoginController extends Component {
 
   render() {
     if (this.props.userAuth.loggedIn) {
-      return <Redirect to="/admin" push/>;
+      return <Redirect to="/admin" push />;
     }
 
     return (
@@ -64,7 +65,8 @@ class LoginController extends Component {
         updateUsername={username => this.setState({username})}
         updatePassword={password => this.setState({password})}
         submitForm={this.submitForm}
-        error={this.state.error}/>
+        error={this.state.error}
+      />
     );
   }
 }
@@ -81,6 +83,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(logIn(authToken));
     }
   };
+};
+
+LoginController.propTypes = {
+  userAuth: PropTypes.object.isRequired,
+  logIn: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginController);

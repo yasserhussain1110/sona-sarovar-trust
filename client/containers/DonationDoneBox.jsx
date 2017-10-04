@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import Modal from '../lib/components/Modal';
-import {getParameterByName} from '../lib/helpers/functions';
 import axios from 'axios';
 import {NavLink} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Modal from '../lib/components/Modal';
+import {getParameterByName} from '../lib/helpers/functions';
 
 class DonationDoneBox extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class DonationDoneBox extends Component {
 
 const DonationDoneBoxView = ({paymentSucceeded, receivedResult, paymentId}) => (
   <div className="donation-done-box">
-    <Modal show={true}>
+    <Modal show>
       <div className={`wait-box ${receivedResult ? 'hide' : 'show'}`}>
         <p>We are fetching payment status. Please wait...</p>
       </div>
@@ -72,5 +73,11 @@ const DonationDoneBoxView = ({paymentSucceeded, receivedResult, paymentId}) => (
     </Modal>
   </div>
 );
+
+DonationDoneBoxView.propTypes = {
+  paymentSucceeded: PropTypes.bool.isRequired,
+  receivedResult: PropTypes.bool.isRequired,
+  paymentId: PropTypes.string.isRequired
+};
 
 export default DonationDoneBox;

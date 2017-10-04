@@ -11,15 +11,15 @@ const AdminPanel = () => {
   return (
     <main id="admin-panel">
       <div className="admin-panel-wrapper" style={{display: 'flex'}}>
-        <SideNavContainer/>
+        <SideNavContainer />
         <div className="controller-holder">
           <Switch>
-            <Route path="/admin/home" component={HomePanel}/>
-            <Route path="/admin/projects" component={ProjectsPanel}/>
-            <Route path="/admin/activities" component={ActivitiesPanel}/>
-            <Route path="/admin/team" component={TeamPanel}/>
-            <Route path="/admin/preview" component={Previewer}/>
-            <Route path="/" render={() => <Redirect to="/admin/home" push/>}/>
+            <Route path="/admin/home" component={HomePanel} />
+            <Route path="/admin/projects" component={ProjectsPanel} />
+            <Route path="/admin/activities" component={ActivitiesPanel} />
+            <Route path="/admin/team" component={TeamPanel} />
+            <Route path="/admin/preview" component={Previewer} />
+            <Route path="/" render={() => <Redirect to="/admin/home" push />} />
           </Switch>
         </div>
       </div>

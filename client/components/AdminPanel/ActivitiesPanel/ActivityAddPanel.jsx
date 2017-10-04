@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {addedActivityUndertaken} from '../../../actions';
@@ -66,17 +67,17 @@ class ActivityAddPanel extends Component {
   }
 
   addSuccessStatusBox(nonPicFileNames) {
-    this.setState(prevState => ({
+    this.setState(() => ({
       statusBoxToAdd: (
-        getSuccessStatusBox({nonPicFileNames})
+        getSuccessStatusBox(nonPicFileNames)
       )
     }));
   }
 
   addFailureStatusBox() {
-    this.setState(prevState => ({
+    this.setState(() => ({
       statusBoxToAdd: (
-        getFailureStatusBox({resetForm: this.resetForm})
+        getFailureStatusBox(this.resetForm)
       )
     }));
   }
@@ -125,17 +126,17 @@ class ActivityAddPanel extends Component {
   }
 }
 
-const getFailureStatusBox = ({resetForm}) => (
+const getFailureStatusBox = resetForm => (
   <StatusBox success={false}>
     <div><h3>Failure!</h3></div>
     <div><p>Could Not Create New Activity.</p></div>
-    <div><span><a onClick={resetForm}><strong>Try Again</strong></a></span></div>
+    <div><span><button onClick={resetForm}><strong>Try Again</strong></button></span></div>
   </StatusBox>
 );
 
-const getSuccessStatusBox = ({nonPicFileNames}) => {
+const getSuccessStatusBox = nonPicFileNames => {
   return (
-    <StatusBox success={true}>
+    <StatusBox success>
       <div><h3>Success!</h3></div>
       <div><p>New Activity Created Successfully.</p></div>
       <div className={`non-saved-files ${nonPicFileNames.length > 0 ? 'show-non-saved-files' : ''}`}>
@@ -147,7 +148,8 @@ const getSuccessStatusBox = ({nonPicFileNames}) => {
       <div>
         <span>
           <p>
-          <Link to="/admin/activities"><strong>Redirect</strong></Link> to activity list to see the newly added Activity!
+            <Link to="/admin/activities">
+              <strong>Redirect</strong></Link> to activity list to see the newly added Activity!
           </p>
         </span>
       </div>
@@ -156,9 +158,9 @@ const getSuccessStatusBox = ({nonPicFileNames}) => {
 };
 
 const PanelView = ({
-                     name, description, nameError, descriptionError,
-                     picsError, updateStateField, addActivity, statusBoxToAdd
-                   }) => (
+  name, description, nameError, descriptionError,
+  picsError, updateStateField, addActivity, statusBoxToAdd
+}) => (
   <div className="project-add-panel">
     <h2>Add an Activity</h2>
     <ActivityAddForm
@@ -171,23 +173,28 @@ const PanelView = ({
       addActivity={addActivity}
     />
 
-    <StatusPanel statusBoxToAdd={statusBoxToAdd}/>
+    <StatusPanel statusBoxToAdd={statusBoxToAdd} />
   </div>
 );
 
 const ActivityAddForm = ({
-                          name, description, nameError, descriptionError,
-                          picsError, updateStateField, addActivity
-                        }) => (
+  name, description, nameError, descriptionError,
+  picsError, updateStateField, addActivity
+}) => (
   <div className="form-holder">
     <section className="name">
       <div className="field">
         <div className="label">
-          <label>Name</label>
+          <label htmlFor="activity-add-name">Name</label>
         </div>
 
         <div className="input">
-          <input type="text" value={name} onChange={e => updateStateField('name', e.target.value)}/>
+          <input
+            id="activity-add-name"
+            type="text"
+            value={name}
+            onChange={e => updateStateField('name', e.target.value)}
+          />
         </div>
       </div>
 
@@ -199,11 +206,15 @@ const ActivityAddForm = ({
     <section className="description">
       <div className="field">
         <div className="label">
-          <label>Description</label>
+          <label htmlFor="activity-description">Description</label>
         </div>
 
         <div className="input">
-          <textarea value={description} onChange={e => updateStateField('description', e.target.value)}/>
+          <textarea
+            id="activity-description"
+            value={description}
+            onChange={e => updateStateField('description', e.target.value)}
+          />
         </div>
       </div>
 
@@ -215,11 +226,11 @@ const ActivityAddForm = ({
     <section className="pics">
       <div className="field">
         <div className="label">
-          <label>Pictures</label>
+          <label htmlFor="add-panel-pic">Pictures</label>
         </div>
 
         <div className="input">
-          <input id="add-panel-pic" type="file" multiple/>
+          <input id="add-panel-pic" type="file" multiple />
         </div>
       </div>
 
@@ -241,5 +252,35 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToProps = {addedActivityUndertaken};
+
+ActivityAddPanel.propTypes = {
+  addedActivityUndertaken: PropTypes.func.isRequired,
+  authToken: PropTypes.string.isRequired
+};
+
+ActivityAddForm.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  nameError: PropTypes.string.isRequired,
+  descriptionError: PropTypes.string.isRequired,
+  picsError: PropTypes.string.isRequired,
+  updateStateField: PropTypes.func.isRequired,
+  addActivity: PropTypes.func.isRequired
+};
+
+PanelView.defaultProps = {
+  statusBoxToAdd: null
+};
+
+PanelView.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  nameError: PropTypes.string.isRequired,
+  descriptionError: PropTypes.string.isRequired,
+  picsError: PropTypes.string.isRequired,
+  updateStateField: PropTypes.func.isRequired,
+  addActivity: PropTypes.func.isRequired,
+  statusBoxToAdd: PropTypes.element
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityAddPanel);

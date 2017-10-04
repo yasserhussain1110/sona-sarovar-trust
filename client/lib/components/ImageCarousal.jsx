@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class ImageCarousal extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class ImageCarousal extends Component {
 
   updateShowingImage() {
     this.setState({
-      currentShowingImageIndex: (this.state.currentShowingImageIndex + 1) % this.props.imageLinks.length
+      currentShowingImageIndex:
+      (this.state.currentShowingImageIndex + 1) % this.props.imageLinks.length
     });
   }
 
@@ -33,10 +35,15 @@ class ImageCarousal extends Component {
   render() {
     return (
       <div className="carousal-image-container">{this.props.imageLinks.map((link, index) => (
-        <img key={index} className={this.isImageShowing(index) ? 'active' : 'inactive'} src={link}/>))}
+        <img alt="" key={index} className={this.isImageShowing(index) ? 'active' : 'inactive'} src={link} />))}
       </div>
     );
   }
 }
+
+ImageCarousal.propTypes = {
+  viewDuration: PropTypes.number.isRequired,
+  imageLinks: PropTypes.array.isRequired
+};
 
 export default ImageCarousal;

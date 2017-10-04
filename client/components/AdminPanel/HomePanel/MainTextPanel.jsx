@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import {updatedMainTextPara1, updatedMainTextPara2} from '../../../actions';
 import Modal from '../../../lib/components/Modal';
 import UpdateMainTextForm from './MainTextPanel/UpdateMainTextForm';
@@ -50,7 +51,7 @@ class MainTextPanel extends Component {
     }
 
     this.props.addStatusBox(
-      <StatusBox success={true}>
+      <StatusBox success>
         <div><h3>Success!</h3></div>
         <div>Main Text #{this.state.selectedMainTextParaNumber} updated successfully.</div>
       </StatusBox>
@@ -76,7 +77,7 @@ class MainTextPanel extends Component {
               <span>{mainTextPara1}</span>
             </div>
             <div className="button-holder">
-              <button onClick={e => this.showFormToUpdateMainText(1)}>Update Text</button>
+              <button onClick={() => this.showFormToUpdateMainText(1)}>Update Text</button>
             </div>
           </div>
 
@@ -85,7 +86,7 @@ class MainTextPanel extends Component {
               <span>{mainTextPara2}</span>
             </div>
             <div className="button-holder">
-              <button onClick={e => this.showFormToUpdateMainText(2)}>Update Text</button>
+              <button onClick={() => this.showFormToUpdateMainText(2)}>Update Text</button>
             </div>
           </div>
         </div>
@@ -113,5 +114,14 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToProps = {updatedMainTextPara1, updatedMainTextPara2};
+
+MainTextPanel.propTypes = {
+  addStatusBox: PropTypes.func.isRequired,
+  updatedMainTextPara1: PropTypes.func.isRequired,
+  updatedMainTextPara2: PropTypes.func.isRequired,
+  mainTextPara1: PropTypes.string.isRequired,
+  mainTextPara2: PropTypes.string.isRequired,
+  authToken: PropTypes.string.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainTextPanel);

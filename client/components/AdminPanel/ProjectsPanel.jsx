@@ -8,9 +8,9 @@ const ProjectsPanel = () => (
   <div className="controller projects-panel">
     <h1>Projects Panel</h1>
     <Switch>
-      <Route path="/admin/projects/edit/:index" component={ProjectEditPanel}/>
-      <Route path="/admin/projects/add" component={ProjectAddPanel}/>
-      <Route path="/admin/projects" component={ProjectListPanel}/>
+      <Route path="/admin/projects/edit/:index" component={ProjectEditPanel} />
+      <Route path="/admin/projects/add" component={ProjectAddPanel} />
+      <Route path="/admin/projects" component={ProjectListPanel} />
     </Switch>
   </div>
 );
