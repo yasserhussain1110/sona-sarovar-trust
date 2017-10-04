@@ -39,7 +39,7 @@ AdminSchema.pre('save', function (next) {
     })
     .catch(e => {
       next(e);
-    })
+    });
 });
 
 AdminSchema.methods.generateAuthToken = function () {
@@ -78,7 +78,7 @@ AdminSchema.statics.findByCreds = function (username, password) {
       return new Promise((resolve, reject) => {
         bcrypt.compare(password, admin.password, function (err, res) {
           if (res) {
-            resolve(admin)
+            resolve(admin);
           } else {
             reject('Incorrect Password');
           }

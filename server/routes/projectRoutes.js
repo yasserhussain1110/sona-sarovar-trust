@@ -41,7 +41,7 @@ const projectRoutes = app => {
     Promise
       .all(files.map(file => {
         let fileWritePromise = ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/projects');
-        return reflectFilePromise(fileWritePromise, file)
+        return reflectFilePromise(fileWritePromise, file);
       }))
       .then(result => {
         let resolvedPromises = result.filter(p => p.resolved);
@@ -116,7 +116,7 @@ const projectRoutes = app => {
       runValidators: true
     }).then(() => {
       res.status(200).send();
-    })
+    });
   });
 
   app.patch('/api/project/pic/:_id', auth, upload.single('pic'), (req, res) => {

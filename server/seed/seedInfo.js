@@ -110,7 +110,7 @@ const populateHomePage = () => {
   return new Promise(resolve => {
     ncp(sourceHomeDir, targetHomeDir, function (err) {
       if (err)  throw err;
-      resolve()
+      resolve();
     });
   }).then(() => {
     return HomePage.remove({});
@@ -126,7 +126,7 @@ const populateTeamMembers = () => {
   return new Promise(resolve => {
     ncp(sourceAboutDir, targetAboutDir, function (err) {
       if (err)  throw err;
-      resolve()
+      resolve();
     });
   }).then(() => {
     return TeamMember.remove({});
@@ -142,7 +142,7 @@ const populateProjects = () => {
   return new Promise(resolve => {
     ncp(sourceProjectsDir, targetProjectsDir, function (err) {
       if (err)  throw err;
-      resolve()
+      resolve();
     });
   }).then(() => {
     return Project.remove({});
@@ -158,7 +158,7 @@ const populateActivities = () => {
   return new Promise(resolve => {
     ncp(sourceProjectsDir, targetProjectsDir, function (err) {
       if (err)  throw err;
-      resolve()
+      resolve();
     });
   }).then(() => {
     return Activity.remove({});

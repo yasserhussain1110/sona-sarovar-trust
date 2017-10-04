@@ -18,7 +18,7 @@ module.exports = app => {
     compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
       hotMiddleware.publish({action: 'reload'});
       cb();
-    })
+    });
   });
 
   // handle fallback for HTML5 history API

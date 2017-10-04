@@ -33,7 +33,7 @@ const removeExistingPicFile = (model, arrayField, _id) => {
         resolve(filePath);
       });
     });
-  })
+  });
 };
 
 const modifyFileName = fileName => crypto.pseudoRandomBytes(8).toString('hex') + '-' + sanitizeFileName(fileName);

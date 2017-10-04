@@ -9,7 +9,7 @@ const devCodeEntry = ['react-hot-loader/patch', './webpack-utils/dev-client'];
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
-  baseWebpackConfig.entry[name] = devCodeEntry.concat(baseWebpackConfig.entry[name])
+  baseWebpackConfig.entry[name] = devCodeEntry.concat(baseWebpackConfig.entry[name]);
 });
 
 module.exports = merge(baseWebpackConfig, {
