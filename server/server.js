@@ -1,3 +1,6 @@
+/* eslint-disable global-require */
+/* eslint-disable brace-style */
+
 require('./config/config');
 require('./db/mongoose');
 
@@ -24,7 +27,7 @@ require('./routes/paymentRoutes')(app);
 /* Set up development server if required */
 if (process.env.NODE_ENV === 'development') {
   console.log('Running In Development');
-  require('./tools/setup-dev')(app);  // eslint-disable-line global-require
+  require('./tools/setup-dev')(app);
 }
 /* Or serve static assets in production */
 else if (process.env.NODE_ENV === 'production') {

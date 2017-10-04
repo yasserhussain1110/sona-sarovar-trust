@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');
 const webpackDevConfig = require('../../webpack.config.dev.js');
+
 const compiler = webpack(webpackDevConfig);
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
