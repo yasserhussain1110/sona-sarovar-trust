@@ -2,7 +2,6 @@ const auth = require('../middleware/auth');
 const Project = require('../models/project');
 const multer = require('multer');
 const upload = multer();
-const fs = require('fs');
 const {
   ensurePicAndWriteToDisk,
   removeExistingPicFile

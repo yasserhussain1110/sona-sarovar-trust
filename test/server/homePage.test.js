@@ -8,7 +8,7 @@ const {
 } = require('../../server/seed/seedInfo');
 const {RESOURCES_DIR} = process.env;
 const testFileName = 'sun.jpg';
-const constructFullPath = name => 'test/server/files/' + testFileName;
+const constructFullPath = name => 'test/server/files/' + name;
 
 before(done => {
   if (!fs.existsSync(RESOURCES_DIR)) {

@@ -30,7 +30,7 @@ describe('Testing schema Project', () => {
       description: ''
     }).save()
       .then(() => done('Project Created'))
-      .catch(e => done());
+      .catch(() => done());
   });
 
   it('should not create a new project with empty pics field', done => {
@@ -39,7 +39,7 @@ describe('Testing schema Project', () => {
       description: 'victory'
     }).save()
       .then(() => done('Project Created'))
-      .catch(e => done());
+      .catch(() => done());
   });
 
   it('should not create a new project with incorrect pic type', done => {
@@ -49,7 +49,7 @@ describe('Testing schema Project', () => {
       pics: 'something'
     }).save()
       .then(() => done('Project Created'))
-      .catch(e => done());
+      .catch(() => done());
   });
 
   it('should not create a new project with empty array', done => {
@@ -59,7 +59,7 @@ describe('Testing schema Project', () => {
       pics: []
     }).save()
       .then(() => done('Project Created'))
-      .catch(e => done());
+      .catch(() => done());
   });
 
   it('should not create a new project with object not containing url field', done => {
@@ -69,7 +69,7 @@ describe('Testing schema Project', () => {
       pics: [{some: 'prop'}]
     }).save()
       .then(() => done('Project Created'))
-      .catch(e => done());
+      .catch(() => done());
   });
 
   it('should create a new project with pics field and \'pics.0.url\' field', done => {
@@ -100,7 +100,7 @@ describe('Testing path DELETE /project/:_id', () => {
       .set('x-auth', INIT_ADMIN.tokens[0])
       .send()
       .expect(200)
-      .end((err, res) => {
+      .end(err => {
         if (err) return done(err);
         const pics = INIT_PROJECTS[0].pics;
         pics.forEach(pic => {
@@ -122,7 +122,7 @@ describe('Testing path DELETE /project/pic/:_id', () => {
       .set('x-auth', INIT_ADMIN.tokens[0])
       .send()
       .expect(200)
-      .end((err, res) => {
+      .end(err => {
         if (err) return done(err);
         const picUrl = INIT_PROJECTS[0].pics[0].url;
 

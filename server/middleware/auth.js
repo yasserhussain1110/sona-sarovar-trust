@@ -10,7 +10,7 @@ const auth = (req, res, next) => {
     req.admin = admin;
     req.token = token;
     next();
-  }).catch(e => {
+  }).catch(() => {
     res.status(401).send();
   });
 };
