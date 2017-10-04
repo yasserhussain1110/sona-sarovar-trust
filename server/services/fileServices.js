@@ -29,7 +29,7 @@ const removeExistingPicFile = (model, arrayField, _id) => {
     const picUrl = result[arrayField][0].url;
     return new Promise(resolve => {
       const filePath = RESOURCES_DIR + picUrl;
-      fs.unlink(filePath, function (err) {
+      fs.unlink(filePath, err => {
         if (err) throw err;
         resolve(filePath);
       });
@@ -42,7 +42,7 @@ const modifyFileName = fileName => crypto.pseudoRandomBytes(8).toString('hex') +
 const sanitizeFileName = fileName => fileName.replace(/[\s\\/]+/g, '-');
 
 const checkIfFileIsPic = fileBuf => new Promise((resolve, reject) => {
-  magic.detect(fileBuf, function (err, result) {
+  magic.detect(fileBuf, (err, result) => {
     if (err) throw err;
     const validPicTypes = ['image/gif', 'image/jpeg', 'image/png'];
     if (validPicTypes.indexOf(result) > -1) {
@@ -54,7 +54,7 @@ const checkIfFileIsPic = fileBuf => new Promise((resolve, reject) => {
 });
 
 const writeBufferToDisk = (filePath, fileBuf) => new Promise(resolve => {
-  fs.writeFile(filePath, fileBuf, function (err) {
+  fs.writeFile(filePath, fileBuf, err => {
     if (err) throw err;
     resolve(filePath);
   });

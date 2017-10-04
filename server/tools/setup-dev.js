@@ -14,8 +14,8 @@ module.exports = app => {
   });
 
   // force page reload when html-webpack-plugin template changes
-  compiler.plugin('compilation', function (compilation) {
-    compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
+  compiler.plugin('compilation', compilation => {
+    compilation.plugin('html-webpack-plugin-after-emit', (data, cb) => {
       hotMiddleware.publish({action: 'reload'});
       cb();
     });
@@ -33,7 +33,7 @@ module.exports = app => {
 
   const uri = 'http://localhost:' + process.env.PORT;
 
-  devMiddleware.waitUntilValid(function () {
+  devMiddleware.waitUntilValid(() => {
     console.log('> Listening at ' + uri + '\n');
   });
 };

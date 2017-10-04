@@ -76,7 +76,7 @@ AdminSchema.statics.findByCreds = function (username, password) {
         return Promise.reject('No such Admin');
       }
       return new Promise((resolve, reject) => {
-        bcrypt.compare(password, admin.password, function (err, res) {
+        bcrypt.compare(password, admin.password, (err, res) => {
           if (res) {
             resolve(admin);
           } else {
