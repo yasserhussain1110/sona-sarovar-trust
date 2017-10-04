@@ -5,29 +5,29 @@ const crypto = require('crypto');
 const {RESOURCES_DIR} = process.env;
 
 const ensurePicAndWriteToDisk = (file, dir) => {
-  let fileBuf = file.buffer;
-  let modifiedName = modifyFileName(file.originalname);
-  let filePath = `${dir}/${modifiedName}`;
+  const fileBuf = file.buffer;
+  const modifiedName = modifyFileName(file.originalname);
+  const filePath = `${dir}/${modifiedName}`;
   return checkIfFileIsPic(fileBuf).then(() => {
     return writeBufferToDisk(filePath, fileBuf);
   });
 };
 
 const removeExistingPicFile = (model, arrayField, _id) => {
-  let subFieldId = `${arrayField}._id`;
-  let subFieldQuery = `${arrayField}.$`;
+  const subFieldId = `${arrayField}._id`;
+  const subFieldQuery = `${arrayField}.$`;
 
-  let query = {};
+  const query = {};
   query[subFieldId] = _id;
 
-  let projection = {_id: 0};
+  const projection = {_id: 0};
   projection[subFieldQuery] = 1;
 
   return model.findOne(query, projection).then(result => {
     if (!result) throw new Error(model.toString() + 'not found');
-    let picUrl = result[arrayField][0].url;
+    const picUrl = result[arrayField][0].url;
     return new Promise(resolve => {
-      let filePath = RESOURCES_DIR + picUrl;
+      const filePath = RESOURCES_DIR + picUrl;
       fs.unlink(filePath, function (err) {
         if (err) throw err;
         resolve(filePath);
@@ -43,7 +43,7 @@ const sanitizeFileName = fileName => fileName.replace(/[\s\\/]+/g, '-');
 const checkIfFileIsPic = fileBuf => new Promise((resolve, reject) => {
   magic.detect(fileBuf, function (err, result) {
     if (err) throw err;
-    let validPicTypes = ['image/gif', 'image/jpeg', 'image/png'];
+    const validPicTypes = ['image/gif', 'image/jpeg', 'image/png'];
     if (validPicTypes.indexOf(result) > -1) {
       resolve(result);
     } else {

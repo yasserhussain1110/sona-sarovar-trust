@@ -98,7 +98,7 @@ class CaptionsPanel extends Component {
         return (
           <DeleteCaptionForm
             onSuccess={() => {
-              let selectCaptionIndex = this.state.selectedCaptionIndex;
+              const selectCaptionIndex = this.state.selectedCaptionIndex;
               this.close();
               this.props.deletedCenterPicCaption(selectCaptionIndex);
               this.props.addStatusBox(

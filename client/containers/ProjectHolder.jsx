@@ -7,7 +7,7 @@ const ProjectHolder = ({project}) => {
     return <div className="project-holder">No Such Project Found</div>;
   }
 
-  let {name, description, pics} = project;
+  const {name, description, pics} = project;
   return (
     <div className="project-holder">
       <h3><span>{name}</span></h3>

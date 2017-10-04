@@ -34,7 +34,7 @@
  *      first argument obj, and updates its fields
  */
 export const updateSingleObjectInArray = (array, elementIndex, updator) => {
-  let objectToUpdateClone = {...array[elementIndex]};
+  const objectToUpdateClone = {...array[elementIndex]};
   updator(objectToUpdateClone);
   return [
     ...array.slice(0, elementIndex),
@@ -58,7 +58,7 @@ export const clip = (str, length) => str.length < length ? str : str.substring(0
 export const getParameterByName = (name, url) => {
   if (!url) url = window.location.href;
   name = name.replace(/[\[\]]/g, '\\$&');
-  let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
     results = regex.exec(url);
   if (!results) return null;
   if (!results[2]) return '';

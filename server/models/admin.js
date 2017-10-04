@@ -26,7 +26,7 @@ const AdminSchema = new Schema({
 });
 
 AdminSchema.pre('save', function (next) {
-  let admin = this;
+  const admin = this;
   if (!admin.isModified('password')) return next();
 
   bcrypt.genSalt(10)
@@ -43,15 +43,15 @@ AdminSchema.pre('save', function (next) {
 });
 
 AdminSchema.methods.generateAuthToken = function () {
-  let admin = this;
-  let tokenString = jwt.sign({_id: admin._id.toHexString()}, JWT_SECRET_KEY);
+  const admin = this;
+  const tokenString = jwt.sign({_id: admin._id.toHexString()}, JWT_SECRET_KEY);
   admin.tokens.push(tokenString);
 
   return admin.save().then(() => tokenString);
 };
 
 AdminSchema.statics.findByToken = function (tokenString) {
-  let Admin = this;
+  const Admin = this;
   let decoded;
 
   try {
@@ -60,7 +60,7 @@ AdminSchema.statics.findByToken = function (tokenString) {
     return Promise.reject('Invalid Token');
   }
 
-  let {_id} = decoded;
+  const {_id} = decoded;
 
   return Admin.findOne({
     _id,
@@ -69,7 +69,7 @@ AdminSchema.statics.findByToken = function (tokenString) {
 };
 
 AdminSchema.statics.findByCreds = function (username, password) {
-  let Admin = this;
+  const Admin = this;
   return Admin.findOne({username})
     .then(admin => {
       if (!admin) {

@@ -48,8 +48,8 @@ const projects = (state = defaultState, action) => {
         })
       };
     case 'UPDATED_PROJECT_PIC':
-      let selectedProject = state.projectsDone[action.projectIndex];
-      let picIndex = selectedProject.pics.findIndex(pic => pic._id === action.picId);
+      const selectedProject = state.projectsDone[action.projectIndex];
+      const picIndex = selectedProject.pics.findIndex(pic => pic._id === action.picId);
       return {
         projectsDone: updateSingleObjectInArray(state.projectsDone, action.projectIndex,
           project => {

@@ -66,7 +66,7 @@ class MainTextPanel extends Component {
   }
 
   render() {
-    let {mainTextPara1, mainTextPara2, authToken} = this.props;
+    const {mainTextPara1, mainTextPara2, authToken} = this.props;
     return (
       <div className="main-text-panel">
         <h2>Main Text Panel</h2>

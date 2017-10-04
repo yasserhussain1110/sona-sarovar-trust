@@ -26,13 +26,13 @@ const reflectFilePromise = (promise, file) => (
 
 const projectRoutes = app => {
   app.put('/api/project', auth, upload.array('pics'), (req, res) => {
-    let {name, description} = req.body;
+    const {name, description} = req.body;
 
     if (!name || !description) {
       return res.status(400).send();
     }
 
-    let files = req.files;
+    const files = req.files;
 
     if (!files || files.length === 0) {
       return res.status(400).send();
@@ -40,15 +40,15 @@ const projectRoutes = app => {
 
     Promise
       .all(files.map(file => {
-        let fileWritePromise = ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/projects');
+        const fileWritePromise = ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/projects');
         return reflectFilePromise(fileWritePromise, file);
       }))
       .then(result => {
-        let resolvedPromises = result.filter(p => p.resolved);
+        const resolvedPromises = result.filter(p => p.resolved);
         if (resolvedPromises.length === 0) throw new Error('Nothing could be saved');
-        let rejectedPromises = result.filter(p => p.rejected);
-        let savedPicUrls = resolvedPromises.map(p => p.value.replace(RESOURCES_DIR, ''));
-        let nonPicFileNames = rejectedPromises.map(p => p.originalFileName);
+        const rejectedPromises = result.filter(p => p.rejected);
+        const savedPicUrls = resolvedPromises.map(p => p.value.replace(RESOURCES_DIR, ''));
+        const nonPicFileNames = rejectedPromises.map(p => p.originalFileName);
         return {
           savedPicUrls,
           nonPicFileNames
@@ -76,8 +76,8 @@ const projectRoutes = app => {
   app.put('/api/project/pic/:_id', auth, upload.single('pic'), (req, res) => {
     if (!req.file) return res.status(400).send();
 
-    let _id = req.params._id;
-    let file = req.file;
+    const _id = req.params._id;
+    const file = req.file;
 
     Project.findById(_id)
       .then(project => {
@@ -86,7 +86,7 @@ const projectRoutes = app => {
           .then(picPath => ({project, picPath}));
       })
       .then(({project, picPath}) => {
-        let picUrl = picPath.replace(RESOURCES_DIR, '');
+        const picUrl = picPath.replace(RESOURCES_DIR, '');
         project.pics.push({url: picUrl});
         return project.save().then(() => project.pics[project.pics.length - 1]);
       })
@@ -101,8 +101,8 @@ const projectRoutes = app => {
 
 
   app.patch('/api/project/:_id', auth, (req, res) => {
-    let {name, description} = req.body;
-    let _id = req.params._id;
+    const {name, description} = req.body;
+    const _id = req.params._id;
     if (!name || !description) {
       return res.status(400).send();
     }
@@ -122,8 +122,8 @@ const projectRoutes = app => {
   app.patch('/api/project/pic/:_id', auth, upload.single('pic'), (req, res) => {
     if (!req.file) return res.status(400).send();
 
-    let _id = req.params._id;
-    let file = req.file;
+    const _id = req.params._id;
+    const file = req.file;
 
     Project.findOne({'pics._id': _id})
       .then(p => {
@@ -131,7 +131,7 @@ const projectRoutes = app => {
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/projects');
       })
       .then(picPath => {
-        let picUrl = picPath.replace(RESOURCES_DIR, '');
+        const picUrl = picPath.replace(RESOURCES_DIR, '');
         return Project.update({
           'pics._id': _id
         }, {
@@ -152,11 +152,11 @@ const projectRoutes = app => {
   });
 
   app.delete('/api/project/:_id', auth, (req, res) => {
-    let _id = req.params._id;
+    const _id = req.params._id;
 
     Project.findById(_id).then(project => {
       if (!project) throw new Error('Could not find project.');
-      let projectPicIds = project.pics.map(picObj => picObj._id);
+      const projectPicIds = project.pics.map(picObj => picObj._id);
       return Promise.all(projectPicIds.map(_id => {
         return removeExistingPicFile(Project, 'pics', _id);
       }));
@@ -171,7 +171,7 @@ const projectRoutes = app => {
   });
 
   app.delete('/api/project/pic/:_id', auth, (req, res) => {
-    let _id = req.params._id;
+    const _id = req.params._id;
 
     Project.findOne({
       'pics._id': _id

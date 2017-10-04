@@ -135,7 +135,7 @@ class CenterPicsPanel extends Component {
   }
 
   render() {
-    let {centerPics} = this.props;
+    const {centerPics} = this.props;
     return (
       <div className="center-pic-panel">
         <h2>Center Pics Panel</h2>

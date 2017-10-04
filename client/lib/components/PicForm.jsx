@@ -32,7 +32,7 @@ class PicForm extends Component {
       return false;
     }
 
-    let validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
     if (validImageTypes.indexOf(file['type']) === -1) {
       this.setState({
         fileNotAPic: true
@@ -45,11 +45,11 @@ class PicForm extends Component {
   }
 
   putPic() {
-    let pic = document.getElementById('pic').files[0];
+    const pic = document.getElementById('pic').files[0];
     if (!this.validatePicAndUpdateState(pic)) {
       return;
     }
-    let data = new FormData();
+    const data = new FormData();
     data.append('pic', pic);
     axios.put(this.props.url, data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
@@ -63,11 +63,11 @@ class PicForm extends Component {
   }
 
   patchPic() {
-    let pic = document.getElementById('pic').files[0];
+    const pic = document.getElementById('pic').files[0];
     if (!this.validatePicAndUpdateState(pic)) {
       return;
     }
-    let data = new FormData();
+    const data = new FormData();
     data.append('pic', pic);
     axios.patch(this.props.url, data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {

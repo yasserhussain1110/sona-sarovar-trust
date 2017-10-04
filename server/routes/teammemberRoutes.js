@@ -8,8 +8,8 @@ const {RESOURCES_DIR} = process.env;
 
 const teammemberRoutes = app => {
   app.put('/api/teammember', auth, upload.single('pic'), (req, res) => {
-    let file = req.file;
-    let {name, info} = req.body;
+    const file = req.file;
+    const {name, info} = req.body;
 
     if (!file) return res.status(400).send();
     if (!name || !info) return res.status(400).send();
@@ -17,7 +17,7 @@ const teammemberRoutes = app => {
 
     ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/about')
       .then(picPath => {
-        let picUrl = picPath.replace(RESOURCES_DIR, '');
+        const picUrl = picPath.replace(RESOURCES_DIR, '');
         return new TeamMember({
           name,
           info,
@@ -34,9 +34,9 @@ const teammemberRoutes = app => {
   });
 
   app.patch('/api/teammember/:_id', auth, upload.single('pic'), (req, res) => {
-    let file = req.file;
-    let {name, info} = req.body;
-    let _id = req.params._id;
+    const file = req.file;
+    const {name, info} = req.body;
+    const _id = req.params._id;
 
     TeamMember.findById(_id).then(member => {
       if (!member) throw new Error('No member by id - ' + _id);

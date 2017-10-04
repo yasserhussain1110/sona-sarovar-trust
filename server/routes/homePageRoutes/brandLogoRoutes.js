@@ -10,7 +10,7 @@ const brandLogoRoutes = app => {
   app.patch('/api/home-page/brand-logo', auth, upload.single('pic'), (req, res) => {
     if (!req.file) return res.status(400).send();
 
-    let file = req.file;
+    const file = req.file;
 
     HomePage.findOne()
       .then(h => {

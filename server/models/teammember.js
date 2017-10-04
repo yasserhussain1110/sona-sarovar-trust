@@ -20,7 +20,7 @@ const TeamMemberSchema = new Schema({
 });
 
 TeamMemberSchema.methods.toJSON = function () {
-  let teamMember = this;
+  const teamMember = this;
   return _.pick(teamMember, ['_id', 'name', 'info', 'pic']);
 };
 

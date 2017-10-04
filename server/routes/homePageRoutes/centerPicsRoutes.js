@@ -11,7 +11,7 @@ const centerPicRoutes = app => {
   app.put('/api/home-page/center-pic', auth, upload.single('pic'), (req, res) => {
     if (!req.file) return res.status(400).send();
 
-    let file = req.file;
+    const file = req.file;
 
     HomePage.findOne()
       .then(h => {
@@ -19,7 +19,7 @@ const centerPicRoutes = app => {
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/home').then(picPath => ({picPath, h}));
       })
       .then(({picPath, h}) => {
-        let picUrl = picPath.replace(RESOURCES_DIR, '');
+        const picUrl = picPath.replace(RESOURCES_DIR, '');
         h.centerPics.push({url: picUrl});
         return h.save().then(h => h.centerPics[h.centerPics.length - 1]);
       })
@@ -35,8 +35,8 @@ const centerPicRoutes = app => {
   app.patch('/api/home-page/center-pic/:_id', auth, upload.single('pic'), (req, res) => {
     if (!req.file) return res.status(400).send();
 
-    let _id = req.params._id;
-    let file = req.file;
+    const _id = req.params._id;
+    const file = req.file;
 
     HomePage
       .findOne({
@@ -50,7 +50,7 @@ const centerPicRoutes = app => {
         return removeExistingPicFile(HomePage, 'centerPics', _id).then(() => picPath);
       })
       .then(picPath => {
-        let picUrl = picPath.replace(RESOURCES_DIR, '');
+        const picUrl = picPath.replace(RESOURCES_DIR, '');
         return updatePicFileUrlInDB(picUrl, _id).then(() => picUrl);
       })
       .then(picUrl => {
@@ -63,7 +63,7 @@ const centerPicRoutes = app => {
   });
 
   app.delete('/api/home-page/center-pic/:_id', auth, (req, res) => {
-    let _id = req.params._id;
+    const _id = req.params._id;
     HomePage
       .findOne({
         'centerPics._id': _id

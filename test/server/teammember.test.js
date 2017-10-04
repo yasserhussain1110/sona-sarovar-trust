@@ -52,7 +52,7 @@ describe('Testing path PUT /teammember', () => {
             expect(member).toExist();
             expect(member.pic).toInclude(testFileName);
             expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);
-            let newMember = res.body;
+            const newMember = res.body;
             delete newMember._id;
             expect(newMember).toEqual({
               name: 'Yasser Hussain',
@@ -83,7 +83,7 @@ describe('Testing path PATCH /teammember/:_id', () => {
             expect(member.info).toBe('Roman Infantry 1 got modified');
             expect(member.pic).toBe(INIT_TEAM_MEMBERS[0].pic);
             expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);
-            let newMember = res.body;
+            const newMember = res.body;
             delete newMember._id;
             expect(newMember).toEqual({
               name: 'Member 1 modified',
@@ -113,7 +113,7 @@ describe('Testing path PATCH /teammember/:_id', () => {
             expect(member.info).toBe('Roman Infantry 1 got modified');
             expect(member.pic).toNotBe(INIT_TEAM_MEMBERS[0].pic);
             expect(member.pic).toInclude(testFileName);
-            let newMember = res.body;
+            const newMember = res.body;
             delete newMember._id;
             expect(newMember).toEqual({
               name: 'Member 1 modified',

@@ -7,7 +7,7 @@ const ActivityHolder = ({activity}) => {
     return <div className="activity-holder">No Such Activity Found</div>;
   }
 
-  let {name, description, pics} = activity;
+  const {name, description, pics} = activity;
   return (
     <div className="activity-holder">
       <h3><span>{name}</span></h3>

@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   initializeAuth() {
-    let authToken = localStorage.getItem('auth-token');
+    const authToken = localStorage.getItem('auth-token');
     if (authToken) {
       /**
        * If authToken is present assume the admin is logged in.
@@ -43,7 +43,7 @@ class App extends Component {
   initializeApp() {
     axios.get('/api/init-state')
       .then(response => {
-        let {homePage, projects, activities, teamMembers} = response.data;
+        const {homePage, projects, activities, teamMembers} = response.data;
 
         this.props.receivedHomePageContent(homePage);
         this.props.receivedTeamMembers(teamMembers);

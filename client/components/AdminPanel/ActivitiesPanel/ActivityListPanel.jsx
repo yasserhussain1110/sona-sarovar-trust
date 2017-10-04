@@ -29,7 +29,7 @@ class ActivityListPanel extends Component {
   }
 
   deleteActivity() {
-    let activity = this.props.activities[this.state.selectedActivityIndex];
+    const activity = this.props.activities[this.state.selectedActivityIndex];
     axios.delete(`/api/activity/${activity._id}`, {
       headers: {'x-auth': this.props.authToken}
     }).then(() => {
@@ -62,7 +62,7 @@ class ActivityListPanel extends Component {
   }
 
   getModalContent() {
-    let selectedActivity = this.props.activities[this.state.selectedActivityIndex];
+    const selectedActivity = this.props.activities[this.state.selectedActivityIndex];
 
     return this.state.showingModal ? (
       <DeleteActivityForm

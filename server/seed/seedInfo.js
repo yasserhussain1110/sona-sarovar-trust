@@ -104,8 +104,8 @@ const
   };
 
 const populateHomePage = () => {
-  let sourceHomeDir = 'initResources/home';
-  let targetHomeDir = RESOURCES_DIR + '/home';
+  const sourceHomeDir = 'initResources/home';
+  const targetHomeDir = RESOURCES_DIR + '/home';
 
   return new Promise(resolve => {
     ncp(sourceHomeDir, targetHomeDir, function (err) {
@@ -120,8 +120,8 @@ const populateHomePage = () => {
 };
 
 const populateTeamMembers = () => {
-  let sourceAboutDir = 'initResources/about';
-  let targetAboutDir = RESOURCES_DIR + '/about';
+  const sourceAboutDir = 'initResources/about';
+  const targetAboutDir = RESOURCES_DIR + '/about';
 
   return new Promise(resolve => {
     ncp(sourceAboutDir, targetAboutDir, function (err) {
@@ -136,8 +136,8 @@ const populateTeamMembers = () => {
 };
 
 const populateProjects = () => {
-  let sourceProjectsDir = 'initResources/projects';
-  let targetProjectsDir = RESOURCES_DIR + '/projects';
+  const sourceProjectsDir = 'initResources/projects';
+  const targetProjectsDir = RESOURCES_DIR + '/projects';
 
   return new Promise(resolve => {
     ncp(sourceProjectsDir, targetProjectsDir, function (err) {
@@ -152,8 +152,8 @@ const populateProjects = () => {
 };
 
 const populateActivities = () => {
-  let sourceProjectsDir = 'initResources/activities';
-  let targetProjectsDir = RESOURCES_DIR + '/activities';
+  const sourceProjectsDir = 'initResources/activities';
+  const targetProjectsDir = RESOURCES_DIR + '/activities';
 
   return new Promise(resolve => {
     ncp(sourceProjectsDir, targetProjectsDir, function (err) {

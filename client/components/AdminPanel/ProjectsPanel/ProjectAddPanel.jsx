@@ -41,7 +41,7 @@ class ProjectAddPanel extends Component {
   }
 
   validateFields() {
-    let {name, description} = this.state;
+    const {name, description} = this.state;
     this.clearValidation();
 
     let isValid = true;
@@ -56,7 +56,7 @@ class ProjectAddPanel extends Component {
       isValid = false;
     }
 
-    let pics = document.getElementById('add-panel-pic').files;
+    const pics = document.getElementById('add-panel-pic').files;
     if (pics.length === 0) {
       this.setState({picsError: 'Pics field cannot be empty'});
       isValid = false;
@@ -84,10 +84,10 @@ class ProjectAddPanel extends Component {
   addProject() {
     if (!this.validateFields()) return;
 
-    let {name, description} = this.state;
-    let pics = document.getElementById('add-panel-pic').files;
+    const {name, description} = this.state;
+    const pics = document.getElementById('add-panel-pic').files;
 
-    let data = new FormData();
+    const data = new FormData();
     data.append('name', name);
     data.append('description', description);
     for (let i = 0; i < pics.length; i++) {
@@ -95,7 +95,7 @@ class ProjectAddPanel extends Component {
     }
     axios.put('/api/project', data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
-        let {nonPicFileNames, project} = res.data;
+        const {nonPicFileNames, project} = res.data;
         this.resetForm();
         this.addSuccessStatusBox(nonPicFileNames);
         this.props.addedProjectDone(project);
@@ -108,7 +108,7 @@ class ProjectAddPanel extends Component {
   }
 
   updateStateField(field, value) {
-    let updateObj = {};
+    const updateObj = {};
     updateObj[field] = value;
     this.setState(updateObj);
   }

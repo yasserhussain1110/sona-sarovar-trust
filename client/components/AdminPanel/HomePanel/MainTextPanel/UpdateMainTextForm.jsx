@@ -39,8 +39,8 @@ class UpdateMainTextForm extends Component {
       return;
     }
 
-    let {paraNumber, authToken, onSuccess, onFailure} = this.props;
-    let data = {text: this.state.textAreaValue};
+    const {paraNumber, authToken, onSuccess, onFailure} = this.props;
+    const data = {text: this.state.textAreaValue};
     axios.patch(`/api/home-page/mainText/para${paraNumber}`, data, {headers: {'x-auth': authToken}})
       .then(res => {
         onSuccess(data.text);

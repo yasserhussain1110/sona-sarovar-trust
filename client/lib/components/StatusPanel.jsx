@@ -2,7 +2,7 @@ import React, {Component, cloneElement} from 'react';
 import {generateRandomHexadecimalStringOfLength} from '../../lib/helpers/functions';
 
 const statusBoxPropertyAdder = moreProps => statusBox => {
-  let uuid = generateRandomHexadecimalStringOfLength(5);
+  const uuid = generateRandomHexadecimalStringOfLength(5);
   return cloneElement(statusBox, {
     key: uuid,
     uuid,
@@ -93,7 +93,7 @@ class StatusPanel extends Component {
   }
 
   showStatusBoxRemoveAnimation(uuid) {
-    let statusBoxIndex = this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
+    const statusBoxIndex = this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
     if (statusBoxIndex === -1) return;
     this.setState({
       statusBoxes: [
@@ -105,7 +105,7 @@ class StatusPanel extends Component {
   }
 
   actuallyRemoveStatusBoxFromStatusPanel(uuid) {
-    let statusBoxIndex = this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
+    const statusBoxIndex = this.state.statusBoxes.findIndex(statusBox => statusBox.props.uuid === uuid);
     if (statusBoxIndex === -1) return;
     this.setState({
       statusBoxes: [
@@ -132,7 +132,7 @@ class StatusPanel extends Component {
       return;
     }
 
-    let newStatusBox = this.addPropsToStatusBox(nextProps.statusBoxToAdd);
+    const newStatusBox = this.addPropsToStatusBox(nextProps.statusBoxToAdd);
 
     this.setState({
       statusBoxes: [

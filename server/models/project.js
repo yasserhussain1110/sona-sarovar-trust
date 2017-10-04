@@ -21,7 +21,7 @@ const ProjectSchema = new Schema({
 });
 
 ProjectSchema.methods.toJSON = function () {
-  let project = this;
+  const project = this;
   return _.pick(project, ['_id', 'name', 'description', 'pics']);
 };
 

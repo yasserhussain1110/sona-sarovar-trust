@@ -117,7 +117,7 @@ class ActivityEditPanel extends Component {
   }
 
   validateFields() {
-    let {name, description} = this.state;
+    const {name, description} = this.state;
     this.clearValidation();
 
     let isValid = true;
@@ -136,7 +136,7 @@ class ActivityEditPanel extends Component {
   }
 
   updateNameAndDescription() {
-    let {name, description} = this.state;
+    const {name, description} = this.state;
     axios.patch(`/api/activity/${this.props.activity._id}`, {name, description}, {
       headers: {'x-auth': this.props.authToken}
     })
@@ -162,12 +162,12 @@ class ActivityEditPanel extends Component {
   }
 
   uploadMorePics() {
-    let pics = document.getElementById('edit-panel-pic').files;
+    const pics = document.getElementById('edit-panel-pic').files;
     if (pics.length === 0) return;
 
-    let uploadPicPromises = Object.keys(pics).map(key => {
-      let pic = pics[key];
-      let data = new FormData();
+    const uploadPicPromises = Object.keys(pics).map(key => {
+      const pic = pics[key];
+      const data = new FormData();
       data.append('pic', pic);
 
       return axios.put(`/api/activity/pic/${this.props.activity._id}`, data, {headers: {'x-auth': this.props.authToken}})
@@ -203,7 +203,7 @@ class ActivityEditPanel extends Component {
   }
 
   updateStateField(field, value) {
-    let updateObj = {};
+    const updateObj = {};
     updateObj[field] = value;
     this.setState(updateObj);
   };

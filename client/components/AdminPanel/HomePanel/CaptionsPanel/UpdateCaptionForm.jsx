@@ -41,7 +41,7 @@ class UpdateCaptionForm extends Component {
       return;
     }
 
-    let data = {text: this.state.textAreaValue};
+    const data = {text: this.state.textAreaValue};
 
     axios.patch(`/api/home-page/caption/${this.props.caption._id}`, data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {

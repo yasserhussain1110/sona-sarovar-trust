@@ -32,7 +32,7 @@ const HomePageSchema = new Schema({
 });
 
 HomePageSchema.methods.toJSON = function () {
-  let homePage = this;
+  const homePage = this;
   return _.pick(homePage, ['centerPics', 'brandLogoUrl', 'captions', 'mainTextPara1', 'mainTextPara2']);
 };
 

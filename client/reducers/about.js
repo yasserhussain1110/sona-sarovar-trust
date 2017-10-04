@@ -11,7 +11,7 @@ const about = (state = defaultState, action) => {
         teamMembers: action.teamMembers
       };
     case 'UPDATED_TEAM_MEMBER':
-      let teamMemberIndex =
+      const teamMemberIndex =
         state.teamMembers.findIndex(teamMember => teamMember._id === action.teamMember._id);
 
       return {

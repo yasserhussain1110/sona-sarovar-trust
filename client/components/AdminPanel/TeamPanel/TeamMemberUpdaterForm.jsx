@@ -12,7 +12,7 @@ class TeamMemberUpdater extends Component {
   constructor(props) {
     super(props);
 
-    let {name, info, pic} = props.member;
+    const {name, info, pic} = props.member;
 
     this.state = {
       name,
@@ -29,7 +29,7 @@ class TeamMemberUpdater extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let {name, info, pic} = nextProps.member;
+    const {name, info, pic} = nextProps.member;
     this.setState({name, info, pic});
   }
 
@@ -40,7 +40,7 @@ class TeamMemberUpdater extends Component {
   validateAndUpdateErrorState(e) {
     this.resetValidationErrors();
 
-    let {name, info} = this.state;
+    const {name, info} = this.state;
     let isValid = true;
 
     if (!name) {
@@ -53,11 +53,11 @@ class TeamMemberUpdater extends Component {
       isValid = false;
     }
 
-    let fileInput = getFileInputCorrespondingToForm(e);
-    let fileList = fileInput.files;
+    const fileInput = getFileInputCorrespondingToForm(e);
+    const fileList = fileInput.files;
 
     if (fileList.length > 0) {
-      let validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+      const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
       if (validImageTypes.indexOf(fileList[0]['type']) === -1) {
         this.setState({
           picError: 'Picture must have an image type extension.'
@@ -71,11 +71,11 @@ class TeamMemberUpdater extends Component {
   }
 
   update(e) {
-    let fileInput = getFileInputCorrespondingToForm(e);
-    let fileList = fileInput.files;
+    const fileInput = getFileInputCorrespondingToForm(e);
+    const fileList = fileInput.files;
     if (!this.validateAndUpdateErrorState(e)) return;
 
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('name', this.state.name);
     formData.append('info', this.state.info);
 
@@ -116,7 +116,7 @@ class TeamMemberUpdater extends Component {
   }
 
   render() {
-    let {name, info, pic, nameError, infoError, picError} = this.state;
+    const {name, info, pic, nameError, infoError, picError} = this.state;
     return (
       <section className="team-member-updater">
         <h2>Member #{this.props.index + 1}</h2>

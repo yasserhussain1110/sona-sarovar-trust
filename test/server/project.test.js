@@ -82,7 +82,7 @@ describe('Testing schema Project', () => {
         expect(p.name).toBe('rome');
         expect(p.description).toBe('victory');
         expect(p.pics.map(pic => {
-          let jsonPic = pic.toJSON();
+          const jsonPic = pic.toJSON();
           delete jsonPic._id;
           return jsonPic;
         })).toEqual([{url: '/awesome/url'}]);
@@ -102,7 +102,7 @@ describe('Testing path DELETE /project/:_id', () => {
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
-        let pics = INIT_PROJECTS[0].pics;
+        const pics = INIT_PROJECTS[0].pics;
         pics.forEach(pic => {
           expect(fs.existsSync(RESOURCES_DIR + pic.url)).toBe(false);
         });
@@ -124,7 +124,7 @@ describe('Testing path DELETE /project/pic/:_id', () => {
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
-        let picUrl = INIT_PROJECTS[0].pics[0].url;
+        const picUrl = INIT_PROJECTS[0].pics[0].url;
 
         expect(fs.existsSync(RESOURCES_DIR + picUrl)).toBe(false);
         Project.findById(INIT_PROJECTS[0]._id).then(project => {

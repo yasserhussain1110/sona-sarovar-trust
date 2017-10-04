@@ -20,7 +20,7 @@ class LoginController extends Component {
   }
 
   validateInputAndUpdateError() {
-    let {username, password} = this.state;
+    const {username, password} = this.state;
     if (!username) {
       this.setState({error: 'Username cannot be empty'});
     } else if (!password) {
@@ -34,14 +34,14 @@ class LoginController extends Component {
 
   submitForm(e) {
     e.preventDefault();
-    let {username, password} = this.state;
+    const {username, password} = this.state;
 
     if (!this.validateInputAndUpdateError()) return;
 
     if (!username || !password) return;
     axios.post('/api/admin/login', {username, password})
       .then(response => {
-        let authToken = response.headers['x-auth'];
+        const authToken = response.headers['x-auth'];
         localStorage.setItem('auth-token', authToken);
         this.props.logIn(authToken);
       })

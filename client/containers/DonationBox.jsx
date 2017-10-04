@@ -50,7 +50,7 @@ class DonationBox extends Component {
   validate() {
     this.clearValidation();
 
-    let {email, amount} = this.state;
+    const {email, amount} = this.state;
 
     if (!email) {
       this.setState({emailError: 'Email cannot be empty.'});

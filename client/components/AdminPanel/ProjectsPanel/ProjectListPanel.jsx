@@ -29,7 +29,7 @@ class ProjectListPanel extends Component {
   }
 
   deleteProject() {
-    let project = this.props.projects[this.state.selectedProjectIndex];
+    const project = this.props.projects[this.state.selectedProjectIndex];
     axios.delete(`/api/project/${project._id}`, {
       headers: {'x-auth': this.props.authToken}
     }).then(() => {
@@ -62,7 +62,7 @@ class ProjectListPanel extends Component {
   }
 
   getModalContent() {
-    let selectedProject = this.props.projects[this.state.selectedProjectIndex];
+    const selectedProject = this.props.projects[this.state.selectedProjectIndex];
 
     return this.state.showingModal ? (
       <DeleteProjectForm
