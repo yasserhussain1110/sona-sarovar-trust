@@ -24,7 +24,7 @@ require('./routes/paymentRoutes')(app);
 /* Set up development server if required */
 if (process.env.NODE_ENV === 'development') {
   console.log('Running In Development');
-  require('./tools/setup-dev')(app);
+  require('./tools/setup-dev')(app);  // eslint-disable-line global-require
 }
 /* Or serve static assets in production */
 else if (process.env.NODE_ENV === 'production') {
