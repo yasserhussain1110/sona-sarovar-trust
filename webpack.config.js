@@ -8,7 +8,7 @@ const path = require('path');
 
 module.exports = merge(baseWebpackConfig, {
   entry: {
-    app: './client/index.js',
+    app: './client/index.jsx',
     vendor: [
       'axios', 'react', 'react-dom', 'redux',
       'react-redux', 'react-router-dom'

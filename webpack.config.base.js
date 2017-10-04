@@ -9,7 +9,7 @@ function resolve(relPath) {
 
 module.exports = {
   entry: {
-    app: resolve('./client/index.js')
+    app: resolve('./client/index.jsx')
   },
   output: {
     path: resolve('dist'),
