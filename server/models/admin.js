@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+const Schema = mongoose.Schema;
 const {JWT_SECRET_KEY} = process.env;
 
 const AdminSchema = new Schema({

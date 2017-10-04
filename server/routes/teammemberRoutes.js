@@ -1,9 +1,10 @@
 const TeamMember = require('../models/teammember');
 const auth = require('../middleware/auth');
 const multer = require('multer');
-const upload = multer();
 const fs = require('fs');
 const {ensurePicAndWriteToDisk} = require('../services');
+
+const upload = multer();
 const {RESOURCES_DIR} = process.env;
 
 const teammemberRoutes = app => {

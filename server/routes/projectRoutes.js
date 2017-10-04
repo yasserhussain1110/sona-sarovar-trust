@@ -1,11 +1,12 @@
 const auth = require('../middleware/auth');
 const Project = require('../models/project');
 const multer = require('multer');
-const upload = multer();
 const {
   ensurePicAndWriteToDisk,
   removeExistingPicFile
 } = require('../services');
+
+const upload = multer();
 const {RESOURCES_DIR} = process.env;
 
 

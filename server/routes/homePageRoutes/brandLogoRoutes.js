@@ -2,8 +2,9 @@ const multer = require('multer');
 const auth = require('../../middleware/auth');
 const HomePage = require('../../models/homepage');
 const fs = require('fs');
-const upload = multer();
 const {ensurePicAndWriteToDisk} = require('../../services');
+
+const upload = multer();
 const {RESOURCES_DIR} = process.env;
 
 const brandLogoRoutes = app => {

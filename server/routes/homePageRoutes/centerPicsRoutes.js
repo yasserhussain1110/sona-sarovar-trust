@@ -1,8 +1,9 @@
 const multer = require('multer');
 const auth = require('../../middleware/auth');
 const HomePage = require('../../models/homepage');
-const upload = multer();
 const {ensurePicAndWriteToDisk, removeExistingPicFile} = require('../../services');
+
+const upload = multer();
 const {RESOURCES_DIR} = process.env;
 
 const centerPicRoutes = app => {

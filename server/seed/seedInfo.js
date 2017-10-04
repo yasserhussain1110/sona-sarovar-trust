@@ -6,6 +6,7 @@ const TeamMember = require('../models/teammember');
 const Project = require('../models/project');
 const Activity = require('../models/activity');
 const ncp = require('ncp').ncp;
+
 const {INIT_ADMIN_USERNAME, INIT_ADMIN_PASSWORD, JWT_SECRET_KEY, RESOURCES_DIR} = process.env;
 
 const INIT_ADMIN_ID = new ObjectID();

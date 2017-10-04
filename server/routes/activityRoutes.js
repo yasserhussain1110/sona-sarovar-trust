@@ -1,13 +1,13 @@
 const auth = require('../middleware/auth');
 const Activity = require('../models/activity');
 const multer = require('multer');
-const upload = multer();
 const {
   ensurePicAndWriteToDisk,
   removeExistingPicFile
 } = require('../services');
-const {RESOURCES_DIR} = process.env;
 
+const upload = multer();
+const {RESOURCES_DIR} = process.env;
 
 const reflectFilePromise = (promise, file) => (
   promise.then(picUrl => ({

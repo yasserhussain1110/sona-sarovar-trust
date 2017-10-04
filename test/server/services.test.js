@@ -6,6 +6,7 @@ const {
 } = require('../../server/seed/seedInfo');
 const {removeExistingPicFile} = require('../../server/services');
 const HomePage = require('../../server/models/homepage');
+
 const {RESOURCES_DIR} = process.env;
 
 before(done => {

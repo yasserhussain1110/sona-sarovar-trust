@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const _ = require('lodash');
 const PicSchema = require('./subschema/pic');
 const CaptionSchema = require('./subschema/caption');
+
+const Schema = mongoose.Schema;
 
 const HomePageSchema = new Schema({
   centerPics: {

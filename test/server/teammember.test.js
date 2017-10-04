@@ -7,6 +7,7 @@ const {
   INIT_TEAM_MEMBERS, INIT_ADMIN,
   populateAdmins, populateHomePage, populateTeamMembers, populateProjects
 } = require('../../server/seed/seedInfo');
+
 const {RESOURCES_DIR} = process.env;
 const testFileName = 'sun.jpg';
 const constructFullPath = name => 'test/server/files/' + name;

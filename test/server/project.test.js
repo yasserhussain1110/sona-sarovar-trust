@@ -7,6 +7,7 @@ const {
   INIT_PROJECTS, INIT_ADMIN,
   populateAdmins, populateHomePage, populateTeamMembers, populateProjects
 } = require('../../server/seed/seedInfo');
+
 const {RESOURCES_DIR} = process.env;
 
 before(done => {

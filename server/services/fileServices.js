@@ -1,7 +1,8 @@
 const fs = require('fs');
 const mmm = require('mmmagic');
-const magic = new mmm.Magic(mmm.MAGIC_MIME_TYPE);
 const crypto = require('crypto');
+
+const magic = new mmm.Magic(mmm.MAGIC_MIME_TYPE);
 const {RESOURCES_DIR} = process.env;
 
 const ensurePicAndWriteToDisk = (file, dir) => {
