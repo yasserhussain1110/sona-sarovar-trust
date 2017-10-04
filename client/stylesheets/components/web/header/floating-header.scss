@@ -8,6 +8,10 @@
   color: #EAC11A;
   display: flex;
   font-family: Lato;
+  // https://stackoverflow.com/questions/12969228/chrome-slow-scrolling-with-fixed-position-elements
+  // chrome causing the floating nav bar to stutter on scroll
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
 
   .drop-down-button {
     display: none;

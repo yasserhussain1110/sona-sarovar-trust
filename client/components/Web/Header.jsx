@@ -12,9 +12,9 @@ class Header extends Component {
     };
 
     this.scrollHandler = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 100 && this.state.scrollState === "top") {
         this.setState({scrollState: "scrolled"});
-      } else {
+      } else if (window.scrollY <= 100 && this.state.scrollState === "scrolled") {
         this.setState({scrollState: "top"});
       }
     };
