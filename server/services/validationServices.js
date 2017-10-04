@@ -49,10 +49,8 @@ const validatePaymentRequest = obj => {
     delete validatedObj.redirectUrl;
     delete validationResult.errors;
     validationResult.paymentRequestObject = validatedObj;
-    return validationResult;
-  } else {
-    return validationResult;
   }
+  return validationResult;
 };
 
 module.exports = {
