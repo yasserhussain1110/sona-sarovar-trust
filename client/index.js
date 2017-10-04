@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
+import {AppContainer} from 'react-hot-loader';  // eslint-disable-line import/no-extraneous-dependencies
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import rootReducer from './reducers';
@@ -14,7 +14,7 @@ const configureStore = initialState => {
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers').default;
+      const nextRootReducer = require('./reducers').default;  // eslint-disable-line global-require
       store.replaceReducer(nextRootReducer);
     });
   }
