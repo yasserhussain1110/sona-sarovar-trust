@@ -4,7 +4,7 @@ const utils = require('./webpack-utils/utils');
 const baseWebpackConfig = require('./webpack.config.base.js');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
-//const devCodeEntry = ['react-hot-loader/patch', 'webpack/hot/dev-server', 'webpack-hot-middleware/client'];
+// const devCodeEntry = ['react-hot-loader/patch', 'webpack/hot/dev-server', 'webpack-hot-middleware/client'];
 const devCodeEntry = ['react-hot-loader/patch', './webpack-utils/dev-client'];
 
 // add hot-reload related code to entry chunks
