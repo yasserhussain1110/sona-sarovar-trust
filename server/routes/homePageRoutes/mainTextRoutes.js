@@ -7,7 +7,7 @@ const mainTextRoutes = app => {
 
     HomePage.update({}, {
       $set: {
-        'mainTextPara1': text
+        mainTextPara1: text
       }
     }, {
       runValidators: true
@@ -40,7 +40,7 @@ const mainTextRoutes = app => {
 
     HomePage.update({}, {
       $set: {
-        'mainTextPara2': text
+        mainTextPara2: text
       }
     }, {
       runValidators: true
