@@ -74,7 +74,6 @@ const captionRoutes = app => {
     //   console.log(e);
     //   res.status(400).send();
     // });
-
   });
 };
 
