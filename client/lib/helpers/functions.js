@@ -52,7 +52,7 @@ export const generateRandomHexadecimalStringOfLength = stringLength => random(
   parseInt('f'.repeat(stringLength), 16)
 ).toString(16);
 
-export const clip = (str, length) => str.length < length ? str : str.substring(0, length - 3) + '...';
+export const clip = (str, length) => (str.length < length ? str : str.substring(0, length - 3) + '...');
 
 /* https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript  */
 export const getParameterByName = (name, url) => {
