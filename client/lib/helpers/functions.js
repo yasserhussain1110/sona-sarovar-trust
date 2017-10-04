@@ -44,7 +44,7 @@ export const updateSingleObjectInArray = (array, elementIndex, updator) => {
 };
 
 export const random = (lowerLimit, upperLimit) => (   // upper limit is inclusive here
-  ((Math.random() * (upperLimit - lowerLimit + 1)) | 0) + lowerLimit
+  Math.floor(Math.random() * (upperLimit - lowerLimit + 1)) + lowerLimit
 );
 
 export const generateRandomHexadecimalStringOfLength = stringLength => random(
