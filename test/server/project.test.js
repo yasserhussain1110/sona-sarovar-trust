@@ -27,7 +27,7 @@ describe('Testing schema Project', () => {
   it('should not create a new project with empty name & description', done => {
     new Project({
       name: '',
-      description: '',
+      description: ''
     }).save()
       .then(() => done('Project Created'))
       .catch(e => done());
@@ -36,7 +36,7 @@ describe('Testing schema Project', () => {
   it('should not create a new project with empty pics field', done => {
     new Project({
       name: 'rome',
-      description: 'victory',
+      description: 'victory'
     }).save()
       .then(() => done('Project Created'))
       .catch(e => done());
