@@ -38,12 +38,12 @@ const removeExistingPicFile = (model, arrayField, _id) => {
 
 const modifyFileName = fileName => crypto.pseudoRandomBytes(8).toString('hex') + '-' + sanitizeFileName(fileName);
 
-const sanitizeFileName = fileName => fileName.replace(/[\s\\/]+/g, "-");
+const sanitizeFileName = fileName => fileName.replace(/[\s\\/]+/g, '-');
 
 const checkIfFileIsPic = fileBuf => new Promise((resolve, reject) => {
   magic.detect(fileBuf, function (err, result) {
     if (err) throw err;
-    let validPicTypes = ["image/gif", "image/jpeg", "image/png"];
+    let validPicTypes = ['image/gif', 'image/jpeg', 'image/png'];
     if (validPicTypes.indexOf(result) > -1) {
       resolve(result);
     } else {

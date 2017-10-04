@@ -15,11 +15,11 @@ const centerPicRoutes = app => {
 
     HomePage.findOne()
       .then(h => {
-        if (!h) throw new Error("Could not find a HomePage.");
+        if (!h) throw new Error('Could not find a HomePage.');
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/home').then(picPath => ({picPath, h}));
       })
       .then(({picPath, h}) => {
-        let picUrl = picPath.replace(RESOURCES_DIR, "");
+        let picUrl = picPath.replace(RESOURCES_DIR, '');
         h.centerPics.push({url: picUrl});
         return h.save().then(h => h.centerPics[h.centerPics.length - 1]);
       })
@@ -50,7 +50,7 @@ const centerPicRoutes = app => {
         return removeExistingPicFile(HomePage, 'centerPics', _id).then(() => picPath);
       })
       .then(picPath => {
-        let picUrl = picPath.replace(RESOURCES_DIR, "");
+        let picUrl = picPath.replace(RESOURCES_DIR, '');
         return updatePicFileUrlInDB(picUrl, _id).then(() => picUrl);
       })
       .then(picUrl => {
@@ -69,8 +69,8 @@ const centerPicRoutes = app => {
         'centerPics._id': _id
       })
       .then(h => {
-        if (!h) throw new Error("Could not find center pic.");
-        if (h.centerPics.length === 1) throw new Error("Only one pic remaining. Cannot delete it.");
+        if (!h) throw new Error('Could not find center pic.');
+        if (h.centerPics.length === 1) throw new Error('Only one pic remaining. Cannot delete it.');
         return removeExistingPicFile(HomePage, 'centerPics', _id);
       })
       .then(() => {

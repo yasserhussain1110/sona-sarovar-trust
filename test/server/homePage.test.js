@@ -7,7 +7,7 @@ const {
   populateTeamMembers, populateProjects
 } = require('../../server/seed/seedInfo');
 const {RESOURCES_DIR} = process.env;
-const testFileName = "sun.jpg";
+const testFileName = 'sun.jpg';
 const constructFullPath = name => 'test/server/files/' + testFileName;
 
 before(done => {
@@ -24,7 +24,7 @@ beforeEach(done => {
 
 
 describe('Testing path PUT /home-page/center-pic', () => {
-  it("should add a new pic", done => {
+  it('should add a new pic', done => {
     request(app)
       .put('/api/home-page/center-pic')
       .set('x-auth', INIT_ADMIN.tokens[0])

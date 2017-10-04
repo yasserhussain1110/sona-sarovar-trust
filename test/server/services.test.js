@@ -19,7 +19,7 @@ before(done => {
 });
 
 describe('Testing file Services', () => {
-  it("should remove pic", done => {
+  it('should remove pic', done => {
     removeExistingPicFile(HomePage, 'centerPics', INIT_HOME_PAGE.centerPics[0]._id.toHexString())
       .then(path => {
         expect(fs.existsSync(RESOURCES_DIR + INIT_HOME_PAGE.centerPics[0].url)).toBe(false);

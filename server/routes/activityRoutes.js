@@ -45,9 +45,9 @@ const activityRoutes = app => {
       }))
       .then(result => {
         let resolvedPromises = result.filter(p => p.resolved);
-        if (resolvedPromises.length === 0) throw new Error("Nothing could be saved");
+        if (resolvedPromises.length === 0) throw new Error('Nothing could be saved');
         let rejectedPromises = result.filter(p => p.rejected);
-        let savedPicUrls = resolvedPromises.map(p => p.value.replace(RESOURCES_DIR, ""));
+        let savedPicUrls = resolvedPromises.map(p => p.value.replace(RESOURCES_DIR, ''));
         let nonPicFileNames = rejectedPromises.map(p => p.originalFileName);
         return {
           savedPicUrls,
@@ -81,12 +81,12 @@ const activityRoutes = app => {
 
     Activity.findById(_id)
       .then(activity => {
-        if (!activity) throw new Error("Could not find activity.");
+        if (!activity) throw new Error('Could not find activity.');
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/activities')
           .then(picPath => ({activity, picPath}));
       })
       .then(({activity, picPath}) => {
-        let picUrl = picPath.replace(RESOURCES_DIR, "");
+        let picUrl = picPath.replace(RESOURCES_DIR, '');
         activity.pics.push({url: picUrl});
         return activity.save().then(() => activity.pics[activity.pics.length - 1]);
       })
@@ -127,16 +127,16 @@ const activityRoutes = app => {
 
     Activity.findOne({'pics._id': _id})
       .then(a => {
-        if (!a) throw new Error("Could not find activity pic.");
+        if (!a) throw new Error('Could not find activity pic.');
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/activities');
       })
       .then(picPath => {
-        let picUrl = picPath.replace(RESOURCES_DIR, "");
+        let picUrl = picPath.replace(RESOURCES_DIR, '');
         return Activity.update({
           'pics._id': _id
         }, {
           $set: {
-            "pics.$.url": picUrl
+            'pics.$.url': picUrl
           }
         }, {
           runValidators: true
@@ -155,7 +155,7 @@ const activityRoutes = app => {
     let _id = req.params._id;
 
     Activity.findById(_id).then(activity => {
-      if (!activity) throw new Error("Could not find activity.");
+      if (!activity) throw new Error('Could not find activity.');
       let activityPicIds = activity.pics.map(picObj => picObj._id);
       return Promise.all(activityPicIds.map(_id => {
         return removeExistingPicFile(Activity, 'pics', _id);
@@ -176,8 +176,8 @@ const activityRoutes = app => {
     Activity.findOne({
       'pics._id': _id
     }).then(a => {
-      if (!a) throw new Error("Could not find activity pic.");
-      if (a.pics.length === 1) throw new Error("Only one pic remaining. Cannot delete it.");
+      if (!a) throw new Error('Could not find activity pic.');
+      if (a.pics.length === 1) throw new Error('Only one pic remaining. Cannot delete it.');
       return removeExistingPicFile(Activity, 'pics', _id);
     }).then(() => {
       return Activity.update({'pics._id': _id}, {

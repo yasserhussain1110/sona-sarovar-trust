@@ -45,7 +45,7 @@ const paymentRoutes = app => {
     }).then(result => {
       const payment = result.data.payment;
       if (!payment) return res.send({paymentSucceeded: false});
-      payment.status === "Credit" ?
+      payment.status === 'Credit' ?
         res.send({paymentSucceeded: true}) : res.send({paymentSucceeded: false});
     }).catch(e => {
       console.log(e);

@@ -1,9 +1,9 @@
 const defaultState = {
   centerPics: [],
   captions: [],
-  brandLogoUrl: "",
-  mainTextPara1: "",
-  mainTextPara2: ""
+  brandLogoUrl: '',
+  mainTextPara1: '',
+  mainTextPara2: ''
 };
 
 const home = (state = defaultState, action) => {

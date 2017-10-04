@@ -57,7 +57,7 @@ AdminSchema.statics.findByToken = function (tokenString) {
   try {
     decoded = jwt.verify(tokenString, JWT_SECRET_KEY);
   } catch (e) {
-    return Promise.reject("Invalid Token");
+    return Promise.reject('Invalid Token');
   }
 
   let {_id} = decoded;
@@ -73,14 +73,14 @@ AdminSchema.statics.findByCreds = function (username, password) {
   return Admin.findOne({username})
     .then(admin => {
       if (!admin) {
-        return Promise.reject("No such Admin");
+        return Promise.reject('No such Admin');
       }
       return new Promise((resolve, reject) => {
         bcrypt.compare(password, admin.password, function (err, res) {
           if (res) {
             resolve(admin)
           } else {
-            reject("Incorrect Password");
+            reject('Incorrect Password');
           }
         });
       });

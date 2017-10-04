@@ -33,7 +33,7 @@ const HomePageSchema = new Schema({
 
 HomePageSchema.methods.toJSON = function () {
   let homePage = this;
-  return _.pick(homePage, ["centerPics", "brandLogoUrl", "captions", "mainTextPara1", "mainTextPara2"]);
+  return _.pick(homePage, ['centerPics', 'brandLogoUrl', 'captions', 'mainTextPara1', 'mainTextPara2']);
 };
 
 const HomePage = mongoose.model('HomePage', HomePageSchema);

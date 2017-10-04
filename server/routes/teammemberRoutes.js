@@ -17,7 +17,7 @@ const teammemberRoutes = app => {
 
     ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/about')
       .then(picPath => {
-        let picUrl = picPath.replace(RESOURCES_DIR, "");
+        let picUrl = picPath.replace(RESOURCES_DIR, '');
         return new TeamMember({
           name,
           info,
@@ -47,7 +47,7 @@ const teammemberRoutes = app => {
       if (file) {
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/about').then(picPath => {
           fs.unlinkSync(RESOURCES_DIR + member.pic);
-          member.pic = picPath.replace(RESOURCES_DIR, "");
+          member.pic = picPath.replace(RESOURCES_DIR, '');
           return member.save();
         });
       } else {

@@ -14,11 +14,11 @@ const brandLogoRoutes = app => {
 
     HomePage.findOne()
       .then(h => {
-        if (!h) throw new Error("HomePage not found");
+        if (!h) throw new Error('HomePage not found');
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/home').then(picPath => ({picPath, h}));
       })
       .then(({picPath, h}) => {
-        const newPicUrl = picPath.replace(RESOURCES_DIR, "");
+        const newPicUrl = picPath.replace(RESOURCES_DIR, '');
         const oldPicPath = RESOURCES_DIR + h.brandLogoUrl;
         fs.unlinkSync(oldPicPath);
         h.brandLogoUrl = newPicUrl;
