@@ -1,19 +1,37 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
-const Projects = ({projectsDone}) => (
+const Projects = ({match, projectsDone}) => (
   <div className="projects">
-    <h3><span>Projects</span></h3>
-    <div className="project-list">{projectsDone.map((project, index) => (
-      <div key={index} className="project">
-        <Link to={`/web/projects/${index}`}>
-          <img src={project.pics[0].url}/>
-          <h4>
-            <span>{project.name}</span>
-          </h4>
-        </Link>
-      </div>))}
+    <h1>Our Projects</h1>
+    <div className="page-content">
+      <div className="explanation">
+        <p>
+          We do many projects for the benefit of the people
+          We do many projects for the benefit of the people
+          We do many projects for the benefit of the people
+          We do many projects for the benefit of the people
+          We do many projects for the benefit of the people
+          We do many projects for the benefit of the people
+          We do many projects for the benefit of the people
+          We do many projects for the benefit of the people
+          We do many projects for the benefit of the people
+          We do many projects for the benefit of the people
+          We do many projects for the benefit of the people
+          We do many projects for the benefit of the people
+        </p>
+      </div>
+
+      <div className="project-list">{projectsDone.map((project, index) => (
+        <div key={index} className="project-container">
+          <NavLink to={`${match.url}/${index}`}>
+            <div className="project-name-holder">
+              <span>{project.name}</span>
+            </div>
+          </NavLink>
+        </div>))}
+      </div>
     </div>
   </div>
 );

@@ -1,19 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
-const Activities = ({activitiesUndertaken}) => (
+const Activities = ({match, activitiesUndertaken}) => (
   <div className="activities">
-    <h3><span>Activities</span></h3>
-    <div className="activity-list">{activitiesUndertaken.map((activity, index) => (
-      <div key={index} className="activity">
-        <Link to={`/web/activities/${index}`}>
-          <img src={activity.pics[0].url}/>
-          <h4>
-            <span>{activity.name}</span>
-          </h4>
-        </Link>
-      </div>))}
+    <h1>Our Activities</h1>
+    <div className="page-content">
+      <div className="explanation">
+        <p>
+          Some of our activities for children.
+        </p>
+      </div>
+
+      <div className="activity-list">{activitiesUndertaken.map((activity, index) => (
+        <div key={index} className="activity-container">
+          <NavLink to={`${match.url}/${index}`}>
+            <div className="activity-name-holder">
+              <span>{activity.name}</span>
+            </div>
+          </NavLink>
+        </div>))}
+      </div>
     </div>
   </div>
 );

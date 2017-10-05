@@ -77,6 +77,9 @@ const DropdownNav = ({match}) => (
               <li className="sub-item">
                 <NavLink to={`${match.url}/projects`} activeClassName="active">PROJECTS</NavLink>
               </li>
+              <li className="sub-item">
+                <NavLink to={`${match.url}/activities`} activeClassName="active">ACTIVITIES</NavLink>
+              </li>
             </ul>
           </div>
         </li>
@@ -136,6 +139,9 @@ const NormalNav = ({match}) => (
           <ul className="sub-link-nav-bar">
             <li className="sub-item">
               <NavLink to={`${match.url}/projects`} activeClassName="active">PROJECTS</NavLink>
+            </li>
+            <li className="sub-item">
+              <NavLink to={`${match.url}/activities`} activeClassName="active">ACTIVITIES</NavLink>
             </li>
           </ul>
         </div>

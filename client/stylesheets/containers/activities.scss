@@ -1,43 +1,60 @@
 .activities {
-  background-color: #F1F4ED;
-  padding: 10px 0;
+  font-family: 'Lato', sans-serif;
+
+  > h1 {
+    color: white;
+    background-color: #5D5D5D;
+    padding: 30px;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  > .page-content {
+    width: 85%;
+    margin: 30px auto;
+    padding: 10px 30px;
+    border: 1px solid #cccccc;
+  }
 
   .activity-list {
-    width: 85%;
-    margin: 40px auto;
-  }
-
-  h3 {
-    font: normal normal normal 28px/1.4em 'Kelly Slab', fantasy;
-  }
-
-  h3 > span {
-    padding: 5px 20px;
-    background-color: #F7DB07;
-  }
-
-  h4 {
-    font: normal normal normal 28px/1.4em 'Kelly Slab', fantasy;
-    font-weight: bolder;
+    margin: 30px 0;
+    border-top: 1px solid #CBCBCB;
+    padding-top: 30px;
     text-align: center;
   }
 
-  .activity {
+  .activity-container {
+    background-image: url("/home/IMG2.jpg");
+    width: 350px;
+    height: 350px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease-in-out;
     display: inline-block;
-    margin: 0 20px;
+    margin: 0 10px;
+  }
+
+  .activity-container:hover {
+    filter: grayscale(100%);
+  }
+
+  .activity-name-holder {
+    position: relative;
+    top: 90%;
+    text-align: center;
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
   }
 
   a {
-    color: black;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
   }
 
   a:hover {
-    color: #0F64A5;
+    cursor: pointer;
   }
-
-  img {
-    width: 200px;
-    height: 200px;
-  }
-
 }
