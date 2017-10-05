@@ -1,0 +1,50 @@
+.donate {
+  font-family: 'Lato', sans-serif;
+
+  > h1 {
+    color: white;
+    background-color: #5D5D5D;
+    padding: 30px;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  > .page-content {
+    width: 85%;
+    margin: 30px auto;
+    padding: 10px 30px;
+    border: 1px solid #cccccc;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .donation-button-holder {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .button {
+    background-color: black;
+    color: #D6B014;
+    border-radius: 0;
+    padding: 10px 40px;
+    font-size: 17px;
+    font-weight: 500;
+    transition: all 0.4s ease-in-out;
+    display: inline-block;
+    margin: 10px;
+  }
+
+  .button:hover {
+    background-color: #EFC337;
+    color: black;
+  }
+}
+
+@import '../components/donate/donate-online';
+@import '../components/donate/donate-offline';
+@import '../components/donate/donate-done';

@@ -2,19 +2,26 @@ const validator = require('validator');
 const _ = require('lodash');
 
 const paymentValidationObject = {
+  amount: {
+    required: true,
+    validator: a => validator.isFloat(a) && Number(a) >= 9
+  },
   purpose: {
     required: true,
     validator: validator.isAlphanumeric
   },
-  amount: {
-    required: true,
-    validator: a => typeof a === 'number' && a > 0
+  buyer_name: {
+    required: true
   },
   email: {
     required: true,
     validator: validator.isEmail
   },
-  redirectUrl: {
+  phone: {
+    required: true,
+    validator: p => validator.isMobilePhone(p, 'en-IN')
+  },
+  redirect_url: {
     required: true,
     validator: url => process.env.NODE_ENV === 'development' || validator.isURL(url)
   }
@@ -22,7 +29,15 @@ const paymentValidationObject = {
 
 const validateField = (field, obj, validationObj) => {
   const validation = validationObj[field];
-  return obj.hasOwnProperty(field) ? validation.validator(obj[field]) : !validation.required;
+  if (obj.hasOwnProperty(field)) {
+    if (validation.validator) {
+      return validation.validator(obj[field]);
+    } else {
+      return true;
+    }
+  } else {
+    return !validation.required;
+  }
 };
 
 const validate = (validationObject, obj) => {
@@ -45,8 +60,6 @@ const validatePaymentRequest = obj => {
   const validationResult = validate(paymentValidationObject, obj);
   if (validationResult.isValid) {
     const validatedObj = _.pick(obj, Object.keys(paymentValidationObject));
-    validatedObj.redirect_url = validatedObj.redirectUrl;
-    delete validatedObj.redirectUrl;
     delete validationResult.errors;
     validationResult.paymentRequestObject = validatedObj;
     return validationResult;

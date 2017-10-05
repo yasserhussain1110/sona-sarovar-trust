@@ -14,8 +14,11 @@ import Projects from '../containers/Projects';
 import ProjectHolder from '../containers/ProjectHolder';
 import Activities from '../containers/Activities';
 import ActivityHolder from '../containers/ActivityHolder';
-import DonationBox from '../containers/DonationBox';
 import DonationDoneBox from '../containers/DonationDoneBox';
+import Donate from '../containers/Donate';
+import DonateDone from '../components/Donate/DonateDone';
+import DonateOffline from '../components/Donate/DonateOffline';
+import DonateOnline from '../components/Donate/DonateOnline';
 
 export default ({match}) => (
   <main id="web">
@@ -32,8 +35,10 @@ export default ({match}) => (
     <Route path={`${match.url}/projects/:index`} component={ProjectHolder}/>
     <Route exact path={`${match.url}/activities`} component={Activities}/>
     <Route path={`${match.url}/activities/:index`} component={ActivityHolder}/>
-    <Route path={`${match.url}/donate`} component={DonationBox}/>
-    <Route path={`${match.url}/donate/done`} component={DonationDoneBox}/>
+    <Route exact path={`${match.url}/involve/donate`} component={Donate}/>
+    <Route path={`${match.url}/involve/donate/online`} component={DonateOnline}/>
+    <Route path={`${match.url}/involve/donate/online/done`} component={DonateDone}/>
+    <Route path={`${match.url}/involve/donate/offline`} component={DonateOffline}/>
     <Footer/>
   </main>
 );

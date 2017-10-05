@@ -1,0 +1,113 @@
+.donate-online {
+  font-family: 'Lato', sans-serif;
+
+  > h1 {
+    color: white;
+    background-color: #5D5D5D;
+    padding: 30px;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  > .page-content {
+    width: 85%;
+    margin: 30px auto;
+    padding: 10px 30px;
+    border: 1px solid #cccccc;
+    text-align: center;
+  }
+
+  .donation-amount-form {
+    margin: 10px;
+  }
+
+  img {
+    padding: 10px;
+  }
+
+  .label {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  input {
+    width: 250px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 2px;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus {
+    outline: none;
+  }
+
+  .donor-info-form {
+    margin-top: 20px;
+    padding: 10px;
+  }
+
+  h4 {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .small-input {
+    width: 220px;
+    font-size: 14px;
+    padding: 8px 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+    text-align: left;
+    font-style: italic;
+    color: #2b2b2b;
+
+    margin: 10px;
+  }
+
+  .small-input:focus, .small-input:hover {
+    background-color: #FFDA18;
+    border-color: #FFDA18;
+  }
+
+
+  .button {
+    background-color: black;
+    color: #D6B014;
+    border-radius: 0;
+    padding: 10px 40px;
+    font-size: 17px;
+    font-weight: 500;
+    transition: all 0.4s ease-in-out;
+    display: inline-block;
+    margin: 20px;
+  }
+
+  .button:hover {
+    background-color: #EFC337;
+    color: black;
+  }
+
+  .error {
+    background-color: #fefdba;
+    color: #f42c04;
+    display: none;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: 0 0 1px gray;
+  }
+
+  .show {
+    display: inline-block;
+  }
+}
