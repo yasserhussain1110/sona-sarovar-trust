@@ -14,7 +14,6 @@ import Projects from '../containers/Projects';
 import ProjectHolder from '../containers/ProjectHolder';
 import Activities from '../containers/Activities';
 import ActivityHolder from '../containers/ActivityHolder';
-import DonationDoneBox from '../containers/DonationDoneBox';
 import Donate from '../containers/Donate';
 import DonateDone from '../components/Donate/DonateDone';
 import DonateOffline from '../components/Donate/DonateOffline';

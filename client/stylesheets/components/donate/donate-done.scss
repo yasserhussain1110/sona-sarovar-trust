@@ -1,0 +1,65 @@
+.donation-done {
+  .fa-spinner{
+    font-size: 35px;
+    padding: 5px;
+  }
+
+  .show {
+    display: block;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .wait-box {
+    padding: 10px 0;
+  }
+
+  .wait-box, .donation-status {
+    text-align: center;
+    box-shadow: 0 0 2px gray;
+    margin: 10px 0;
+  }
+
+  h3 {
+    padding: 5px;
+    margin: 5px;
+  }
+
+  p {
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .success-message h3 {
+    font-weight: bold;
+    color: #449D44;
+  }
+
+  .failure-message h3 {
+    font-weight: bold;
+    color: #F42C04;
+  }
+
+  .payment-id {
+    padding: 2px;
+    background-color: #449D44;
+    border-radius: 5px;
+    color: white;
+  }
+
+  .continue-button {
+    background-color: #449D44;
+    padding: 5px;
+    display: inline-block;
+    margin: 5px;
+    color: white;
+    box-shadow: 0 1px 3px black;
+  }
+
+  .continue-button:active {
+    box-shadow: inset 0 1px 1px black;
+    transform: translate(0, -1px);
+  }
+}
