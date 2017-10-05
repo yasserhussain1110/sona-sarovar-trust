@@ -74,7 +74,8 @@ class ImageCarousal extends Component {
 ImageCarousal.propTypes = {
   imageLinks: PropTypes.arrayOf(PropTypes.string).isRequired,
   dots: PropTypes.bool.isRequired,
-  arrows: PropTypes.bool.isRequired
+  arrows: PropTypes.bool.isRequired,
+  viewDuration: PropTypes.number.isRequired
 };
 
 ImageCarousal.defaultProps = {

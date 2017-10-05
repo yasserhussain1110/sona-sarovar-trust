@@ -1,25 +1,32 @@
 .activity-holder {
-  background-color: #F1F4ED;
+  font-family: 'Lato', sans-serif;
 
-  h3 {
-    text-align: center;
-    padding: 20px 0;
-    font: normal normal normal 30px/1.4em 'Kelly Slab', fantasy;
-    font-weight: bolder;
+  > h1 {
+    color: white;
+    background-color: #5D5D5D;
+    padding: 30px;
+    font-size: 36px;
+    font-weight: 700;
   }
 
-  h3 > span {
-    text-decoration: underline;
+  > .page-content {
+    width: 85%;
+    margin: 30px auto;
+    padding: 10px 30px;
+    border: 1px solid #cccccc;
   }
 
-  p {
-    padding: 20px;
-    font: normal normal normal 16px/1.4em 'Kelly Slab', fantasy;
-  }
-
-  .activity-carousal {
+  .activity-image-carousal {
     width: 800px;
-    height: 400px;
-    margin: 10px auto;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+  }
+
+  .description-holder {
+    padding: 10px;
+    margin: 10px;
+    border-top: 1px solid #CBCBCB;
   }
 }

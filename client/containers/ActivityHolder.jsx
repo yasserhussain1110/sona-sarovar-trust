@@ -4,18 +4,25 @@ import ImageCarousal from '../lib/components/ImageCarousal';
 
 const ActivityHolder = ({activity}) => {
   if (!activity) {
-    return <div className="activity-holder">No Such Activity Found</div>;
+    return <div className="project-holder">No Such Activity Found</div>;
   }
 
   let {name, description, pics} = activity;
   return (
     <div className="activity-holder">
-      <h3><span>{name}</span></h3>
-      <div className="activity-carousal">
-        <ImageCarousal imageLinks={pics.map(p => p.url)} viewDuration={5000}/>
-      </div>
-      <div className="activity-info">
-        <p>{description}</p>
+      <h1>{name}</h1>
+      <div className="page-content">
+        <div className="activity-image-carousal">
+          <ImageCarousal
+            viewDuration={8000}
+            imageLinks={pics.map(pic => pic.url)}
+            dots={true}
+            arrows={true}/>
+        </div>
+
+        <div className="description-holder">
+          {description}
+        </div>
       </div>
     </div>
   );

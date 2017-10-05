@@ -10,12 +10,19 @@ const ProjectHolder = ({project}) => {
   let {name, description, pics} = project;
   return (
     <div className="project-holder">
-      <h3><span>{name}</span></h3>
-      <div className="project-carousal">
-        <ImageCarousal imageLinks={pics.map(p => p.url)} viewDuration={5000}/>
-      </div>
-      <div className="project-info">
-        <p>{description}</p>
+      <h1>{name}</h1>
+      <div className="page-content">
+        <div className="project-image-carousal">
+          <ImageCarousal
+            viewDuration={8000}
+            imageLinks={pics.map(pic => pic.url)}
+            dots={true}
+            arrows={true}/>
+        </div>
+
+        <div className="description-holder">
+          {description}
+        </div>
       </div>
     </div>
   );
