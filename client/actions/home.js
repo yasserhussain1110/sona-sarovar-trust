@@ -55,17 +55,3 @@ export const deletedCenterPicCaption = captionIndex => (
     captionIndex
   }
 );
-
-export const updatedMainTextPara1 = mainTextPara1 => (
-  {
-    type: "UPDATED_MAIN_TEXT_PARA1",
-    mainTextPara1
-  }
-);
-
-export const updatedMainTextPara2 = mainTextPara2 => (
-  {
-    type: "UPDATED_MAIN_TEXT_PARA2",
-    mainTextPara2
-  }
-);

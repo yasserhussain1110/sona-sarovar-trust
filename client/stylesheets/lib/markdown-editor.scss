@@ -1,0 +1,50 @@
+.markdown-editor {
+  .edit-section, .render-section {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+  }
+
+  textarea {
+    height: 400px;
+    margin: 10px 0;
+    overflow-y: scroll;
+    padding: 5px;
+    display: block;
+    width: calc(100% - 30px);
+  }
+
+  .rendered {
+    height: 450px;
+    margin: 10px 0;
+    overflow-y: scroll;
+    box-shadow: 0 0 2px gray;
+    padding: 5px;
+    width: calc(100% - 30px);
+  }
+
+  .rendered > p {
+    margin: 10px 0;
+  }
+
+  .button-holder, h3 {
+    text-align: center;
+  }
+
+  a {
+    color: black;
+    background-color: #A7D9E5;
+    padding: 2px 5px;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  h2 {
+    font-weight: bold;
+    background-color: white;
+    padding: 0;
+    box-shadow: none;
+  }
+}

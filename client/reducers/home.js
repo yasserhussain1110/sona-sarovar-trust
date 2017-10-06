@@ -1,9 +1,7 @@
 const defaultState = {
   centerPics: [],
   captions: [],
-  brandLogoUrl: "",
-  mainTextPara1: "",
-  mainTextPara2: ""
+  brandLogoUrl: ""
 };
 
 const home = (state = defaultState, action) => {
@@ -63,16 +61,6 @@ const home = (state = defaultState, action) => {
       return {
         ...state,
         captions: [...state.captions, action.caption]
-      };
-    case 'UPDATED_MAIN_TEXT_PARA1':
-      return {
-        ...state,
-        mainTextPara1: action.mainTextPara1
-      };
-    case 'UPDATED_MAIN_TEXT_PARA2':
-      return {
-        ...state,
-        mainTextPara2: action.mainTextPara2
       };
     case 'UPDATED_BRAND_LOGO_URL':
       return {

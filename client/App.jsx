@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 import axios from 'axios';
-import {logOut} from './lib/handlers/commonErrorsHandler';
+import handleCommonErrors, {logOut} from './lib/handlers/commonErrorsHandler';
 
 import Web from './routes/Web';
 import Admin from './routes/Admin';
@@ -42,9 +42,10 @@ class App extends Component {
   initializeApp() {
     axios.get('/api/init-state')
       .then(response => {
-        let {homePage, projects, activities, teamMembers} = response.data;
+        let {homePage, aboutUs, projects, activities, teamMembers} = response.data;
 
         this.props.receivedHomePageContent(homePage);
+        this.props.receivedAboutUs(aboutUs);
         this.props.receivedTeamMembers(teamMembers);
         this.props.receivedActivitiesUndertaken(activities);
         this.props.receivedProjectsDone(projects);

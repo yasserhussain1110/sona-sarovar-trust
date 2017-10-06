@@ -1,4 +1,4 @@
-#admin-panel {
+.admin-panel {
   font-family: "Ubuntu Mono";
 
   * {
@@ -29,6 +29,7 @@
   }
 
   @import '../components/admin-panel/home-panel';
+  @import '../components/admin-panel/about-us-panel';
   @import '../components/admin-panel/projects-panel';
   @import '../components/admin-panel/team-panel';
   @import '../components/admin-panel/side-nav-bar';

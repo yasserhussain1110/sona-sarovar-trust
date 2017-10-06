@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import BrandLogoPanel from './HomePanel/BrandLogoPanel';
 import CenterPicsPanel from './HomePanel/CenterPicsPanel';
 import CaptionsPanel from './HomePanel/CaptionsPanel';
-import MainTextPanel from './HomePanel/MainTextPanel';
 import StatusPanel from '../../lib/components/StatusPanel';
 
 class HomePanel extends Component {
@@ -39,7 +38,6 @@ const HomePanelView = ({addStatusBox, statusBoxToAdd}) => (
       <BrandLogoPanel addStatusBox={addStatusBox}/>
       <CenterPicsPanel addStatusBox={addStatusBox}/>
       <CaptionsPanel addStatusBox={addStatusBox}/>
-      <MainTextPanel addStatusBox={addStatusBox}/>
     </section>
     <StatusPanel statusBoxToAdd={statusBoxToAdd}/>
   </div>

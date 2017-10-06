@@ -4,7 +4,7 @@ const defaultState = {
   teamMembers: []
 };
 
-const about = (state = defaultState, action) => {
+const team = (state = defaultState, action) => {
   switch (action.type) {
     case 'RECEIVED_TEAM_MEMBERS':
       return {
@@ -24,4 +24,4 @@ const about = (state = defaultState, action) => {
   }
 };
 
-export default about;
+export default team;

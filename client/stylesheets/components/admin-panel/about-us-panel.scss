@@ -1,0 +1,27 @@
+.about-us-panel {
+  .vision-panel, .mission-panel, .history-panel {
+    background-color: #FAFAFA;
+    box-shadow: 0 0 1px black;
+    margin-bottom: 10px;
+  }
+
+  .vision-holder, .mission-holder, .history-holder {
+    padding: 10px;
+  }
+
+  .vision-text-holder, .mission-text-holder, .history-text-holder {
+    height: 200px;
+    overflow-y: scroll;
+    padding: 10px;
+    box-shadow: 0 0 2px gray;
+    margin: 10px;
+  }
+
+  .button {
+    margin: 10px;
+  }
+
+  p {
+    margin: 10px 0;
+  }
+}

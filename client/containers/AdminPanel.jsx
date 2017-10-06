@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import HomePanel from '../components/AdminPanel/HomePanel';
+import AboutUsPanel from '../components/AdminPanel/AboutUsPanel';
 import ProjectsPanel from '../components/AdminPanel/ProjectsPanel';
 import ActivitiesPanel from '../components/AdminPanel/ActivitiesPanel';
 import TeamPanel from '../components/AdminPanel/TeamPanel';
@@ -9,12 +10,13 @@ import Previewer from '../components/AdminPanel/Previewer';
 
 const AdminPanel = () => {
   return (
-    <main id="admin-panel">
+    <main className="admin-panel" id="admin-panel">
       <div className="admin-panel-wrapper" style={{display: 'flex'}}>
         <SideNavContainer/>
         <div className="controller-holder">
           <Switch>
             <Route path="/admin/home" component={HomePanel}/>
+            <Route path="/admin/about" component={AboutUsPanel}/>
             <Route path="/admin/projects" component={ProjectsPanel}/>
             <Route path="/admin/activities" component={ActivitiesPanel}/>
             <Route path="/admin/team" component={TeamPanel}/>

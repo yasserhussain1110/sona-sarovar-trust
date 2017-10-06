@@ -4,7 +4,7 @@ const Modal = props => {
   return (
     <div style={{display: props.show ? 'initial' : 'none'}} className="modal">
       <div className="modal-mask">
-        <div className="modal-container">
+        <div style={props.forceWidth ? {width: props.forceWidth} : {}} className="modal-container">
           {props.children}
         </div>
       </div>

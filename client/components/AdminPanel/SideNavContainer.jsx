@@ -9,6 +9,7 @@ import {logOut} from '../../lib/handlers/commonErrorsHandler';
 const SideNavContainer = props => (
   <SideNavBar>
     <SideNav to="/admin/home" icon={home}>Home</SideNav>
+    <SideNav to="/admin/about" icon={home}>About Us</SideNav>
     <SideNav to="/admin/projects" icon={ic_format_list_bulleted}>Projects</SideNav>
     <SideNav to="/admin/activities" icon={calendar}>Activities</SideNav>
     <SideNav to="/admin/team" icon={user}>Team</SideNav>
