@@ -34,7 +34,16 @@ const INIT_HOME_PAGE = {
 };
 
 const INIT_ABOUT_US = {
-  visionAndMission: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+  vision: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+  "Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. " +
+  "Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. " +
+  "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " +
+  "Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. " +
+  "Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. " +
+  "Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh " +
+  "lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.",
+
+  mission: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
   "Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. " +
   "Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. " +
   "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " +

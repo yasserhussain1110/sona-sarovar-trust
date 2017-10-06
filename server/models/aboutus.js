@@ -3,7 +3,15 @@ const Schema = mongoose.Schema;
 const _ = require('lodash');
 
 const AboutUsSchema = new Schema({
-  visionAndMission: {
+  vision: {
+    type: String,
+    required: true,
+    minlength: 400,
+    maxlength: 1000,
+    trim: true
+  },
+
+  mission: {
     type: String,
     required: true,
     minlength: 400,
@@ -22,7 +30,7 @@ const AboutUsSchema = new Schema({
 
 AboutUsSchema.methods.toJSON = function () {
   const project = this;
-  return _.pick(project, ['visionAndMission', 'history']);
+  return _.pick(project, ['vision', 'mission', 'history']);
 };
 
 const AboutUs = mongoose.model('AboutUs', AboutUsSchema);
