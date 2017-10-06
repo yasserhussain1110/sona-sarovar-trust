@@ -23,7 +23,7 @@ const AboutUsSchema = new Schema({
     type: String,
     required: true,
     minlength: 400,
-    maxlength: 1000,
+    maxlength: 2200,
     trim: true
   }
 });
