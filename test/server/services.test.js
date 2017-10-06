@@ -1,9 +1,6 @@
 const expect = require('expect');
 const fs = require('fs');
-const {
-  INIT_HOME_PAGE,
-  populateAdmins, populateHomePage, populateTeamMembers, populateProjects
-} = require('../../server/seed/seedInfo');
+const {INIT_HOME_PAGE, populateAll} = require('../../server/seed/seedInfo');
 const {removeExistingPicFile} = require('../../server/services');
 const HomePage = require('../../server/models/homepage');
 const {RESOURCES_DIR} = process.env;
@@ -12,10 +9,7 @@ before(done => {
   if (!fs.existsSync(RESOURCES_DIR)) {
     fs.mkdirSync(RESOURCES_DIR);
   }
-  Promise.all([populateAdmins(), populateHomePage(), populateTeamMembers(), populateProjects()])
-    .then(() => {
-      done();
-    });
+  populateAll().then(() => done());
 });
 
 describe('Testing file Services', () => {

@@ -18,22 +18,12 @@ const HomePageSchema = new Schema({
   captions: {
     type: [CaptionSchema],
     required: true
-  },
-
-  mainTextPara1: {
-    type: String,
-    required: true
-  },
-
-  mainTextPara2: {
-    type: String,
-    required: true
   }
 });
 
 HomePageSchema.methods.toJSON = function () {
   let homePage = this;
-  return _.pick(homePage, ["centerPics", "brandLogoUrl", "captions", "mainTextPara1", "mainTextPara2"]);
+  return _.pick(homePage, ["centerPics", "brandLogoUrl", "captions"]);
 };
 
 const HomePage = mongoose.model('HomePage', HomePageSchema);

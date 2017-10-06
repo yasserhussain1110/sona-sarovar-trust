@@ -3,20 +3,14 @@ const expect = require('expect');
 const app = require('../../server/server');
 const fs = require('fs');
 const Project = require('../../server/models/project');
-const {
-  INIT_PROJECTS, INIT_ADMIN,
-  populateAdmins, populateHomePage, populateTeamMembers, populateProjects
-} = require('../../server/seed/seedInfo');
+const {INIT_PROJECTS, INIT_ADMIN, populateAll, populateProjects} = require('../../server/seed/seedInfo');
 const {RESOURCES_DIR} = process.env;
 
 before(done => {
   if (!fs.existsSync(RESOURCES_DIR)) {
     fs.mkdirSync(RESOURCES_DIR);
   }
-  Promise.all([populateAdmins(), populateHomePage(), populateTeamMembers(), populateProjects()])
-    .then(() => {
-      done();
-    });
+  populateAll().then(() => done());
 });
 
 beforeEach(done => {
@@ -93,7 +87,7 @@ describe('Testing schema Project', () => {
 });
 
 
-describe('Testing path DELETE /project/:_id', () => {
+describe('Testing path DELETE /api/project/:_id', () => {
   it("should delete a whole project", done => {
     request(app)
       .delete(`/api/project/${INIT_PROJECTS[0]._id}`)
@@ -115,7 +109,7 @@ describe('Testing path DELETE /project/:_id', () => {
   });
 });
 
-describe('Testing path DELETE /project/pic/:_id', () => {
+describe('Testing path DELETE /api/project/pic/:_id', () => {
   it("should delete a pic of a project", done => {
     request(app)
       .delete(`/api/project/pic/${INIT_PROJECTS[0].pics[0]._id}`)

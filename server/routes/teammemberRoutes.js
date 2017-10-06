@@ -9,18 +9,19 @@ const {RESOURCES_DIR} = process.env;
 const teammemberRoutes = app => {
   app.put('/api/teammember', auth, upload.single('pic'), (req, res) => {
     let file = req.file;
-    let {name, info} = req.body;
+    let {name, info, type} = req.body;
 
     if (!file) return res.status(400).send();
-    if (!name || !info) return res.status(400).send();
+    if (!name || !info || !type) return res.status(400).send();
 
 
-    ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/about')
+    ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/team')
       .then(picPath => {
         let picUrl = picPath.replace(RESOURCES_DIR, "");
         return new TeamMember({
           name,
           info,
+          type,
           pic: picUrl
         }).save();
       })
@@ -45,7 +46,7 @@ const teammemberRoutes = app => {
       member.info = info;
 
       if (file) {
-        return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/about').then(picPath => {
+        return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/team').then(picPath => {
           fs.unlinkSync(RESOURCES_DIR + member.pic);
           member.pic = picPath.replace(RESOURCES_DIR, "");
           return member.save();

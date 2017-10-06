@@ -73,6 +73,7 @@
     "font-awesome": "^4.7.0",
     "jsonwebtoken": "^7.4.1",
     "lodash": "^4.17.4",
+    "marked": "^0.3.6",
     "mmmagic": "^0.4.5",
     "mongodb": "^2.2.30",
     "mongoose": "4.10.8",
@@ -89,7 +90,9 @@
     "styled-components": "^2.1.1",
     "typeface-kelly-slab": "0.0.22",
     "url-loader": "^0.5.8",
-    "validator": "^8.2.0"
+    "validator": "^8.2.0",
+    "winston": "^2.4.0",
+    "winston-daily-rotate-file": "^1.7.2"
   },
   "engines": {
     "node": "7.x.x",

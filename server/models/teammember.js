@@ -8,6 +8,12 @@ const TeamMemberSchema = new Schema({
     required: true
   },
 
+  type: {
+    type: String,
+    enum: ['Volunteer', 'Trustee', 'BrandAmbassador', 'Technical'],
+    required: true
+  },
+
   info: {
     type: String,
     required: true

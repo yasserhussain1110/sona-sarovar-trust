@@ -5,6 +5,7 @@ const HomePage = require('../models/homepage');
 const TeamMember = require('../models/teammember');
 const Project = require('../models/project');
 const Activity = require('../models/activity');
+const AboutUs = require('../models/aboutus');
 const ncp = require('ncp').ncp;
 const {INIT_ADMIN_USERNAME, INIT_ADMIN_PASSWORD, JWT_SECRET_KEY, RESOURCES_DIR} = process.env;
 
@@ -29,29 +30,50 @@ const INIT_HOME_PAGE = {
     {text: "66% of street children in Mumbai never receive any education."},
     {text: "You can make a difference in their lives."},
     {text: "Come, join our hands in helping improve their lives."}
-  ],
-  mainTextPara1: "I'm a paragraph. Click here to add your own text and edit me. "
-  + "It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. "
-  + "Feel free to drag and drop me anywhere you like on your page. "
-  + "I’m a great place for you to tell a story and let your users know a little more about you.",
-  mainTextPara2: "This is a great space to write long text about your company and your services. "
-  + "You can use this space to go into a little more detail about your company. "
-  + "Talk about your team and what services you provide."
+  ]
+};
+
+const INIT_ABOUT_US = {
+  visionAndMission: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+  "Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. " +
+  "Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. " +
+  "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " +
+  "Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. " +
+  "Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. " +
+  "Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh " +
+  "lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.",
+
+  history: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+  "Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. " +
+  "Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. " +
+  "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " +
+  "Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. " +
+  "Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. " +
+  "Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh " +
+  "lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo."
 };
 
 const INIT_TEAM_MEMBERS = [{
   _id: new ObjectID(),
   name: "Member 1",
   info: "Roman Infantry 1",
-  pic: "/about/person1.png"
+  pic: "/team/person1.png",
+  type: "Volunteer"
 }, {
   name: "Member 2",
   info: "Roman Infantry 2",
-  pic: "/about/person2.png"
+  pic: "/team/person2.png",
+  type: "Trustee"
 }, {
   name: "Member 3",
   info: "Roman Infantry 3",
-  pic: "/about/person3.png"
+  pic: "/team/person3.png",
+  type: "BrandAmbassador"
+}, {
+  name: "Member 4",
+  info: "Roman Infantry 4",
+  pic: "/team/person4.png",
+  type: "Technical"
 }];
 
 const INIT_PROJECTS = [{
@@ -96,12 +118,11 @@ const INIT_ACTIVITIES = [{
   pics: [{url: "/activities/social1.jpg"}, {url: "/activities/social2.jpg"}]
 }];
 
-const
-  populateAdmins = () => {
-    return Admin.remove({}).then(() => {
-      return new Admin(INIT_ADMIN).save();
-    });
-  };
+const populateAdmins = () => {
+  return Admin.remove({}).then(() => {
+    return new Admin(INIT_ADMIN).save();
+  });
+};
 
 const populateHomePage = () => {
   let sourceHomeDir = "initResources/home";
@@ -119,9 +140,15 @@ const populateHomePage = () => {
   });
 };
 
+const populateAboutUs = () => {
+  return AboutUs.remove({}).then(() => {
+    return new AboutUs(INIT_ABOUT_US).save();
+  });
+};
+
 const populateTeamMembers = () => {
-  let sourceAboutDir = "initResources/about";
-  let targetAboutDir = RESOURCES_DIR + "/about";
+  let sourceAboutDir = "initResources/team";
+  let targetAboutDir = RESOURCES_DIR + "/team";
 
   return new Promise(resolve => {
     ncp(sourceAboutDir, targetAboutDir, function (err) {
@@ -167,14 +194,23 @@ const populateActivities = () => {
   });
 };
 
+const populateAll = () => {
+  return Promise.all([
+    populateAdmins(), populateHomePage(), populateAboutUs(),
+    populateTeamMembers(), populateProjects(), populateActivities()
+  ]);
+};
+
 module.exports = {
   INIT_ADMIN,
   INIT_HOME_PAGE,
   INIT_TEAM_MEMBERS,
   INIT_PROJECTS,
   INIT_ACTIVITIES,
+  populateAll,
   populateAdmins,
   populateHomePage,
+  populateAboutUs,
   populateTeamMembers,
   populateProjects,
   populateActivities

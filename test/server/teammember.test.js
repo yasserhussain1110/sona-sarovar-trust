@@ -3,10 +3,8 @@ const expect = require('expect');
 const app = require('../../server/server');
 const fs = require('fs');
 const TeamMember = require('../../server/models/teammember');
-const {
-  INIT_TEAM_MEMBERS, INIT_ADMIN,
-  populateAdmins, populateHomePage, populateTeamMembers, populateProjects
-} = require('../../server/seed/seedInfo');
+const {INIT_TEAM_MEMBERS, INIT_ADMIN, populateAll, populateTeamMembers}
+  = require('../../server/seed/seedInfo');
 const {RESOURCES_DIR} = process.env;
 const testFileName = "sun.jpg";
 const constructFullPath = name => 'test/server/files/' + testFileName;
@@ -15,10 +13,7 @@ before(done => {
   if (!fs.existsSync(RESOURCES_DIR)) {
     fs.mkdirSync(RESOURCES_DIR);
   }
-  Promise.all([populateAdmins(), populateHomePage(), populateTeamMembers(), populateProjects()])
-    .then(() => {
-      done();
-    });
+  populateAll().then(() => done());
 });
 
 beforeEach(done => {
@@ -26,13 +21,14 @@ beforeEach(done => {
 });
 
 
-describe('Testing path PUT /teammember', () => {
+describe('Testing path PUT /api/teammember', () => {
   it("should add a new team member", done => {
     request(app)
       .put("/api/teammember")
       .set('x-auth', INIT_ADMIN.tokens[0])
       .field('name', 'Yasser Hussain')
       .field('info', 'Yasser Hussain is awesome person')
+      .field('type', 'Technical')
       .attach('pic', constructFullPath(testFileName))
       .expect(200)
       .end((err, res) => {
@@ -66,7 +62,7 @@ describe('Testing path PUT /teammember', () => {
   });
 });
 
-describe('Testing path PATCH /teammember/:_id', () => {
+describe('Testing path PATCH /api/teammember/:_id', () => {
   it("should update teammember without updating pic", done => {
     request(app)
       .patch(`/api/teammember/${INIT_TEAM_MEMBERS[0]._id}`)

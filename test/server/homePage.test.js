@@ -1,11 +1,7 @@
 const request = require('supertest');
 const app = require('../../server/server');
 const fs = require('fs');
-const {
-  INIT_ADMIN,
-  populateAdmins, populateHomePage,
-  populateTeamMembers, populateProjects
-} = require('../../server/seed/seedInfo');
+const {INIT_ADMIN, populateAll, populateHomePage} = require('../../server/seed/seedInfo');
 const {RESOURCES_DIR} = process.env;
 const testFileName = "sun.jpg";
 const constructFullPath = name => 'test/server/files/' + testFileName;
@@ -14,8 +10,7 @@ before(done => {
   if (!fs.existsSync(RESOURCES_DIR)) {
     fs.mkdirSync(RESOURCES_DIR);
   }
-  Promise.all([populateAdmins(), populateHomePage(), populateTeamMembers(), populateProjects()])
-    .then(() => done());
+  populateAll().then(() => done());
 });
 
 beforeEach(done => {
@@ -23,7 +18,7 @@ beforeEach(done => {
 });
 
 
-describe('Testing path PUT /home-page/center-pic', () => {
+describe('Testing path PUT /api/home-page/center-pic', () => {
   it("should add a new pic", done => {
     request(app)
       .put('/api/home-page/center-pic')
