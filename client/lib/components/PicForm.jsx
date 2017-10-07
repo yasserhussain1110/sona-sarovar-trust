@@ -105,8 +105,8 @@ const Form = ({noPicSelected, fileNotAPic, uploadPic, resetErrors, close}) => (
   <div className="pic-upload-form">
     <form>
       <div className="selection form-control">
-        <label htmlFor="asdasdas">Select Pic</label>
-        <input id="asdasdas" name="pic" type="file" onChange={resetErrors} />
+        <label htmlFor="pic">Select Pic</label>
+        <input id="pic" name="pic" type="file" onChange={resetErrors} />
       </div>
 
       <div className={`error uploading-without-pic ${noPicSelected ? '' : 'hidden'}`}>
