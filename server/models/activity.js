@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const _ = require('lodash');
 const PicSchema = require('./subschema/pic');
+
+const Schema = mongoose.Schema;
 
 const ActivitySchema = new Schema({
   name: {
@@ -21,7 +22,7 @@ const ActivitySchema = new Schema({
 });
 
 ActivitySchema.methods.toJSON = function () {
-  let project = this;
+  const project = this;
   return _.pick(project, ['_id', 'name', 'description', 'pics']);
 };
 

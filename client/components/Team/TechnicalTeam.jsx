@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import marked from 'marked';
+import PropTypes from 'prop-types';
 import {generateRandomHexadecimalStringOfLength as uuid} from '../../lib/helpers/functions';
 
 const TechnicalTeam = ({technicalTeam}) => (
@@ -10,7 +11,7 @@ const TechnicalTeam = ({technicalTeam}) => (
       {technicalTeam.map(techie => (
         <div key={uuid(10)} className="techie-info">
           <div className="img-holder">
-            <img src={techie.pic}/>
+            <img alt="" src={techie.pic} />
           </div>
           <div className="text-holder">
             <div className="name">
@@ -23,7 +24,8 @@ const TechnicalTeam = ({technicalTeam}) => (
 
             <div
               className="info rendered-markdown"
-              dangerouslySetInnerHTML={{__html: marked(techie.info)}}/>
+              dangerouslySetInnerHTML={{__html: marked(techie.info)}}
+            />
           </div>
         </div>
       ))}
@@ -32,7 +34,11 @@ const TechnicalTeam = ({technicalTeam}) => (
 );
 
 const mapStateToProps = state => ({
-  technicalTeam: state.team.teamMembers.filter(m => m.type === 'technical'),
+  technicalTeam: state.team.teamMembers.filter(m => m.type === 'technical')
 });
+
+TechnicalTeam.propTypes = {
+  technicalTeam: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default connect(mapStateToProps)(TechnicalTeam);

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+const Schema = mongoose.Schema;
 const {JWT_SECRET_KEY} = process.env;
 
 const AdminSchema = new Schema({
@@ -26,7 +26,7 @@ const AdminSchema = new Schema({
 });
 
 AdminSchema.pre('save', function (next) {
-  let admin = this;
+  const admin = this;
   if (!admin.isModified('password')) return next();
 
   bcrypt.genSalt(10)
@@ -39,28 +39,28 @@ AdminSchema.pre('save', function (next) {
     })
     .catch(e => {
       next(e);
-    })
+    });
 });
 
 AdminSchema.methods.generateAuthToken = function () {
-  let admin = this;
-  let tokenString = jwt.sign({_id: admin._id.toHexString()}, JWT_SECRET_KEY);
+  const admin = this;
+  const tokenString = jwt.sign({_id: admin._id.toHexString()}, JWT_SECRET_KEY);
   admin.tokens.push(tokenString);
 
   return admin.save().then(() => tokenString);
 };
 
 AdminSchema.statics.findByToken = function (tokenString) {
-  let Admin = this;
+  const Admin = this;
   let decoded;
 
   try {
     decoded = jwt.verify(tokenString, JWT_SECRET_KEY);
   } catch (e) {
-    return Promise.reject("Invalid Token");
+    return Promise.reject(Error('Invalid Token'));
   }
 
-  let {_id} = decoded;
+  const {_id} = decoded;
 
   return Admin.findOne({
     _id,
@@ -69,18 +69,18 @@ AdminSchema.statics.findByToken = function (tokenString) {
 };
 
 AdminSchema.statics.findByCreds = function (username, password) {
-  let Admin = this;
+  const Admin = this;
   return Admin.findOne({username})
     .then(admin => {
       if (!admin) {
-        return Promise.reject("No such Admin");
+        return Promise.reject(Error('No such Admin'));
       }
       return new Promise((resolve, reject) => {
-        bcrypt.compare(password, admin.password, function (err, res) {
+        bcrypt.compare(password, admin.password, (err, res) => {
           if (res) {
-            resolve(admin)
+            resolve(admin);
           } else {
-            reject("Incorrect Password");
+            reject(Error('Incorrect Password'));
           }
         });
       });

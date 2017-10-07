@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import marked from 'marked';
+import PropTypes from 'prop-types';
 import {generateRandomHexadecimalStringOfLength as uuid} from '../../lib/helpers/functions';
 
 const Trustees = ({trustees}) => (
@@ -10,7 +11,7 @@ const Trustees = ({trustees}) => (
       {trustees.map(trustee => (
         <div key={uuid(10)} className="trustee-info">
           <div className="img-holder">
-            <img src={trustee.pic}/>
+            <img alt="" src={trustee.pic} />
           </div>
           <div className="text-holder">
             <div className="name">
@@ -23,7 +24,8 @@ const Trustees = ({trustees}) => (
 
             <div
               className="info rendered-markdown"
-              dangerouslySetInnerHTML={{__html: marked(trustee.info)}}/>
+              dangerouslySetInnerHTML={{__html: marked(trustee.info)}}
+            />
           </div>
         </div>
       ))}
@@ -32,7 +34,12 @@ const Trustees = ({trustees}) => (
 );
 
 const mapStateToProps = state => ({
-  trustees: state.team.teamMembers.filter(m => m.type === 'trustee'),
+  trustees: state.team.teamMembers.filter(m => m.type === 'trustee')
 });
+
+Trustees.propTypes = {
+  trustees: PropTypes.arrayOf(PropTypes.object).isRequired
+};
+
 
 export default connect(mapStateToProps)(Trustees);

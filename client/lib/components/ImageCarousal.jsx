@@ -24,12 +24,14 @@ class ImageCarousal extends Component {
     clearInterval(this.intervalHandler);
   }
 
+
   showImageAtIndex(index) {
     this.setState({currentShowingImageIndex: index});
   }
 
   updateShowingImage(goForwardBy = 1) {
-    let newIndex = (this.state.currentShowingImageIndex + goForwardBy) % this.props.imageLinks.length;
+    let newIndex =
+      (this.state.currentShowingImageIndex + goForwardBy) % this.props.imageLinks.length;
     if (newIndex < 0) newIndex += this.props.imageLinks.length;
     this.showImageAtIndex(newIndex);
   }
@@ -42,30 +44,47 @@ class ImageCarousal extends Component {
     const {dots, arrows, imageLinks} = this.props;
     const {currentShowingImageIndex} = this.state;
     return (
-      <div className="carousal-image-container">{imageLinks.map((link, index) => (
-        <img key={index} className={this.isImageShowing(index) ? "active" : "inactive"} src={link}/>))}
+
+      <div className="carousal-image-container">
+        {imageLinks.map((link, index) => (
+          <img
+            alt=""
+            key={index}
+            className={this.isImageShowing(index) ? 'active' : 'inactive'}
+            src={link}
+          />))}
         <div
+          role="navigation"
           className="arrow arrow-left"
           style={{display: arrows ? 'initial' : 'none'}}
-          onClick={() => this.updateShowingImage(-1)}>
-          <SvgIcon className="icon-holder" icon={chevronLeft} size={20}/>
+          onClick={() => this.updateShowingImage(-1)}
+        >
+          <SvgIcon className="icon-holder" icon={chevronLeft} size={20} />
         </div>
 
         <div
+          role="navigation"
           className="arrow arrow-right"
           style={{display: arrows ? 'initial' : 'none'}}
-          onClick={() => this.updateShowingImage(1)}>
-          <SvgIcon className="icon-holder" icon={chevronRight} size={20}/>
+          onClick={() => this.updateShowingImage(1)}
+        >
+          <SvgIcon className="icon-holder" icon={chevronRight} size={20} />
         </div>
 
         <div
           style={{display: dots ? 'initial' : 'none'}}
-          className="dots-holder">{imageLinks.map((link, index) => (
-          <div
-            key={index}
-            className={`dot${currentShowingImageIndex === index ? " selected" : ""}`}
-            onClick={() => this.showImageAtIndex(index)}/>))}
+          className="dots-holder"
+        >
+          {imageLinks.map((link, index) => (
+            <div
+              role="navigation"
+              key={index}
+              className={`dot${currentShowingImageIndex === index ? ' selected' : ''}`}
+              onClick={() => this.showImageAtIndex(index)}
+            />
+          ))}
         </div>
+
       </div>
     );
   }
@@ -73,14 +92,15 @@ class ImageCarousal extends Component {
 
 ImageCarousal.propTypes = {
   imageLinks: PropTypes.arrayOf(PropTypes.string).isRequired,
-  dots: PropTypes.bool.isRequired,
-  arrows: PropTypes.bool.isRequired,
-  viewDuration: PropTypes.number.isRequired
+  viewDuration: PropTypes.number.isRequired,
+  dots: PropTypes.bool,
+  arrows: PropTypes.bool
 };
 
 ImageCarousal.defaultProps = {
   dots: false,
-  arrows: false,
+  arrows: false
+
 };
 
 export default ImageCarousal;

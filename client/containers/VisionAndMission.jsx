@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import marked from 'marked';
 
 const VisionAndMission = ({vision, mission}) => (
@@ -8,12 +9,12 @@ const VisionAndMission = ({vision, mission}) => (
     <div className="page-content">
       <div className="section-content">
         <h2>Vision</h2>
-        <div dangerouslySetInnerHTML={{__html: marked(vision)}} className="paras"/>
+        <div dangerouslySetInnerHTML={{__html: marked(vision)}} className="paras" />
       </div>
 
       <div className="section-content">
         <h2>Mission</h2>
-        <div dangerouslySetInnerHTML={{__html: marked(mission)}} className="paras"/>
+        <div dangerouslySetInnerHTML={{__html: marked(mission)}} className="paras" />
       </div>
     </div>
   </div>
@@ -23,5 +24,10 @@ const mapStateToProps = state => ({
   vision: state.aboutUs.vision,
   mission: state.aboutUs.mission
 });
+
+VisionAndMission.propTypes = {
+  vision: PropTypes.string.isRequired,
+  mission: PropTypes.string.isRequired
+};
 
 export default connect(mapStateToProps)(VisionAndMission);

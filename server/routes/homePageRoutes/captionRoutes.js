@@ -3,10 +3,10 @@ const HomePage = require('../../models/homepage');
 
 const captionRoutes = app => {
   app.put('/api/home-page/caption', auth, (req, res) => {
-    let captionText = req.body.text;
+    const captionText = req.body.text;
 
     HomePage.findOne().then(h => {
-      if (!h) throw new Error("HomePage not found");
+      if (!h) throw new Error('HomePage not found');
       h.captions.push({text: captionText});
       return h.save().then(h => h.captions[h.captions.length - 1]);
     }).then(caption => {
@@ -18,8 +18,8 @@ const captionRoutes = app => {
   });
 
   app.patch('/api/home-page/caption/:_id', auth, (req, res) => {
-    let _id = req.params._id;
-    let captionText = req.body.text;
+    const _id = req.params._id;
+    const captionText = req.body.text;
 
     HomePage.update({
       'captions._id': _id
@@ -30,7 +30,7 @@ const captionRoutes = app => {
     }, {
       runValidators: true
     }).then(r => {
-      if (r.n === 0) throw new Error("No caption found");
+      if (r.n === 0) throw new Error('No caption found');
       res.status(200).send();
     }).catch(e => {
       console.log(e);
@@ -39,7 +39,7 @@ const captionRoutes = app => {
   });
 
   app.delete('/api/home-page/caption/:_id', auth, (req, res) => {
-    let _id = req.params._id;
+    const _id = req.params._id;
 
     /**
      * 'required' validators only fail when $unset is used.
@@ -49,12 +49,12 @@ const captionRoutes = app => {
      */
 
     HomePage.findOne().then(h => {
-      if (!h) throw new Error("HomePage not found.");
-      let originalLength = h.captions.length;
+      if (!h) throw new Error('HomePage not found.');
+      const originalLength = h.captions.length;
       h.captions = h.captions.filter(caption => !caption._id.equals(_id));
       return h.save().then(() => ({originalLength, newLength: h.captions.length}));
     }).then(({originalLength, newLength}) => {
-      if (newLength >= originalLength) throw new Error("No match. Same Number of captions");
+      if (newLength >= originalLength) throw new Error('No match. Same Number of captions');
       res.status(200).send();
     }).catch(e => {
       console.log(e);
@@ -74,7 +74,6 @@ const captionRoutes = app => {
     //   console.log(e);
     //   res.status(400).send();
     // });
-
   });
 };
 

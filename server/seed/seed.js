@@ -1,19 +1,14 @@
 require('../config/config');
 const mongoose = require('../db/mongoose');
 const fs = require('fs');
+const {populateAll} = require('./seedInfo');
+
 const {RESOURCES_DIR} = process.env;
-const {
-  populateAdmins, populateHomePage, populateAboutUs,
-  populateTeamMembers, populateProjects, populateActivities
-} = require('./seedInfo');
 
 if (!fs.existsSync(RESOURCES_DIR)) {
   fs.mkdirSync(RESOURCES_DIR);
 }
 
-Promise.all([
-  populateAdmins(), populateHomePage(), populateAboutUs(),
-  populateTeamMembers(), populateProjects(), populateActivities()
-]).then(() => {
+populateAll().then(() => {
   mongoose.connection.close();
 });

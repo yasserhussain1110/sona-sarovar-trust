@@ -1,3 +1,6 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-extraneous-dependencies */
+
 module.exports = app => {
   const webpack = require('webpack');
   const webpackDevConfig = require('../../webpack.config.dev.js');
@@ -14,11 +17,11 @@ module.exports = app => {
   });
 
   // force page reload when html-webpack-plugin template changes
-  compiler.plugin('compilation', function (compilation) {
-    compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
+  compiler.plugin('compilation', compilation => {
+    compilation.plugin('html-webpack-plugin-after-emit', (data, cb) => {
       hotMiddleware.publish({action: 'reload'});
       cb();
-    })
+    });
   });
 
   // handle fallback for HTML5 history API
@@ -33,7 +36,7 @@ module.exports = app => {
 
   const uri = 'http://localhost:' + process.env.PORT;
 
-  devMiddleware.waitUntilValid(function () {
+  devMiddleware.waitUntilValid(() => {
     console.log('> Listening at ' + uri + '\n');
   });
 };

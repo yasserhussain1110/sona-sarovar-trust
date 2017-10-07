@@ -1,3 +1,6 @@
+/* eslint-disable global-require */
+/* eslint-disable brace-style */
+
 require('./config/config');
 require('./db/mongoose');
 
@@ -6,6 +9,7 @@ const port = process.env.PORT;
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const app = express();
 const {RESOURCES_DIR} = process.env;
 
@@ -22,13 +26,13 @@ require('./routes/paymentRoutes')(app);
 require('./routes/aboutUsRoutes')(app);
 
 /* Set up development server if required */
-if (process.env.NODE_ENV === "development") {
-  console.log("Running In Development");
+if (process.env.NODE_ENV === 'development') {
+  console.log('Running In Development');
   require('./tools/setup-dev')(app);
 }
 /* Or serve static assets in production */
-else if (process.env.NODE_ENV === "production") {
-  console.log("Running In Production");
+else if (process.env.NODE_ENV === 'production') {
+  console.log('Running In Production');
   app.use(express.static('./dist'));
   // URLs like /api, /api/, /api/some should send back 404
   app.get(/\/api($|\/)/, (req, res) => {

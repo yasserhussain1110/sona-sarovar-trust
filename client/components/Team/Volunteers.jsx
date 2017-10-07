@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import marked from 'marked';
+import PropTypes from 'prop-types';
 import {generateRandomHexadecimalStringOfLength as uuid} from '../../lib/helpers/functions';
 
 const Volunteers = ({volunteers}) => (
@@ -10,7 +11,7 @@ const Volunteers = ({volunteers}) => (
       {volunteers.map(volunteer => (
         <div key={uuid(10)} className="volunteer-info">
           <div className="img-holder">
-            <img src={volunteer.pic}/>
+            <img alt="" src={volunteer.pic} />
           </div>
           <div className="text-holder">
             <div className="name">
@@ -23,7 +24,8 @@ const Volunteers = ({volunteers}) => (
 
             <div
               className="info rendered-markdown"
-              dangerouslySetInnerHTML={{__html: marked(volunteer.info)}}/>
+              dangerouslySetInnerHTML={{__html: marked(volunteer.info)}}
+            />
           </div>
         </div>
       ))}
@@ -32,7 +34,11 @@ const Volunteers = ({volunteers}) => (
 );
 
 const mapStateToProps = state => ({
-  volunteers: state.team.teamMembers.filter(m => m.type === 'volunteer'),
+  volunteers: state.team.teamMembers.filter(m => m.type === 'volunteer')
 });
+
+Volunteers.propTypes = {
+  volunteers: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default connect(mapStateToProps)(Volunteers);

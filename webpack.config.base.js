@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const utils = require('./webpack-utils/utils');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -10,7 +9,7 @@ function resolve(relPath) {
 
 module.exports = {
   entry: {
-    app: resolve('./client/index.js')
+    app: resolve('./client/index.jsx')
   },
   output: {
     path: resolve('dist'),

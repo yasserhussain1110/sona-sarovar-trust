@@ -8,7 +8,11 @@ const DeleteCaptionForm = ({caption, authToken, onSuccess, close, onFailure}) =>
     <span>Are you sure you want to delete this caption?</span>
     <span className="caption-text">{caption.text}</span>
     <div className="button-holder">
-      <button onClick={e => deleteCaption(caption._id, onSuccess, onFailure, authToken)}>Yes</button>
+      <button
+        onClick={() => deleteCaption(caption._id, onSuccess, onFailure, authToken)}
+      >
+        Yes
+      </button>
       <button onClick={close}>No</button>
     </div>
   </div>
@@ -16,20 +20,25 @@ const DeleteCaptionForm = ({caption, authToken, onSuccess, close, onFailure}) =>
 
 const deleteCaption = (_id, onSuccess, onFailure, authToken) => {
   axios.delete(`/api/home-page/caption/${_id}`, {headers: {'x-auth': authToken}})
-    .then(res => {
+    .then(() => {
       onSuccess();
     })
     .catch(err => {
       handleCommonErrors(err);
-      onFailure ? onFailure() : "";
+      if (onFailure) onFailure();
       console.log(err);
     });
+};
+
+DeleteCaptionForm.defaultProps = {
+  onFailure: null
 };
 
 DeleteCaptionForm.propTypes = {
   authToken: PropTypes.string.isRequired,
   close: PropTypes.func.isRequired,
   onSuccess: PropTypes.func.isRequired,
+  caption: PropTypes.object.isRequired,
   onFailure: PropTypes.func
 };
 

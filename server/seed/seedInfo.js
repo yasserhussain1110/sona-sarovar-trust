@@ -7,6 +7,7 @@ const Project = require('../models/project');
 const Activity = require('../models/activity');
 const AboutUs = require('../models/aboutus');
 const ncp = require('ncp').ncp;
+
 const {INIT_ADMIN_USERNAME, INIT_ADMIN_PASSWORD, JWT_SECRET_KEY, RESOURCES_DIR} = process.env;
 
 const INIT_ADMIN_ID = new ObjectID();
@@ -20,68 +21,68 @@ const INIT_ADMIN = {
 const INIT_HOME_PAGE = {
   centerPics: [{
     _id: new ObjectID(),
-    url: "/home/IMG1.jpg"
+    url: '/home/IMG1.jpg'
   }, {
     _id: new ObjectID(),
-    url: "/home/IMG2.jpg"
+    url: '/home/IMG2.jpg'
   }],
-  brandLogoUrl: "/home/logo.jpg",
+  brandLogoUrl: '/home/logo.jpg',
   captions: [
-    {text: "66% of street children in Mumbai never receive any education."},
-    {text: "You can make a difference in their lives."},
-    {text: "Come, join our hands in helping improve their lives."}
+    {text: '66% of street children in Mumbai never receive any education.'},
+    {text: 'You can make a difference in their lives.'},
+    {text: 'Come, join our hands in helping improve their lives.'}
   ]
 };
 
 const INIT_ABOUT_US = {
-  vision: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-  "Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. " +
-  "Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. " +
-  "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " +
-  "Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. " +
-  "Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. " +
-  "Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh " +
-  "lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.",
+  vision: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+  'Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. ' +
+  'Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. ' +
+  'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. ' +
+  'Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. ' +
+  'Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. ' +
+  'Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh ' +
+  'lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.',
 
-  mission: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-  "Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. " +
-  "Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. " +
-  "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " +
-  "Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. " +
-  "Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. " +
-  "Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh " +
-  "lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.",
+  mission: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+  'Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. ' +
+  'Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. ' +
+  'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. ' +
+  'Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. ' +
+  'Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. ' +
+  'Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh ' +
+  'lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.',
 
-  history: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-  "Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. " +
-  "Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. " +
-  "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " +
-  "Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. " +
-  "Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. " +
-  "Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh " +
-  "lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo."
+  history: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+  'Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. ' +
+  'Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. ' +
+  'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. ' +
+  'Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. ' +
+  'Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. ' +
+  'Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh ' +
+  'lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.'
 };
 
 const INIT_TEAM_MEMBERS = [{
-  name: "Trustee Member 1",
+  name: 'Trustee Member 1',
   info: `adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
    adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
    adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
    adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd`,
-  pic: "/team/person1.png",
-  type: "trustee",
-  designation: "Chief of Operation"
+  pic: '/team/person1.png',
+  type: 'trustee',
+  designation: 'Chief of Operation'
 }, {
-  name: "Trustee Member 2",
+  name: 'Trustee Member 2',
   info: `adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
    adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
    adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
    adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd`,
-  pic: "/team/person2.png",
-  type: "trustee",
-  designation: "Chief of Marketing"
+  pic: '/team/person2.png',
+  type: 'trustee',
+  designation: 'Chief of Marketing'
 }, {
-  name: "Technical Member",
+  name: 'Technical Member',
   info: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie euismod dolor,
   id malesuada ex elementum non. Morbi nisi eros, ultricies quis nisl id, pellentesque tristique eros.
   Fusce augue quam, lobortis bibendum efficitur at, mollis vitae dui. Vestibulum ante ipsum primis in
@@ -91,11 +92,11 @@ const INIT_TEAM_MEMBERS = [{
   vitae lectus hendrerit, congue sem ac, accumsan nunc. Aliquam quis euismod nisl. Integer tempus ac velit non
   venenatis. Morbi imperdiet rhoncus diam, ut venenatis sem ultricies vitae. Vivamus aliquam elementum mi ut
   suscipit.`,
-  pic: "/team/person3.png",
-  type: "technical",
-  designation: "Technical Chief"
+  pic: '/team/person3.png',
+  type: 'technical',
+  designation: 'Technical Chief'
 }, {
-  name: "Ambassador Member",
+  name: 'Ambassador Member',
   info: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie euismod dolor,
   id malesuada ex elementum non. Morbi nisi eros, ultricies quis nisl id, pellentesque tristique eros.
   Fusce augue quam, lobortis bibendum efficitur at, mollis vitae dui. Vestibulum ante ipsum primis in
@@ -105,11 +106,11 @@ const INIT_TEAM_MEMBERS = [{
   vitae lectus hendrerit, congue sem ac, accumsan nunc. Aliquam quis euismod nisl. Integer tempus ac velit non
   venenatis. Morbi imperdiet rhoncus diam, ut venenatis sem ultricies vitae. Vivamus aliquam elementum mi ut
   suscipit.`,
-  pic: "/team/person4.png",
-  type: "ambassador"
+  pic: '/team/person4.png',
+  type: 'ambassador'
 }, {
   _id: new ObjectID(),
-  name: "Volunteer Member",
+  name: 'Volunteer Member',
   info: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie euismod dolor,
   id malesuada ex elementum non. Morbi nisi eros, ultricies quis nisl id, pellentesque tristique eros.
   Fusce augue quam, lobortis bibendum efficitur at, mollis vitae dui. Vestibulum ante ipsum primis in
@@ -119,50 +120,50 @@ const INIT_TEAM_MEMBERS = [{
   vitae lectus hendrerit, congue sem ac, accumsan nunc. Aliquam quis euismod nisl. Integer tempus ac velit non
   venenatis. Morbi imperdiet rhoncus diam, ut venenatis sem ultricies vitae. Vivamus aliquam elementum mi ut
   suscipit.`,
-  pic: "/team/person5.png",
-  type: "volunteer"
+  pic: '/team/person5.png',
+  type: 'volunteer'
 }];
 
 const INIT_PROJECTS = [{
   _id: new ObjectID(),
-  name: "Project XYZ",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-  "Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. " +
-  "Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. " +
-  "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " +
-  "Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. " +
-  "Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. " +
-  "Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh " +
-  "lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.",
-  pics: [{_id: new ObjectID(), url: "/projects/project1.jpg"}, {url: "/projects/project2.jpg"}]
+  name: 'Project XYZ',
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+  'Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. ' +
+  'Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. ' +
+  'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. ' +
+  'Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. ' +
+  'Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. ' +
+  'Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh ' +
+  'lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.',
+  pics: [{_id: new ObjectID(), url: '/projects/project1.jpg'}, {url: '/projects/project2.jpg'}]
 }, {
   _id: new ObjectID(),
-  name: "Project ABC",
-  description: "Fusce commodo porta molestie. Vestibulum ac tellus condimentum, auctor felis sed, pharetra eros. " +
-  "Sed placerat eget elit ut feugiat. Pellentesque nec dictum lorem. Morbi luctus dignissim arcu et venenatis. " +
-  "Fusce ac fringilla lorem. Morbi pharetra at ex in sollicitudin. Donec commodo, nulla et mollis finibus, " +
-  "mauris dolor eleifend nisl, eget cursus arcu leo id risus.",
-  pics: [{url: "/projects/project3.jpg"}, {url: "/projects/project4.jpg"}]
+  name: 'Project ABC',
+  description: 'Fusce commodo porta molestie. Vestibulum ac tellus condimentum, auctor felis sed, pharetra eros. ' +
+  'Sed placerat eget elit ut feugiat. Pellentesque nec dictum lorem. Morbi luctus dignissim arcu et venenatis. ' +
+  'Fusce ac fringilla lorem. Morbi pharetra at ex in sollicitudin. Donec commodo, nulla et mollis finibus, ' +
+  'mauris dolor eleifend nisl, eget cursus arcu leo id risus.',
+  pics: [{url: '/projects/project3.jpg'}, {url: '/projects/project4.jpg'}]
 }];
 
 const INIT_ACTIVITIES = [{
   _id: new ObjectID(),
-  name: "Card Making",
-  description: "Fusce commodo porta molestie. Vestibulum ac tellus condimentum, auctor felis sed, pharetra eros. " +
-  "Sed placerat eget elit ut feugiat. Pellentesque nec dictum lorem. Morbi luctus dignissim arcu et venenatis. " +
-  "Fusce ac fringilla lorem. Morbi pharetra at ex in sollicitudin. Donec commodo, nulla et mollis finibus, " +
-  "mauris dolor eleifend nisl, eget cursus arcu leo id risus.",
-  pics: [{url: "/activities/Card1.jpg"}, {url: "/activities/Card2.jpg"}, {url: "/activities/Card3.jpg"}]
+  name: 'Card Making',
+  description: 'Fusce commodo porta molestie. Vestibulum ac tellus condimentum, auctor felis sed, pharetra eros. ' +
+  'Sed placerat eget elit ut feugiat. Pellentesque nec dictum lorem. Morbi luctus dignissim arcu et venenatis. ' +
+  'Fusce ac fringilla lorem. Morbi pharetra at ex in sollicitudin. Donec commodo, nulla et mollis finibus, ' +
+  'mauris dolor eleifend nisl, eget cursus arcu leo id risus.',
+  pics: [{url: '/activities/Card1.jpg'}, {url: '/activities/Card2.jpg'}, {url: '/activities/Card3.jpg'}]
 }, {
   _id: new ObjectID(),
-  name: "Social Activities",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-  "Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. " +
-  "Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. " +
-  "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " +
-  "Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. " +
-  "Ut viverra quam sit amet enim rutrum volutpat.",
-  pics: [{url: "/activities/social1.jpg"}, {url: "/activities/social2.jpg"}]
+  name: 'Social Activities',
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+  'Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. ' +
+  'Curabitur eu efficitur elit. Ut consequat libero id varius aliquam. Nulla placerat viverra aliquet. ' +
+  'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. ' +
+  'Nunc vestibulum libero in nunc faucibus sagittis. In a ipsum leo. Cras auctor massa non euismod hendrerit. ' +
+  'Ut viverra quam sit amet enim rutrum volutpat.',
+  pics: [{url: '/activities/social1.jpg'}, {url: '/activities/social2.jpg'}]
 }];
 
 const populateAdmins = () => {
@@ -172,13 +173,13 @@ const populateAdmins = () => {
 };
 
 const populateHomePage = () => {
-  let sourceHomeDir = "initResources/home";
-  let targetHomeDir = RESOURCES_DIR + "/home";
+  const sourceHomeDir = 'initResources/home';
+  const targetHomeDir = RESOURCES_DIR + '/home';
 
   return new Promise(resolve => {
-    ncp(sourceHomeDir, targetHomeDir, function (err) {
+    ncp(sourceHomeDir, targetHomeDir, err => {
       if (err)  throw err;
-      resolve()
+      resolve();
     });
   }).then(() => {
     return HomePage.remove({});
@@ -194,13 +195,13 @@ const populateAboutUs = () => {
 };
 
 const populateTeamMembers = () => {
-  let sourceAboutDir = "initResources/team";
-  let targetAboutDir = RESOURCES_DIR + "/team";
+  const sourceAboutDir = 'initResources/team';
+  const targetAboutDir = RESOURCES_DIR + '/team';
 
   return new Promise(resolve => {
-    ncp(sourceAboutDir, targetAboutDir, function (err) {
+    ncp(sourceAboutDir, targetAboutDir, err => {
       if (err)  throw err;
-      resolve()
+      resolve();
     });
   }).then(() => {
     return TeamMember.remove({});
@@ -210,13 +211,13 @@ const populateTeamMembers = () => {
 };
 
 const populateProjects = () => {
-  let sourceProjectsDir = "initResources/projects";
-  let targetProjectsDir = RESOURCES_DIR + "/projects";
+  const sourceProjectsDir = 'initResources/projects';
+  const targetProjectsDir = RESOURCES_DIR + '/projects';
 
   return new Promise(resolve => {
-    ncp(sourceProjectsDir, targetProjectsDir, function (err) {
+    ncp(sourceProjectsDir, targetProjectsDir, err => {
       if (err)  throw err;
-      resolve()
+      resolve();
     });
   }).then(() => {
     return Project.remove({});
@@ -226,13 +227,13 @@ const populateProjects = () => {
 };
 
 const populateActivities = () => {
-  let sourceProjectsDir = "initResources/activities";
-  let targetProjectsDir = RESOURCES_DIR + "/activities";
+  const sourceProjectsDir = 'initResources/activities';
+  const targetProjectsDir = RESOURCES_DIR + '/activities';
 
   return new Promise(resolve => {
-    ncp(sourceProjectsDir, targetProjectsDir, function (err) {
+    ncp(sourceProjectsDir, targetProjectsDir, err => {
       if (err)  throw err;
-      resolve()
+      resolve();
     });
   }).then(() => {
     return Activity.remove({});

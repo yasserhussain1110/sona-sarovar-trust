@@ -34,7 +34,7 @@
  *      first argument obj, and updates its fields
  */
 export const updateSingleObjectInArray = (array, elementIndex, updator) => {
-  let objectToUpdateClone = {...array[elementIndex]};
+  const objectToUpdateClone = {...array[elementIndex]};
   updator(objectToUpdateClone);
   return [
     ...array.slice(0, elementIndex),
@@ -44,24 +44,26 @@ export const updateSingleObjectInArray = (array, elementIndex, updator) => {
 };
 
 export const random = (lowerLimit, upperLimit) => (   // upper limit is inclusive here
-  ((Math.random() * (upperLimit - lowerLimit + 1)) | 0) + lowerLimit
+  Math.floor(Math.random() * (upperLimit - lowerLimit + 1)) + lowerLimit
 );
 
 export const generateRandomHexadecimalStringOfLength = stringLength => {
+  /* eslint-disable prefer-spread */
   const hexChars = '0123456789abcdef';
   return hexChars[random(1, 15)] + Array.apply(null, {length: stringLength - 1})
-      .map(() => hexChars[random(0, 15)]).join('')
+    .map(() => hexChars[random(0, 15)]).join('');
+  /* eslint-enable prefer-spread */
 };
 
-export const clip = (str, length) => str.length < length ? str : str.substring(0, length - 3) + "...";
+export const clip = (str, length) => (str.length < length ? str : str.substring(0, length - 3) + '...');
 
 /* https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript  */
 export const getParameterByName = (name, url) => {
   if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, "\\$&");
-  let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-    results = regex.exec(url);
+  name = name.replace(/[\[\]]/g, '\\$&');
+  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+  const results = regex.exec(url);
   if (!results) return null;
   if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };

@@ -1,15 +1,15 @@
 import React from 'react';
-import Modal from './Modal';
 import axios from 'axios';
-import handleCommonErrors from '../handlers/commonErrorsHandler';
 import PropTypes from 'prop-types';
+import Modal from './Modal';
+import handleCommonErrors from '../handlers/commonErrorsHandler';
 
 const DeletePicModal = ({picUrl, requestUrl, closeModal, authToken, onSuccess, onFailure}) => (
-  <Modal show={true}>
+  <Modal show>
     <div className="delete-pic-form">
       <div className="message">
         <span>Deleting Pic</span>
-        <img src={picUrl}/>
+        <img alt="" src={picUrl} />
       </div>
 
       <div className="action">
@@ -20,7 +20,8 @@ const DeletePicModal = ({picUrl, requestUrl, closeModal, authToken, onSuccess, o
               requestUrl, authToken,
               onSuccess, onFailure
             )}
-            className="yes">Yes
+            className="yes"
+          >Yes
           </button>
           <button onClick={closeModal} className="no">No</button>
         </div>
@@ -38,10 +39,10 @@ const deletePic = (requestUrl, authToken, onSuccess, onFailure) => {
     handleCommonErrors(err);
     onFailure();
     console.log(err);
-  })
+  });
 };
 
-DeletePicModal.proptypes = {
+DeletePicModal.propTypes = {
   picUrl: PropTypes.string.isRequired,
   requestUrl: PropTypes.string.isRequired,
   authToken: PropTypes.string.isRequired,

@@ -9,7 +9,7 @@ class AddCaptionForm extends Component {
 
     this.state = {
       errorTextAreaEmpty: false,
-      textAreaValue: ""
+      textAreaValue: ''
     };
 
     this.addCaption = this.addCaption.bind(this);
@@ -36,7 +36,7 @@ class AddCaptionForm extends Component {
       return;
     }
 
-    let data = {text: this.state.textAreaValue};
+    const data = {text: this.state.textAreaValue};
 
     axios.put('/api/home-page/caption', data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
@@ -45,9 +45,8 @@ class AddCaptionForm extends Component {
       .catch(err => {
         handleCommonErrors(err);
         console.log(err);
-        this.props.onFailure ? this.props.onFailure() : "";
+        if (this.props.onFailure) this.props.onFailure();
       });
-
   }
 
   render() {
@@ -56,11 +55,12 @@ class AddCaptionForm extends Component {
         <h3>Adding New Caption</h3>
         <span className="message">Enter Caption in TextArea below and Click Add</span>
         <textarea
-          onFocus={e => this.setState({errorTextAreaEmpty: false})}
+          onFocus={() => this.setState({errorTextAreaEmpty: false})}
           value={this.state.textAreaValue}
-          onChange={this.updateTextAreaValue}/> {this.state.errorTextAreaEmpty ?
-        <span className="error">TextArea should not be empty</span>
-        : ""}
+          onChange={this.updateTextAreaValue}
+        /> {this.state.errorTextAreaEmpty ?
+          <span className="error">TextArea should not be empty</span>
+          : ''}
         <div className="button-holder">
           <button className="add-button" onClick={this.addCaption}>Add</button>
           <button className="cancel-button" onClick={this.close}>Cancel</button>
@@ -69,6 +69,10 @@ class AddCaptionForm extends Component {
     );
   }
 }
+
+AddCaptionForm.defaultProps = {
+  onFailure: null
+};
 
 AddCaptionForm.propTypes = {
   authToken: PropTypes.string.isRequired,

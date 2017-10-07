@@ -1,21 +1,26 @@
 import React, {Component} from 'react';
 import {isEmail, isFloat, isNumeric, isMobilePhone} from 'validator';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 class DonateOnline extends Component {
+  static checkIfInputCanBeNumber(value) {
+    return isFloat(value) || (value.endsWith('.') && isFloat(value + '0'));
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      tentativeAmount: "",
-      amount: "",
-      amountError: "",
-      name: "",
-      nameError: "",
-      email: "",
-      emailError: "",
-      contactNumber: "",
-      contactNumberError: ""
+      tentativeAmount: '',
+      amount: '',
+      amountError: '',
+      name: '',
+      nameError: '',
+      email: '',
+      emailError: '',
+      contactNumber: '',
+      contactNumberError: ''
     };
 
     this.updateName = this.updateName.bind(this);
@@ -26,13 +31,9 @@ class DonateOnline extends Component {
     this.donate = this.donate.bind(this);
   }
 
-  checkIfInputCanBeNumber(value) {
-    return isFloat(value) || (value.endsWith(".") && isFloat(value + "0"));
-  }
-
   updateTentativeAmount(e) {
     const value = e.target.value;
-    if (this.checkIfInputCanBeNumber(value) || value === "") {
+    if (this.checkIfInputCanBeNumber(value) || value === '') {
       this.setState({tentativeAmount: value});
     }
   }
@@ -47,7 +48,7 @@ class DonateOnline extends Component {
 
   updateContactNumber(e) {
     const value = e.target.value;
-    if (isNumeric(value) || value === "") {
+    if (isNumeric(value) || value === '') {
       this.setState({contactNumber: value});
     }
   }
@@ -58,11 +59,11 @@ class DonateOnline extends Component {
 
     axios.post('/api/payment/start', {
       amount: this.state.amount,
-      purpose: "SonaSarovarDonation",
+      purpose: 'SonaSarovarDonation',
       buyer_name: this.state.name,
       email: this.state.email,
       phone: this.state.contactNumber,
-      redirect_url: window.location.href + "/done"
+      redirect_url: window.location.href + '/done'
     }).then(res => {
       const {paymentRequestUrl} = res.data;
       window.location = paymentRequestUrl;
@@ -77,60 +78,60 @@ class DonateOnline extends Component {
 
   clearValidation() {
     this.setState({
-      nameError: "",
-      emailError: "",
-      amountError: "",
-      contactNumberError: ""
+      nameError: '',
+      emailError: '',
+      amountError: '',
+      contactNumberError: ''
     });
   }
 
   validate() {
     this.clearValidation();
 
-    let {amount, name, email, contactNumber} = this.state;
+    const {amount, name, email, contactNumber} = this.state;
 
     if (!amount) {
-      this.setState({amountError: "Amount cannot be empty."});
+      this.setState({amountError: 'Amount cannot be empty.'});
       return false;
     }
 
     if (!isFloat(amount)) {
-      this.setState({amountError: "Must be a number."});
+      this.setState({amountError: 'Must be a number.'});
       return false;
     }
 
     if (Number(amount) < 9) {
-      this.setState({amountError: "Must be at least ₹9."});
+      this.setState({amountError: 'Must be at least ₹9.'});
       return false;
     }
 
     if (!name) {
-      this.setState({nameError: "Name cannot be empty."});
+      this.setState({nameError: 'Name cannot be empty.'});
       return false;
     }
 
     if (!email) {
-      this.setState({emailError: "Email cannot be empty."});
+      this.setState({emailError: 'Email cannot be empty.'});
       return false;
     }
 
     if (!isEmail(email)) {
-      this.setState({emailError: "Must be a valid email."});
+      this.setState({emailError: 'Must be a valid email.'});
       return false;
     }
 
     if (!contactNumber) {
-      this.setState({contactNumberError: "Contact Number cannot be empty."});
+      this.setState({contactNumberError: 'Contact Number cannot be empty.'});
       return false;
     }
 
     if (!isNumeric(contactNumber)) {
-      this.setState({contactNumberError: "Contact Number must be a number."});
+      this.setState({contactNumberError: 'Contact Number must be a number.'});
       return false;
     }
 
     if (!isMobilePhone(contactNumber, 'en-IN')) {
-      this.setState({contactNumberError: "Must be a valid mobile phone number."});
+      this.setState({contactNumberError: 'Must be a valid mobile phone number.'});
       return false;
     }
 
@@ -154,33 +155,36 @@ class DonateOnline extends Component {
 
 
 const DonateOnlineView = ({
-                            donate,
-                            tentativeAmount, updateTentativeAmount,
-                            amount, amountError, name, nameError, email, emailError,
-                            contactNumber, contactNumberError,
-                            updateName, updateEmail,  updateContactNumber,
-                            updateAmount
-                          }) => (
+  donate,
+  tentativeAmount, updateTentativeAmount,
+  amount, amountError, name, nameError, email, emailError,
+  contactNumber, contactNumberError,
+  updateName, updateEmail,  updateContactNumber,
+  updateAmount
+}) => (
   <div className="donate-online">
     <h1>Donate Online</h1>
     <div className="page-content">
       <div className="donation-amount-form">
         <div className="donate-piggy">
-          <img src="/static/img/donate.png"/>
+          <img alt="" src="/static/img/donate.png" />
         </div>
 
         <div className="input-field">
           <div className="label">
-            <label>DONATE ANY AMOUNT</label>
+            <label htmlFor="donation-amount">DONATE ANY AMOUNT</label>
           </div>
           <div className="input">
-            <input className={`${amountError ? "input-error" : ""}`}
-                   value={tentativeAmount}
-                   onChange={updateTentativeAmount}
-                   onBlur={updateAmount} id="donation-amount"
-                   type="text"/>
+            <input
+              className={`${amountError ? 'input-error' : ''}`}
+              value={tentativeAmount}
+              onChange={updateTentativeAmount}
+              onBlur={updateAmount}
+              id="donation-amount"
+              type="text"
+            />
           </div>
-          <div className={`error ${amountError ? "show" : ""}`}>
+          <div className={`error ${amountError ? 'show' : ''}`}>
             <span>{amountError}</span>
           </div>
         </div>
@@ -189,32 +193,47 @@ const DonateOnlineView = ({
       <div className="donor-info-form">
         <form>
           <h4>YOUR DONATION AMOUNT</h4>
-          <h2>₹ {amount ? amount : 0}</h2>
+          <h2>₹ {amount || 0}</h2>
 
           <div className="input">
-            <input value={name} onChange={updateName}
-                   className="small-input" type="text" placeholder="Name *"/>
+            <input
+              value={name}
+              onChange={updateName}
+              className="small-input"
+              type="text"
+              placeholder="Name *"
+            />
           </div>
 
-          <div className={`error ${nameError ? "show" : ""}`}>
+          <div className={`error ${nameError ? 'show' : ''}`}>
             <span>{nameError}</span>
           </div>
 
           <div className="input">
-            <input value={email} onChange={updateEmail}
-                   className="small-input" type="text" placeholder="Email Address *"/>
+            <input
+              value={email}
+              onChange={updateEmail}
+              className="small-input"
+              type="text"
+              placeholder="Email Address *"
+            />
           </div>
 
-          <div className={`error ${emailError ? "show" : ""}`}>
+          <div className={`error ${emailError ? 'show' : ''}`}>
             <span>{emailError}</span>
           </div>
 
           <div className="input">
-            <input value={contactNumber} onChange={updateContactNumber}
-                   className="small-input" type="text" placeholder="Contact Number *"/>
+            <input
+              value={contactNumber}
+              onChange={updateContactNumber}
+              className="small-input"
+              type="text"
+              placeholder="Contact Number *"
+            />
           </div>
 
-          <div className={`error ${contactNumberError ? "show" : ""}`}>
+          <div className={`error ${contactNumberError ? 'show' : ''}`}>
             <span>{contactNumberError}</span>
           </div>
 
@@ -226,5 +245,23 @@ const DonateOnlineView = ({
     </div>
   </div>
 );
+
+DonateOnlineView.propTypes = {
+  donate: PropTypes.func.isRequired,
+  tentativeAmount: PropTypes.string.isRequired,
+  updateTentativeAmount: PropTypes.func.isRequired,
+  amount: PropTypes.string.isRequired,
+  amountError: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  nameError: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  emailError: PropTypes.string.isRequired,
+  contactNumber: PropTypes.string.isRequired,
+  contactNumberError: PropTypes.string.isRequired,
+  updateName: PropTypes.func.isRequired,
+  updateEmail: PropTypes.func.isRequired,
+  updateContactNumber: PropTypes.func.isRequired,
+  updateAmount: PropTypes.func.isRequired
+};
 
 export default DonateOnline;

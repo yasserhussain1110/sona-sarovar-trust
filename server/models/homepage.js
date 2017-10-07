@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const _ = require('lodash');
 const PicSchema = require('./subschema/pic');
 const CaptionSchema = require('./subschema/caption');
+
+const Schema = mongoose.Schema;
 
 const HomePageSchema = new Schema({
   centerPics: {
@@ -22,8 +23,8 @@ const HomePageSchema = new Schema({
 });
 
 HomePageSchema.methods.toJSON = function () {
-  let homePage = this;
-  return _.pick(homePage, ["centerPics", "brandLogoUrl", "captions"]);
+  const homePage = this;
+  return _.pick(homePage, ['centerPics', 'brandLogoUrl', 'captions']);
 };
 
 const HomePage = mongoose.model('HomePage', HomePageSchema);

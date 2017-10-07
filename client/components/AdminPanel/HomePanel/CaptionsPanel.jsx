@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import Modal from '../../../lib/components/Modal';
 import AddCaptionForm from './CaptionsPanel/AddCaptionForm';
 import UpdateCaptionForm from './CaptionsPanel/UpdateCaptionForm';
@@ -13,7 +14,7 @@ class CaptionsPanel extends Component {
 
     this.state = {
       showModalForm: false,
-      formMode: "",   // "add", "update", "delete"
+      formMode: '',   // "add", "update", "delete"
       selectedCaptionIndex: -1
     };
 
@@ -23,32 +24,16 @@ class CaptionsPanel extends Component {
     this.close = this.close.bind(this);
   }
 
-  close() {
-    this.setState({showModalForm: false, formMode: "", selectedCaptionIndex: -1});
-  }
-
-  addCaption() {
-    this.setState({showModalForm: true, formMode: "add", selectedCaptionIndex: -1});
-  }
-
-  deleteCaption(captionIndex) {
-    this.setState({showModalForm: true, formMode: "delete", selectedCaptionIndex: captionIndex});
-  }
-
-  updateCaption(captionIndex) {
-    this.setState({showModalForm: true, formMode: "update", selectedCaptionIndex: captionIndex});
-  }
-
   getModalContent() {
     switch (this.state.formMode) {
-      case "add":
+      case 'add':
         return (
           <AddCaptionForm
             onSuccess={caption => {
               this.props.addedCenterPicCaption(caption);
               this.close();
               this.props.addStatusBox(
-                <StatusBox success={true}>
+                <StatusBox success>
                   <div><h3>Success!</h3></div>
                   <div>Added Caption to HomePanel successfully.</div>
                 </StatusBox>
@@ -67,14 +52,14 @@ class CaptionsPanel extends Component {
             close={this.close}
           />
         );
-      case "update":
+      case 'update':
         return (
           <UpdateCaptionForm
             onSuccess={captionText => {
               this.props.updatedCenterPicCaption(this.state.selectedCaptionIndex, captionText);
               this.close();
               this.props.addStatusBox(
-                <StatusBox success={true}>
+                <StatusBox success>
                   <div><h3>Success!</h3></div>
                   <div>HomePanel Caption updated successfully.</div>
                 </StatusBox>
@@ -94,15 +79,15 @@ class CaptionsPanel extends Component {
             close={this.close}
           />
         );
-      case "delete":
+      case 'delete':
         return (
           <DeleteCaptionForm
             onSuccess={() => {
-              let selectCaptionIndex = this.state.selectedCaptionIndex;
+              const selectCaptionIndex = this.state.selectedCaptionIndex;
               this.close();
               this.props.deletedCenterPicCaption(selectCaptionIndex);
               this.props.addStatusBox(
-                <StatusBox success={true}>
+                <StatusBox success>
                   <div><h3>Success!</h3></div>
                   <div>HomePanel Caption deleted successfully.</div>
                 </StatusBox>
@@ -127,6 +112,23 @@ class CaptionsPanel extends Component {
     }
   }
 
+  close() {
+    this.setState({showModalForm: false, formMode: '', selectedCaptionIndex: -1});
+  }
+
+  addCaption() {
+    this.setState({showModalForm: true, formMode: 'add', selectedCaptionIndex: -1});
+  }
+
+  deleteCaption(captionIndex) {
+    this.setState({showModalForm: true, formMode: 'delete', selectedCaptionIndex: captionIndex});
+  }
+
+  updateCaption(captionIndex) {
+    this.setState({showModalForm: true, formMode: 'update', selectedCaptionIndex: captionIndex});
+  }
+
+
   render() {
     return (
       <div className="captions-panel">
@@ -137,15 +139,24 @@ class CaptionsPanel extends Component {
               <span>{caption.text}</span>
             </div>
             <div className="button-holder">
-              <button className="button update-button" onClick={e => this.updateCaption(index)}>Update</button>
-              <button className="button delete-button" onClick={e => this.deleteCaption(index)}>Delete</button>
+              <button
+                className="button update-button"
+                onClick={() => this.updateCaption(index)}
+              >Update
+              </button>
+              <button
+                className="button delete-button"
+                onClick={() => this.deleteCaption(index)}
+              >Delete
+              </button>
             </div>
           </div>))}
         </div>
 
         <div className="add-caption-wrapper">
           <button
-            onClick={e => this.addCaption()}>
+            onClick={() => this.addCaption()}
+          >
             Add Caption
           </button>
         </div>
@@ -164,6 +175,17 @@ const mapStateToProps = state => (
   }
 );
 
-const mapDispatchToProps = {addedCenterPicCaption, updatedCenterPicCaption, deletedCenterPicCaption};
+const mapDispatchToProps = {
+  addedCenterPicCaption, updatedCenterPicCaption, deletedCenterPicCaption
+};
+
+CaptionsPanel.propTypes = {
+  addedCenterPicCaption: PropTypes.func.isRequired,
+  addStatusBox: PropTypes.func.isRequired,
+  deletedCenterPicCaption: PropTypes.func.isRequired,
+  authToken: PropTypes.string.isRequired,
+  updatedCenterPicCaption: PropTypes.func.isRequired,
+  captions: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaptionsPanel);

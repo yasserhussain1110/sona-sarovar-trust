@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import marked from 'marked';
+import PropTypes from 'prop-types';
 import {generateRandomHexadecimalStringOfLength as uuid} from '../../lib/helpers/functions';
 
 const BrandAmbassador = ({ambassadors}) => (
@@ -10,7 +11,7 @@ const BrandAmbassador = ({ambassadors}) => (
       {ambassadors.map(ambassador => (
         <div key={uuid(10)} className="brand-ambassador-info">
           <div className="img-holder">
-            <img src={ambassador.pic}/>
+            <img alt="" src={ambassador.pic} />
           </div>
           <div className="text-holder">
             <div className="name">
@@ -23,7 +24,8 @@ const BrandAmbassador = ({ambassadors}) => (
 
             <div
               className="info rendered-markdown"
-              dangerouslySetInnerHTML={{__html: marked(ambassador.info)}}/>
+              dangerouslySetInnerHTML={{__html: marked(ambassador.info)}}
+            />
           </div>
         </div>
       ))}
@@ -32,7 +34,11 @@ const BrandAmbassador = ({ambassadors}) => (
 );
 
 const mapStateToProps = state => ({
-  ambassadors: state.team.teamMembers.filter(m => m.type === 'ambassador'),
+  ambassadors: state.team.teamMembers.filter(m => m.type === 'ambassador')
 });
+
+BrandAmbassador.propTypes = {
+  ambassadors: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default connect(mapStateToProps)(BrandAmbassador);

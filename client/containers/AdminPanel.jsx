@@ -4,7 +4,6 @@ import HomePanel from '../components/AdminPanel/HomePanel';
 import AboutUsPanel from '../components/AdminPanel/AboutUsPanel';
 import ProjectsPanel from '../components/AdminPanel/ProjectsPanel';
 import ActivitiesPanel from '../components/AdminPanel/ActivitiesPanel';
-import TeamPanel from '../components/AdminPanel/TeamPanel';
 import SideNavContainer from '../components/AdminPanel/SideNavContainer';
 import Previewer from '../components/AdminPanel/Previewer';
 import TrusteesPanel from '../components/AdminPanel/TrusteesPanel';
@@ -16,19 +15,19 @@ const AdminPanel = () => {
   return (
     <main className="admin-panel" id="admin-panel">
       <div className="admin-panel-wrapper" style={{display: 'flex'}}>
-        <SideNavContainer/>
+        <SideNavContainer />
         <div className="controller-holder">
           <Switch>
-            <Route path="/admin/home" component={HomePanel}/>
-            <Route path="/admin/about" component={AboutUsPanel}/>
-            <Route path="/admin/projects" component={ProjectsPanel}/>
-            <Route path="/admin/activities" component={ActivitiesPanel}/>
-            <Route path="/admin/trustees" component={TrusteesPanel}/>
-            <Route path="/admin/volunteers" component={VolunteersPanel}/>
-            <Route path="/admin/technical" component={TechnicalTeamPanel}/>
-            <Route path="/admin/ambassador" component={AmbassadorPanel}/>
-            <Route path="/admin/preview" component={Previewer}/>
-            <Route path="/" render={() => <Redirect to="/admin/home" push/>}/>
+            <Route path="/admin/home" component={HomePanel} />
+            <Route path="/admin/about" component={AboutUsPanel} />
+            <Route path="/admin/projects" component={ProjectsPanel} />
+            <Route path="/admin/activities" component={ActivitiesPanel} />
+            <Route path="/admin/trustees" component={TrusteesPanel} />
+            <Route path="/admin/volunteers" component={VolunteersPanel} />
+            <Route path="/admin/technical" component={TechnicalTeamPanel} />
+            <Route path="/admin/ambassador" component={AmbassadorPanel} />
+            <Route path="/admin/preview" component={Previewer} />
+            <Route path="/" render={() => <Redirect to="/admin/home" push />} />
           </Switch>
         </div>
       </div>

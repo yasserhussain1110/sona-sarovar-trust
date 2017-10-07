@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Team = ({match}) => (
   <div className="team">
@@ -51,5 +52,9 @@ const Team = ({match}) => (
     </div>
   </div>
 );
+
+Team.propTypes = {
+  match: PropTypes.object.isRequired
+};
 
 export default Team;

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import {NavLink} from 'react-router-dom';
 
 const Activities = ({match, activitiesUndertaken}) => (
@@ -30,5 +31,10 @@ const mapStateToProps = state => (
     activitiesUndertaken: state.activities.activitiesUndertaken
   }
 );
+
+Activities.propTypes = {
+  activitiesUndertaken: PropTypes.arrayOf(PropTypes.object).isRequired,
+  match: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps)(Activities);

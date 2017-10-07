@@ -1,15 +1,16 @@
 const TeamMember = require('../models/teammember');
 const auth = require('../middleware/auth');
 const multer = require('multer');
-const upload = multer();
 const fs = require('fs');
 const {ensurePicAndWriteToDisk} = require('../services');
+
+const upload = multer();
 const {RESOURCES_DIR} = process.env;
 
 const teammemberRoutes = app => {
   app.put('/api/teammember', auth, upload.single('pic'), (req, res) => {
-    let file = req.file;
-    let {name, info, type} = req.body;
+    const file = req.file;
+    const {name, info, type} = req.body;
 
     if (!file) return res.status(400).send();
     if (!name || !info || !type) return res.status(400).send();
@@ -17,7 +18,7 @@ const teammemberRoutes = app => {
 
     ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/team')
       .then(picPath => {
-        let picUrl = picPath.replace(RESOURCES_DIR, "");
+        const picUrl = picPath.replace(RESOURCES_DIR, '');
         return new TeamMember({
           name,
           info,
@@ -35,9 +36,9 @@ const teammemberRoutes = app => {
   });
 
   app.patch('/api/teammember/:_id', auth, upload.single('pic'), (req, res) => {
-    let file = req.file;
-    let {name, info} = req.body;
-    let _id = req.params._id;
+    const file = req.file;
+    const {name, info} = req.body;
+    const _id = req.params._id;
 
     TeamMember.findById(_id).then(member => {
       if (!member) throw new Error('No member by id - ' + _id);
@@ -48,7 +49,7 @@ const teammemberRoutes = app => {
       if (file) {
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/team').then(picPath => {
           fs.unlinkSync(RESOURCES_DIR + member.pic);
-          member.pic = picPath.replace(RESOURCES_DIR, "");
+          member.pic = picPath.replace(RESOURCES_DIR, '');
           return member.save();
         });
       } else {

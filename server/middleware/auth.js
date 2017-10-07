@@ -1,16 +1,16 @@
 const Admin = require('../models/admin');
 
 const auth = (req, res, next) => {
-  let token = req.get('x-auth');
+  const token = req.get('x-auth');
   Admin.findByToken(token).then(admin => {
     if (!admin) {
-      return Promise.reject("No such Admin");
+      return Promise.reject(Error('No such Admin'));
     }
 
     req.admin = admin;
     req.token = token;
     next();
-  }).catch(e => {
+  }).catch(() => {
     res.status(401).send();
   });
 };

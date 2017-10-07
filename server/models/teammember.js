@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const _ = require('lodash');
+
+const Schema = mongoose.Schema;
 
 const TeamMemberSchema = new Schema({
   name: {
@@ -10,7 +11,8 @@ const TeamMemberSchema = new Schema({
 
   designation: {
     type: String,
-    maxlength: 25
+    maxlength: 25,
+    default: ''
   },
 
   type: {
@@ -31,7 +33,7 @@ const TeamMemberSchema = new Schema({
 });
 
 TeamMemberSchema.methods.toJSON = function () {
-  let teamMember = this;
+  const teamMember = this;
   return _.pick(teamMember, ['_id', 'name', 'designation', 'type', 'info', 'pic']);
 };
 

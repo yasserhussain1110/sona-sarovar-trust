@@ -1,20 +1,24 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 import axios from 'axios';
+import {connect} from 'react-redux';
 import handleCommonErrors, {logOut} from './lib/handlers/commonErrorsHandler';
-
 import Web from './routes/Web';
 import Admin from './routes/Admin';
 import * as actions from './actions';
-import {connect} from 'react-redux';
 
 class App extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentWillMount() {
+    this.init();
+  }
+
   initializeAuth() {
-    let authToken = localStorage.getItem('auth-token');
+    const authToken = localStorage.getItem('auth-token');
     if (authToken) {
       /**
        * If authToken is present assume the admin is logged in.
@@ -34,7 +38,7 @@ class App extends Component {
       axios.get('/api/admin/isLoggedIn', {headers: {'x-auth': authToken}})
         .catch(e => {
           logOut();
-          console.log(e, "Not logged In");
+          console.log(e, 'Not logged In');
         });
     }
   }
@@ -42,8 +46,7 @@ class App extends Component {
   initializeApp() {
     axios.get('/api/init-state')
       .then(response => {
-        let {homePage, aboutUs, projects, activities, teamMembers} = response.data;
-
+        const {homePage, aboutUs, projects, activities, teamMembers} = response.data;
         this.props.receivedHomePageContent(homePage);
         this.props.receivedAboutUs(aboutUs);
         this.props.receivedTeamMembers(teamMembers);
@@ -61,22 +64,27 @@ class App extends Component {
     this.initializeApp();
   }
 
-  componentWillMount() {
-    this.init();
-  }
-
   render() {
     return (
       <BrowserRouter>
         <main>
-          <Route path="/web" component={Web}/>
-          <Route path="/admin" component={Admin}/>
-          <Route exact path="/" render={() => <Redirect to="/web"/>}/>
+          <Route path="/web" component={Web} />
+          <Route path="/admin" component={Admin} />
+          <Route exact path="/" render={() => <Redirect to="/web" />} />
         </main>
       </BrowserRouter>
     );
   }
 }
+
+App.propTypes = {
+  logIn: PropTypes.func.isRequired,
+  receivedHomePageContent: PropTypes.func.isRequired,
+  receivedTeamMembers: PropTypes.func.isRequired,
+  receivedActivitiesUndertaken: PropTypes.func.isRequired,
+  receivedProjectsDone: PropTypes.func.isRequired,
+  receivedAboutUs: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = actions;
 

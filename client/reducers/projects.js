@@ -36,20 +36,22 @@ const projects = (state = defaultState, action) => {
       };
     case 'ADDED_PIC_TO_PROJECT':
       return {
-        projectsDone: updateSingleObjectInArray(state.projectsDone, action.projectIndex, project => {
-          project.pics = updateSingleObjectInArray(project.pics, project.pics.length,
-            picElement => Object.assign(picElement, action.pic));
-        })
+        projectsDone: updateSingleObjectInArray(
+          state.projectsDone, action.projectIndex, project => {
+            project.pics = updateSingleObjectInArray(project.pics, project.pics.length,
+              picElement => Object.assign(picElement, action.pic));
+          })
       };
     case 'DELETED_PIC_FROM_PROJECT':
       return {
-        projectsDone: updateSingleObjectInArray(state.projectsDone, action.projectIndex, project => {
-          project.pics = project.pics.filter(pic => pic !== action.pic);
-        })
+        projectsDone: updateSingleObjectInArray(
+          state.projectsDone, action.projectIndex, project => {
+            project.pics = project.pics.filter(pic => pic !== action.pic);
+          })
       };
-    case 'UPDATED_PROJECT_PIC':
-      let selectedProject = state.projectsDone[action.projectIndex];
-      let picIndex = selectedProject.pics.findIndex(pic => pic._id === action.picId);
+    case 'UPDATED_PROJECT_PIC': {
+      const selectedProject = state.projectsDone[action.projectIndex];
+      const picIndex = selectedProject.pics.findIndex(pic => pic._id === action.picId);
       return {
         projectsDone: updateSingleObjectInArray(state.projectsDone, action.projectIndex,
           project => {
@@ -58,6 +60,7 @@ const projects = (state = defaultState, action) => {
             });
           })
       };
+    }
     default:
       return state;
   }

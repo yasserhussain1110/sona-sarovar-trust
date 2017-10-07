@@ -3,7 +3,7 @@ const auth = require('../middleware/auth');
 
 const adminRoutes = app => {
   app.post('/api/admin/login', (req, res) => {
-    let {username, password} = req.body;
+    const {username, password} = req.body;
 
     Admin.findByCreds(username, password)
       .then(user => user.generateAuthToken())

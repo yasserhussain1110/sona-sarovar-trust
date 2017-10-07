@@ -1,27 +1,38 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default ({username, password, updateUsername, updatePassword, submitForm, error}) => (
+const LoginForm = ({username, password, updateUsername, updatePassword, submitForm, error}) => (
   <div className="login-form">
     <form className="auth-form">
       <h3 className="heading">Login</h3>
       <div className="input-wrapper">
         <div className="form-control">
-          <label>Username:</label>
+          <label htmlFor="login-username">Username:</label>
           <input
-            placeholder="Enter Username" type="text"
-            name="username" value={username} onChange={e => updateUsername(e.target.value)}/>
+            placeholder="Enter Username"
+            id="login-username"
+            type="text"
+            name="username"
+            value={username}
+            onChange={e => updateUsername(e.target.value)}
+          />
         </div>
 
         <div className="form-control">
-          <label>Password:</label>
+          <label htmlFor="login-password">Password:</label>
           <input
-            placeholder="Enter Password" type="password"
-            name="password" value={password} onChange={e => updatePassword(e.target.value)}/>
+            placeholder="Enter Password"
+            id="login-password"
+            type="password"
+            name="password"
+            value={password}
+            onChange={e => updatePassword(e.target.value)}
+          />
         </div>
       </div>
 
       <div className="last-row">
-        <div className="error-box" style={{visibility: error ? "initial" : "hidden"}}>
+        <div className="error-box" style={{visibility: error ? 'initial' : 'hidden'}}>
           <span className="error">{error}</span>
         </div>
 
@@ -32,3 +43,14 @@ export default ({username, password, updateUsername, updatePassword, submitForm,
     </form>
   </div>
 );
+
+LoginForm.propTypes = {
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
+  updateUsername: PropTypes.func.isRequired,
+  updatePassword: PropTypes.func.isRequired,
+  submitForm: PropTypes.func.isRequired
+};
+
+export default LoginForm;

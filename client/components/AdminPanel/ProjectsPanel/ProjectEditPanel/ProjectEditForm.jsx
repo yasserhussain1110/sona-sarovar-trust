@@ -2,23 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ProjectEditForm = ({
-                           name, description, pics, nameError,
-                           descriptionError, updateStateField, updateProject,
-                           updatePic, deletePic
-                         }) => (
+  name, description, pics, nameError,
+  descriptionError, updateStateField, updateProject,
+  updatePic, deletePic
+}) => (
   <div className="form-holder">
     <section className="name">
       <div className="field">
         <div className="label">
-          <label>Name</label>
+          <label htmlFor="project-edit-name">Name</label>
         </div>
 
         <div className="input">
-          <input type="text" value={name} onChange={e => updateStateField('name', e.target.value)}/>
+          <input
+            id="project-edit-name"
+            type="text"
+            value={name}
+            onChange={e => updateStateField('name', e.target.value)}
+          />
         </div>
       </div>
 
-      <div className={`field-error ${nameError ? "show-field-error" : ""}`}>
+      <div className={`field-error ${nameError ? 'show-field-error' : ''}`}>
         {nameError}
       </div>
     </section>
@@ -26,15 +31,19 @@ const ProjectEditForm = ({
     <section className="description">
       <div className="field">
         <div className="label">
-          <label>Description</label>
+          <label htmlFor="project-edit-description">Description</label>
         </div>
 
         <div className="input">
-          <textarea value={description} onChange={e => updateStateField('description', e.target.value)}/>
+          <textarea
+            id="project-edit-description"
+            value={description}
+            onChange={e => updateStateField('description', e.target.value)}
+          />
         </div>
       </div>
 
-      <div className={`field-error ${descriptionError ? "show-field-error" : ""}`}>
+      <div className={`field-error ${descriptionError ? 'show-field-error' : ''}`}>
         {descriptionError}
       </div>
     </section>
@@ -46,10 +55,10 @@ const ProjectEditForm = ({
         </div>
         <div className="picture-holder-wrapper">{pics.map(pic => (
           <div className="pic-holder" key={pic._id}>
-            <img src={pic.url}/>
+            <img alt="" src={pic.url} />
             <div className="button-holder">
-              <button className="update-button" onClick={e => updatePic(pic)}>Update</button>
-              <button className="delete-button" onClick={e => deletePic(pic)}>Delete</button>
+              <button className="update-button" onClick={() => updatePic(pic)}>Update</button>
+              <button className="delete-button" onClick={() => deletePic(pic)}>Delete</button>
             </div>
           </div>))}
         </div>
@@ -59,11 +68,11 @@ const ProjectEditForm = ({
     <section className="pics">
       <div className="field">
         <div className="label">
-          <label>Add new Pictures</label>
+          <label htmlFor="edit-panel-pic">Add new Pictures</label>
         </div>
 
         <div className="input">
-          <input id="edit-panel-pic" type="file" multiple/>
+          <input id="edit-panel-pic" type="file" multiple />
         </div>
       </div>
     </section>

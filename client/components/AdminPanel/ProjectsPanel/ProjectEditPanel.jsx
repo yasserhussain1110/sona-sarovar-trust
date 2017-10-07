@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import {
   updatedProjectNameAndDescription, addedPicToProject,
   updatedProjectPic, deletedPicFromProject
@@ -10,7 +11,9 @@ import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
 import ProjectEditPanelView from './ProjectEditPanel/ProjectEditPanelView';
 
 const createStateFromProjectProp = project => {
-  let name = "", description = "", pics = [];
+  let name = '';
+  let description = '';
+  let pics = [];
   if (project) {
     ({name, description, pics} = project);
   }
@@ -18,8 +21,8 @@ const createStateFromProjectProp = project => {
 };
 
 const createUXState = () => ({
-  nameError: "",
-  descriptionError: "",
+  nameError: '',
+  descriptionError: '',
   updatingPic: false,
   deletingPic: false,
   selectedPic: null
@@ -55,7 +58,7 @@ class ProjectEditPanel extends Component {
   }
 
   closeModal() {
-    this.setState({updatingPic: false, deletingPic: false})
+    this.setState({updatingPic: false, deletingPic: false});
   }
 
   deleteProjectPicFailed() {
@@ -72,7 +75,7 @@ class ProjectEditPanel extends Component {
     this.closeModal();
     this.props.deletedPicFromProject(this.state.selectedPic, this.props.match.params.index);
     this.addStatusBox(
-      <StatusBox success={true}>
+      <StatusBox success>
         <div><h3>Success!</h3></div>
         <div><span>Deleted Project pic Successfully</span></div>
       </StatusBox>
@@ -93,7 +96,7 @@ class ProjectEditPanel extends Component {
     this.props.updatedProjectPic(this.props.match.params.index, this.state.selectedPic._id, url);
     this.setState({updatingPic: false, deletingPic: false});
     this.addStatusBox(
-      <StatusBox success={true}>
+      <StatusBox success>
         <div><h3>Success!</h3></div>
         <div>Project Pic Updated Successfully.</div>
       </StatusBox>
@@ -113,22 +116,22 @@ class ProjectEditPanel extends Component {
   }
 
   clearValidation() {
-    this.setState({nameError: "", descriptionError: ""});
+    this.setState({nameError: '', descriptionError: ''});
   }
 
   validateFields() {
-    let {name, description} = this.state;
+    const {name, description} = this.state;
     this.clearValidation();
 
     let isValid = true;
 
     if (!name) {
-      this.setState({nameError: "Name field cannot be empty"});
+      this.setState({nameError: 'Name field cannot be empty'});
       isValid = false;
     }
 
     if (!description) {
-      this.setState({descriptionError: "Description field cannot be empty"});
+      this.setState({descriptionError: 'Description field cannot be empty'});
       isValid = false;
     }
 
@@ -136,18 +139,20 @@ class ProjectEditPanel extends Component {
   }
 
   updateNameAndDescription() {
-    let {name, description} = this.state;
+    const {name, description} = this.state;
     axios.patch(`/api/project/${this.props.project._id}`, {name, description}, {
       headers: {'x-auth': this.props.authToken}
     })
       .then(() => {
-        this.props.updatedProjectNameAndDescription(name, description, this.props.match.params.index);
+        this.props.updatedProjectNameAndDescription(
+          name, description, this.props.match.params.index
+        );
         this.addStatusBox(
-          <StatusBox success={true}>
+          <StatusBox success>
             <div><h3>Success!</h3></div>
             <div>Updated Project Name and Description.</div>
           </StatusBox>
-        )
+        );
       })
       .catch(err => {
         console.log(err);
@@ -157,28 +162,28 @@ class ProjectEditPanel extends Component {
             <div><h3>Failure!</h3></div>
             <div>Project Name and Description updation failed.</div>
           </StatusBox>
-        )
+        );
       });
   }
 
   uploadMorePics() {
-    let pics = document.getElementById("edit-panel-pic").files;
+    const pics = document.getElementById('edit-panel-pic').files;
     if (pics.length === 0) return;
 
-    let uploadPicPromises = Object.keys(pics).map(key => {
-      let pic = pics[key];
-      let data = new FormData();
+    const uploadPicPromises = Object.keys(pics).map(key => {
+      const pic = pics[key];
+      const data = new FormData();
       data.append('pic', pic);
 
       return axios.put(`/api/project/pic/${this.props.project._id}`, data, {headers: {'x-auth': this.props.authToken}})
         .then(res => {
           this.props.addedPicToProject(res.data, this.props.match.params.index);
           this.addStatusBox(
-            <StatusBox success={true}>
+            <StatusBox success>
               <div><h3>Success!</h3></div>
               <div>{pic.name} added to Project successfully.</div>
             </StatusBox>
-          )
+          );
         })
         .catch(err => {
           console.log(err);
@@ -187,12 +192,13 @@ class ProjectEditPanel extends Component {
               <div><h3>Failure!</h3></div>
               <div>Adding pic {pic.name} to project failed.</div>
             </StatusBox>
-          )
-        })
+          );
+        });
     });
 
-    Promise.all(uploadPicPromises).then(() =>
-      document.getElementById("edit-panel-pic").value = null);
+    Promise.all(uploadPicPromises).then(() => {
+      document.getElementById('edit-panel-pic').value = null;
+    });
   }
 
   updateProject() {
@@ -203,10 +209,10 @@ class ProjectEditPanel extends Component {
   }
 
   updateStateField(field, value) {
-    let updateObj = {};
+    const updateObj = {};
     updateObj[field] = value;
     this.setState(updateObj);
-  };
+  }
 
   render() {
     return (
@@ -237,6 +243,20 @@ const mapDispatchToProps = {
   addedPicToProject,
   updatedProjectPic,
   deletedPicFromProject
+};
+
+ProjectEditPanel.defaultProps = {
+  project: null
+};
+
+ProjectEditPanel.propTypes = {
+  deletedPicFromProject: PropTypes.func.isRequired,
+  updatedProjectPic: PropTypes.func.isRequired,
+  updatedProjectNameAndDescription: PropTypes.func.isRequired,
+  addedPicToProject: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  authToken: PropTypes.string.isRequired,
+  project: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectEditPanel);

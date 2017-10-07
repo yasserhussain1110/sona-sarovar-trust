@@ -1,7 +1,7 @@
 const defaultState = {
   centerPics: [],
   captions: [],
-  brandLogoUrl: ""
+  brandLogoUrl: ''
 };
 
 const home = (state = defaultState, action) => {

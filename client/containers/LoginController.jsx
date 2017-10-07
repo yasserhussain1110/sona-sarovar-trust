@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {logIn} from '../actions';
 import {Redirect} from 'react-router-dom';
-import LoginForm from '../components/LoginController/LoginForm';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import {logIn} from '../actions';
+import LoginForm from '../components/LoginController/LoginForm';
 import handleCommonErrors from '../lib/handlers/commonErrorsHandler';
 
 class LoginController extends Component {
@@ -11,20 +12,20 @@ class LoginController extends Component {
     super(props);
 
     this.state = {
-      username: "",
-      password: "",
-      error: ""
+      username: '',
+      password: '',
+      error: ''
     };
 
     this.submitForm = this.submitForm.bind(this);
   }
 
   validateInputAndUpdateError() {
-    let {username, password} = this.state;
+    const {username, password} = this.state;
     if (!username) {
-      this.setState({error: "Username cannot be empty"});
+      this.setState({error: 'Username cannot be empty'});
     } else if (!password) {
-      this.setState({error: "Password cannot be empty"});
+      this.setState({error: 'Password cannot be empty'});
     } else {
       return true;
     }
@@ -34,27 +35,27 @@ class LoginController extends Component {
 
   submitForm(e) {
     e.preventDefault();
-    let {username, password} = this.state;
+    const {username, password} = this.state;
 
     if (!this.validateInputAndUpdateError()) return;
 
     if (!username || !password) return;
     axios.post('/api/admin/login', {username, password})
       .then(response => {
-        let authToken = response.headers['x-auth'];
+        const authToken = response.headers['x-auth'];
         localStorage.setItem('auth-token', authToken);
         this.props.logIn(authToken);
       })
       .catch(error => {
         handleCommonErrors(error);
         console.log(error);
-        this.setState({error: "Username or Password Invalid", username: "", password: ""});
+        this.setState({error: 'Username or Password Invalid', username: '', password: ''});
       });
   }
 
   render() {
     if (this.props.userAuth.loggedIn) {
-      return <Redirect to="/admin" push/>
+      return <Redirect to="/admin" push />;
     }
 
     return (
@@ -64,7 +65,8 @@ class LoginController extends Component {
         updateUsername={username => this.setState({username})}
         updatePassword={password => this.setState({password})}
         submitForm={this.submitForm}
-        error={this.state.error}/>
+        error={this.state.error}
+      />
     );
   }
 }
@@ -72,15 +74,20 @@ class LoginController extends Component {
 const mapStateToProps = state => {
   return {
     userAuth: state.userAuth
-  }
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     logIn: authToken => {
-      dispatch(logIn(authToken))
+      dispatch(logIn(authToken));
     }
   };
+};
+
+LoginController.propTypes = {
+  userAuth: PropTypes.object.isRequired,
+  logIn: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginController);

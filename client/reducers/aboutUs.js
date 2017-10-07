@@ -1,7 +1,7 @@
 const defaultState = {
-  mission: "",
-  vision: "",
-  history: ""
+  mission: '',
+  vision: '',
+  history: ''
 };
 
 const team = (state = defaultState, action) => {
@@ -10,7 +10,7 @@ const team = (state = defaultState, action) => {
       return {
         vision: action.aboutUs.vision,
         mission: action.aboutUs.mission,
-        history: action.aboutUs.history,
+        history: action.aboutUs.history
       };
     case 'UPDATED_VISION':
       return {

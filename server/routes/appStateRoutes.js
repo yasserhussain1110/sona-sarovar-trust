@@ -6,16 +6,21 @@ const AboutUs = require('../models/aboutus');
 
 const appStateRoutes = app => {
   app.get('/api/init-state', (req, res) => {
-    Promise.all([HomePage.findOne(), AboutUs.findOne(), Project.find(), TeamMember.find(), Activity.find()])
-      .then(([homePage, aboutUs, projects, teamMembers, activities]) => {
-        res.send({
-          homePage,
-          aboutUs,
-          projects,
-          teamMembers,
-          activities
-        });
+    Promise.all([
+      HomePage.findOne(),
+      AboutUs.findOne(),
+      Project.find(),
+      TeamMember.find(),
+      Activity.find()
+    ]).then(([homePage, aboutUs, projects, teamMembers, activities]) => {
+      res.send({
+        homePage,
+        aboutUs,
+        projects,
+        teamMembers,
+        activities
       });
+    });
   });
 };
 

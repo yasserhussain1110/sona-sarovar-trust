@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import TeamMemberUpdaterForm from './TeamPanel/TeamMemberUpdaterForm';
 import {updatedTeamMember} from '../../actions';
 import StatusPanel from '../../lib/components/StatusPanel';
@@ -30,7 +31,9 @@ class AmbassadorPanel extends Component {
   }
 }
 
-const AmbassadorPanelView = ({ambassadors, authToken, updatedTeamMember, statusBoxToAdd, addStatusBox}) => (
+const AmbassadorPanelView = ({
+  ambassadors, authToken, updatedTeamMember, statusBoxToAdd, addStatusBox
+}) => (
   <div className="controller ambassador-panel">
     <h1>Ambassador Panel</h1>
     <h2>Update Ambassador Info</h2>
@@ -41,9 +44,10 @@ const AmbassadorPanelView = ({ambassadors, authToken, updatedTeamMember, statusB
         member={member}
         authToken={authToken}
         updatedTeamMember={updatedTeamMember}
-        addStatusBox={addStatusBox}/>))}
+        addStatusBox={addStatusBox}
+      />))}
     </section>
-    <StatusPanel statusBoxToAdd={statusBoxToAdd}/>
+    <StatusPanel statusBoxToAdd={statusBoxToAdd} />
   </div>
 );
 
@@ -53,5 +57,17 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {updatedTeamMember};
+
+AmbassadorPanelView.defaultProps = {
+  statusBoxToAdd: null
+};
+
+AmbassadorPanelView.propTypes = {
+  ambassadors: PropTypes.arrayOf(PropTypes.object).isRequired,
+  authToken: PropTypes.string.isRequired,
+  updatedTeamMember: PropTypes.func.isRequired,
+  addStatusBox: PropTypes.func.isRequired,
+  statusBoxToAdd: PropTypes.element
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AmbassadorPanel);

@@ -11,13 +11,13 @@ const CommonLogOptions = {
 const DailyLogOptions = Object.assign({}, CommonLogOptions, {
   filename: `${process.env.HOME}/log`,
   datePattern: 'yyyy-MM-dd.',
-  prepend: true,
+  prepend: true
 });
 
 const TestLogOptions = Object.assign({}, CommonLogOptions, {
   filename: `${process.env.HOME}/test.log`,
   datePattern: 'yyyy-MM-dd.',
-  prepend: true,
+  prepend: true
 });
 
 const dailyLogTransport = new (winston.transports.DailyRotateFile)(DailyLogOptions);

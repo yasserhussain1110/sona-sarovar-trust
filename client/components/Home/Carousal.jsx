@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import getScrollbarWidth from 'scrollbar-width';
 import ImageCarousal from '../../lib/components/ImageCarousal';
 import MessageCarousal from '../../lib/components/MessageCarousal';
-import getScrollbarWidth from 'scrollbar-width';
 import {getViewPortWidth} from '../../lib/helpers/domHelpers';
 
 const getHeightRatio = viewPortWidth => {
@@ -25,7 +26,7 @@ const getSizeSubStateFromSrollBarWidth = scrollbarWidth => {
   return {
     width,
     height: ratio * width
-  }
+  };
 };
 
 class Carousal extends Component {
@@ -54,12 +55,12 @@ class Carousal extends Component {
     this.resizeHandler = () => this.setState(getSizeSubStateFromSrollBarWidth(this.scrollbarWidth));
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.resizeHandler);
+  componentDidMount() {
+    window.addEventListener('resize', this.resizeHandler);
   }
 
-  componentDidMount() {
-    window.addEventListener("resize", this.resizeHandler);
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resizeHandler);
   }
 
   render() {
@@ -67,11 +68,16 @@ class Carousal extends Component {
     const {height, width} = this.state;
     return (
       <div style={{height, width}} className="carousal">
-        <ImageCarousal arrows={true} dots={true} imageLinks={imageLinks} viewDuration={10000}/>
-        <MessageCarousal messages={messages} viewDuration={6000}/>
+        <ImageCarousal arrows dots imageLinks={imageLinks} viewDuration={10000} />
+        <MessageCarousal messages={messages} viewDuration={6000} />
       </div>
     );
   }
 }
+
+Carousal.propTypes = {
+  messages: PropTypes.arrayOf(PropTypes.string).isRequired,
+  imageLinks: PropTypes.arrayOf(PropTypes.string).isRequired
+};
 
 export default Carousal;

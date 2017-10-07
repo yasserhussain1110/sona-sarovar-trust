@@ -2,6 +2,7 @@ const fs = require('fs');
 const request = require('supertest');
 const app = require('../../server/server');
 const {INIT_ADMIN, populateAll, populateAboutUs} = require('../../server/seed/seedInfo');
+
 const {RESOURCES_DIR} = process.env;
 
 before(done => {
@@ -16,7 +17,7 @@ beforeEach(done => {
 });
 
 describe('Testing path PATCH /api/about-us/vision', () => {
-  it("should not update vision because of minlength", done => {
+  it('should not update vision because of minlength', done => {
     request(app)
       .patch('/api/about-us/vision')
       .set('x-auth', INIT_ADMIN.tokens[0])
@@ -31,7 +32,7 @@ describe('Testing path PATCH /api/about-us/vision', () => {
   Morbi pharetra at ex in sollicitudin. Donec commodo, nulla et mollis finibus, mauris dolor eleifend nisl,
   eget cursus arcu leo id risus. mauris dolor eleifend nisl, eget cursus arcu leo id risus.`;
 
-  it("should update vision", done => {
+  it('should update vision', done => {
     request(app)
       .patch('/api/about-us/vision')
       .set('x-auth', INIT_ADMIN.tokens[0])
@@ -42,7 +43,7 @@ describe('Testing path PATCH /api/about-us/vision', () => {
 });
 
 describe('Testing path PATCH /api/about-us/mission', () => {
-  it("should not update mission because of minlength", done => {
+  it('should not update mission because of minlength', done => {
     request(app)
       .patch('/api/about-us/mission')
       .set('x-auth', INIT_ADMIN.tokens[0])
@@ -57,7 +58,7 @@ describe('Testing path PATCH /api/about-us/mission', () => {
   Morbi pharetra at ex in sollicitudin. Donec commodo, nulla et mollis finibus, mauris dolor eleifend nisl,
   eget cursus arcu leo id risus. mauris dolor eleifend nisl, eget cursus arcu leo id risus.`;
 
-  it("should update mission", done => {
+  it('should update mission', done => {
     request(app)
       .patch('/api/about-us/mission')
       .set('x-auth', INIT_ADMIN.tokens[0])
@@ -68,7 +69,7 @@ describe('Testing path PATCH /api/about-us/mission', () => {
 });
 
 describe('Testing path PATCH /api/about-us/history', () => {
-  it("should not update history because of minlength", done => {
+  it('should not update history because of minlength', done => {
     request(app)
       .patch('/api/about-us/history')
       .set('x-auth', INIT_ADMIN.tokens[0])
@@ -83,7 +84,7 @@ describe('Testing path PATCH /api/about-us/history', () => {
   Morbi pharetra at ex in sollicitudin. Donec commodo, nulla et mollis finibus, mauris dolor eleifend nisl,
   eget cursus arcu leo id risus. mauris dolor eleifend nisl, eget cursus arcu leo id risus.`;
 
-  it("should update vision and mission", done => {
+  it('should update vision and mission', done => {
     request(app)
       .patch('/api/about-us/history')
       .set('x-auth', INIT_ADMIN.tokens[0])
@@ -92,5 +93,4 @@ describe('Testing path PATCH /api/about-us/history', () => {
       .end(done);
   });
 });
-
 

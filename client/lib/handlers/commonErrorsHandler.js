@@ -1,9 +1,9 @@
 import {logOut as logOutAction} from '../../actions';
 
-let dispatch = () => (console.log("Used initial dispatch function"));
+let dispatch = () => (console.log('Used initial dispatch function'));
 
 const logOut = () => {
-  localStorage.removeItem("auth-token");
+  localStorage.removeItem('auth-token');
   dispatch(logOutAction());
 };
 

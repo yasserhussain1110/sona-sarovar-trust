@@ -45,8 +45,8 @@ const validate = (validationObject, obj) => {
 
   const resultObj = {isValid: true, errors: []};
   for (let i = 0; i < validationKeys.length; i++) {
-    let key = validationKeys[i];
-    let isValid = validateField(key, obj, validationObject);
+    const key = validationKeys[i];
+    const isValid = validateField(key, obj, validationObject);
     if (!isValid) {
       resultObj.isValid = false;
       resultObj.errors.push(`${key} has invalid value ${obj[key]}`);
@@ -62,10 +62,8 @@ const validatePaymentRequest = obj => {
     const validatedObj = _.pick(obj, Object.keys(paymentValidationObject));
     delete validationResult.errors;
     validationResult.paymentRequestObject = validatedObj;
-    return validationResult;
-  } else {
-    return validationResult;
   }
+  return validationResult;
 };
 
 module.exports = {

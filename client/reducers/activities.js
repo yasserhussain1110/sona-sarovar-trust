@@ -48,9 +48,9 @@ const activities = (state = defaultState, action) => {
             activity.pics = activity.pics.filter(pic => pic !== action.pic);
           })
       };
-    case 'UPDATED_ACTIVITY_PIC':
-      let selectedActivity = state.activitiesUndertaken[action.activityIndex];
-      let picIndex = selectedActivity.pics.findIndex(pic => pic._id === action.picId);
+    case 'UPDATED_ACTIVITY_PIC': {
+      const selectedActivity = state.activitiesUndertaken[action.activityIndex];
+      const picIndex = selectedActivity.pics.findIndex(pic => pic._id === action.picId);
       return {
         activitiesUndertaken: updateSingleObjectInArray(state.activitiesUndertaken,
           action.activityIndex,
@@ -60,6 +60,7 @@ const activities = (state = defaultState, action) => {
             });
           })
       };
+    }
     default:
       return state;
   }

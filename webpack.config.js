@@ -8,7 +8,7 @@ const path = require('path');
 
 module.exports = merge(baseWebpackConfig, {
   entry: {
-    app: './client/index.js',
+    app: './client/index.jsx',
     vendor: [
       'axios', 'react', 'react-dom',
       'redux', 'react-router-dom',
@@ -33,8 +33,8 @@ module.exports = merge(baseWebpackConfig, {
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
+          fallback: 'style-loader',
+          use: 'css-loader'
         })
       }
     ]

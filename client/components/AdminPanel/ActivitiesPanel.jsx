@@ -8,9 +8,9 @@ const ActivitiesPanel = () => (
   <div className="controller projects-panel">
     <h1>Activities Panel</h1>
     <Switch>
-      <Route path="/admin/activities/edit/:index" component={ActivityEditPanel}/>
-      <Route path="/admin/activities/add" component={ActivityAddPanel}/>
-      <Route path="/admin/activities" component={ActivityListPanel}/>
+      <Route path="/admin/activities/edit/:index" component={ActivityEditPanel} />
+      <Route path="/admin/activities/add" component={ActivityAddPanel} />
+      <Route path="/admin/activities" component={ActivityListPanel} />
     </Switch>
   </div>
 );

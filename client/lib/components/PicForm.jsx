@@ -32,8 +32,8 @@ class PicForm extends Component {
       return false;
     }
 
-    let validImageTypes = ["image/gif", "image/jpeg", "image/png"];
-    if (validImageTypes.indexOf(file["type"]) === -1) {
+    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+    if (validImageTypes.indexOf(file.type) === -1) {
       this.setState({
         fileNotAPic: true
       });
@@ -45,11 +45,11 @@ class PicForm extends Component {
   }
 
   putPic() {
-    let pic = document.getElementById('pic').files[0];
+    const pic = document.getElementById('pic').files[0];
     if (!this.validatePicAndUpdateState(pic)) {
       return;
     }
-    let data = new FormData();
+    const data = new FormData();
     data.append('pic', pic);
     axios.put(this.props.url, data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
@@ -58,16 +58,16 @@ class PicForm extends Component {
       .catch(err => {
         handleCommonErrors(err);
         console.log(err);
-        this.props.onFailure ? this.props.onFailure() : "";
+        if (this.props.onFailure) this.props.onFailure();
       });
   }
 
   patchPic() {
-    let pic = document.getElementById('pic').files[0];
+    const pic = document.getElementById('pic').files[0];
     if (!this.validatePicAndUpdateState(pic)) {
       return;
     }
-    let data = new FormData();
+    const data = new FormData();
     data.append('pic', pic);
     axios.patch(this.props.url, data, {headers: {'x-auth': this.props.authToken}})
       .then(res => {
@@ -76,14 +76,18 @@ class PicForm extends Component {
       .catch(err => {
         handleCommonErrors(err);
         console.log(err);
-        this.props.onFailure ? this.props.onFailure() : "";
+        if (this.props.onFailure) this.props.onFailure();
       });
   }
 
   uploadPic(e) {
     e.preventDefault();
-    this.props.mode === "add" ? this.putPic() : this.patchPic();
-  };
+    if (this.props.mode === 'add') {
+      this.putPic();
+    } else {
+      this.patchPic();
+    }
+  }
 
   render() {
     return (
@@ -97,20 +101,19 @@ class PicForm extends Component {
   }
 }
 
-
 const Form = ({noPicSelected, fileNotAPic, uploadPic, resetErrors, close}) => (
   <div className="pic-upload-form">
     <form>
       <div className="selection form-control">
-        <label>Select Pic</label>
-        <input id="pic" name="pic" type="file" onChange={resetErrors}/>
+        <label htmlFor="asdasdas">Select Pic</label>
+        <input id="asdasdas" name="pic" type="file" onChange={resetErrors} />
       </div>
 
-      <div className={`error uploading-without-pic ${noPicSelected ? "" : "hidden" }`}>
+      <div className={`error uploading-without-pic ${noPicSelected ? '' : 'hidden'}`}>
         <span>Please select a picture to continue uploading</span>
       </div>
 
-      <div className={`error file-not-pic ${fileNotAPic ? "" : "hidden"}`}>
+      <div className={`error file-not-pic ${fileNotAPic ? '' : 'hidden'}`}>
         <span>Must upload a picture</span>
       </div>
 
@@ -127,13 +130,25 @@ const Form = ({noPicSelected, fileNotAPic, uploadPic, resetErrors, close}) => (
   </div>
 );
 
+PicForm.defaultProps = {
+  onFailure: null
+};
+
 PicForm.propTypes = {
   authToken: PropTypes.string.isRequired,
-  mode: PropTypes.oneOf(['update', 'add']),
+  mode: PropTypes.oneOf(['update', 'add']).isRequired,
   url: PropTypes.string.isRequired,
   close: PropTypes.func.isRequired,
   onSuccess: PropTypes.func.isRequired,
   onFailure: PropTypes.func
+};
+
+Form.propTypes = {
+  noPicSelected: PropTypes.bool.isRequired,
+  fileNotAPic: PropTypes.bool.isRequired,
+  uploadPic: PropTypes.func.isRequired,
+  resetErrors: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired
 };
 
 export default PicForm;

@@ -21,11 +21,11 @@ const start = 195;
 const end = 65;
 
 const mapElementTopToImageBackgroundPosition = (clientRectTop, viewPortHeight) =>
-start + (((clientRectTop - viewPortHeight) * (start - end)) / (viewPortHeight - 70));
+  start + (((clientRectTop - viewPortHeight) * (start - end)) / (viewPortHeight - 70));
 
 const parallaxHandler = parallaxElement => {
   parallaxElement.style.backgroundPositionY =
-    mapElementTopToImageBackgroundPosition(parallaxElement.getBoundingClientRect().top, getViewPortHeight()) + 'px'
+    mapElementTopToImageBackgroundPosition(parallaxElement.getBoundingClientRect().top, getViewPortHeight()) + 'px';
 };
 
 export const getScrollHandlerForParallax = () => {
@@ -34,13 +34,13 @@ export const getScrollHandlerForParallax = () => {
   const boundParallaxHandler = parallaxHandler.bind(null, parallaxElement);
   return () => {
     if (isElementInViewport(parallaxElement, getViewPortHeight()) && !parallaxHandlerAdded) {
-      console.log("Parallax in view. Attaching handler.");
+      console.log('Parallax in view. Attaching handler.');
       window.addEventListener('scroll', boundParallaxHandler);
       parallaxHandlerAdded = true;
     } else if (!isElementInViewport(parallaxElement, getViewPortHeight()) && parallaxHandlerAdded) {
-      console.log("Parallax out of view. Removing handler.");
+      console.log('Parallax out of view. Removing handler.');
       window.removeEventListener('scroll', boundParallaxHandler);
       parallaxHandlerAdded = false;
     }
-  }
+  };
 };

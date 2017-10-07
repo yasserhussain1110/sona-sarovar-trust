@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {NavLink} from 'react-router-dom';
 import {facebook, twitter, linkedin, youtube, caretDown} from 'react-icons-kit/fa';
 import SvgIcon from 'react-icons-kit';
@@ -6,24 +7,24 @@ import SvgIcon from 'react-icons-kit';
 const FloatingHeader = ({visibilityClass, brandLogoUrl, match}) => (
   <div className={`floating-header ${visibilityClass}`}>
     <div className="logo-holder">
-      <img src={brandLogoUrl}/>
+      <img alt="" src={brandLogoUrl} />
     </div>
 
-    <NormalNav match={match}/>
+    <NormalNav match={match} />
 
     <div className="quick-links-holder">
       <div className="social-button-holder">
         <a href="https://www.facebook.com">
-          <SvgIcon className="social-button fb" size={20} icon={facebook}/>
+          <SvgIcon className="social-button fb" size={20} icon={facebook} />
         </a>
         <a href="https://www.twitter.com">
-          <SvgIcon className="social-button tw" size={20} icon={twitter}/>
+          <SvgIcon className="social-button tw" size={20} icon={twitter} />
         </a>
         <a href="https://www.linkedin.com">
-          <SvgIcon className="social-button li" size={20} icon={linkedin}/>
+          <SvgIcon className="social-button li" size={20} icon={linkedin} />
         </a>
         <a href="https://www.youtube.com">
-          <SvgIcon className="social-button yt" size={20} icon={youtube}/>
+          <SvgIcon className="social-button yt" size={20} icon={youtube} />
         </a>
       </div>
       <div className="action-button-holder">
@@ -33,16 +34,16 @@ const FloatingHeader = ({visibilityClass, brandLogoUrl, match}) => (
     </div>
 
     <label className="noselect drop-down-button" htmlFor="float-dropper">
-      <SvgIcon icon={caretDown} size={20}/>
+      <SvgIcon icon={caretDown} size={20} />
     </label>
 
-    <DropdownNav match={match}/>
+    <DropdownNav match={match} />
   </div>
 );
 
 const DropdownNav = ({match}) => (
   <div className="drop-down-nav-holder">
-    <input id="float-dropper" type="checkbox"/>
+    <input id="float-dropper" type="checkbox" />
     <div className="nav drop-down-nav">
       <ul className="nav-bar">
         <li className="list-item">
@@ -52,7 +53,7 @@ const DropdownNav = ({match}) => (
           <label htmlFor="float-checkbox1" className="dropper-label noselect">
             ABOUT US
           </label>
-          <input id="float-checkbox1" type="checkbox" className="toggler"/>
+          <input id="float-checkbox1" type="checkbox" className="toggler" />
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">
@@ -71,7 +72,7 @@ const DropdownNav = ({match}) => (
           <label htmlFor="float-checkbox2" className="dropper-label noselect">
             WHAT WE DO
           </label>
-          <input id="float-checkbox2" type="checkbox" className="toggler"/>
+          <input id="float-checkbox2" type="checkbox" className="toggler" />
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">
@@ -87,7 +88,7 @@ const DropdownNav = ({match}) => (
           <label htmlFor="float-checkbox3" className="dropper-label noselect">
             GET INVOLVED
           </label>
-          <input id="float-checkbox3" type="checkbox" className="toggler"/>
+          <input id="float-checkbox3" type="checkbox" className="toggler" />
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">
@@ -168,5 +169,19 @@ const NormalNav = ({match}) => (
     </ul>
   </div>
 );
+
+FloatingHeader.propTypes = {
+  visibilityClass: PropTypes.string.isRequired,
+  brandLogoUrl: PropTypes.string.isRequired,
+  match: PropTypes.object.isRequired
+};
+
+NormalNav.propTypes = {
+  match: PropTypes.object.isRequired
+};
+
+DropdownNav.propTypes = {
+  match: PropTypes.object.isRequired
+};
 
 export default FloatingHeader;

@@ -3,7 +3,15 @@ const expect = require('expect');
 const app = require('../../server/server');
 const fs = require('fs');
 const Project = require('../../server/models/project');
-const {INIT_PROJECTS, INIT_ADMIN, populateAll, populateProjects} = require('../../server/seed/seedInfo');
+
+const {
+  INIT_PROJECTS,
+  INIT_ADMIN,
+  populateAll,
+  populateProjects
+} =
+  require('../../server/seed/seedInfo');
+
 const {RESOURCES_DIR} = process.env;
 
 before(done => {
@@ -18,68 +26,68 @@ beforeEach(done => {
 });
 
 describe('Testing schema Project', () => {
-  it("should not create a new project with empty name & description", done => {
+  it('should not create a new project with empty name & description', done => {
     new Project({
-      name: "",
-      description: "",
+      name: '',
+      description: ''
     }).save()
-      .then(() => done("Project Created"))
-      .catch(e => done());
+      .then(() => done('Project Created'))
+      .catch(() => done());
   });
 
-  it("should not create a new project with empty pics field", done => {
+  it('should not create a new project with empty pics field', done => {
     new Project({
-      name: "rome",
-      description: "victory",
+      name: 'rome',
+      description: 'victory'
     }).save()
-      .then(() => done("Project Created"))
-      .catch(e => done());
+      .then(() => done('Project Created'))
+      .catch(() => done());
   });
 
-  it("should not create a new project with incorrect pic type", done => {
+  it('should not create a new project with incorrect pic type', done => {
     new Project({
-      name: "rome",
-      description: "victory",
-      pics: "something"
+      name: 'rome',
+      description: 'victory',
+      pics: 'something'
     }).save()
-      .then(() => done("Project Created"))
-      .catch(e => done());
+      .then(() => done('Project Created'))
+      .catch(() => done());
   });
 
-  it("should not create a new project with empty array", done => {
+  it('should not create a new project with empty array', done => {
     new Project({
-      name: "rome",
-      description: "victory",
+      name: 'rome',
+      description: 'victory',
       pics: []
     }).save()
-      .then(() => done("Project Created"))
-      .catch(e => done());
+      .then(() => done('Project Created'))
+      .catch(() => done());
   });
 
-  it("should not create a new project with object not containing url field", done => {
+  it('should not create a new project with object not containing url field', done => {
     new Project({
-      name: "rome",
-      description: "victory",
-      pics: [{some: "prop"}]
+      name: 'rome',
+      description: 'victory',
+      pics: [{some: 'prop'}]
     }).save()
-      .then(() => done("Project Created"))
-      .catch(e => done());
+      .then(() => done('Project Created'))
+      .catch(() => done());
   });
 
-  it("should create a new project with pics field and 'pics.0.url' field", done => {
+  it('should create a new project with pics field and \'pics.0.url\' field', done => {
     new Project({
-      name: "rome",
-      description: "victory",
-      pics: [{url: "/awesome/url"}]
+      name: 'rome',
+      description: 'victory',
+      pics: [{url: '/awesome/url'}]
     }).save()
       .then(p => {
-        expect(p.name).toBe("rome");
-        expect(p.description).toBe("victory");
+        expect(p.name).toBe('rome');
+        expect(p.description).toBe('victory');
         expect(p.pics.map(pic => {
-          let jsonPic = pic.toJSON();
+          const jsonPic = pic.toJSON();
           delete jsonPic._id;
           return jsonPic;
-        })).toEqual([{url: "/awesome/url"}]);
+        })).toEqual([{url: '/awesome/url'}]);
         done();
       })
       .catch(e => done(e));
@@ -88,15 +96,15 @@ describe('Testing schema Project', () => {
 
 
 describe('Testing path DELETE /api/project/:_id', () => {
-  it("should delete a whole project", done => {
+  it('should delete a whole project', done => {
     request(app)
       .delete(`/api/project/${INIT_PROJECTS[0]._id}`)
       .set('x-auth', INIT_ADMIN.tokens[0])
       .send()
       .expect(200)
-      .end((err, res) => {
+      .end(err => {
         if (err) return done(err);
-        let pics = INIT_PROJECTS[0].pics;
+        const pics = INIT_PROJECTS[0].pics;
         pics.forEach(pic => {
           expect(fs.existsSync(RESOURCES_DIR + pic.url)).toBe(false);
         });
@@ -109,16 +117,17 @@ describe('Testing path DELETE /api/project/:_id', () => {
   });
 });
 
+
 describe('Testing path DELETE /api/project/pic/:_id', () => {
-  it("should delete a pic of a project", done => {
+  it('should delete a pic of a project', done => {
     request(app)
       .delete(`/api/project/pic/${INIT_PROJECTS[0].pics[0]._id}`)
       .set('x-auth', INIT_ADMIN.tokens[0])
       .send()
       .expect(200)
-      .end((err, res) => {
+      .end(err => {
         if (err) return done(err);
-        let picUrl = INIT_PROJECTS[0].pics[0].url;
+        const picUrl = INIT_PROJECTS[0].pics[0].url;
 
         expect(fs.existsSync(RESOURCES_DIR + picUrl)).toBe(false);
         Project.findById(INIT_PROJECTS[0]._id).then(project => {

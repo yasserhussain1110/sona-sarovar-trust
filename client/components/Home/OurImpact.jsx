@@ -6,16 +6,16 @@ const OurImpact = () => (
   <div className="our-impact">
     <h2>Our Impact</h2>
     <div className="child-icon-holder">
-      <SvgIcon icon={child} size={80}/>
+      <SvgIcon icon={child} size={80} />
     </div>
     <div className="impact-list-holder">
       <div className="icon-list-holder">
         <ul>
           <li>
-            <SvgIcon icon={university} size={40}/>
+            <SvgIcon icon={university} size={40} />
           </li>
           <li>
-            <SvgIcon icon={userMd} size={40}/>
+            <SvgIcon icon={userMd} size={40} />
           </li>
         </ul>
       </div>

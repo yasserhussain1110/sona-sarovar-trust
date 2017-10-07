@@ -1,28 +1,29 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {facebook, twitter, linkedin, youtube} from 'react-icons-kit/fa';
 import SvgIcon from 'react-icons-kit';
 
 const FixedHeader = ({brandLogoUrl, match, visibilityClass}) => (
   <div className={`fixed-header ${visibilityClass}`}>
     <div className="logo-holder">
-      <img src={brandLogoUrl}/>
+      <img alt="" src={brandLogoUrl} />
     </div>
 
     <div className="floater clearfix">
       <div className="quick-links-holder">
         <div className="social-button-holder">
           <a href="https://www.facebook.com">
-            <SvgIcon className="social-button fb" size={20} icon={facebook}/>
+            <SvgIcon className="social-button fb" size={20} icon={facebook} />
           </a>
           <a href="https://www.twitter.com">
-            <SvgIcon className="social-button tw" size={20} icon={twitter}/>
+            <SvgIcon className="social-button tw" size={20} icon={twitter} />
           </a>
           <a href="https://www.linkedin.com">
-            <SvgIcon className="social-button li" size={20} icon={linkedin}/>
+            <SvgIcon className="social-button li" size={20} icon={linkedin} />
           </a>
           <a href="https://www.youtube.com">
-            <SvgIcon className="social-button yt" size={20} icon={youtube}/>
+            <SvgIcon className="social-button yt" size={20} icon={youtube} />
           </a>
         </div>
         <div className="action-button-holder">
@@ -32,8 +33,8 @@ const FixedHeader = ({brandLogoUrl, match, visibilityClass}) => (
       </div>
     </div>
 
-    <DropdownNav match={match}/>
-    <NormalNav match={match}/>
+    <DropdownNav match={match} />
+    <NormalNav match={match} />
   </div>
 );
 
@@ -99,14 +100,14 @@ const DropdownNav = ({match}) => (
   <div className="hamburger-nav">
     <label htmlFor="drop-down" className="noselect">
       <div className="hamburger">
-        <div className="line"></div>
-        <div className="line"></div>
-        <div className="line"></div>
-        <div className="line"></div>
+        <div className="line" />
+        <div className="line" />
+        <div className="line" />
+        <div className="line" />
       </div>
     </label>
 
-    <input id="drop-down" type="checkbox"/>
+    <input id="drop-down" type="checkbox" />
 
     <div className="nav">
       <ul className="nav-bar">
@@ -117,7 +118,7 @@ const DropdownNav = ({match}) => (
           <label htmlFor="fixed-checkbox1" className="dropper-label noselect">
             ABOUT US
           </label>
-          <input id="fixed-checkbox1" type="checkbox" className="toggler"/>
+          <input id="fixed-checkbox1" type="checkbox" className="toggler" />
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">
@@ -136,7 +137,7 @@ const DropdownNav = ({match}) => (
           <label htmlFor="fixed-checkbox2" className="dropper-label noselect">
             WHAT WE DO
           </label>
-          <input id="fixed-checkbox2" type="checkbox" className="toggler"/>
+          <input id="fixed-checkbox2" type="checkbox" className="toggler" />
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">
@@ -152,7 +153,7 @@ const DropdownNav = ({match}) => (
           <label htmlFor="fixed-checkbox3" className="dropper-label noselect">
             GET INVOLVED
           </label>
-          <input id="fixed-checkbox3" type="checkbox" className="toggler"/>
+          <input id="fixed-checkbox3" type="checkbox" className="toggler" />
           <div className="sub-link-dropdown">
             <ul className="sub-link-nav-bar">
               <li className="sub-item">
@@ -174,5 +175,19 @@ const DropdownNav = ({match}) => (
     </div>
   </div>
 );
+
+FixedHeader.propTypes = {
+  visibilityClass: PropTypes.string.isRequired,
+  brandLogoUrl: PropTypes.string.isRequired,
+  match: PropTypes.object.isRequired
+};
+
+NormalNav.propTypes = {
+  match: PropTypes.object.isRequired
+};
+
+DropdownNav.propTypes = {
+  match: PropTypes.object.isRequired
+};
 
 export default FixedHeader;
