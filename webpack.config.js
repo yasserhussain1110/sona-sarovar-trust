@@ -10,8 +10,9 @@ module.exports = merge(baseWebpackConfig, {
   entry: {
     app: './client/index.js',
     vendor: [
-      'axios', 'react', 'react-dom', 'redux',
-      'react-redux', 'react-router-dom',
+      'axios', 'react', 'react-dom',
+      'redux', 'react-router-dom',
+      'react-redux', 'marked'
     ]
   },
   devtool: '#source-map',

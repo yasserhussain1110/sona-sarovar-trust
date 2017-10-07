@@ -1,0 +1,20 @@
+.markdown-info-holder {
+
+  padding: 10px;
+
+  .md-helper-button {
+    font-size: 12px;
+    padding: 5px;
+    margin: 10px 0 0 0;
+    background-color: lightgreen;
+    box-shadow: 1px 0 2px gray;
+  }
+
+  h3 {
+    padding: 5px 0;
+  }
+
+  .rendered-markdown {
+    height: 250px;
+  }
+}

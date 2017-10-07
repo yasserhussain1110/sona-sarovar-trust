@@ -3,7 +3,7 @@
   padding: 10px 10px;
   margin: 5px 0;
 
-  h2 {
+  h2.team-heading {
     background-color: white;
     box-shadow: none;
     text-align: center;
@@ -16,6 +16,27 @@
     text-align: center;
   }
 
+  .shown {
+    visibility: visible;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  .error-holder {
+    background-color: #FEFDBA;
+    color: #F42C04;
+    font-size: 16px;
+    box-shadow: 0 0 2px gray;
+    border-radius: 0;
+    padding: 5px;
+    margin: 5px 0;
+    width: 250px;
+    display: block;
+  }
+
   @import './text-fields-holder';
   @import './pic-field-holder';
+  @import './markdown-info-holder';
 }

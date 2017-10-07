@@ -1,70 +1,38 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import marked from 'marked';
+import {generateRandomHexadecimalStringOfLength as uuid} from '../../lib/helpers/functions';
 
-const Volunteers = () => (
+const Volunteers = ({volunteers}) => (
   <div className="volunteers">
     <h1>Volunteers</h1>
     <div className="page-content">
-      <div className="volunteer-info">
-        <div className="img-holder">
-          <img src="https://www.cry.org/images/img-015.jpg"/>
-        </div>
-        <div className="info-holder">
-          <div className="name">
-            <h2>Xyz Kumar</h2>
+      {volunteers.map(volunteer => (
+        <div key={uuid(10)} className="volunteer-info">
+          <div className="img-holder">
+            <img src={volunteer.pic}/>
           </div>
+          <div className="text-holder">
+            <div className="name">
+              <h2>{volunteer.name}</h2>
+            </div>
 
-          <div className="designation">
-            <span>Chief Of Opera</span>
-          </div>
+            <div className="designation">
+              <span>{volunteer.designation}</span>
+            </div>
 
-          <div className="details">
-            <p>
-              adhas da skdhask dhajd kja dkjah dsk
-              asghd as dhkjahsdkh ajkshd jkasasd asd
-              asdasjdh kjash djkasdjk jaksdkasj d
-
-              adhas da skdhask dhajd kja dkjah dsk
-              asghd as dhkjahsdkh ajkshd jkasasd asd
-              asdasjdh kjash djkasdjk jaksdkasj d
-
-              adhas da skdhask dhajd kja dkjah dsk
-              asghd as dhkjahsdkh ajkshd jkasasd asd
-              asdasjdh kjash djkasdjk jaksdkasj d
-            </p>
-            <p>
-              adhas da skdhask dhajd kja dkjah dsk
-              asghd as dhkjahsdkh ajkshd jkasasd asd
-              asdasjdh kjash djkasdjk jaksdkasj d
-            </p>
+            <div
+              className="info rendered-markdown"
+              dangerouslySetInnerHTML={{__html: marked(volunteer.info)}}/>
           </div>
         </div>
-      </div>
-
-      <div className="volunteer-info">
-        <div className="img-holder">
-          <img src="https://www.cry.org/images/img-015.jpg"/>
-        </div>
-        <div className="info-holder">
-          <div className="name">
-            <h2>Xyz Kumar</h2>
-          </div>
-
-          <div className="designation">
-            <span>Chief Of Opera</span>
-          </div>
-
-          <div className="details">
-            <p>
-              adhas da skdhask dhajd kja dkjah dsk
-              asghd as dhkjahsdkh ajkshd jkasasd asd
-              asdasjdh kjash djkasdjk jaksdkasj d
-            </p>
-          </div>
-        </div>
-      </div>
-
+      ))}
     </div>
   </div>
 );
 
-export default Volunteers;
+const mapStateToProps = state => ({
+  volunteers: state.team.teamMembers.filter(m => m.type === 'volunteer'),
+});
+
+export default connect(mapStateToProps)(Volunteers);

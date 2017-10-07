@@ -4,43 +4,77 @@ import PicFieldHolder from './PicFieldHolder';
 import axios from 'axios';
 import StatusBox from '../../../lib/components/StatusBox';
 import handleCommonErrors from '../../../lib/handlers/commonErrorsHandler';
+import MarkdownEditor from '../../../lib/components/MarkdownEditor';
+import MarkdownInfoHolder from './MarkdownInfoHolder';
 
-const getFileInputCorrespondingToForm = e =>
-  e.target.parentElement.parentElement.querySelector("input[type='file']");
-
-class TeamMemberUpdater extends Component {
+class TeamMemberUpdaterForm extends Component {
   constructor(props) {
     super(props);
 
-    let {name, info, pic} = props.member;
+    let {name, info, designation, pic} = props.member;
 
     this.state = {
       name,
       info,
       pic,
+      designation,
+      designationError: "",
       nameError: "",
       infoError: "",
-      picError: ""
+      picError: "",
+      showingModal: false
     };
 
     this.updateName = this.updateName.bind(this);
+    this.updateDesignation = this.updateDesignation.bind(this);
     this.updateInfo = this.updateInfo.bind(this);
     this.update = this.update.bind(this);
+    this.getModalContent = this.getModalContent.bind(this);
+    this.showMarkdownModal = this.showMarkdownModal.bind(this);
+    this.back = this.back.bind(this);
+    this.markdownUpdate = this.markdownUpdate.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    let {name, info, pic} = nextProps.member;
-    this.setState({name, info, pic});
+    let {name, info, pic, designation} = nextProps.member;
+    this.setState({name, info, pic, designation});
+  }
+
+  markdownUpdate(newInfo) {
+    this.updateInfo(newInfo);
+    this.back();
+  }
+
+  back() {
+    this.setState({showingModal: false});
+  }
+
+  showMarkdownModal() {
+    this.setState({showingModal: true});
+  }
+
+  getModalContent() {
+    if (this.state.showingModal) {
+      return (
+        <MarkdownEditor
+          markdownContent={this.state.info}
+          done={this.markdownUpdate}
+          back={this.back}
+        />
+      );
+    } else {
+      return null;
+    }
   }
 
   resetValidationErrors() {
-    this.setState({nameError: "", infoError: "", picError: ""});
+    this.setState({nameError: "", infoError: "", picError: "", designationError:""});
   }
 
   validateAndUpdateErrorState(e) {
     this.resetValidationErrors();
 
-    let {name, info} = this.state;
+    const {name, info, designation} = this.state;
     let isValid = true;
 
     if (!name) {
@@ -53,8 +87,12 @@ class TeamMemberUpdater extends Component {
       isValid = false;
     }
 
-    let fileInput = getFileInputCorrespondingToForm(e);
-    let fileList = fileInput.files;
+    if (!designation) {
+      this.setState({infoError: "Designation cannot be empty"});
+      isValid = false;
+    }
+
+    const fileList = this.refs.updater.querySelector("input[type=file]").files;
 
     if (fileList.length > 0) {
       let validImageTypes = ["image/gif", "image/jpeg", "image/png"];
@@ -70,14 +108,17 @@ class TeamMemberUpdater extends Component {
     return isValid;
   }
 
-  update(e) {
-    let fileInput = getFileInputCorrespondingToForm(e);
+  update() {
+    if (!this.validateAndUpdateErrorState()) return;
+
+    let fileInput = this.refs.updater.querySelector("input[type=file]");
     let fileList = fileInput.files;
-    if (!this.validateAndUpdateErrorState(e)) return;
+
 
     let formData = new FormData();
     formData.append('name', this.state.name);
     formData.append('info', this.state.info);
+    formData.append('designation', this.state.designation);
 
     if (fileList.length > 0) {
       formData.append('pic', fileList[0]);
@@ -111,30 +152,41 @@ class TeamMemberUpdater extends Component {
     this.setState({name: e.target.value});
   }
 
-  updateInfo(e) {
-    this.setState({info: e.target.value});
+  updateInfo(newInfo) {
+    this.setState({info: newInfo});
+  }
+
+  updateDesignation(e) {
+    this.setState({designation: e.target.value});
   }
 
   render() {
-    let {name, info, pic, nameError, infoError, picError} = this.state;
+    let {name, info, pic, designation, nameError, infoError, picError, designationError} = this.state;
     return (
-      <section className="team-member-updater">
-        <h2>Member #{this.props.index + 1}</h2>
+      <section ref="updater" className="team-member-updater">
+        <h2 className="team-heading">Member #{this.props.index + 1}</h2>
         <TextFieldsHolder
           name={name}
-          info={info}
+          designation={designation}
           nameError={nameError}
-          infoError={infoError}
+          designationError={designationError}
           updateName={this.updateName}
-          updateInfo={this.updateInfo}
+          updateDesignation={this.updateDesignation}
         />
         <PicFieldHolder pic={pic} picError={picError}/>
+        <MarkdownInfoHolder
+          showMarkdownModal={this.showMarkdownModal}
+          info={info}
+          infoError={infoError}
+          updateInfo={this.updateInfo}
+        />
         <div className="button-holder">
           <button onClick={this.update}>Update</button>
         </div>
+        {this.getModalContent()}
       </section>
     );
   }
 }
 
-export default TeamMemberUpdater;
+export default TeamMemberUpdaterForm;

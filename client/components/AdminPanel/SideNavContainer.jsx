@@ -12,7 +12,10 @@ const SideNavContainer = props => (
     <SideNav to="/admin/about" icon={home}>About Us</SideNav>
     <SideNav to="/admin/projects" icon={ic_format_list_bulleted}>Projects</SideNav>
     <SideNav to="/admin/activities" icon={calendar}>Activities</SideNav>
-    <SideNav to="/admin/team" icon={user}>Team</SideNav>
+    <SideNav to="/admin/trustees" icon={user}>Trustees</SideNav>
+    <SideNav to="/admin/volunteers" icon={user}>Volunteers</SideNav>
+    <SideNav to="/admin/technical" icon={user}>TechnicalTeam</SideNav>
+    <SideNav to="/admin/ambassador" icon={user}>Ambassador</SideNav>
     <SideNav to="/admin/preview" icon={eye}>Preview</SideNav>
     <SideNav to="/admin/login" onClick={logOut} icon={signOut}>Log Out</SideNav>
   </SideNavBar>

@@ -103,7 +103,7 @@ class AboutUsPanel extends Component {
       return (
         <MarkdownEditor
           markdownContent={content}
-          update={this.updateContent}
+          done={this.updateContent}
           back={this.back}
         />
       );

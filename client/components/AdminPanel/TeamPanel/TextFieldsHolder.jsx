@@ -1,6 +1,10 @@
 import React from 'react';
 
-const TextFieldsHolder = ({name, info, updateName, updateInfo, nameError, infoError}) => (
+const TextFieldsHolder = ({
+                            name, info, designation, updateName, nameError,
+                            infoError, designationError, updateDesignation,
+                            useMarkdownHelper
+                          }) => (
   <div className="text-fields-holder">
     <div className="field">
       <div className="label">
@@ -16,13 +20,13 @@ const TextFieldsHolder = ({name, info, updateName, updateInfo, nameError, infoEr
 
     <div className="field">
       <div className="label">
-        <label><h3>Info</h3></label>
+        <label><h3>Designation</h3></label>
       </div>
       <div className="input">
-        <input type="text" onChange={updateInfo} value={info}/>
+        <input type="text" onChange={updateDesignation} value={designation}/>
       </div>
-      <div className={`error-holder ${infoError ? "shown" : "hidden"}`}>
-        <span className="error">{infoError}</span>
+      <div className={`error-holder ${designationError ? "shown" : "hidden"}`}>
+        <span className="error">{designationError}</span>
       </div>
     </div>
   </div>

@@ -63,26 +63,64 @@ const INIT_ABOUT_US = {
 };
 
 const INIT_TEAM_MEMBERS = [{
-  _id: new ObjectID(),
-  name: "Member 1",
-  info: "Roman Infantry 1",
+  name: "Trustee Member 1",
+  info: `adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
+   adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
+   adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
+   adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd`,
   pic: "/team/person1.png",
-  type: "Volunteer"
+  type: "trustee",
+  designation: "Chief of Operation"
 }, {
-  name: "Member 2",
-  info: "Roman Infantry 2",
+  name: "Trustee Member 2",
+  info: `adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
+   adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
+   adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
+   adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd`,
   pic: "/team/person2.png",
-  type: "Trustee"
+  type: "trustee",
+  designation: "Chief of Marketing"
 }, {
-  name: "Member 3",
-  info: "Roman Infantry 3",
+  name: "Technical Member",
+  info: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie euismod dolor,
+  id malesuada ex elementum non. Morbi nisi eros, ultricies quis nisl id, pellentesque tristique eros.
+  Fusce augue quam, lobortis bibendum efficitur at, mollis vitae dui. Vestibulum ante ipsum primis in
+  faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur lectus lorem, accumsan vel turpis at,
+  consequat semper tellus. Praesent vel quam non ex tristique mattis. Nam scelerisque arcu tristique justo
+  bibendum tincidunt ut a dolor. Praesent orci enim, blandit vel dui vitae, tristique mattis nulla. Mauris
+  vitae lectus hendrerit, congue sem ac, accumsan nunc. Aliquam quis euismod nisl. Integer tempus ac velit non
+  venenatis. Morbi imperdiet rhoncus diam, ut venenatis sem ultricies vitae. Vivamus aliquam elementum mi ut
+  suscipit.`,
   pic: "/team/person3.png",
-  type: "BrandAmbassador"
+  type: "technical",
+  designation: "Technical Chief"
 }, {
-  name: "Member 4",
-  info: "Roman Infantry 4",
+  name: "Ambassador Member",
+  info: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie euismod dolor,
+  id malesuada ex elementum non. Morbi nisi eros, ultricies quis nisl id, pellentesque tristique eros.
+  Fusce augue quam, lobortis bibendum efficitur at, mollis vitae dui. Vestibulum ante ipsum primis in
+  faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur lectus lorem, accumsan vel turpis at,
+  consequat semper tellus. Praesent vel quam non ex tristique mattis. Nam scelerisque arcu tristique justo
+  bibendum tincidunt ut a dolor. Praesent orci enim, blandit vel dui vitae, tristique mattis nulla. Mauris
+  vitae lectus hendrerit, congue sem ac, accumsan nunc. Aliquam quis euismod nisl. Integer tempus ac velit non
+  venenatis. Morbi imperdiet rhoncus diam, ut venenatis sem ultricies vitae. Vivamus aliquam elementum mi ut
+  suscipit.`,
   pic: "/team/person4.png",
-  type: "Technical"
+  type: "ambassador"
+}, {
+  _id: new ObjectID(),
+  name: "Volunteer Member",
+  info: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie euismod dolor,
+  id malesuada ex elementum non. Morbi nisi eros, ultricies quis nisl id, pellentesque tristique eros.
+  Fusce augue quam, lobortis bibendum efficitur at, mollis vitae dui. Vestibulum ante ipsum primis in
+  faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur lectus lorem, accumsan vel turpis at,
+  consequat semper tellus. Praesent vel quam non ex tristique mattis. Nam scelerisque arcu tristique justo
+  bibendum tincidunt ut a dolor. Praesent orci enim, blandit vel dui vitae, tristique mattis nulla. Mauris
+  vitae lectus hendrerit, congue sem ac, accumsan nunc. Aliquam quis euismod nisl. Integer tempus ac velit non
+  venenatis. Morbi imperdiet rhoncus diam, ut venenatis sem ultricies vitae. Vivamus aliquam elementum mi ut
+  suscipit.`,
+  pic: "/team/person5.png",
+  type: "volunteer"
 }];
 
 const INIT_PROJECTS = [{

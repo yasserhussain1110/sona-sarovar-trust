@@ -8,9 +8,14 @@ const TeamMemberSchema = new Schema({
     required: true
   },
 
+  designation: {
+    type: String,
+    maxlength: 25
+  },
+
   type: {
     type: String,
-    enum: ['Volunteer', 'Trustee', 'BrandAmbassador', 'Technical'],
+    enum: ['volunteer', 'trustee', 'ambassador', 'technical'],
     required: true
   },
 
@@ -27,7 +32,7 @@ const TeamMemberSchema = new Schema({
 
 TeamMemberSchema.methods.toJSON = function () {
   let teamMember = this;
-  return _.pick(teamMember, ['_id', 'name', 'info', 'pic']);
+  return _.pick(teamMember, ['_id', 'name', 'designation', 'type', 'info', 'pic']);
 };
 
 const TeamMember = mongoose.model('TeamMember', TeamMemberSchema);

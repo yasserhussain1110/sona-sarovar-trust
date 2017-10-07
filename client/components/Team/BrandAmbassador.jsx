@@ -1,46 +1,38 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import marked from 'marked';
+import {generateRandomHexadecimalStringOfLength as uuid} from '../../lib/helpers/functions';
 
-const BrandAmbassador = () => (
+const BrandAmbassador = ({ambassadors}) => (
   <div className="brand-ambassador">
     <h1>Our Brand Ambassador</h1>
     <div className="page-content">
-      <div className="brand-ambassador-info">
-        <div className="img-holder">
-          <img src="https://www.cry.org/images/img-015.jpg"/>
-        </div>
-        <div className="info-holder">
-          <div className="name">
-            <h2>Xyz Kumar</h2>
+      {ambassadors.map(ambassador => (
+        <div key={uuid(10)} className="brand-ambassador-info">
+          <div className="img-holder">
+            <img src={ambassador.pic}/>
           </div>
+          <div className="text-holder">
+            <div className="name">
+              <h2>{ambassador.name}</h2>
+            </div>
 
-          <div className="designation">
-            <span>Chief Of Opera</span>
-          </div>
+            <div className="designation">
+              <span>{ambassador.designation}</span>
+            </div>
 
-          <div className="details">
-            <p>
-              adhas da skdhask dhajd kja dkjah dsk
-              asghd as dhkjahsdkh ajkshd jkasasd asd
-              asdasjdh kjash djkasdjk jaksdkasj d
-
-              adhas da skdhask dhajd kja dkjah dsk
-              asghd as dhkjahsdkh ajkshd jkasasd asd
-              asdasjdh kjash djkasdjk jaksdkasj d
-
-              adhas da skdhask dhajd kja dkjah dsk
-              asghd as dhkjahsdkh ajkshd jkasasd asd
-              asdasjdh kjash djkasdjk jaksdkasj d
-            </p>
-            <p>
-              adhas da skdhask dhajd kja dkjah dsk
-              asghd as dhkjahsdkh ajkshd jkasasd asd
-              asdasjdh kjash djkasdjk jaksdkasj d
-            </p>
+            <div
+              className="info rendered-markdown"
+              dangerouslySetInnerHTML={{__html: marked(ambassador.info)}}/>
           </div>
         </div>
-      </div>
+      ))}
     </div>
   </div>
 );
 
-export default BrandAmbassador;
+const mapStateToProps = state => ({
+  ambassadors: state.team.teamMembers.filter(m => m.type === 'ambassador'),
+});
+
+export default connect(mapStateToProps)(BrandAmbassador);

@@ -12,24 +12,19 @@ class MarkdownEditor extends Component {
 
     this.updateMarkdown = this.updateMarkdown.bind(this);
     this.reset = this.reset.bind(this);
-    this.update = this.update.bind(this);
-    this.back = this.back.bind(this);
+    this.done = this.done.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({markdownContent: nextProps.markdownContent});
   }
 
+  done() {
+    this.props.done(this.state.markdownContent);
+  }
+
   reset() {
     this.setState({markdownContent: this.props.markdownContent});
-  }
-
-  update() {
-    this.props.update(this.state.markdownContent);
-  }
-
-  back() {
-    this.props.back();
   }
 
   updateMarkdown(e) {
@@ -55,13 +50,13 @@ class MarkdownEditor extends Component {
 
           <div className="render-section">
             <h3>Rendered Markdown</h3>
-            <div className="rendered" dangerouslySetInnerHTML={{__html: marked(markdownContent)}}/>
+            <div className="rendered-markdown" dangerouslySetInnerHTML={{__html: marked(markdownContent)}}/>
           </div>
 
           <div className="button-holder">
-            <button className="button update" onClick={this.update}>Update</button>
+            <button className="button update" onClick={this.done}>Done</button>
             <button className="button reset" onClick={this.reset}>Reset</button>
-            <button className="button back" onClick={this.back}>Back</button>
+            <button className="button back" onClick={this.props.back}>Back</button>
           </div>
         </div>
       </Modal>

@@ -4,7 +4,7 @@ import TeamMemberUpdaterForm from './TeamPanel/TeamMemberUpdaterForm';
 import {updatedTeamMember} from '../../actions';
 import StatusPanel from '../../lib/components/StatusPanel';
 
-class TeamPanel extends Component {
+class TechnicalTeamPanel extends Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +21,7 @@ class TeamPanel extends Component {
 
   render() {
     return (
-      <TeamPanelView
+      <TechnicalTeamPanelView
         {...this.props}
         statusBoxToAdd={this.state.statusBoxToAdd}
         addStatusBox={this.addStatusBox}
@@ -30,11 +30,11 @@ class TeamPanel extends Component {
   }
 }
 
-const TeamPanelView = ({teamMembers, authToken, updatedTeamMember, statusBoxToAdd, addStatusBox}) => (
-  <div className="controller team-panel">
-    <h1>Team Members Panel</h1>
-    <h2>Update Team Member Info</h2>
-    <section className="member-info-holder">{teamMembers.map((member, index) => (
+const TechnicalTeamPanelView = ({techTeam, authToken, updatedTeamMember, statusBoxToAdd, addStatusBox}) => (
+  <div className="controller technical-team-panel">
+    <h1>Technical Team Panel</h1>
+    <h2>Update Tech Team Info</h2>
+    <section className="member-info-holder">{techTeam.map((member, index) => (
       <TeamMemberUpdaterForm
         key={member._id}
         index={index}
@@ -48,10 +48,10 @@ const TeamPanelView = ({teamMembers, authToken, updatedTeamMember, statusBoxToAd
 );
 
 const mapStateToProps = state => ({
-  teamMembers: state.team.teamMembers,
+  techTeam: state.team.teamMembers.filter(m => m.type === 'technical'),
   authToken: state.userAuth.authToken
 });
 
 const mapDispatchToProps = {updatedTeamMember};
 
-export default connect(mapStateToProps, mapDispatchToProps)(TeamPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(TechnicalTeamPanel);

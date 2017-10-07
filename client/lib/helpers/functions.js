@@ -47,10 +47,11 @@ export const random = (lowerLimit, upperLimit) => (   // upper limit is inclusiv
   ((Math.random() * (upperLimit - lowerLimit + 1)) | 0) + lowerLimit
 );
 
-export const generateRandomHexadecimalStringOfLength = stringLength => random(
-  parseInt('1' + '0'.repeat(stringLength - 1), 16),
-  parseInt('f'.repeat(stringLength), 16)
-).toString(16);
+export const generateRandomHexadecimalStringOfLength = stringLength => {
+  const hexChars = '0123456789abcdef';
+  return hexChars[random(1, 15)] + Array.apply(null, {length: stringLength - 1})
+      .map(() => hexChars[random(0, 15)]).join('')
+};
 
 export const clip = (str, length) => str.length < length ? str : str.substring(0, length - 3) + "...";
 
