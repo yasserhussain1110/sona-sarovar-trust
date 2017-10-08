@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import {generateRandomHexadecimalStringOfLength as uuid} from '../../lib/helpers/functions';
 
 const Trustees = ({trustees}) => (
-  <div className="trustees">
+  <div className="team-members">
     <h1>Trustees</h1>
     <div className="page-content">
       {trustees.map(trustee => (
-        <div key={uuid(10)} className="trustee-info">
+        <div key={uuid(10)} className="team-member-info">
           <div className="img-holder">
             <img alt="" src={trustee.pic} />
           </div>

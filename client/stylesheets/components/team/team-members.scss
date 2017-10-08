@@ -1,4 +1,4 @@
-.technical-team {
+.team-members {
   font-family: 'Lato', sans-serif;
 
   > h1 {
@@ -15,7 +15,7 @@
     border-top: 1px solid #f6f3f1;
   }
 
-  .techie-info {
+  .team-member-info {
     display: inline-block;
     width: calc(50% - 60px);
     margin: 0 20px 20px 20px;
@@ -60,6 +60,53 @@
         overflow: initial;
         box-shadow: none;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .team-members {
+    .team-member-info {
+      margin: 0 10px 20px 10px;
+      padding: 0;
+
+      > .text-holder {
+        text-align: left;
+      }
+    }
+
+    > .page-content {
+      width: 100%;
+      text-align: center;
+    }
+
+  }
+}
+
+@media screen and (max-width: 1075px) {
+  .team-members {
+    .team-member-info {
+      > .img-holder {
+        height: 100px;
+        width: 100px;
+      }
+
+      > .text-holder {
+        display: inline-block;
+        width: calc(100% - 120px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .team-members {
+    .team-member-info {
+      display: block;
+      text-align: center;
+      width: auto;
+      margin: 10px;
+      padding: 0;
     }
   }
 }

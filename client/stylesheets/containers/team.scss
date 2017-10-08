@@ -61,7 +61,20 @@
   }
 }
 
-@import "../components/team/brand-ambassador";
-@import "../components/team/technical-team";
-@import "../components/team/trustees";
-@import "../components/team/volunteers";
+@media screen and (min-width: 387px) and (max-width: 420px) {
+  .team {
+    .sub-team {
+      width: 300px;
+    }
+  }
+}
+
+@media screen and (max-width: 386px) {
+  .team {
+    .sub-team {
+      width: 280px;
+    }
+  }
+}
+
+@import "../components/team/team-members";

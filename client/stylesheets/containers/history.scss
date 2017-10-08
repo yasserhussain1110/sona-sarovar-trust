@@ -10,14 +10,13 @@
   }
 
   > .page-content {
-    width: 85%;
+    width: calc(90% - 80px);
     margin: 30px auto;
-    padding: 10px 30px;
+    padding: 10px 40px;
     border: 1px solid #cccccc;
   }
 
   .iframe-holder {
-    width: 1000px;
     height: 500px;
     margin: 0 auto;
   }
@@ -28,7 +27,7 @@
   }
 
   .text-holder {
-    width: 1000px;
+    padding: 5px 10px;
     margin: 10px auto;
   }
 
@@ -42,14 +41,21 @@
     font-weight: 700;
     font-size: 22px;
     color: #6B686D;
-    width: 800px;
     text-align: center;
     margin: 0 auto;
 
     small {
-      display: inline-block;
+      display: block;
       font-size: 16px;
       margin-top: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .history {
+    .iframe-holder {
+      height: 300px;
     }
   }
 }
