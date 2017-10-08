@@ -1,6 +1,8 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
 
+const logger = require('../config/logger');
+
 module.exports = app => {
   const webpack = require('webpack');
   const webpackDevConfig = require('../../webpack.config.dev.js');
@@ -37,6 +39,6 @@ module.exports = app => {
   const uri = 'http://localhost:' + process.env.PORT;
 
   devMiddleware.waitUntilValid(() => {
-    console.log('> Listening at ' + uri + '\n');
+    logger.debug('> Listening at ' + uri + '\n');
   });
 };

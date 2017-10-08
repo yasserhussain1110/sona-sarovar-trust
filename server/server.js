@@ -9,6 +9,7 @@ const port = process.env.PORT;
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const logger = require('./config/logger');
 
 const app = express();
 const {RESOURCES_DIR} = process.env;
@@ -27,12 +28,12 @@ require('./routes/aboutUsRoutes')(app);
 
 /* Set up development server if required */
 if (process.env.NODE_ENV === 'development') {
-  console.log('Running In Development');
+  logger.debug('Running In Development');
   require('./tools/setup-dev')(app);
 }
 /* Or serve static assets in production */
 else if (process.env.NODE_ENV === 'production') {
-  console.log('Running In Production');
+  logger.debug('Running In Production');
   app.use(express.static('./dist'));
   // URLs like /api, /api/, /api/some should send back 404
   app.get(/\/api($|\/)/, (req, res) => {
@@ -45,7 +46,7 @@ else if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(port, () => {
-  console.log(`Server started on ${port}`);
+  logger.debug(`Server started on ${port}`);
 });
 
 module.exports = app;

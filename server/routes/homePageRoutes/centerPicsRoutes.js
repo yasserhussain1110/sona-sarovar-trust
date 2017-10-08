@@ -2,6 +2,7 @@ const multer = require('multer');
 const auth = require('../../middleware/auth');
 const HomePage = require('../../models/homepage');
 const {ensurePicAndWriteToDisk, removeExistingPicFile} = require('../../services');
+const logger = require('../../config/logger');
 
 const upload = multer();
 const {RESOURCES_DIR} = process.env;
@@ -25,8 +26,8 @@ const centerPicRoutes = app => {
       .then(pic => {
         res.status(200).send(pic);
       })
-      .catch(err => {
-        console.log(err.stack);
+      .catch(e => {
+        logger.error(e.message, e);
         res.status(400).send();
       });
   });
@@ -55,8 +56,8 @@ const centerPicRoutes = app => {
       .then(picUrl => {
         res.status(200).send({url: picUrl});
       })
-      .catch(err => {
-        console.log(err.stack);
+      .catch(e => {
+        logger.error(e.message, e);
         res.status(400).send();
       });
   });
@@ -82,8 +83,8 @@ const centerPicRoutes = app => {
       .then(() => {
         res.status(200).send();
       })
-      .catch(err => {
-        console.log(err.stack);
+      .catch(e => {
+        logger.error(e.message, e);
         res.status(400).send();
       });
   });

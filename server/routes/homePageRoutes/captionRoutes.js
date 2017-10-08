@@ -1,5 +1,6 @@
 const auth = require('../../middleware/auth');
 const HomePage = require('../../models/homepage');
+const logger = require('../../config/logger');
 
 const captionRoutes = app => {
   app.put('/api/home-page/caption', auth, (req, res) => {
@@ -12,7 +13,7 @@ const captionRoutes = app => {
     }).then(caption => {
       res.send(caption);
     }).catch(e => {
-      console.log(e);
+      logger.error(e.message, e);
       res.status(400).send();
     });
   });
@@ -33,7 +34,7 @@ const captionRoutes = app => {
       if (r.n === 0) throw new Error('No caption found');
       res.status(200).send();
     }).catch(e => {
-      console.log(e);
+      logger.error(e.message, e);
       res.status(400).send();
     });
   });
@@ -57,7 +58,7 @@ const captionRoutes = app => {
       if (newLength >= originalLength) throw new Error('No match. Same Number of captions');
       res.status(200).send();
     }).catch(e => {
-      console.log(e);
+      logger.error(e.message, e);
       res.status(400).send();
     });
 
@@ -71,7 +72,7 @@ const captionRoutes = app => {
     //   if (r.nModified === 0) throw new Error("No match");
     //   res.status(200).send();
     // }).catch(e => {
-    //   console.log(e);
+    //   logger.error(e.message, e);
     //   res.status(400).send();
     // });
   });

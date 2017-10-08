@@ -11,7 +11,7 @@ const statusBoxPropertyAdder = moreProps => statusBox => {
   });
 };
 
-const statusBoxMoveUpInWaitPeriod = 8000;
+const statusBoxMoveUpOutAnimationWaitPeriod = 8000;
 const statusBoxRemoveWaitPeriod = 490;
 
 /**
@@ -87,7 +87,7 @@ class StatusPanel extends Component {
 
     this.timeoutHandlers = this.state.statusBoxes.map(
       statusBox => setTimeout(() =>
-        this.removeStatusBox(statusBox.props.uuid), statusBoxMoveUpInWaitPeriod)
+        this.removeStatusBox(statusBox.props.uuid), statusBoxMoveUpOutAnimationWaitPeriod)
     );
   }
 
@@ -112,7 +112,8 @@ class StatusPanel extends Component {
     });
 
     this.timeoutHandlers.push(
-      setTimeout(() => this.removeStatusBox(newStatusBox.props.uuid), statusBoxMoveUpInWaitPeriod)
+      setTimeout(() =>
+        this.removeStatusBox(newStatusBox.props.uuid), statusBoxMoveUpOutAnimationWaitPeriod)
     );
   }
 

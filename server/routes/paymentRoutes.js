@@ -1,5 +1,6 @@
 const {validatePaymentRequest} = require('../services');
 const axios = require('axios');
+const logger = require('../config/logger');
 const {stringify} = require('querystring');
 
 const {
@@ -27,9 +28,8 @@ const paymentRoutes = app => {
       const paymentRequestUrl = result.data.payment_request.longurl;
       res.send({paymentRequestUrl});
     }).catch(e => {
-      console.log(e);
-      console.log(e.stack);
-      if (e.response) console.log(e.response.data);
+      logger.error(e.message, e);
+      if (e.response) logger.info(e.response.data);
       res.status(400).send();
     });
   });
@@ -48,9 +48,8 @@ const paymentRoutes = app => {
       if (!payment) return res.send({paymentSucceeded: false});
       res.send({paymentSucceeded: payment.status === 'Credit'});
     }).catch(e => {
-      console.log(e);
-      console.log(e.stack);
-      if (e.response) console.log(e.response.data);
+      logger.error(e.message, e);
+      if (e.response) console.info(e.response.data);
       res.status(400).send();
     });
   });

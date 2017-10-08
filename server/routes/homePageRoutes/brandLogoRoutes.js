@@ -3,6 +3,7 @@ const auth = require('../../middleware/auth');
 const HomePage = require('../../models/homepage');
 const fs = require('fs');
 const {ensurePicAndWriteToDisk} = require('../../services');
+const logger = require('../../config/logger');
 
 const upload = multer();
 const {RESOURCES_DIR} = process.env;
@@ -29,7 +30,7 @@ const brandLogoRoutes = app => {
         res.status(200).send({url: picUrl});
       })
       .catch(err => {
-        console.log(err);
+        logger.error(err.message, err);
         res.status(400).send();
       });
   });

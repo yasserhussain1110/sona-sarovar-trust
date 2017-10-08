@@ -1,6 +1,7 @@
 const auth = require('../middleware/auth');
 const Activity = require('../models/activity');
 const multer = require('multer');
+const logger = require('../config/logger');
 const {
   ensurePicAndWriteToDisk,
   removeExistingPicFile
@@ -67,7 +68,7 @@ const activityRoutes = app => {
         });
       })
       .catch(e => {
-        console.log(e.stack);
+        logger.error(e.message, e);
         res.status(400).send();
       });
   });
@@ -93,7 +94,7 @@ const activityRoutes = app => {
         res.send(pic);
       })
       .catch(e => {
-        console.log(e.stack);
+        logger.error(e.message, e);
         res.status(400).send();
       });
   });
@@ -145,7 +146,7 @@ const activityRoutes = app => {
         res.send({url: picUrl});
       })
       .catch(e => {
-        console.log(e.stack);
+        logger.error(e.message, e);
         res.status(400).send();
       });
   });
@@ -164,7 +165,7 @@ const activityRoutes = app => {
     }).then(() => {
       res.status(200).send();
     }).catch(e => {
-      console.log(e.stack);
+      logger.error(e.message, e);
       res.status(400).send();
     });
   });
@@ -187,7 +188,7 @@ const activityRoutes = app => {
     }).then(() => {
       res.status(200).send();
     }).catch(e => {
-      console.log(e.stack);
+      logger.error(e.message, e);
       res.status(400).send();
     });
   });

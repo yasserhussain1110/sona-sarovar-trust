@@ -12,7 +12,12 @@ const StatusBox = ({uuid, success, adding, children, removeStatusBox}) => (
   <div className={getClassNamesFromProps(success, adding)}>
     {children}
     <div className="dismiss">
-      <button onClick={() => removeStatusBox(uuid)} className="dismiss-button">×</button>
+      <span
+        role="button"
+        onClick={() => removeStatusBox(uuid)}
+        className="dismiss-button"
+      >×
+      </span>
     </div>
   </div>
 );

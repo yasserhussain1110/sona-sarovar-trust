@@ -2,6 +2,7 @@ const TeamMember = require('../models/teammember');
 const auth = require('../middleware/auth');
 const multer = require('multer');
 const fs = require('fs');
+const logger = require('../config/logger');
 const {ensurePicAndWriteToDisk} = require('../services');
 
 const upload = multer();
@@ -30,7 +31,7 @@ const teammemberRoutes = app => {
         res.send(teamMember);
       })
       .catch(e => {
-        console.log(e);
+        logger.error(e.message, e);
         res.status(400).send();
       });
   });
@@ -58,7 +59,7 @@ const teammemberRoutes = app => {
     }).then(member => {
       res.send(member);
     }).catch(e => {
-      console.log(e);
+      logger.error(e.message, e);
       res.status(400).send();
     });
   });
