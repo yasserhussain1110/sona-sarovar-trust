@@ -36,8 +36,12 @@ const mapStateToProps = (state, ownProps) => (
   }
 );
 
+ProjectHolder.defaultProps = {
+  project: null
+};
+
 ProjectHolder.propTypes = {
-  project: PropTypes.object.isRequired
+  project: PropTypes.object
 };
 
 export default connect(mapStateToProps)(ProjectHolder);

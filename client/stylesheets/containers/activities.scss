@@ -24,12 +24,11 @@
   }
 
   .activity-container {
-    background-image: url("/home/IMG2.jpg");
     width: 350px;
     height: 350px;
     background-size: cover;
-    background-position: center center;
     background-repeat: no-repeat;
+    background-position: center;
     transition: all 0.3s ease-in-out;
     display: inline-block;
     margin: 0 10px;

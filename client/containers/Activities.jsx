@@ -14,7 +14,7 @@ const Activities = ({match, activitiesUndertaken}) => (
       </div>
 
       <div className="activity-list">{activitiesUndertaken.map((activity, index) => (
-        <div key={index} className="activity-container">
+        <div key={index} style={{backgroundImage: `url(${activity.pics[0].url})`}} className="activity-container">
           <NavLink to={`${match.url}/${index}`}>
             <div className="activity-name-holder">
               <span>{activity.name}</span>

@@ -46,13 +46,7 @@ class ImageCarousal extends Component {
     return (
 
       <div className="carousal-image-container">
-        {imageLinks.map((link, index) => (
-          <img
-            alt=""
-            key={index}
-            className={this.isImageShowing(index) ? 'active' : 'inactive'}
-            src={link}
-          />))}
+        {getImageComponent(imageLinks, this.isImageShowing, this.props.type)}
         <div
           role="navigation"
           className="arrow arrow-left"
@@ -90,17 +84,36 @@ class ImageCarousal extends Component {
   }
 }
 
+const getImageComponent = (imageLinks, checkIfShowing, type) => (
+  type === 'image' ?
+    imageLinks.map((link, index) => (
+      <img
+        alt=""
+        key={index}
+        className={checkIfShowing(index) ? 'active' : 'inactive'}
+        src={link}
+      />))
+    :
+    imageLinks.map((link, index) => (
+      <div
+        style={{backgroundImage: `url(${link})`}}
+        key={index}
+        className={`bg-image ${checkIfShowing(index) ? 'active' : 'inactive'}`}
+      />))
+);
+
 ImageCarousal.propTypes = {
   imageLinks: PropTypes.arrayOf(PropTypes.string).isRequired,
   viewDuration: PropTypes.number.isRequired,
   dots: PropTypes.bool,
-  arrows: PropTypes.bool
+  arrows: PropTypes.bool,
+  type: PropTypes.oneOf(['image', 'bg-image'])
 };
 
 ImageCarousal.defaultProps = {
   dots: false,
-  arrows: false
-
+  arrows: false,
+  type: 'image'
 };
 
 export default ImageCarousal;

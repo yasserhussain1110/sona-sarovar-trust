@@ -36,8 +36,12 @@ const mapStateToProps = (state, ownProps) => (
   }
 );
 
+ActivityHolder.defaultProps = {
+  activity: null
+};
+
 ActivityHolder.propTypes = {
-  activity: PropTypes.object.isRequired
+  activity: PropTypes.object
 };
 
 export default connect(mapStateToProps)(ActivityHolder);
