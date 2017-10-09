@@ -10,7 +10,7 @@
   }
 
   > .page-content {
-    width: 90%;
+    text-align: center;
     margin: 30px auto;
     border-top: 1px solid #f6f3f1;
   }
@@ -18,16 +18,15 @@
   .team-member-info {
     display: inline-block;
     width: calc(50% - 60px);
-    margin: 0 20px 20px 20px;
+    margin: 0 10px 20px 10px;
     vertical-align: top;
-    padding: 10px;
+    padding: 10px 0;
 
     > .img-holder {
       display: inline-block;
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
       margin-right: 20px;
-      margin-top: 50px;
       vertical-align: top;
     }
 
@@ -40,7 +39,7 @@
 
     > .text-holder {
       display: inline-block;
-      width: calc(100% - 220px);
+      width: calc(100% - 170px);
 
       > .name > h2 {
         font-size: 24px;
@@ -59,6 +58,7 @@
         width: auto;
         overflow: initial;
         box-shadow: none;
+        padding: 0;
       }
     }
   }
@@ -67,7 +67,7 @@
 @media screen and (max-width: 1150px) {
   .team-members {
     .team-member-info {
-      margin: 0 10px 20px 10px;
+      margin: 10px 10px 20px 10px;
       padding: 0;
 
       > .text-holder {
