@@ -212,6 +212,7 @@
       display: inline-block;
       width: calc(100% - 10px);
       padding: 5px;
+      position: relative;
       background-color: #F3BF3C;
 
       .hamburger:hover {
@@ -232,6 +233,15 @@
       }
       .nav {
         display: none;
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 25px;
+        width: calc(100% - 10px);
+        padding: 0 5px;
+        height: 220px;
+        overflow-y: scroll;
+        background-color: #F3BF3C;
       }
 
       #drop-down {

@@ -332,7 +332,7 @@
   .floating-header {
     .quick-links-holder {
       width: 70%;
-      margin-left: 0%;
+      margin-left: 0;
     }
   }
 
@@ -348,12 +348,18 @@
       width: 100%;
       padding: 0;
       text-align: center;
-      margin-bottom: 57px;
+      margin-top: 5px;
+      margin-bottom: 70px;
+    }
+
+    .drop-down-nav {
+      height: 220px;
+      overflow-y: scroll;
     }
 
     .logo-holder > img {
-      width: 100px;
-      height: 70px;
+      width: 150px;
+      height: 100px;
     }
 
     .quick-links-holder {
