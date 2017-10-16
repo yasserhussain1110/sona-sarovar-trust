@@ -25,6 +25,7 @@ require('./routes/activityRoutes')(app);
 require('./routes/teammemberRoutes')(app);
 require('./routes/paymentRoutes')(app);
 require('./routes/aboutUsRoutes')(app);
+require('./routes/volunteerRoutes')(app);
 
 /* Set up development server if required */
 if (process.env.NODE_ENV === 'development') {
