@@ -10,7 +10,7 @@ const Testimonials = () => (
         Nothing can be done in a limited period.
         As individuals we have to continue to give support by way of financial
         help, time as well as other resources.
-        I believe in continuity and devotion without deviation. CRY is doing just that.
+        I believe in continuity and devotion without deviation.
       </p>
       <footer>
         <span>Pawan Gupta</span>
