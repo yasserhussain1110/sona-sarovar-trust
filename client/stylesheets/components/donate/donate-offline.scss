@@ -15,4 +15,34 @@
     padding: 10px 30px;
     border: 1px solid #cccccc;
   }
+
+  .donation-method {
+    background-color: #F2EBE7;
+    padding: 5px;
+    margin: 10px 0;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+  h3 {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+
+  .bank-name, .trust-name {
+    color: #9B2A2B;
+  }
+
+  .bank-address {
+    margin: 5px 0;
+  }
+
+  .bold {
+    font-weight: bolder;
+    padding: 0 5px;
+  }
+
+  .info {
+    margin: 5px 0;
+  }
 }
