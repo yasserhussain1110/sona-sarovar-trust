@@ -21,6 +21,7 @@ import DonateDone from '../components/Donate/DonateDone';
 import DonateOffline from '../components/Donate/DonateOffline';
 import DonateOnline from '../components/Donate/DonateOnline';
 import Contact from '../containers/Contact';
+import Testimonials from '../containers/Testimonials';
 
 const Web = ({match}) => (
   <main id="web">
@@ -28,6 +29,7 @@ const Web = ({match}) => (
     <Route exact path={`${match.url}`} component={Home} />
     <Route path={`${match.url}/about/history`} component={History} />
     <Route path={`${match.url}/about/vision`} component={VisionAndMission} />
+    <Route path={`${match.url}/about/testimonials`} component={Testimonials} />
     <Route exact path={`${match.url}/about/team`} component={Team} />
     <Route path={`${match.url}/about/team/trustees`} component={Trustees} />
     <Route path={`${match.url}/about/team/brand-ambassador`} component={BrandAmbassador} />

@@ -1,0 +1,43 @@
+.testimonials {
+  font-family: 'Lato', sans-serif;
+
+  > h1 {
+    color: white;
+    background-color: #5D5D5D;
+    padding: 30px;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  > .page-content {
+    width: 85%;
+    margin: 30px auto;
+    padding: 10px 30px;
+    border: 1px solid #cccccc;
+  }
+
+  .testimonial-holder {
+    margin: 20px 0;
+    background-color: #F2ECE8;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .testimonial-header {
+    font-size: 20px;
+  }
+
+  .testimonial-holder > * {
+    margin: 20px 0;
+  }
+
+  .testimonial-header {
+    margin-top: 0;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
