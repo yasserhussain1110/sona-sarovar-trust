@@ -14,16 +14,16 @@ const FloatingHeader = ({visibilityClass, brandLogoUrl, match}) => (
 
     <div className="quick-links-holder">
       <div className="social-button-holder">
-        <a href="https://www.facebook.com">
+        <a href="https://www.facebook.com/sarovartrust">
           <SvgIcon className="social-button fb" size={20} icon={facebook} />
         </a>
-        <a href="https://www.twitter.com">
+        <a href="https://twitter.com/sonasarovar">
           <SvgIcon className="social-button tw" size={20} icon={twitter} />
         </a>
-        <a href="https://www.linkedin.com">
+        <a href="https://www.linkedin.com/in/sona-sarovar-trust-3b62b9131">
           <SvgIcon className="social-button li" size={20} icon={linkedin} />
         </a>
-        <a href="https://www.youtube.com">
+        <a href="https://www.youtube.com/channel/UCjGZ3dRPk1DKciIK4W97r0g">
           <SvgIcon className="social-button yt" size={20} icon={youtube} />
         </a>
       </div>
