@@ -20,6 +20,7 @@ import Volunteer from '../containers/Volunteer';
 import DonateDone from '../components/Donate/DonateDone';
 import DonateOffline from '../components/Donate/DonateOffline';
 import DonateOnline from '../components/Donate/DonateOnline';
+import Contact from '../containers/Contact';
 
 const Web = ({match}) => (
   <main id="web">
@@ -41,6 +42,7 @@ const Web = ({match}) => (
     <Route path={`${match.url}/involve/donate/online/done`} component={DonateDone} />
     <Route path={`${match.url}/involve/donate/offline`} component={DonateOffline} />
     <Route path={`${match.url}/involve/volunteer`} component={Volunteer} />
+    <Route path={`${match.url}/contact`} component={Contact} />
     <Footer />
   </main>
 );

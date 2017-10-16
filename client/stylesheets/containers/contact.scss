@@ -1,0 +1,32 @@
+.volunteer {
+  font-family: 'Lato', sans-serif;
+
+  > h1 {
+    color: white;
+    background-color: #5D5D5D;
+    padding: 30px;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  > .page-content {
+    width: 85%;
+    margin: 30px auto;
+    padding: 10px 30px;
+    border: 1px solid #cccccc;
+  }
+
+  .main-info-header {
+    font-size: 25px;
+    font-weight: 500;
+  }
+
+  .add-info-header {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .header, .additional-info {
+    margin: 20px 10px;
+  }
+}
