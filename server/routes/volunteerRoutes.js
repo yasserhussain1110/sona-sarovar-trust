@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const logger = require('../config/logger');
 
 const {NO_REPLY_EMAIL_HOST, NO_REPLY_EMAIL_ADDRESS, NO_REPLY_PASSWORD} = process.env;
 
@@ -27,6 +28,8 @@ const volunteerRoutes = app => {
 
     if (!name || !email) return res.status(400).send();
 
+    res.status(200).send();
+
     const mailOptions = Object.assign({}, stdMailOptions, {
       subject: 'Volunteer Application', // Subject line with utf
       text: `${name} wants to volunteer. Contact them at ${email}` // plain text body
@@ -36,10 +39,9 @@ const volunteerRoutes = app => {
     // send mail with defined transport object
     smtpTransport.sendMail(mailOptions, (error, info) => {
       if (error) {
-        return console.log(error);
+        return logger.error(error);
       }
-      console.log('Message sent: %s', info.messageId);
-      res.status(200).send();
+      logger.info('Message sent: %s', info.messageId);
     });
   });
 };

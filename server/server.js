@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable brace-style */
 
-require('./config/config');
+require('./config');
 require('./db/mongoose');
 
 const port = process.env.PORT;

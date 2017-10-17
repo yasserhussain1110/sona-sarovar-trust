@@ -64,6 +64,7 @@ const INIT_ABOUT_US = {
 };
 
 const INIT_TEAM_MEMBERS = [{
+  _id: new ObjectID(),
   name: 'Trustee Member 1',
   info: `adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
    adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd

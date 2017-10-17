@@ -1,4 +1,4 @@
-require('../config/config');
+require('../config/configEnv');
 const mongoose = require('../db/mongoose');
 const fs = require('fs');
 const {populateAll} = require('./seedInfo');

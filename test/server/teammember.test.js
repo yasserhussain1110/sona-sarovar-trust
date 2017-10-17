@@ -29,7 +29,7 @@ describe('Testing path PUT /api/teammember', () => {
       .set('x-auth', INIT_ADMIN.tokens[0])
       .field('name', 'Yasser Hussain')
       .field('info', 'Yasser Hussain is awesome person')
-      .field('type', 'Technical')
+      .field('type', 'technical')
       .attach('pic', constructFullPath(testFileName))
       .expect(200)
       .end((err, res) => {
@@ -54,7 +54,9 @@ describe('Testing path PUT /api/teammember', () => {
             expect(newMember).toEqual({
               name: 'Yasser Hussain',
               info: 'Yasser Hussain is awesome person',
-              pic: member.pic
+              pic: member.pic,
+              type: 'technical',
+              designation: ''
             });
             done();
           })
@@ -86,7 +88,9 @@ describe('Testing path PATCH /api/teammember/:_id', () => {
             expect(newMember).toEqual({
               name: 'Member 1 modified',
               info: 'Roman Infantry 1 got modified',
-              pic: INIT_TEAM_MEMBERS[0].pic
+              pic: INIT_TEAM_MEMBERS[0].pic,
+              type: 'trustee',
+              designation: "Chief of Operation"
             });
             done();
           })
@@ -116,7 +120,9 @@ describe('Testing path PATCH /api/teammember/:_id', () => {
             expect(newMember).toEqual({
               name: 'Member 1 modified',
               info: 'Roman Infantry 1 got modified',
-              pic: member.pic
+              pic: member.pic,
+              type: 'trustee',
+              designation: "Chief of Operation"
             });
             expect(fs.existsSync(RESOURCES_DIR + INIT_TEAM_MEMBERS[0].pic)).toBe(false);
             expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);

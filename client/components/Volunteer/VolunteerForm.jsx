@@ -25,15 +25,15 @@ class VolunteerForm extends Component {
 
     const {name, email} = this.state;
 
-    setTimeout(() => {
-      this.setState({showApplicationSuccessStatus: true});
-    }, 1000);
+    axios.post('/api/apply-volunteer', {name, email}).then(() => {
+      setTimeout(() => {
+        this.setState({showApplicationSuccessStatus: true});
+      }, 1000);
 
-    setTimeout(() => {
-      this.setState({showApplicationSuccessStatus: false});
-    }, 7000);
-
-    axios.post('/api/apply-volunteer', {name, email}).catch(e => {
+      setTimeout(() => {
+        this.setState({showApplicationSuccessStatus: false});
+      }, 7000);
+    }).catch(e => {
       console.log(e);
     });
   }
