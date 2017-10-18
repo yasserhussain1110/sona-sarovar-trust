@@ -9,13 +9,13 @@ const CommonLogOptions = {
 };
 
 const DailyLogOptions = Object.assign({}, CommonLogOptions, {
-  filename: "logs/log",
+  filename: 'logs/log',
   datePattern: 'yyyy-MM-dd.',
   prepend: true
 });
 
 const TestLogOptions = Object.assign({}, CommonLogOptions, {
-  filename: "logs/test.log",
+  filename: 'logs/test.log',
   datePattern: 'yyyy-MM-dd.',
   prepend: true
 });

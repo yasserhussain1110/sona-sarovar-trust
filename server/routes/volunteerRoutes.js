@@ -19,7 +19,7 @@ const smtpTransport = nodemailer.createTransport({
 
 const stdMailOptions = {
   from: NO_REPLY_EMAIL_ADDRESS, // sender address
-  to: 'contact@sonasarovartrust.org', // list of receivers
+  to: 'contact@sonasarovartrust.org' // list of receivers
 };
 
 const volunteerRoutes = app => {
@@ -33,7 +33,7 @@ const volunteerRoutes = app => {
     const mailOptions = Object.assign({}, stdMailOptions, {
       subject: 'Volunteer Application', // Subject line with utf
       text: `${name} wants to volunteer. Contact them at ${email}` // plain text body
-      //html: '<b>Hello world?</b>' // html body
+      // html: '<b>Hello world?</b>' // html body
     });
 
     // send mail with defined transport object

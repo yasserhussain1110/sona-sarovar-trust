@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 const MediaEventsBlog = ({projectUrl, activityUrl}) => (
   <div className="media-events-blog">
@@ -32,8 +33,8 @@ const MediaEventsBlog = ({projectUrl, activityUrl}) => (
 );
 
 const mapStateToProps = state => {
-  let projectUrl = "";
-  let activityUrl = "";
+  let projectUrl = '';
+  let activityUrl = '';
 
   if (state.projects.projectsDone.length > 0) {
     projectUrl = state.projects.projectsDone[0].pics[0].url;
@@ -43,7 +44,12 @@ const mapStateToProps = state => {
     activityUrl = state.activities.activitiesUndertaken[0].pics[0].url;
   }
 
-  return {projectUrl, activityUrl}
+  return {projectUrl, activityUrl};
+};
+
+MediaEventsBlog.propTypes = {
+  projectUrl: PropTypes.string.isRequired,
+  activityUrl: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps)(MediaEventsBlog);

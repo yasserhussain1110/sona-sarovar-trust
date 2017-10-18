@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-import {isEmail} from 'validator';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class VolunteerForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: "",
-      nameError: "",
-      emailError: "",
-      email: "",
+      name: '',
+      nameError: '',
+      emailError: '',
+      email: '',
       showApplicationSuccessStatus: false
     };
 
@@ -85,9 +85,9 @@ class VolunteerForm extends Component {
 }
 
 const VolunteerFormView = ({
-                             name, nameError, email, emailError, updateName,
-                             updateEmail, apply, showApplicationSuccessStatus
-                           }) => (
+  name, nameError, email, emailError, updateName,
+  updateEmail, apply, showApplicationSuccessStatus
+}) => (
   <div className="volunteer-apply-form">
     <h3>Let Us Know</h3>
     <form>
@@ -123,11 +123,22 @@ const VolunteerFormView = ({
         <button onClick={apply} className="button">Apply</button>
       </div>
 
-      <div className={`application-send-message ${showApplicationSuccessStatus ? "show" : ""}`}>
+      <div className={`application-send-message ${showApplicationSuccessStatus ? 'show' : ''}`}>
         <span>Application sent. Thank you for applying.</span>
       </div>
     </form>
   </div>
 );
+
+VolunteerFormView.propTypes = {
+  name: PropTypes.string.isRequired,
+  nameError: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  emailError: PropTypes.string.isRequired,
+  updateName: PropTypes.func.isRequired,
+  updateEmail: PropTypes.func.isRequired,
+  apply: PropTypes.func.isRequired,
+  showApplicationSuccessStatus: PropTypes.bool.isRequired
+};
 
 export default VolunteerForm;

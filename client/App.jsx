@@ -70,9 +70,9 @@ class App extends Component {
       <BrowserRouter>
         <ScrollToTop>
           <main>
-            <Route path="/web" component={Web}/>
-            <Route path="/admin" component={Admin}/>
-            <Route exact path="/" render={() => <Redirect to="/web"/>}/>
+            <Route path="/web" component={Web} />
+            <Route path="/admin" component={Admin} />
+            <Route exact path="/" render={() => <Redirect to="/web" />} />
           </main>
         </ScrollToTop>
       </BrowserRouter>

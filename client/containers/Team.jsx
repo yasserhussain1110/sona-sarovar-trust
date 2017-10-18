@@ -9,7 +9,7 @@ const Team = ({match}) => (
       <div className="trustees sub-team">
         <h2><NavLink to={`${match.url}/trustees`}>TRUSTEES</NavLink></h2>
         <div className="details">
-          Each one of our Trustees holds our trust's interest above everything else,
+          Each one of our Trustees holds our trust&quot;s interest above everything else,
           sharing a firm belief in values of public trust, collective …
           <div className="button-holder">
             <NavLink to={`${match.url}/trustees`} className="button">READ MORE</NavLink>
@@ -20,7 +20,7 @@ const Team = ({match}) => (
       <div className="technical-team sub-team">
         <h2><NavLink to={`${match.url}/technical-team`}>TECHNICAL TEAM</NavLink></h2>
         <div className="details">
-          Each one of our Trustees holds our trust's interest above everything else,
+          Each one of our Trustees holds our trust&quot;s interest above everything else,
           sharing a firm belief in values of public trust, collective …
           <div className="button-holder">
             <NavLink to={`${match.url}/technical-team`} className="button">READ MORE</NavLink>
@@ -31,7 +31,7 @@ const Team = ({match}) => (
       <div className="brand-ambassador sub-team">
         <h2><NavLink to={`${match.url}/brand-ambassador`}>BRAND AMBASSADOR</NavLink></h2>
         <div className="details">
-          Each one of our Trustees holds our trust's interest above everything else,
+          Each one of our Trustees holds our trust&quot;s interest above everything else,
           sharing a firm belief in values of public trust, collective …
           <div className="button-holder">
             <NavLink to={`${match.url}/brand-ambassador`} className="button">READ MORE</NavLink>
@@ -42,7 +42,7 @@ const Team = ({match}) => (
       <div className="volunteers sub-team">
         <h2><NavLink to={`${match.url}/volunteers`}>VOLUNTEERS</NavLink></h2>
         <div className="details">
-          Each one of our Trustees holds our trust's interest above everything else,
+          Each one of our Trustees holds our trust&quot;s interest above everything else,
           sharing a firm belief in values of public trust, collective …
           <div className="button-holder">
             <NavLink to={`${match.url}/volunteers`} className="button">READ MORE</NavLink>

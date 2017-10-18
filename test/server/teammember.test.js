@@ -90,7 +90,7 @@ describe('Testing path PATCH /api/teammember/:_id', () => {
               info: 'Roman Infantry 1 got modified',
               pic: INIT_TEAM_MEMBERS[0].pic,
               type: 'trustee',
-              designation: "Chief of Operation"
+              designation: 'Chief of Operation'
             });
             done();
           })
@@ -122,7 +122,7 @@ describe('Testing path PATCH /api/teammember/:_id', () => {
               info: 'Roman Infantry 1 got modified',
               pic: member.pic,
               type: 'trustee',
-              designation: "Chief of Operation"
+              designation: 'Chief of Operation'
             });
             expect(fs.existsSync(RESOURCES_DIR + INIT_TEAM_MEMBERS[0].pic)).toBe(false);
             expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);
