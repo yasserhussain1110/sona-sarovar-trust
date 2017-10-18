@@ -5,7 +5,7 @@ import Carousal from '../components/Home/Carousal';
 import MediaEventsBlog from '../components/Home/MediaEventsBlog';
 import OurImpact from '../components/Home/OurImpact';
 import VolunteerParallax from '../components/Home/VolunteerParallax';
-import Testimonials from '../components/Home/Testimonials';
+import SampleTestimonial from '../components/Home/SampleTestimonial';
 
 const Home = ({messages, imageLinks}) => (
   <div className="home">
@@ -13,7 +13,7 @@ const Home = ({messages, imageLinks}) => (
     <MediaEventsBlog />
     <OurImpact />
     <VolunteerParallax />
-    <Testimonials />
+    <SampleTestimonial />
   </div>
 );
 

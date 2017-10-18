@@ -1,8 +1,8 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-const Testimonials = () => (
-  <div className="testimonials">
+const SampleTestimonial = () => (
+  <div className="sample-testimonial">
     <h2>Donor Speak</h2>
     <blockquote>
       <p>
@@ -25,4 +25,4 @@ const Testimonials = () => (
   </div>
 );
 
-export default Testimonials;
+export default SampleTestimonial;
