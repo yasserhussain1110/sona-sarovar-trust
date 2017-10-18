@@ -22,7 +22,7 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.scrollHandler);
+    window.addEventListener('scroll', this.scrollHandler, true);
   }
 
   componentWillUnmount() {

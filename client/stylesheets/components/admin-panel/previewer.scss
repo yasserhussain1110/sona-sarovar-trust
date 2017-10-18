@@ -9,7 +9,7 @@
   .preview-note {
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
     background-color: black;
     padding: 5px;
     color: #FFE363;
@@ -25,16 +25,14 @@
   }
 
   .nav {
-    padding: 5px;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 80px;
+    position: absolute;
+    top: 5px;
+    left: 0;
   }
 
   .nav > button {
     color: black;
-    font-size: 22px;
+    font-size: 14px;
     padding-top: 2px;
     padding-bottom: 4px;
     border-radius: 5px;
@@ -52,5 +50,29 @@
   .nav > a > * {
     margin: 2px;
     padding: 2px;
+  }
+
+  .space {
+    margin-bottom: 100px;
+  }
+
+  .fixed-header {
+    margin-top: 45px;
+    position: relative;
+    border-radius: 0;
+
+    * {
+      border-radius: 0;
+    }
+
+    .nav {
+      top: 80px;
+      z-index: 1;
+      width: 100%;
+    }
+  }
+
+  .carousal {
+    margin-top: 40px;
   }
 }

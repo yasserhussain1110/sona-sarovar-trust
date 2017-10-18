@@ -19,12 +19,12 @@ const Previewer = ({match, history}) => (
           mode may not be exactly same as the actual site.
         </span>
       </div>
-    </div>
-    <div className="nav">
-      <button onClick={() => history.push('/admin/home')}>
-        <div className="icon-holder"><SvgIcon size={20} icon={arrowLeft} /></div>
-        <div className="caption-holder"><span>Home</span></div>
-      </button>
+      <div className="nav">
+        <button onClick={() => history.push('/admin/home')}>
+          <div className="icon-holder"><SvgIcon size={14} icon={arrowLeft} /></div>
+          <div className="caption-holder"><span>Home</span></div>
+        </button>
+      </div>
     </div>
     <div className="body">
       <Web match={match} />
