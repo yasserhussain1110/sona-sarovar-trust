@@ -7,6 +7,7 @@ import handleCommonErrors, {logOut} from './lib/handlers/commonErrorsHandler';
 import Web from './routes/Web';
 import Admin from './routes/Admin';
 import * as actions from './actions';
+import ScrollToTop from './ScrollToTop';
 
 class App extends Component {
   constructor(props) {
@@ -67,11 +68,13 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <main>
-          <Route path="/web" component={Web} />
-          <Route path="/admin" component={Admin} />
-          <Route exact path="/" render={() => <Redirect to="/web" />} />
-        </main>
+        <ScrollToTop>
+          <main>
+            <Route path="/web" component={Web}/>
+            <Route path="/admin" component={Admin}/>
+            <Route exact path="/" render={() => <Redirect to="/web"/>}/>
+          </main>
+        </ScrollToTop>
       </BrowserRouter>
     );
   }

@@ -37,7 +37,7 @@ const VolunteerParallaxView = () => (
       </p>
 
       <div className="button-holder">
-        <NavLink to="" className="button button-donate">
+        <NavLink to="web/involve/volunteer" className="button button-donate">
           Join Now
         </NavLink>
       </div>

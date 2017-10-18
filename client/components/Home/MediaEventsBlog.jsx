@@ -1,7 +1,8 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-const MediaEventsBlog = () => (
+const MediaEventsBlog = ({projectUrl, activityUrl}) => (
   <div className="media-events-blog">
     <h2>Media, Events and Blogs</h2>
     <div className="link-holder">
@@ -10,24 +11,39 @@ const MediaEventsBlog = () => (
         <div className="iframe-holder">
           <iframe title="Our Movie" src="https://www.youtube.com/embed/VT3SRGNr22I" />
         </div>
-        <NavLink to="" className="button">Donate Now</NavLink>
+        <NavLink to="web/involve/donate" className="button">Donate Now</NavLink>
       </div>
       <div className="events">
-        <h3>Our Events</h3>
+        <h3>Our Projects</h3>
         <div className="img-holder">
-          <img alt="" src="/home/IMG2.jpg" />
+          <img alt="" src={projectUrl} />
         </div>
-        <NavLink to="" className="button">See More</NavLink>
+        <NavLink to="web/projects" className="button">See More</NavLink>
       </div>
       <div className="blog">
-        <h3>Our Blogs</h3>
+        <h3>Our Activities</h3>
         <div className="img-holder">
-          <img alt="" src="/home/IMG2.jpg" />
+          <img alt="" src={activityUrl} />
         </div>
-        <NavLink to="" className="button">Read Blog</NavLink>
+        <NavLink to="web/activities" className="button">See More</NavLink>
       </div>
     </div>
   </div>
 );
 
-export default MediaEventsBlog;
+const mapStateToProps = state => {
+  let projectUrl = "";
+  let activityUrl = "";
+
+  if (state.projects.projectsDone.length > 0) {
+    projectUrl = state.projects.projectsDone[0].pics[0].url;
+  }
+
+  if (state.activities.activitiesUndertaken.length > 0) {
+    activityUrl = state.activities.activitiesUndertaken[0].pics[0].url;
+  }
+
+  return {projectUrl, activityUrl}
+};
+
+export default connect(mapStateToProps)(MediaEventsBlog);
