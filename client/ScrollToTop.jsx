@@ -16,7 +16,7 @@ class ScrollToTop extends Component {
 
 ScrollToTop.propTypes = {
   location: PropTypes.object.isRequired,
-  children: PropTypes.arrayOf(PropTypes.element).isRequired
+  children: PropTypes.element.isRequired
 };
 
 export default withRouter(ScrollToTop);
