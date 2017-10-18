@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const LoginForm = ({username, password, updateUsername, updatePassword, submitForm, error}) => (
   <div className="login-form">
     <form className="auth-form">
-      <h3 className="heading">Login</h3>
+      <h3 className="heading">LOGIN</h3>
       <div className="input-wrapper">
         <div className="form-control">
           <label htmlFor="login-username">Username:</label>

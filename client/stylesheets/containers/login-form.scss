@@ -1,8 +1,7 @@
 .login-form {
-  height: 100%;
-  padding: 10px;
-  margin-top: 10%;
-  background: linear-gradient(to bottom, white, gray);
+  background: #006AA1;
+  height: calc(100% - 10px);
+  padding: 5px;
 
   h3 {
     text-align: center;
@@ -14,20 +13,19 @@
   .auth-form {
     width: 500px;
     padding: 15px;
-    margin: 10px auto;
+    margin: 150px auto 0 auto;
     background-color: white;
-    border-radius: 5px;
   }
 
   .input-wrapper {
     background-color: #E2F0F9;
-    border-radius: 5px;
     padding: 5px;
-    margin-top: 40px;
+    margin-top: 10px;
   }
 
   .heading {
     margin: 5px;
+    font-size: 30px;
   }
 
   label {
@@ -68,9 +66,9 @@
     padding: 7px 20px;
     background-color: #FBFBFB;
     color: $black;
-    border-radius: 45px;
     box-shadow: 0 0 5px #3A3A3A;
     font-weight: bolder;
+    border-radius: 0;
   }
 
   button:active {
@@ -83,7 +81,7 @@
   }
 
   .last-row {
-    margin: 30px 0 20px 0;
+    margin: 30px 0 10px 0;
   }
 
   .last-row > div {
@@ -94,7 +92,6 @@
     padding: 5px;
     background-color: lightblue;
     width: 240px;
-    border-radius: 5px;
     text-align: center;
     margin-right: 10px;
   }
