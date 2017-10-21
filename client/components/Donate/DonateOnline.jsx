@@ -3,11 +3,11 @@ import {isEmail, isFloat, isNumeric, isMobilePhone} from 'validator';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-class DonateOnline extends Component {
-  static checkIfInputCanBeNumber(value) {
-    return isFloat(value) || (value.endsWith('.') && isFloat(value + '0'));
-  }
+const checkIfInputCanBeNumber = value => {
+  return isFloat(value) || (value.endsWith('.') && isFloat(value + '0'));
+};
 
+class DonateOnline extends Component {
   constructor(props) {
     super(props);
 
@@ -33,7 +33,7 @@ class DonateOnline extends Component {
 
   updateTentativeAmount(e) {
     const value = e.target.value;
-    if (this.checkIfInputCanBeNumber(value) || value === '') {
+    if (checkIfInputCanBeNumber(value) || value === '') {
       this.setState({tentativeAmount: value});
     }
   }
