@@ -351,6 +351,10 @@
     .sub-link-dropdown {
       max-width: 140%;
     }
+
+    .about-us {
+      max-width: none;
+    }
   }
 }
 
@@ -358,6 +362,10 @@
   .fixed-header {
     .sub-link-dropdown {
       max-width: 100%;
+    }
+
+    .about-us {
+      max-width: none;
     }
   }
 }

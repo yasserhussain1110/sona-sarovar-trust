@@ -46,7 +46,7 @@ const NormalNav = ({match}) => (
       </li>
       <li className="list-item">
         <NavLink to="#" activeClassName="active">ABOUT US</NavLink>
-        <div className="sub-link-dropdown">
+        <div className="sub-link-dropdown about-us">
           <ul className="sub-link-nav-bar">
             <li className="sub-item">
               <NavLink to={`${match.url}/about/history`} activeClassName="active">HISTORY</NavLink>
@@ -78,7 +78,7 @@ const NormalNav = ({match}) => (
       </li>
       <li className="list-item">
         <NavLink to="#" activeClassName="active">GET INVOLVED</NavLink>
-        <div className="sub-link-dropdown">
+        <div className="sub-link-dropdown get-involved">
           <ul className="sub-link-nav-bar">
             <li className="sub-item">
               <NavLink to={`${match.url}/involve/donate`} activeClassName="active">DONATE</NavLink>
