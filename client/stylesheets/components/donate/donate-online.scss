@@ -1,9 +1,11 @@
+@import '../../colors';
+
 .donate-online {
   font-family: 'Lato', sans-serif;
 
   > h1 {
-    color: white;
-    background-color: #5D5D5D;
+    color: $contentBlockHeaderColor;
+    background-color: $contentBlockHeaderBgColor;
     padding: 30px;
     font-size: 36px;
     font-weight: 700;
@@ -75,14 +77,15 @@
   }
 
   .small-input:focus, .small-input:hover {
-    background-color: #FFDA18;
-    border-color: #FFDA18;
+    background-color: $fixedHeaderNavBarBgColor;
+    border-color: $fixedHeaderNavBarBgColor;
   }
 
 
   .button {
-    background-color: black;
-    color: #D6B014;
+    background-color: $fixedHeaderButtonBgColor;
+    color: $fixedHeaderButtonColor;
+    border: 2px solid $fixedHeaderButtonBgColor;
     border-radius: 0;
     padding: 10px 40px;
     font-size: 17px;
@@ -93,8 +96,9 @@
   }
 
   .button:hover {
-    background-color: #EFC337;
-    color: black;
+    background-color: $fixedHeaderVolunteerBtnHoverBgColor;
+    color: $fixedHeaderVolunteerBtnHoverColor;
+    border-color: BLACK;
   }
 
   .error {
