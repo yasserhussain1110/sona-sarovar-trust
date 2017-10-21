@@ -1,3 +1,5 @@
+@import '../../colors';
+
 .volunteer-parallax {
   background-image: url("/home/IMG1.jpg");
   height: 500px;
@@ -32,17 +34,17 @@
       text-align: center;
       margin: 50px 0;
       text-transform: uppercase;
-      background-color: black;
+      background-color: $fixedHeaderButtonBgColor;
       border-radius: 0;
-      color: #D6B014;
+      color: $fixedHeaderButtonColor;
       font-size: 12px;
       width: 120px;
       transition: all 0.4s ease-in-out;
     }
 
     .button:hover {
-      background-color: #ECC731;
-      color: black;
+      background-color: $fixedHeaderVolunteerBtnHoverBgColor;
+      color: $fixedHeaderVolunteerBtnHoverColor;
     }
   }
 }

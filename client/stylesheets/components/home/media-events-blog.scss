@@ -1,3 +1,5 @@
+@import '../../colors';
+
 .media-events-blog {
   margin-top: 30px;
   text-align: center;
@@ -51,18 +53,20 @@
     display: inline-block;
     padding: 15px 0;
     margin: 10px;
+    border: 2px solid $fixedHeaderButtonBgColor;
     text-transform: uppercase;
-    background-color: black;
+    background-color: $fixedHeaderButtonBgColor;
     border-radius: 0;
-    color: #D6B014;
+    color: $fixedHeaderButtonColor;
     font-size: 12px;
     width: 140px;
     transition: all 0.4s ease-in-out;
   }
 
   .button:hover {
-    background-color: #ECC731;
-    color: black;
+    background-color: $fixedHeaderVolunteerBtnHoverBgColor;
+    color: $fixedHeaderVolunteerBtnHoverColor;
+    border-color: BLACK;
   }
 }
 

@@ -1,6 +1,8 @@
+@import '../colors';
+
 .carousal-message-container {
   position: absolute;
-  color: $black;
+  color: $fixedHeaderAnchorColor;
   right: 20px;
   bottom: 5px;
   height: 120px;
@@ -12,7 +14,7 @@
   display: inline;
 
   .message {
-    background-color: #FAD81B;
+    background-color: $fixedHeaderNavBarBgColor;
     position: absolute;
     padding: 5px;
     transition: opacity 0.6s ease-in-out;
