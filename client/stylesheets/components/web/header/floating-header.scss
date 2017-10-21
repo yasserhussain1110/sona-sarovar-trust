@@ -1,11 +1,12 @@
+@import '../../../colors';
+
 .floating-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: #32302F;
-  color: #EAC11A;
+  background-color: $floatingHeaderBgColor;
   display: flex;
   font-family: Lato;
   // https://stackoverflow.com/questions/12969228/chrome-slow-scrolling-with-fixed-position-elements
@@ -49,9 +50,9 @@
   }
 
   .social-button {
-    color: black;
+    color: $floatingHeaderSocialButtonColor;
     border-radius: 50%;
-    background-color: #EFC337;
+    background-color: $floatingHeaderSocialButtonBgColor;
     padding: 4px;
     margin: 10px 5px;
     transition: background-color 0.2s ease-in-out;
@@ -78,7 +79,7 @@
   }
 
   .donate {
-    background: url(../../../../static/img/donate.png) center center no-repeat #ffde00;
+    background: url(../../../../static/img/donate.png) center center no-repeat $floatingHeaderDonateBgColor;
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -91,7 +92,7 @@
   }
 
   .volunteer {
-    background: url(../../../../static/img/volunteer.png) center center no-repeat #ffde00;
+    background: url(../../../../static/img/volunteer.png) center center no-repeat $floatingHeaderVolunteerBgColor;
     background-size: 30px;
     text-indent: 100%;
     white-space: nowrap;
@@ -121,19 +122,19 @@
   }
 
   .list-item > a {
-    color: #FACC11;
+    color: $floatingHeaderListItemAnchorColor;
     transition: color 0.2s ease-in-out;
   }
 
   .list-item:hover > a {
-    color: #FEFDBA;
+    color: $floatingHeaderListItemAnchorHoverColor;
   }
 
   .sub-link-dropdown {
     position: absolute;
     top: 40px;
     left: 10px;
-    background-color: #EFC337;
+    background-color: $floatingHeaderSubLinkDropDownBgColor;
     width: 250px;
     text-align: left;
     display: none;
@@ -149,11 +150,11 @@
 
   .sub-item {
     padding: 10px 10px;
-    border-bottom: 1px solid #ecc731;
+    border-bottom: 1px solid $floatingHeaderSubItemBorderBottomColor;
 
     > a {
       font-weight: 300;
-      color: black;
+      color: $floatingHeaderSubItemAnchorColor;
       display: inline-block;
       transition: all 250ms ease-in;
     }
@@ -173,6 +174,8 @@
   }
 }
 
+
+//small screen
 @media screen and (max-width: 932px) {
   .floating-header {
     display: inline-block;
@@ -227,10 +230,10 @@
     .drop-down-nav {
       width: calc(100% - 10px);
       padding: 5px;
-      background-color: #F3BF3C;
+      background-color: $floatingHeaderSmallScreenDropDownNav;
 
       .sub-link-dropdown {
-        background-color: #EDBD25;
+        background-color: $floatingHeaderSmallScreenSubLinkDropDownBgColor;
       }
 
       .list-item {
@@ -255,7 +258,7 @@
       .list-item > a {
         display: inline-block;
         width: 100%;
-        color: #45403c;
+        color: $floatingHeaderSmallScreenListItemColor;
         font-size: 16px;
         font-weight: 700;
         line-height: 1.6;
@@ -265,7 +268,7 @@
       .dropper-label {
         display: inline-block;
         width: 100%;
-        color: #45403c;
+        color: $floatingHeaderSmallScreenListItemColor;
         font-size: 16px;
         font-weight: 700;
         line-height: 1.6;
@@ -274,7 +277,6 @@
 
       .list-item > a:hover, .dropper-label:hover {
         cursor: pointer;
-        color: #45403c;
       }
 
       .toggler {

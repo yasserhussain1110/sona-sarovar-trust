@@ -1,5 +1,7 @@
+@import '../../../colors';
+
 .fixed-header {
-  background-color: #32302F;
+  background-color: $fixedHeaderBgColor;
 
   .logo-holder {
     display: inline-block;
@@ -41,22 +43,22 @@
   }
 
   .button {
-    background-color: black;
+    background-color: $fixedHeaderButtonBgColor;
     border-radius: 0;
-    color: #D6B014;
+    color: $fixedHeaderButtonColor;
     font-size: 12px;
     padding: 15px 30px;
   }
 
   .donate {
-    border: 2px solid black;
+    border: 2px solid $fixedHeaderButtonBgColor;
     padding: 13px 28px;
     transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
   }
 
   .donate:hover {
-    border-color: #ECC731;
-    background-color: #32302F;
+    border-color: $fixedHeaderDonateBtnHoverBorderColor;
+    background-color: $fixedHeaderDonateBtnHoverBgColor;
   }
 
   .volunteer {
@@ -64,8 +66,8 @@
   }
 
   .volunteer:hover {
-    background-color: #ECC731;
-    color: black;
+    background-color: $fixedHeaderVolunteerBtnHoverBgColor;
+    color: $fixedHeaderVolunteerBtnHoverColor;
   }
 
   .social-button {
@@ -97,12 +99,12 @@
   }
 
   .nav-bar {
-    background-color: #F3BF3C;
+    background-color: $fixedHeaderNavBarBgColor;
     text-align: center;
   }
 
   a {
-    color: #45403c;
+    color: $fixedHeaderAnchorColor;
     font-size: 16px;
     font-weight: 700;
     line-height: 1.6;
@@ -120,7 +122,7 @@
     position: absolute;
     top: 40px;
     z-index: 1;
-    background-color: #EAC11A;
+    background-color: $fixedHeaderSubLinkDropDownBgColor;
     width: 250px;
     text-align: left;
     display: none;
@@ -140,11 +142,11 @@
 
   .sub-item {
     padding: 10px 10px;
-    border-bottom: 1px solid #ecc731;
+    border-bottom: 1px solid $fixedHeaderSubItemBorderBottomColor;
 
     > a {
       font-weight: 300;
-      color: #26211d;
+      color: $fixedHeaderSubItemAnchorColor;
       display: inline-block;
       -webkit-transition: all 250ms ease-in;
     }
@@ -213,7 +215,7 @@
       width: calc(100% - 10px);
       padding: 5px;
       position: relative;
-      background-color: #F3BF3C;
+      background-color: $fixedHeaderHamburgerNavBgColor;
 
       .hamburger:hover {
         cursor: pointer;
@@ -224,7 +226,7 @@
         .line {
           width: 25px;
           height: 4px;
-          border-bottom: 2px solid white;
+          border-bottom: 2px solid $fixedHeaderHamburgerColor;
 
           &:last-of-type {
             border-bottom: none;
@@ -241,7 +243,7 @@
         padding: 0 5px;
         height: 220px;
         overflow-y: scroll;
-        background-color: #F3BF3C;
+        background-color: $fixedHeaderHamburgerNavNavBgColor;
       }
 
       #drop-down {
@@ -274,7 +276,7 @@
       .dropper-label {
         display: inline-block;
         width: 100%;
-        color: #45403c;
+        color: $fixedHeaderHamburgerNavDropperLabelColor;
         font-size: 16px;
         font-weight: 700;
         line-height: 1.6;
@@ -296,6 +298,7 @@
   }
 }
 
+// small screen color
 @media screen and (min-width: 463px) and (max-width: 650px) {
   .fixed-header {
     .quick-links-holder {
@@ -310,7 +313,7 @@
     }
 
     .donate {
-      background: url(../../../../static/img/donate.png) center center no-repeat #ffde00;
+      background: url(../../../../static/img/donate.png) center center no-repeat $fixedHeaderSmallScreenDonateBgColor;
       text-indent: 100%;
       white-space: nowrap;
       overflow: hidden;
@@ -323,11 +326,11 @@
     }
 
     .donate:hover {
-      background-color: #ffde00;
+      background-color: $fixedHeaderSmallScreenDonateHoverBgColor;
     }
 
     .volunteer {
-      background: url(../../../../static/img/volunteer.png) center center no-repeat #ffde00;
+      background: url(../../../../static/img/volunteer.png) center center no-repeat $fixedHeaderSmallScreenVolunteerBgColor;
       background-size: 30px;
       text-indent: 100%;
       white-space: nowrap;
@@ -341,7 +344,7 @@
     }
 
     .volunteer:hover {
-      background-color: #ffde00;
+      background-color: $fixedHeaderSmallScreenVolunteerHoverBgColor;
     }
   }
 }
