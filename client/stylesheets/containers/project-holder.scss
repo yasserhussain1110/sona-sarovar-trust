@@ -1,9 +1,11 @@
+@import '../colors';
+
 .project-holder {
   font-family: 'Lato', sans-serif;
 
   > h1 {
-    color: white;
-    background-color: #5D5D5D;
+    color: $contentBlockHeaderColor;
+    background-color: $contentBlockHeaderBgColor;
     padding: 30px;
     font-size: 36px;
     font-weight: 700;

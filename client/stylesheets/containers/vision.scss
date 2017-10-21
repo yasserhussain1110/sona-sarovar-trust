@@ -1,9 +1,11 @@
+@import '../colors';
+
 .vision {
   font-family: 'Lato', sans-serif;
 
   > h1 {
-    color: white;
-    background-color: #5D5D5D;
+    color: $contentBlockHeaderColor;
+    background-color: $contentBlockHeaderBgColor;
     padding: 30px;
     font-size: 36px;
     font-weight: 700;
@@ -23,7 +25,7 @@
   h2 {
     font-weight: 300;
     font-size: 30px;
-    color: #EFC337;
+    color: $fixedHeaderBgColor;
   }
 
   p {
