@@ -41,7 +41,7 @@ const OurImpact = () => (
 
       <div className="registration-number-holder">
         <ul>
-          <li>Public Trust Reg.No.F-5208</li>
+          <li>Public Trust Reg.No.E-24045</li>
         </ul>
       </div>
     </div>
