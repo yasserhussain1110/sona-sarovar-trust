@@ -1,7 +1,7 @@
 @import '../../colors';
 
 .volunteer-parallax {
-  background-image: url("/home/IMG1.jpg");
+  background-image: url("/static/img/volunteer3.jpg");
   height: 500px;
   width: 100%;
   background-attachment: fixed;
@@ -15,17 +15,19 @@
 
   .parallax-content {
     padding: 80px;
-    color: white;
+    color: black;
 
     h1 {
       font-size: 38px;
       border-bottom: 2px solid rgba(48, 46, 46, 0.5);
       display: inline-block;
       margin-bottom: 30px;
+      text-shadow: 0 0 2px rgba(255, 255, 255, 1);
     }
 
     p {
       width: 40%;
+      text-shadow: 0 0 2px rgba(255, 255, 255, 1);
     }
 
     .button {
