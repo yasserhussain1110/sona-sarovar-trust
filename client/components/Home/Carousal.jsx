@@ -6,14 +6,10 @@ import MessageCarousal from '../../lib/components/MessageCarousal';
 import {getViewPortWidth} from '../../lib/helpers/domHelpers';
 
 const getHeightRatio = viewPortWidth => {
-  if (viewPortWidth >= 380 && viewPortWidth <= 462) {
+  if (viewPortWidth <= 464) {
     return 0.8;
-  } else if (viewPortWidth >= 463 && viewPortWidth <= 650) {
-    return 0.8;
-  } else if (viewPortWidth >= 651) {
-    return 0.35;
   } else {
-    return 0.8;
+    return 0.36;
   }
 };
 
@@ -21,11 +17,10 @@ const getSizeSubStateFromSrollBarWidth = scrollbarWidth => {
   scrollbarWidth = scrollbarWidth || 0;
   const viewPortWidth = getViewPortWidth();
   const heightRatio = getHeightRatio(viewPortWidth);
-  const ratio = heightRatio;
   const width = getViewPortWidth() - scrollbarWidth;
   return {
     width,
-    height: ratio * width
+    height: heightRatio * width
   };
 };
 
@@ -68,7 +63,7 @@ class Carousal extends Component {
     const {height, width} = this.state;
     return (
       <div style={{height, width}} className="carousal">
-        <ImageCarousal arrows dots imageLinks={imageLinks} viewDuration={10000} />
+        <ImageCarousal type="bg-image" arrows dots imageLinks={imageLinks} viewDuration={10000} />
         <MessageCarousal messages={messages} viewDuration={6000} />
       </div>
     );

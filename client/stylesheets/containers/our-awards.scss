@@ -1,0 +1,20 @@
+@import '../colors';
+
+.our-awards {
+  font-family: 'Lato', sans-serif;
+
+  > h1 {
+    color: $contentBlockHeaderColor;
+    background-color: $contentBlockHeaderBgColor;
+    padding: 30px;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  > .page-content {
+    width: calc(90% - 80px);
+    margin: 30px auto;
+    padding: 10px 40px;
+    border: 1px solid #cccccc;
+  }
+}

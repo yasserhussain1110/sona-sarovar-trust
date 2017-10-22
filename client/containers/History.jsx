@@ -15,7 +15,7 @@ const History = ({history}) => (
 
       <div className="quote">
         “Numbers don’t count. Even if we can change one life, it means a great deal to us.”
-        <small>Mrs. Sona Kumar, Sona Sarovar Trust Founder (1954-1994)</small>
+        <small>Mrs. Sona Kumar, Sona Sarovar Trust Founder</small>
       </div>
     </div>
   </div>
