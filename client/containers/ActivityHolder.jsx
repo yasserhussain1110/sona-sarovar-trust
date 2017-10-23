@@ -13,7 +13,7 @@ const ActivityHolder = ({activity}) => {
     <div className="activity-holder">
       <h1>{name}</h1>
       <div className="page-content">
-        <div className="activity-image-carousal">
+        <div className="img-container">
           <ImageCarousal
             viewDuration={8000}
             imageLinks={pics.map(pic => pic.url)}

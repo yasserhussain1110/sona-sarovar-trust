@@ -30,3 +30,59 @@
     border-top: 1px solid #CBCBCB;
   }
 }
+
+@media screen and (max-width: 990px) {
+  .activity-holder {
+    .img-container {
+      width: 600px;
+      height: 400px;
+    }
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .activity-holder {
+    > .page-content {
+      width: calc(95% - 22px);
+      margin: 30px auto;
+      padding: 10px 10px;
+      border: 1px solid #cccccc;
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .activity-holder {
+    .img-container {
+      width: 500px;
+      height: 300px;
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .activity-holder {
+    .img-container {
+      width: 450px;
+      height: 300px;
+    }
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .activity-holder {
+    .img-container {
+      width: 320px;
+      height: 200px;
+    }
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .activity-holder {
+    .img-container {
+      width: 270px;
+      height: 180px;
+    }
+  }
+}

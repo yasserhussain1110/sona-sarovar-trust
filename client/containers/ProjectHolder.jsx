@@ -13,7 +13,7 @@ const ProjectHolder = ({project}) => {
     <div className="project-holder">
       <h1>{name}</h1>
       <div className="page-content">
-        <div className="project-image-carousal">
+        <div className="img-container">
           <ImageCarousal
             viewDuration={8000}
             imageLinks={pics.map(pic => pic.url)}
