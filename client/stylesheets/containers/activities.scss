@@ -65,3 +65,19 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width: 890px) {
+  .activities {
+    .activity-container {
+      width: 100%;
+      display: block;
+      text-align: center;
+      margin: 30px 0;
+
+      &:first-of-type {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+

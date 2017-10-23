@@ -18,6 +18,13 @@ const OurAwards = () => (
           viewDuration={5000}
         />
       </div>
+
+      <div className="text-container">
+        <p>
+          We have received the above award from Global Start.
+          They have appreciated our efforts.
+        </p>
+      </div>
     </div>
   </div>
 );

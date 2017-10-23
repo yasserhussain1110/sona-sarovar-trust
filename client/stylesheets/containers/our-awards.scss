@@ -25,6 +25,13 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  .text-container {
+    border-top: 1px solid #CBCBCB;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 990px) {
