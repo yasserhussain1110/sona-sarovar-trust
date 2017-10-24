@@ -10,3 +10,4 @@ resources.test
 resources.prod
 package-lock.json
 logs
+deploy-js.sh
