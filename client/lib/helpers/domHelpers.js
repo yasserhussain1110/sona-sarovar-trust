@@ -17,7 +17,7 @@ export const getViewPortWidth = () => window.innerWidth || document.documentElem
 
 export const getViewPortHeight = () => window.innerHeight || document.documentElement.clientHeight;
 
-const start = 195;
+const start = 100;
 const end = 65;
 
 const mapElementTopToImageBackgroundPosition = (clientRectTop, viewPortHeight) =>
