@@ -91,3 +91,17 @@
     }
   }
 }
+
+@media screen and (max-width: 365px) {
+  .media-events-blog {
+    .img-holder {
+      width: 300px;
+      height: 200px;
+    }
+
+    .iframe-holder {
+      width: 300px;
+      height: 200px;
+    }
+  }
+}
