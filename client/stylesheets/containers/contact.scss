@@ -12,9 +12,9 @@
   }
 
   > .page-content {
-    width: 85%;
+    width: calc(95% - 42px);
     margin: 30px auto;
-    padding: 10px 30px;
+    padding: 10px 20px;
     border: 1px solid #cccccc;
   }
 

@@ -12,6 +12,8 @@
   }
 
   > .page-content {
+    width: calc(95% - 10px);
+    padding: 5px;
     text-align: center;
     margin: 30px auto;
     border-top: 1px solid #f6f3f1;
@@ -78,10 +80,9 @@
     }
 
     > .page-content {
-      width: 100%;
-      text-align: center;
+      width: calc(100% - 10px);
+      padding: 5px;
     }
-
   }
 }
 
