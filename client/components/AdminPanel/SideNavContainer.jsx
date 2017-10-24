@@ -1,6 +1,6 @@
 import React from 'react';
 import {home} from 'react-icons-kit/icomoon';
-import {calendar, eye, signOut, group, star, code} from 'react-icons-kit/fa';
+import {calendar, eye, signOut, group, star, code, infoCircle} from 'react-icons-kit/fa';
 import {ic_format_list_bulleted as icFormatListBulleted} from 'react-icons-kit/md/ic_format_list_bulleted';
 import {userTie} from 'react-icons-kit/icomoon/userTie';
 import SideNavBar from './SideNavContainer/SideNavBar';
@@ -10,7 +10,7 @@ import {logOut} from '../../lib/handlers/commonErrorsHandler';
 const SideNavContainer = () => (
   <SideNavBar>
     <SideNav to="/admin/home" icon={home}>Home</SideNav>
-    <SideNav to="/admin/about" icon={home}>About Us</SideNav>
+    <SideNav to="/admin/about" icon={infoCircle}>About Us</SideNav>
     <SideNav to="/admin/projects" icon={icFormatListBulleted}>Projects</SideNav>
     <SideNav to="/admin/activities" icon={calendar}>Activities</SideNav>
     <SideNav to="/admin/trustees" icon={userTie}>Trustees</SideNav>
