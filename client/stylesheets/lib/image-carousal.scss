@@ -1,3 +1,5 @@
+@import '../colors';
+
 .carousal-image-container {
   height: 100%;
   width: 100%;
@@ -63,19 +65,19 @@
     display: inline-block;
     height: 8px;
     width: 8px;
-    border: 2px solid #EFC337;
+    border: 2px solid $fixedHeaderNavBarBgColor;
     border-radius: 50%;
     margin: 0 2px;
     transition: background-color 0.3s ease-in-out;
   }
 
   .dot.selected {
-    background-color: #EFC337;
+    background-color: $fixedHeaderNavBarBgColor;
   }
 
   .dot:hover {
     cursor: pointer;
-    background-color: #EFC337;
+    background-color: $fixedHeaderNavBarBgColor;
   }
 
   .bg-image {
