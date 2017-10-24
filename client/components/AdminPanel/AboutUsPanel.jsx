@@ -35,6 +35,9 @@ class AboutUsPanel extends Component {
     this.handleSuccess = this.handleSuccess.bind(this);
     this.handleFailure = this.handleFailure.bind(this);
     this.update = this.update.bind(this);
+    this.updateVision = this.update.bind(null, 'vision');
+    this.updateMission = this.update.bind(null, 'mission');
+    this.updateHistory = this.update.bind(null, 'history');
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,9 +60,7 @@ class AboutUsPanel extends Component {
     }
   }
 
-  handleSuccess(newContent) {
-    const contentToUpdate = this.state.contentToUpdate;
-
+  handleSuccess(contentToUpdate, newContent) {
     this.contentToActionMap[contentToUpdate](newContent);
 
     const statusBoxToShow = (
@@ -76,26 +77,25 @@ class AboutUsPanel extends Component {
     });
   }
 
-  update() {
-    const contentToUpdate = this.state.contentToUpdate;
+  update(contentToUpdate) {
     const requestObj = {};
     requestObj[contentToUpdate] = this.state[contentToUpdate];
     axios.patch(`/api/about-us/${contentToUpdate}`,
       requestObj, {headers: {'x-auth': this.props.authToken}})
       .then(() => {
-        this.handleSuccess(this.state[contentToUpdate]);
+        this.handleSuccess(contentToUpdate, this.state[contentToUpdate]);
       })
       .catch(err => {
         console.log(err);
-        this.handleFailure();
+        this.handleFailure(contentToUpdate);
       });
   }
 
-  handleFailure() {
+  handleFailure(contentToUpdate) {
     const statusBoxToShow = (
       <StatusBox success={false}>
         <div><h3>Failure!</h3></div>
-        <div>{this.state.contentToUpdate} could not be updated.</div>
+        <div>{contentToUpdate} could not be updated.</div>
       </StatusBox>
     );
 
@@ -139,7 +139,9 @@ class AboutUsPanel extends Component {
         updateMissionClick={this.updateMissionClick}
         updateHistoryClick={this.updateHistoryClick}
         modalContent={this.getModalContent()}
-        update={this.update}
+        updateVision={this.updateVision}
+        updateMission={this.updateMission}
+        updateHistory={this.updateHistory}
       />
     );
   }
@@ -148,7 +150,8 @@ class AboutUsPanel extends Component {
 const AboutUsPanelView = ({
   vision, mission, history, modalContent,
   updateVisionClick, updateMissionClick,
-  updateHistoryClick, statusBoxToShow, update
+  updateHistoryClick, statusBoxToShow,
+  updateVision, updateMission, updateHistory
 }) => (
   <div className="controller about-us-panel">
     <h1>About Us Panel</h1>
@@ -162,7 +165,7 @@ const AboutUsPanelView = ({
         Use Markdown helper
       </button>
       <div className="button-holder">
-        <button onClick={update} className="button update">Update</button>
+        <button onClick={updateVision} className="button update">Update</button>
       </div>
     </div>
     <div className="mission-panel">
@@ -175,7 +178,7 @@ const AboutUsPanelView = ({
         Use Markdown helper
       </button>
       <div className="button-holder">
-        <button onClick={update} className="button update">Update</button>
+        <button onClick={updateMission} className="button update">Update</button>
       </div>
     </div>
     <div className="history-panel">
@@ -188,7 +191,7 @@ const AboutUsPanelView = ({
         Use Markdown helper
       </button>
       <div className="button-holder">
-        <button onClick={update} className="button update">Update</button>
+        <button onClick={updateHistory} className="button update">Update</button>
       </div>
     </div>
     {modalContent}
@@ -222,7 +225,9 @@ AboutUsPanelView.propTypes = {
   vision: PropTypes.string.isRequired,
   mission: PropTypes.string.isRequired,
   history: PropTypes.string.isRequired,
-  update: PropTypes.func.isRequired,
+  updateVision: PropTypes.func.isRequired,
+  updateMission: PropTypes.func.isRequired,
+  updateHistory: PropTypes.func.isRequired,
   updateVisionClick: PropTypes.func.isRequired,
   updateMissionClick: PropTypes.func.isRequired,
   updateHistoryClick: PropTypes.func.isRequired,
