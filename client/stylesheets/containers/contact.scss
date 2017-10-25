@@ -31,4 +31,9 @@
   .header, .additional-info {
     margin: 20px 10px;
   }
+
+  iframe {
+    border: 0;
+    max-width: 100%;
+  }
 }
