@@ -154,7 +154,7 @@ class CenterPicsPanel extends Component {
                   picFormMode: 'update',
                   selectedCenterPicIndex: index
                 })}
-                className="button update-button"
+                className="update-button"
               >
                 Update
               </button>
@@ -165,7 +165,7 @@ class CenterPicsPanel extends Component {
                   picFormMode: 'delete',
                   selectedCenterPicIndex: index
                 })}
-                className="button delete-button"
+                className="delete-button"
               >
                 Delete
               </button>

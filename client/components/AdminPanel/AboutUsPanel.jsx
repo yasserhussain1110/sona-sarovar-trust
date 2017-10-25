@@ -165,7 +165,7 @@ const AboutUsPanelView = ({
         Use Markdown helper
       </button>
       <div className="button-holder">
-        <button onClick={updateVision} className="button update">Update</button>
+        <button onClick={updateVision} className="about-us-button update">Update</button>
       </div>
     </div>
     <div className="mission-panel">
@@ -178,7 +178,7 @@ const AboutUsPanelView = ({
         Use Markdown helper
       </button>
       <div className="button-holder">
-        <button onClick={updateMission} className="button update">Update</button>
+        <button onClick={updateMission} className="about-us-button update">Update</button>
       </div>
     </div>
     <div className="history-panel">
@@ -191,7 +191,7 @@ const AboutUsPanelView = ({
         Use Markdown helper
       </button>
       <div className="button-holder">
-        <button onClick={updateHistory} className="button update">Update</button>
+        <button onClick={updateHistory} className="about-us-button update">Update</button>
       </div>
     </div>
     {modalContent}

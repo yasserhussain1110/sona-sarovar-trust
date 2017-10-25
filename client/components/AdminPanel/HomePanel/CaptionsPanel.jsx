@@ -140,12 +140,12 @@ class CaptionsPanel extends Component {
             </div>
             <div className="button-holder">
               <button
-                className="button update-button"
+                className="update-button"
                 onClick={() => this.updateCaption(index)}
               >Update
               </button>
               <button
-                className="button delete-button"
+                className="delete-button"
                 onClick={() => this.deleteCaption(index)}
               >Delete
               </button>

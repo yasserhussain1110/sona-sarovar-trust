@@ -60,9 +60,9 @@ class MarkdownEditor extends Component {
           </div>
 
           <div className="button-holder">
-            <button className="button update" onClick={this.done}>Done</button>
-            <button className="button reset" onClick={this.reset}>Reset</button>
-            <button className="button back" onClick={this.props.back}>Back</button>
+            <button className="update" onClick={this.done}>Done</button>
+            <button className="reset" onClick={this.reset}>Reset</button>
+            <button className="back" onClick={this.props.back}>Back</button>
           </div>
         </div>
       </Modal>
