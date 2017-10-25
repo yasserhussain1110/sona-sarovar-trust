@@ -8,7 +8,7 @@ const AboutUsSchema = new Schema({
     type: String,
     required: true,
     minlength: 400,
-    maxlength: 1000,
+    maxlength: 2500,
     trim: true
   },
 
@@ -16,7 +16,7 @@ const AboutUsSchema = new Schema({
     type: String,
     required: true,
     minlength: 400,
-    maxlength: 1000,
+    maxlength: 2500,
     trim: true
   },
 
@@ -24,7 +24,7 @@ const AboutUsSchema = new Schema({
     type: String,
     required: true,
     minlength: 400,
-    maxlength: 2200,
+    maxlength: 6000,
     trim: true
   }
 });
