@@ -14,7 +14,7 @@ const aboutUsRoutes = app => {
     }).then(() => {
       res.status(200).send();
     }).catch(e => {
-      logger.debug(e.message, e);
+      logger.error(e.message, e);
       res.status(400).send();
     });
   });
@@ -30,7 +30,7 @@ const aboutUsRoutes = app => {
     }).then(() => {
       res.status(200).send();
     }).catch(e => {
-      logger.debug(e.message, e);
+      logger.error(e.message, e);
       res.status(400).send();
     });
   });
@@ -46,7 +46,7 @@ const aboutUsRoutes = app => {
     }).then(() => {
       res.status(200).send();
     }).catch(e => {
-      logger.debug(e.message, e);
+      logger.error(e.message, e);
       res.status(400).send();
     });
   });
