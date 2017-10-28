@@ -9,6 +9,7 @@
     "start:development": "nodemon --watch server server/server.js",
     "test": "NODE_ENV=test mocha test/**/*.test.js",
     "seed": "node server/seed/seed.js",
+    "postinstall": "npm run build",
     "build": "webpack"
   },
   "repository": {
