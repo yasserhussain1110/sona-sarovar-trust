@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "per-env",
-    "start:production": "forever start server/server.js",
+    "start:production": "npm run seed && node server/server.js",
     "start:development": "nodemon --watch server server/server.js",
     "test": "NODE_ENV=test mocha test/**/*.test.js",
     "seed": "node server/seed/seed.js",
