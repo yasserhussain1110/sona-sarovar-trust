@@ -4,7 +4,7 @@
   "description": "Website for non-profit Sona Sarovar Trsut",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --ext .js,.jsx .",
+    "lint": "eslint --ext .js,.jsx . --ignore-path .gitignore",
     "start": "per-env",
     "start:production": "forever start server/server.js",
     "start:development": "nodemon --watch server server/server.js",
