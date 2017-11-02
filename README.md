@@ -63,6 +63,7 @@ After making changes to the website, the admin can click on the Preview button t
 They do not have type the url of the Visitor website's url
 
 ## Technologies Used
+![tech stack](readme-resources/tech-stack.png)
 
 ### 1. Node
 
