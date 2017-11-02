@@ -174,7 +174,7 @@ const populateAdmins = () => {
 };
 
 const populateHomePage = () => {
-  const sourceHomeDir = 'initResources/home';
+  const sourceHomeDir = 'init-resources/home';
   const targetHomeDir = RESOURCES_DIR + '/home';
 
   return new Promise(resolve => {
@@ -196,7 +196,7 @@ const populateAboutUs = () => {
 };
 
 const populateTeamMembers = () => {
-  const sourceAboutDir = 'initResources/team';
+  const sourceAboutDir = 'init-resources/team';
   const targetAboutDir = RESOURCES_DIR + '/team';
 
   return new Promise(resolve => {
@@ -212,7 +212,7 @@ const populateTeamMembers = () => {
 };
 
 const populateProjects = () => {
-  const sourceProjectsDir = 'initResources/projects';
+  const sourceProjectsDir = 'init-resources/projects';
   const targetProjectsDir = RESOURCES_DIR + '/projects';
 
   return new Promise(resolve => {
@@ -228,7 +228,7 @@ const populateProjects = () => {
 };
 
 const populateActivities = () => {
-  const sourceProjectsDir = 'initResources/activities';
+  const sourceProjectsDir = 'init-resources/activities';
   const targetProjectsDir = RESOURCES_DIR + '/activities';
 
   return new Promise(resolve => {
