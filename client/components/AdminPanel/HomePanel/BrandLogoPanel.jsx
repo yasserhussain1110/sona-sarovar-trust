@@ -98,8 +98,10 @@ const BrandLogoPanelView = ({
     <div className="new-logo">
       <h3>Update Logo</h3>
       <div className="label">
-        <span>Click on the
-          <span className="info">Update Logo</span> button below to update Logo.
+        <span>
+          Click on the&nbsp;
+          <span className="info">Update Logo</span>
+          &nbsp;button below to update Logo.
         </span>
       </div>
       <div className="button-holder">
