@@ -191,6 +191,6 @@ The website is broken into two major sections.
 
  We used **Mocha** library for writing declarative test cases.
 
- ### 12. Mocha
+ ### 13. Git
 
  **Git** is the version control system of our choice.
