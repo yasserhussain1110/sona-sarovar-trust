@@ -20,7 +20,8 @@ class DonateOnline extends Component {
       email: '',
       emailError: '',
       contactNumber: '',
-      contactNumberError: ''
+      contactNumberError: '',
+      redirecting: false
     };
 
     this.updateName = this.updateName.bind(this);
@@ -56,6 +57,8 @@ class DonateOnline extends Component {
   donate(e) {
     e.preventDefault();
     if (!this.validate()) return;
+
+    this.setState({redirecting: true});
 
     axios.post('/api/payment/start', {
       amount: this.state.amount,
@@ -159,8 +162,8 @@ const DonateOnlineView = ({
   tentativeAmount, updateTentativeAmount,
   amount, amountError, name, nameError, email, emailError,
   contactNumber, contactNumberError,
-  updateName, updateEmail,  updateContactNumber,
-  updateAmount
+  updateName, updateEmail, updateContactNumber,
+  updateAmount, redirecting
 }) => (
   <div className="donate-online">
     <h1>Donate Online</h1>
@@ -238,7 +241,13 @@ const DonateOnlineView = ({
           </div>
 
           <div className="button-holder">
-            <button onClick={donate} className="button">Donate Now</button>
+            <button onClick={donate} className="button">
+              <span>Donate Now</span>
+              <i
+                style={{display: redirecting ? 'initial' : 'none'}}
+                className="fa fa-spinner fa-spin"
+              />
+            </button>
           </div>
         </form>
       </div>
@@ -261,7 +270,8 @@ DonateOnlineView.propTypes = {
   updateName: PropTypes.func.isRequired,
   updateEmail: PropTypes.func.isRequired,
   updateContactNumber: PropTypes.func.isRequired,
-  updateAmount: PropTypes.func.isRequired
+  updateAmount: PropTypes.func.isRequired,
+  redirecting: PropTypes.bool.isRequired
 };
 
 export default DonateOnline;

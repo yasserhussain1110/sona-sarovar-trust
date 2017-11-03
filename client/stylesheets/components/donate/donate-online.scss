@@ -93,6 +93,7 @@
     transition: all 0.4s ease-in-out;
     display: inline-block;
     margin: 20px;
+    position: relative;
   }
 
   .button:hover {
@@ -112,5 +113,11 @@
 
   .show {
     display: inline-block;
+  }
+
+  i {
+    position: absolute;
+    right: 6%;
+    top: 30%;
   }
 }
