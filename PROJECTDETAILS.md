@@ -29,6 +29,7 @@
     * [Webpack](#11-webpack)
     * [Mocha](#12-mocha)
     * [Git](#13-git)
+  * [Branches](#branches)
 
 ## Overview
 
@@ -199,3 +200,11 @@ The website is broken into two major sections.
  ### 13. Git
 
  **Git** is the version control system of our choice.
+
+## This Project has following main branches
+
+| Branch                                                                                                          | Purpose                                    |
+|:----------------------------------------------------------------------------------------------------------------|:-------------------------------------------|
+| [master](https://github.com/yasserhussain1110/sona-sarovar-trust)                                               | Main branch. Running in production.        |
+| [old-ui](https://github.com/yasserhussain1110/sona-sarovar-trust/tree/old-ui)                                   | Project's old UI.                          |
+| [new-ui-old-color-scheme](https://github.com/yasserhussain1110/sona-sarovar-trust/tree/new-ui-old-color-scheme) | Project's new UI but with old color scheme |
