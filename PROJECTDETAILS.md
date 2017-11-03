@@ -17,7 +17,7 @@
     * [Live Preview](#live-preview)
   * [Technologies Used](#technologies-used)
     * [Node](#1-node)
-    * [NPM](#2-npm)
+    * [Npm](#2-npm)
     * [Express](#3-express)
     * [ESLint](#4-eslint)
     * [MongoDB](#5-mongodb)
@@ -113,7 +113,7 @@ The website is broken into two major sections.
 | Technology                       | Purpose                          | Official Website                                                             |
 |:---------------------------------|:---------------------------------|:-----------------------------------------------------------------------------|
 | [Node](#1-node)                  | App's Runtime Environment        | [Node](https://nodejs.org)                                                   |
-| [NPM](#2-npm)                    | Package Manager                  | [Npm](https://www.npmjs.com)                                                 |
+| [Npm](#2-npm)                    | Package Manager                  | [Npm](https://www.npmjs.com)                                                 |
 | [Express](#3-express)            | Web Framework                    | [Express](https://expressjs.com/en/starter/installing.html)                  |
 | [ESLint](#4-eslint)              | Linting Utility                  | [ESLint](https://eslint.org)                                                 |
 | [MongoDB](#5-mongodb)            | App's Database                   | [MongoDB](https://www.mongodb.com)                                           |
@@ -134,9 +134,9 @@ The website is broken into two major sections.
  (same language on server and client side). Not to mention that it enables us to use other
  really cool technologies like (express and mongoose).
 
- ### 2. NPM
+ ### 2. Npm
 
- **NPM** is the package manager of our choice. It made it easy for us to use open source code
+ **Npm** is the package manager of our choice. It made it easy for us to use open source code
  and track dependency.
 
  ### 3. Express
