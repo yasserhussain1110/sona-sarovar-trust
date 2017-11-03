@@ -194,7 +194,3 @@ The website is broken into two major sections.
  ### 12. Mocha
 
  **Git** is the version control system of our choice.
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md)
