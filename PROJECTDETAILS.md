@@ -81,7 +81,7 @@ The website is broken into two major sections.
 
  This is a [Single Page Application](https://en.wikipedia.org/wiki/Single-page_application).
  This means once the website loads, when the User moves to a different route, new pages will
- **not** be requested from the server. On the contrary the browser will simple load the
+ **not** be requested from the server. On the contrary the browser will simply load the
  appropriate page.
 
  ### Online Payment Gateway Integration
@@ -180,7 +180,7 @@ The website is broken into two major sections.
 
  **React** and **Redux** libraries were particularly critical with the **Admin Panel** of the
  website as one major requirement was that the user experience while updating the site should
- be great. The admin should not have to wait for page reloads. This implied that requets
+ be great. The admin should not have to wait for page reloads. This implied that requests
  had to be **asynchronous**. It also made us use a flux like state management tool and
  we picked **Redux** as it works great with **React** and is fun to code with.
 
