@@ -104,21 +104,21 @@ The website is broken into two major sections.
 ## Technologies Used
 ![tech stack](readme-resources/tech-stack.png)
 
-| Technology                      | Purpose                          | Official Website                                                             |
-|:--------------------------------|:---------------------------------|:-----------------------------------------------------------------------------|
-| [Node](1-node)                  | App's Runtime Environment        | [Node](https://nodejs.org)                                                   |
-| [NPM](2-npm)                    | Package Manager                  | [Npm](https://www.npmjs.com)                                                 |
-| [Express](3-express)            | Web Framework                    | [Express](https://expressjs.com/en/starter/installing.html)                  |
-| [ESLint](4-eslint)              | Linting Utility                  | [ESLint](https://eslint.org)                                                 |
-| [MongoDB](5-mongodb)            | App's Database                   | [MongoDB](https://www.mongodb.com)                                           |
-| [Mongoose](6-mongoose)          | ORM for MongoDB                  | [Mongoose](http://mongoosejs.com)                                            |
-| [Sass](7-sass)                  | CSS preprocessor                 | [Sass](http://sass-lang.com)                                                 |
-| [React](8-react )               | Frontend Library                 | [React](http://reactjs.org )                                                 |
-| [Redux](9-redux)                | Front End's State Management Tool| [Redux](http://redux.js.org)                                                 |
-| [React-Router](10-react-router) | Frontend Router                  | [React-Router](https://reacttraining.com/react-router/web/guides/philosophy) |
-| [Webpack](11-webpack)           | Frontend Bundler                 | [Webpack](https://webpack.js.org)                                            |
-| [Mocha](12-mocha)               | Test Framework                   | [Mocha](https://mochajs.org)                                                 |
-| [Git](13-git)                   | Version Control System           | [Git](https://git-scm.com)                                                   |
+| Technology                       | Purpose                          | Official Website                                                             |
+|:---------------------------------|:---------------------------------|:-----------------------------------------------------------------------------|
+| [Node](#1-node)                  | App's Runtime Environment        | [Node](https://nodejs.org)                                                   |
+| [NPM](#2-npm)                    | Package Manager                  | [Npm](https://www.npmjs.com)                                                 |
+| [Express](#3-express)            | Web Framework                    | [Express](https://expressjs.com/en/starter/installing.html)                  |
+| [ESLint](#4-eslint)              | Linting Utility                  | [ESLint](https://eslint.org)                                                 |
+| [MongoDB](#5-mongodb)            | App's Database                   | [MongoDB](https://www.mongodb.com)                                           |
+| [Mongoose](#6-mongoose)          | ORM for MongoDB                  | [Mongoose](http://mongoosejs.com)                                            |
+| [Sass](#7-sass)                  | CSS preprocessor                 | [Sass](http://sass-lang.com)                                                 |
+| [React](#8-react )               | Frontend Library                 | [React](http://reactjs.org )                                                 |
+| [Redux](#9-redux)                | Front End's State Management Tool| [Redux](http://redux.js.org)                                                 |
+| [React-Router](#10-react-router) | Frontend Router                  | [React-Router](https://reacttraining.com/react-router/web/guides/philosophy) |
+| [Webpack](#11-webpack)           | Frontend Bundler                 | [Webpack](https://webpack.js.org)                                            |
+| [Mocha](#12-mocha)               | Test Framework                   | [Mocha](https://mochajs.org)                                                 |
+| [Git](#13-git)                   | Version Control System           | [Git](https://git-scm.com)                                                   |
 
 
  ### 1. Node
