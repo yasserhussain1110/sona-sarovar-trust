@@ -64,7 +64,7 @@ See [Contributing](CONTRIBUTING.md) to get started.
 
 ## Project Details
 
-See [ProjectDetails](PROJECTDETAILS.md)
+See [Project Details](PROJECTDETAILS.md)
 
 ## Author
 
