@@ -1,114 +1,79 @@
 ![logo](readme-resources/logo.jpg)
 # SonaSarovarTrust
 
-## Overview
-
-This is a **Full Stack** single page web application for a
+**Full Stack** single page web application for
 Non-Profit Organisation [SonaSarovarTrust](http://www.sonasarovartrust.org).
 
-## Website's Overall Structure
+## Table of contents
 
-The website is broken into two major sections.
+  * [SonaSarovarTrust](#sonasarovartrust)
+  * [Table of contents](#table-of-contents)
+  * [Feature List](#feature-list)
+  * [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+    * [For Developers](#for-developers)
+  * [Built With](#built-with)
+  * [Contributing](#contributing)
+  * [Project Details](#project-details)
+  * [Author](#author)
+  * [License](#license)
+  * [Acknowledgments](#acknowledgments)
 
-### UI For Visitors
+## Feature List
+ * Engaging UI where visitors can info about trust's activities
+ * Online Payment Gateway Integration with [Instamojo](https://www.instamojo.com) for
+   online donations
+ * Admin Panel for admins so that they can modify website contents with ease
 
-![visitor site](readme-resources/visitor.png)
+## Getting Started
+SonaSarovarTrust is hosted on Amazon EC2:
+ * [SonaSarovarTrust](http://ec2-13-126-102-159.ap-south-1.compute.amazonaws.com/web)
 
-This section is accessible to both the **web admins** and **visitors**.
+## Prerequisites
+ These are what you need installed on your computer to use the application:
 
-This section has an engaging UI where visitors can get following information -
-  * Trust's aims and objectives
-  * Trust's accomplishments
-  * Project & Activities undertaken by the Trust
-  * Ways to get in touch with the Trust's admins in case one needs
-    to volunteer
-  * Trust's contact info
-  * Testimonials and Awards given to the Trust to validate the Trust
-  * Multiple ways (online & offline) to donate to the trust, in case somebody to would
-    like to make a donation
+ - Web Browser (Chrome, or Mozilla, or Safari, or Opera, or Microsoft Edge )
 
-### Admin Panel to Make the Website Dynamic
+ #### For Developers:
+  See [Contributing](CONTRIBUTING.md)
 
-This section is visible **only** to the **admins**.
 
-A lot of activity happens in this organisation, like starting new
-projects, sponsoring more children, taking part in social activites to
-raise awareness, etc. And the Trust's admins keep needing to update the website
-with new information (**pictures**, **announcements**, etc). Because of this
-the website could not be static.
+## Built With
 
-And since the site admins have limited technical knowledge, it was important
-to build a simple Admin Panel for them so that they can modify the website
-easily.
-
-So we have built this section for them to be able
-
-## Salient Features
-
-### Single Page App
-
-This is a [Single Page Application](https://en.wikipedia.org/wiki/Single-page_application).
-This means once the website loads, when the User moves to a different route, new pages will
-**not** be requested from the server. On the contrary the browser will simple load the
-appropriate page.
-
-### No Reload During Site Updates
-
-When the website's admin is updating the website, they should not have to wait for website
-reload to see the effect of changes.
-
-### Live Preview
-
-After making changes to the website, the admin can click on the Preview button to see the changes.
-They do not have type the url of the Visitor website's url
-
-## Technologies Used
-![tech stack](readme-resources/tech-stack.png)
-
-### 1. Node
-
-**Node** powers this website's backend. It is fun to code in. It is pretty fast which makes
-websites built with it quite performant. Another advantage is that the code is isomorphic
-(same language on server and client side). Not to mention that it enables us to use other
-really cool technologies like (express and mongoose).
-
-### 2. Express
-
-**Express** is the web application framework used in this project. Express (along with
-**jsonwebtoken**) makes it a breeze to write an authenticated API to handle all site
-modifications.
-
-### 3. MongoDB
-
-**MongoDB** is the database derver of our choice since **NoSQL**  nature of it makes
-it simple to build a complex but flexible database.
-
-### 4. Mongoose
-
-If MongoDB made building database easy, **Mongoose** has made managing database entities
-super simple. Mongoose validations helps doing automatic validation on insert/update.
-And mongoose middlewares like `save` allows us to write password hashing logic near the
-database model and not in the application logic.
-
-### 5. React & Redux
-
-**React** and **Redux** helped us write complex application logic in straightforward
-manner, keeping code readble and easy to modify/update.
-These libraries were particularly critical with the **Admin Panel** of the website as
-one major requirement was that the User Experience while updating the site should
-be great. The admin should not have to wait for page reloads. This implied that requets
-had to be **asynchronous**. It also made us use a flux like state management tool and
-we picked redux as it works great with **React** and is fun to code with.
-
-### 6. React Router
-
-As mentioned above this is an SPA (Single Page Application). Making it so became pretty
-straighforward using React Router.
-
-### 7. Mocha
-
-We use **Mocha** library for writing declarative test cases.
+- [Node](https://nodejs.org) - JS Runtime Environment
+- [Npm](https://www.npmjs.com) - Package Manager
+- [Express](https://expressjs.com/en/starter/installing.html) - Web Framework
+- [ESLint](https://eslint.org) - Linting Utility
+- [MongoDB](https://www.mongodb.com) - Database
+- [Mongoose](http://mongoosejs.com) - Database ORM
+- [Sass](http://sass-lang.com) - CSS Preprocessor
+- [React](https://reactjs.org) - Frontend Library
+- [Redux](http://redux.js.org) - State Management Tool
+- [React-Router](https://reacttraining.com/react-router/web/guides/philosophy) - Frontend Router
+- [Webpack](https://webpack.js.org) - Frontend Bundler
+- [Mocha](https://mochajs.org) - Testing Framework
+- [Git](https://git-scm.com) - Version Control
+- [AmazonEC2](https://aws.amazon.com/ec2) - Hosting and Continuous Deployment
+- [VS Code](https://code.visualstudio.com) - Code Editor
+- [Chrome](https://www.google.com/chrome/browser/desktop/index.html) - Browser
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md)
+Contributions are welcome
+See [Contributing](CONTRIBUTING.md) to get started
+
+## Project Details
+
+See [ProjectDetails](PROJECTDETAILS.md)
+
+## Author
+
+* [Yasser Hussain](https://github.com/yasserhussain1110)
+
+## License
+
+[MIT](LICENSE.md)
+
+## Acknowledgments
+* ChinguCentral Community
+* Family and Friends
