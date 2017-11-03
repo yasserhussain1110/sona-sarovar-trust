@@ -48,30 +48,30 @@ inconsistent behaviour.
 
   5. Install `npm` dependencies
 
-  ```shell
-    npm i
-  ```
+     ```shell
+       npm i
+     ```
 
   6. Seed your database and create resources.
 
-  ```shell
-    npm run seed
-  ```
+     ```shell
+       npm run seed
+     ```
 
   7. Install forever globally
  (Optional) Only if you are deploying in production env
 
-  ```shell
-    npm i forever -g
-  ```
+     ```shell
+       npm i forever -g
+     ```
 
  #### Start Development Server
 
   1. Run npm's `start` command
 
-  ```shell
-    npm start
-  ```
+     ```shell
+       npm start
+     ```
 
   2. Go to url - [http://localhost:8080](http://localhost:8080) to see the live project
 
@@ -80,18 +80,18 @@ inconsistent behaviour.
 
   1. Fetch the old ui branch and switch to it
 
-  ```shell
-    git fetch origin old-ui
-    git checkout old-ui
-  ```
+     ```shell
+       git fetch origin old-ui
+       git checkout old-ui
+     ```
 
   2. Install additional dependencies
 
-  ```shell
-    npm i
-  ```
+     ```shell
+       npm i
+     ```
   3. Run npm's `start` command
 
-  ```shell
-    npm start
-  ```
+     ```shell
+       npm start
+     ```
