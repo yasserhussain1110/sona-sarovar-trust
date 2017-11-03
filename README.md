@@ -59,8 +59,8 @@ SonaSarovarTrust is hosted on Amazon EC2:
 
 ## Contributing
 
-Contributions are welcome
-See [Contributing](CONTRIBUTING.md) to get started
+Contributions are welcome.
+See [Contributing](CONTRIBUTING.md) to get started.
 
 ## Project Details
 
