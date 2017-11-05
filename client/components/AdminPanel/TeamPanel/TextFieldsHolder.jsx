@@ -4,7 +4,7 @@ import {uniqueId} from 'lodash';
 
 const TextFieldsHolder = ({
   name, designation, updateName, nameError,
-  designationError, updateDesignation
+  designationError, updateDesignation, designationRequired
 }) => {
   const inputId = uniqueId('input');
   return (
@@ -21,7 +21,7 @@ const TextFieldsHolder = ({
         </div>
       </div>
 
-      <div className="field">
+      <div className="field" style={{display: designationRequired ? 'initial' : 'none'}}>
         <div className="label">
           <label htmlFor={inputId}><h3>Designation</h3></label>
         </div>
@@ -36,13 +36,18 @@ const TextFieldsHolder = ({
   );
 };
 
+TextFieldsHolder.defaultProps = {
+  designationRequired: true
+};
+
 TextFieldsHolder.propTypes = {
   name: PropTypes.string.isRequired,
   designation: PropTypes.string.isRequired,
   updateName: PropTypes.func.isRequired,
   updateDesignation: PropTypes.func.isRequired,
   nameError: PropTypes.string.isRequired,
-  designationError: PropTypes.string.isRequired
+  designationError: PropTypes.string.isRequired,
+  designationRequired: PropTypes.bool
 };
 
 export default TextFieldsHolder;

@@ -45,6 +45,7 @@ const AmbassadorPanelView = ({
         authToken={authToken}
         updatedTeamMember={updatedTeamMember}
         addStatusBox={addStatusBox}
+        designationRequired={false}
       />))}
     </section>
     <StatusPanel statusBoxToAdd={statusBoxToAdd} />

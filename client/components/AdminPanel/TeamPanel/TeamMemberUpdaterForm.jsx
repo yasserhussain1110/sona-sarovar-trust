@@ -173,7 +173,10 @@ class TeamMemberUpdaterForm extends Component {
     } = this.state;
 
     return (
-      <section ref={ref => { this.updaterForm = ref; }} className="team-member-updater">
+      <section
+        className="team-member-updater"
+        ref={ref => { this.updaterForm = ref; }}
+      >
         <h2 className="team-heading">Member #{this.props.index + 1}</h2>
         <TextFieldsHolder
           name={name}
@@ -182,6 +185,7 @@ class TeamMemberUpdaterForm extends Component {
           designationError={designationError}
           updateName={this.updateName}
           updateDesignation={this.updateDesignation}
+          designationRequired={this.props.designationRequired}
         />
 
         <PicFieldHolder pic={pic} picError={picError} />
@@ -200,12 +204,17 @@ class TeamMemberUpdaterForm extends Component {
   }
 }
 
+TeamMemberUpdaterForm.defaultProps = {
+  designationRequired: true
+};
+
 TeamMemberUpdaterForm.propTypes = {
   member: PropTypes.object.isRequired,
   authToken: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   updatedTeamMember: PropTypes.func.isRequired,
-  addStatusBox: PropTypes.func.isRequired
+  addStatusBox: PropTypes.func.isRequired,
+  designationRequired: PropTypes.bool
 };
 
 export default TeamMemberUpdaterForm;
