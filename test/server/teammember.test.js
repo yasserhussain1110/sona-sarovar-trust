@@ -63,6 +63,89 @@ describe('Testing path PUT /api/teammember', () => {
           .catch(done);
       });
   });
+
+  it('should add a new team member if designation is not provided', done => {
+    request(app)
+      .put('/api/teammember')
+      .set('x-auth', INIT_ADMIN.tokens[0])
+      .field('name', 'Yasser Hussain')
+      .field('info', 'Yasser Hussain is awesome person')
+      .field('type', 'technical')
+      .attach('pic', constructFullPath(testFileName))
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+
+        TeamMember.find()
+          .then(members => {
+            expect(members.length).toBe(INIT_TEAM_MEMBERS.length + 1);
+          })
+          .then(() => {
+            return TeamMember.findOne({
+              name: 'Yasser Hussain',
+              info: 'Yasser Hussain is awesome person'
+            });
+          })
+          .then(member => {
+            expect(member).toExist();
+            expect(member.pic).toInclude(testFileName);
+            expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);
+            const newMember = res.body;
+            delete newMember._id;
+            expect(newMember).toEqual({
+              name: 'Yasser Hussain',
+              info: 'Yasser Hussain is awesome person',
+              pic: member.pic,
+              type: 'technical',
+              designation: ''
+            });
+            done();
+          })
+          .catch(done);
+      });
+  });
+
+  it('should add a new team member if designation is \'\'', done => {
+    request(app)
+      .put('/api/teammember')
+      .set('x-auth', INIT_ADMIN.tokens[0])
+      .field('name', 'Yasser Hussain')
+      .field('info', 'Yasser Hussain is awesome person')
+      .field('type', 'technical')
+      .field('designation', '')
+      .attach('pic', constructFullPath(testFileName))
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+
+        TeamMember.find()
+          .then(members => {
+            expect(members.length).toBe(INIT_TEAM_MEMBERS.length + 1);
+          })
+          .then(() => {
+            return TeamMember.findOne({
+              name: 'Yasser Hussain',
+              info: 'Yasser Hussain is awesome person'
+            });
+          })
+          .then(member => {
+            expect(member).toExist();
+            expect(member.pic).toInclude(testFileName);
+            expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);
+            const newMember = res.body;
+            delete newMember._id;
+            expect(newMember).toEqual({
+              name: 'Yasser Hussain',
+              info: 'Yasser Hussain is awesome person',
+              pic: member.pic,
+              type: 'technical',
+              designation: ''
+            });
+            done();
+          })
+          .catch(done);
+      });
+  });
 });
 
 
@@ -73,6 +156,7 @@ describe('Testing path PATCH /api/teammember/:_id', () => {
       .set('x-auth', INIT_ADMIN.tokens[0])
       .field('name', 'Member 1 modified')
       .field('info', 'Roman Infantry 1 got modified')
+      .field('designation', 'Chief of Operation')
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
@@ -104,6 +188,7 @@ describe('Testing path PATCH /api/teammember/:_id', () => {
       .set('x-auth', INIT_ADMIN.tokens[0])
       .field('name', 'Member 1 modified')
       .field('info', 'Roman Infantry 1 got modified')
+      .field('designation', 'Chief of Operation')
       .attach('pic', constructFullPath(testFileName))
       .expect(200)
       .end((err, res) => {
@@ -123,6 +208,41 @@ describe('Testing path PATCH /api/teammember/:_id', () => {
               pic: member.pic,
               type: 'trustee',
               designation: 'Chief of Operation'
+            });
+            expect(fs.existsSync(RESOURCES_DIR + INIT_TEAM_MEMBERS[0].pic)).toBe(false);
+            expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);
+            done();
+          })
+          .catch(done);
+      });
+  });
+
+  it('should update teammember if designation is \'\'', done => {
+    request(app)
+      .patch(`/api/teammember/${INIT_TEAM_MEMBERS[0]._id}`)
+      .set('x-auth', INIT_ADMIN.tokens[0])
+      .field('name', 'Member 1 modified')
+      .field('info', 'Roman Infantry 1 got modified')
+      .field('designation', '')
+      .attach('pic', constructFullPath(testFileName))
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+
+        TeamMember.findById(INIT_TEAM_MEMBERS[0]._id)
+          .then(member => {
+            expect(member.name).toBe('Member 1 modified');
+            expect(member.info).toBe('Roman Infantry 1 got modified');
+            expect(member.pic).toNotBe(INIT_TEAM_MEMBERS[0].pic);
+            expect(member.pic).toInclude(testFileName);
+            const newMember = res.body;
+            delete newMember._id;
+            expect(newMember).toEqual({
+              name: 'Member 1 modified',
+              info: 'Roman Infantry 1 got modified',
+              pic: member.pic,
+              type: 'trustee',
+              designation: ''
             });
             expect(fs.existsSync(RESOURCES_DIR + INIT_TEAM_MEMBERS[0].pic)).toBe(false);
             expect(fs.existsSync(RESOURCES_DIR + member.pic)).toBe(true);

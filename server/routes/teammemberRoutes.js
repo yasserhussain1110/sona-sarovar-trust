@@ -40,7 +40,8 @@ const teammemberRoutes = app => {
     const file = req.file;
     const {name, info, designation} = req.body;
 
-    if (!name || !info || !designation) return res.status(400).send();
+    if (!name || !info) return res.status(400).send();
+    if (typeof designation !== 'string') return res.status(400).send();
 
     const _id = req.params._id;
 

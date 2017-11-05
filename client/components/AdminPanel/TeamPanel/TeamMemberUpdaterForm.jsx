@@ -76,8 +76,7 @@ class TeamMemberUpdaterForm extends Component {
   validateAndUpdateErrorState() {
     this.resetValidationErrors();
 
-
-    const {name, info, designation} = this.state;
+    const {name, info} = this.state;
 
     let isValid = true;
 
@@ -91,14 +90,7 @@ class TeamMemberUpdaterForm extends Component {
       isValid = false;
     }
 
-
-    if (this.props.designationRequired && !designation) {
-      this.setState({infoError: 'Designation cannot be empty'});
-      isValid = false;
-    }
-
     const fileList = this.updaterForm.querySelector('input[type=file]').files;
-
 
     if (fileList.length > 0) {
       const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
