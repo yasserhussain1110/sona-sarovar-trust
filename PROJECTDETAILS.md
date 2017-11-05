@@ -61,19 +61,19 @@ The website is broken into two major sections.
 
  ![admin-panel](readme-resources/admin.gif)
 
- This section is visible **only** to the **admins**.
+ This section is accessible **only** to the **admins**.
 
  A lot of activity happens in this organisation, like starting new
- projects, sponsoring more children, taking part in social activites to
+ projects, sponsoring more children, taking part in social activities to
  raise awareness, etc. And the Trust's admins keep needing to update the website
  with new information (**pictures**, **announcements**, etc). Because of this
  the website could not be static.
 
  And since the site admins have limited technical knowledge, it was important
- to build a simple Admin Panel for them so that they can modify the website
- easily.
+ to build a platform for them so that they can modify the website with ease.
 
- So we have built this section for them to be able
+ This Admin Panel solves that purpose. Using it the webiste's admins have been able
+ to modify and update the site effortlessly.
 
 ## Salient Features
 
