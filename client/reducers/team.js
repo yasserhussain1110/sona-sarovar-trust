@@ -6,6 +6,13 @@ const defaultState = {
 
 const team = (state = defaultState, action) => {
   switch (action.type) {
+    case 'ADDED_TEAM_MEMBER':
+      return {
+        teamMembers: [
+          ...state.teamMembers,
+          action.teamMember
+        ]
+      };
     case 'RECEIVED_TEAM_MEMBERS':
       return {
         teamMembers: action.teamMembers

@@ -41,7 +41,12 @@ const VolunteersPanelView = ({
     <div className="add-team-member">
       <h2>Add Volunteer</h2>
       <div className="link-holder">
-        <NavLink className="success-button" to="/admin/projects/add">Add a New Project</NavLink>
+        <NavLink
+          className="success-button"
+          to="/admin/team-member/add?type=volunteer"
+        >
+          Add a New Volunteer
+        </NavLink>
       </div>
     </div>
 

@@ -189,7 +189,6 @@ class TeamMemberUpdaterForm extends Component {
           showMarkdownModal={this.showMarkdownModal}
           info={info}
           infoError={infoError}
-          updateInfo={this.updateInfo}
         />
 
         <div className="button-holder">

@@ -41,7 +41,12 @@ const TrusteesPanelView = ({
     <div className="add-team-member">
       <h2>Add Trustee</h2>
       <div className="link-holder">
-        <NavLink className="success-button" to="/admin/projects/add">Add a New Project</NavLink>
+        <NavLink
+          className="success-button"
+          to="/admin/team-member/add?type=trustee"
+        >
+          Add a New Trustee
+        </NavLink>
       </div>
     </div>
 

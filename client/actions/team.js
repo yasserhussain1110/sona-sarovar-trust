@@ -11,3 +11,11 @@ export const updatedTeamMember = teamMember => (
     teamMember
   }
 );
+
+
+export const addedTeamMember = teamMember => (
+  {
+    type: 'ADDED_TEAM_MEMBER',
+    teamMember
+  }
+);

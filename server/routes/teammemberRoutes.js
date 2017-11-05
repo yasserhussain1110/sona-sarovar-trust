@@ -11,11 +11,10 @@ const {RESOURCES_DIR} = process.env;
 const teammemberRoutes = app => {
   app.put('/api/teammember', auth, upload.single('pic'), (req, res) => {
     const file = req.file;
-    const {name, info, type} = req.body;
+    const {name, info, type, designation} = req.body;
 
     if (!file) return res.status(400).send();
     if (!name || !info || !type) return res.status(400).send();
-
 
     ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/team')
       .then(picPath => {
@@ -24,6 +23,7 @@ const teammemberRoutes = app => {
           name,
           info,
           type,
+          designation,
           pic: picUrl
         }).save();
       })
