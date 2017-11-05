@@ -1,1 +1,30 @@
-@import './team-panel/team-member-updater';
+.team-panel {
+  .link-holder {
+    text-align: center;
+  }
+
+  .success-button {
+    background-color: green;
+    color: white;
+    padding: 10px 10px;
+    display: inline-block;
+    box-shadow: 0 2px 5px black;
+    font-size: 18px;
+    margin: 10px;
+  }
+
+  .success-button:hover {
+    box-shadow: 0 0 5px blue, 0 2px 5px black;
+  }
+
+  .success-button:active {
+    box-shadow: 0 -1px 1px black;
+    transform: translate(0, 3px);
+  }
+
+  .add-team-member, .update-team-member {
+    margin: 10px 0;
+  }
+
+  @import './team-panel/team-member-updater';
+}

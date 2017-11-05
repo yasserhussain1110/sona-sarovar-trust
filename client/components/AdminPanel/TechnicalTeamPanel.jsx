@@ -34,7 +34,7 @@ class TechnicalTeamPanel extends Component {
 const TechnicalTeamPanelView = ({
   techTeam, authToken, updatedTeamMember, statusBoxToAdd, addStatusBox
 }) => (
-  <div className="controller technical-team-panel">
+  <div className="controller team-panel">
     <h1>Technical Team Panel</h1>
     <h2>Update Tech Team Info</h2>
     <section className="member-info-holder">{techTeam.map((member, index) => (

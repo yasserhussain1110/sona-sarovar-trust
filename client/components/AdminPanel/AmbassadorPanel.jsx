@@ -34,7 +34,7 @@ class AmbassadorPanel extends Component {
 const AmbassadorPanelView = ({
   ambassadors, authToken, updatedTeamMember, statusBoxToAdd, addStatusBox
 }) => (
-  <div className="controller ambassador-panel">
+  <div className="controller team-panel">
     <h1>Ambassador Panel</h1>
     <h2>Update Ambassador Info</h2>
     <section className="member-info-holder">{ambassadors.map((member, index) => (

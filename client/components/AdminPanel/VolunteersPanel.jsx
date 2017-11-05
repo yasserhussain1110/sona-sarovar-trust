@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {NavLink} from 'react-router-dom';
 import TeamMemberUpdaterForm from './TeamPanel/TeamMemberUpdaterForm';
 import {updatedTeamMember} from '../../actions';
 import StatusPanel from '../../lib/components/StatusPanel';
@@ -34,20 +35,30 @@ class VolunteersPanel extends Component {
 const VolunteersPanelView = ({
   volunteers, authToken, updatedTeamMember, statusBoxToAdd, addStatusBox
 }) => (
-  <div className="controller volunteers-panel">
+  <div className="controller team-panel">
     <h1>Volunteer Panel</h1>
-    <h2>Update volunteer Info</h2>
-    <section className="member-info-holder">{volunteers.map((member, index) => (
-      <TeamMemberUpdaterForm
-        key={member._id}
-        index={index}
-        member={member}
-        authToken={authToken}
-        updatedTeamMember={updatedTeamMember}
-        addStatusBox={addStatusBox}
-      />))}
-    </section>
-    <StatusPanel statusBoxToAdd={statusBoxToAdd} />
+
+    <div className="add-team-member">
+      <h2>Add Volunteer</h2>
+      <div className="link-holder">
+        <NavLink className="success-button" to="/admin/projects/add">Add a New Project</NavLink>
+      </div>
+    </div>
+
+    <div className="update-team-member">
+      <h2>Update volunteer Info</h2>
+      <section className="member-info-holder">{volunteers.map((member, index) => (
+        <TeamMemberUpdaterForm
+          key={member._id}
+          index={index}
+          member={member}
+          authToken={authToken}
+          updatedTeamMember={updatedTeamMember}
+          addStatusBox={addStatusBox}
+        />))}
+      </section>
+      <StatusPanel statusBoxToAdd={statusBoxToAdd} />
+    </div>
   </div>
 );
 
