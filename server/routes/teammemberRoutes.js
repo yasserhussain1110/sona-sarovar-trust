@@ -38,7 +38,10 @@ const teammemberRoutes = app => {
 
   app.patch('/api/teammember/:_id', auth, upload.single('pic'), (req, res) => {
     const file = req.file;
-    const {name, info} = req.body;
+    const {name, info, designation} = req.body;
+
+    if (!name || !info || !designation) return res.status(400).send();
+
     const _id = req.params._id;
 
     TeamMember.findById(_id).then(member => {
@@ -46,6 +49,7 @@ const teammemberRoutes = app => {
 
       member.name = name;
       member.info = info;
+      member.designation = designation;
 
       if (file) {
         return ensurePicAndWriteToDisk(file, RESOURCES_DIR + '/team').then(picPath => {
