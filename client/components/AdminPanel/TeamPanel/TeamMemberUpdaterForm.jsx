@@ -92,7 +92,7 @@ class TeamMemberUpdaterForm extends Component {
     }
 
 
-    if (!designation) {
+    if (this.props.designationRequired && !designation) {
       this.setState({infoError: 'Designation cannot be empty'});
       isValid = false;
     }
