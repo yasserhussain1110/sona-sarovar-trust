@@ -5,6 +5,7 @@
 
   h2 {
     margin-bottom: 5px;
+    text-transform: capitalize;
   }
 
   .form-holder {
@@ -137,6 +138,11 @@
     .button-holder {
       margin-top: 0;
     }
+  }
+
+  .type select {
+    font-size: 20px;
+    padding: 2px 0;
   }
 }
 

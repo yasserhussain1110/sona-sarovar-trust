@@ -113,8 +113,6 @@ class AddTeamMemberPanel extends Component {
   }
 
   addTeamMember() {
-    console.log(this.addTeamMemberPanel);
-
     if (!this.validateAndUpdateErrorState()) return;
 
     const fileInput = this.addTeamMemberPanel.querySelector('input[type=file]');
@@ -195,7 +193,7 @@ const AddTeamMemberPanelView = ({
   >
     <h1>Add Team Member Panel</h1>
     <div className="team-meber-adder-wrapper">
-      <h2>Add Team Member</h2>
+      <h2>Add {type}</h2>
       <div className="form-holder">
         <section className="name">
           <div className="field">
