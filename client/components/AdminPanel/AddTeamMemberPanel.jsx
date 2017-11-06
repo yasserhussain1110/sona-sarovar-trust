@@ -271,7 +271,7 @@ const AddTeamMemberPanelView = ({
             </div>
 
             <div className="input">
-              <input id="team-member-pic" type="file" multiple />
+              <input id="team-member-pic" type="file" />
             </div>
           </div>
 
