@@ -8,12 +8,15 @@ const port = process.env.PORT;
 
 const path = require('path');
 const express = require('express');
+const compression = require('compression');
 const bodyParser = require('body-parser');
 const logger = require('./config/logger');
 
-const app = express();
 const {RESOURCES_DIR} = process.env;
 
+const app = express();
+
+app.use(compression());
 app.use(bodyParser.json());
 app.use(express.static('./' + RESOURCES_DIR));
 
