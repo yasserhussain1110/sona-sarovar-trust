@@ -30,7 +30,7 @@ const VolunteerParallaxView = () => (
       <p>
         Our volunteers are awesome. You can be too.
         Please join us and help us with this work.
-        That&quot;ll prove your awesome. Many people
+        That&apos;ll prove your awesome. Many people
         from all walks of life come and join us.
         You should too. It will make a huge difference
         in lives of the underprivileged children.
