@@ -73,7 +73,10 @@ class ProjectEditPanel extends Component {
 
   deletedProjectPic() {
     this.closeModal();
-    this.props.deletedPicFromProject(this.state.selectedPic, Number(this.props.match.params.index));
+    this.props.deletedPicFromProject(
+      this.state.selectedPic,
+      Number(this.props.match.params.index)
+    );
     this.addStatusBox(
       <StatusBox success>
         <div><h3>Success!</h3></div>
@@ -93,7 +96,10 @@ class ProjectEditPanel extends Component {
   }
 
   updatedProjectPic({url}) {
-    this.props.updatedProjectPic(Number(this.props.match.params.index), this.state.selectedPic._id, url);
+    this.props.updatedProjectPic(
+      Number(this.props.match.params.index),
+      this.state.selectedPic._id, url
+    );
     this.setState({updatingPic: false, deletingPic: false});
     this.addStatusBox(
       <StatusBox success>

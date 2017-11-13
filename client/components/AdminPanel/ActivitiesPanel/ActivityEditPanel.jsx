@@ -73,7 +73,10 @@ class ActivityEditPanel extends Component {
 
   deletedActivityPic() {
     this.closeModal();
-    this.props.deletedPicFromActivity(this.state.selectedPic, Number(this.props.match.params.index));
+    this.props.deletedPicFromActivity(
+      this.state.selectedPic,
+      Number(this.props.match.params.index)
+    );
     this.addStatusBox(
       <StatusBox success>
         <div><h3>Success!</h3></div>
@@ -93,7 +96,10 @@ class ActivityEditPanel extends Component {
   }
 
   updatedActivityPic({url}) {
-    this.props.updatedActivityPic(Number(this.props.match.params.index), this.state.selectedPic._id, url);
+    this.props.updatedActivityPic(
+      Number(this.props.match.params.index),
+      this.state.selectedPic._id, url
+    );
     this.setState({updatingPic: false, deletingPic: false});
     this.addStatusBox(
       <StatusBox success>
