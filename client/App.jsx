@@ -7,7 +7,7 @@ import handleCommonErrors, {logOut} from './lib/handlers/commonErrorsHandler';
 import Web from './routes/Web';
 import Admin from './routes/Admin';
 import * as actions from './actions';
-import ScrollToTop from './ScrollToTop';
+import ScrollToTop from './lib/components/ScrollToTop';
 
 class App extends Component {
   constructor(props) {
