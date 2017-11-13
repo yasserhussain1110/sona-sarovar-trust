@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {isEmail} from 'validator';
 import PropTypes from 'prop-types';
 
 class VolunteerForm extends Component {
@@ -66,6 +67,11 @@ class VolunteerForm extends Component {
 
     if (!email) {
       this.setState({emailError: 'Email cannot be empty.'});
+      return false;
+    }
+
+    if (!isEmail(email)) {
+      this.setState({emailError: 'Must be a valid email.'});
       return false;
     }
 

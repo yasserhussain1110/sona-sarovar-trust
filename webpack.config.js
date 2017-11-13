@@ -12,7 +12,7 @@ module.exports = merge(baseWebpackConfig, {
     vendor: [
       'axios', 'react', 'react-dom',
       'redux', 'react-router-dom',
-      'react-redux', 'marked'
+      'react-redux', 'marked', 'validator'
     ]
   },
   devtool: '#source-map',
