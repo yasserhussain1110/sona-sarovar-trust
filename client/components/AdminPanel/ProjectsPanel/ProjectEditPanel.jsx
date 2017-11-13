@@ -73,7 +73,7 @@ class ProjectEditPanel extends Component {
 
   deletedProjectPic() {
     this.closeModal();
-    this.props.deletedPicFromProject(this.state.selectedPic, this.props.match.params.index);
+    this.props.deletedPicFromProject(this.state.selectedPic, Number(this.props.match.params.index));
     this.addStatusBox(
       <StatusBox success>
         <div><h3>Success!</h3></div>
@@ -93,7 +93,7 @@ class ProjectEditPanel extends Component {
   }
 
   updatedProjectPic({url}) {
-    this.props.updatedProjectPic(this.props.match.params.index, this.state.selectedPic._id, url);
+    this.props.updatedProjectPic(Number(this.props.match.params.index), this.state.selectedPic._id, url);
     this.setState({updatingPic: false, deletingPic: false});
     this.addStatusBox(
       <StatusBox success>
@@ -145,7 +145,7 @@ class ProjectEditPanel extends Component {
     })
       .then(() => {
         this.props.updatedProjectNameAndDescription(
-          name, description, this.props.match.params.index
+          name, description, Number(this.props.match.params.index)
         );
         this.addStatusBox(
           <StatusBox success>
@@ -177,7 +177,7 @@ class ProjectEditPanel extends Component {
 
       return axios.put(`/api/project/pic/${this.props.project._id}`, data, {headers: {'x-auth': this.props.authToken}})
         .then(res => {
-          this.props.addedPicToProject(res.data, this.props.match.params.index);
+          this.props.addedPicToProject(res.data, Number(this.props.match.params.index));
           this.addStatusBox(
             <StatusBox success>
               <div><h3>Success!</h3></div>

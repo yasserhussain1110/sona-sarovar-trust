@@ -73,7 +73,7 @@ class ActivityEditPanel extends Component {
 
   deletedActivityPic() {
     this.closeModal();
-    this.props.deletedPicFromActivity(this.state.selectedPic, this.props.match.params.index);
+    this.props.deletedPicFromActivity(this.state.selectedPic, Number(this.props.match.params.index));
     this.addStatusBox(
       <StatusBox success>
         <div><h3>Success!</h3></div>
@@ -93,7 +93,7 @@ class ActivityEditPanel extends Component {
   }
 
   updatedActivityPic({url}) {
-    this.props.updatedActivityPic(this.props.match.params.index, this.state.selectedPic._id, url);
+    this.props.updatedActivityPic(Number(this.props.match.params.index), this.state.selectedPic._id, url);
     this.setState({updatingPic: false, deletingPic: false});
     this.addStatusBox(
       <StatusBox success>
@@ -145,7 +145,7 @@ class ActivityEditPanel extends Component {
     })
       .then(() => {
         this.props.updatedActivityNameAndDescription(
-          name, description, this.props.match.params.index
+          name, description, Number(this.props.match.params.index)
         );
         this.addStatusBox(
           <StatusBox success>
@@ -177,7 +177,7 @@ class ActivityEditPanel extends Component {
 
       return axios.put(`/api/activity/pic/${this.props.activity._id}`, data, {headers: {'x-auth': this.props.authToken}})
         .then(res => {
-          this.props.addedPicToActivity(res.data, this.props.match.params.index);
+          this.props.addedPicToActivity(res.data, Number(this.props.match.params.index));
           this.addStatusBox(
             <StatusBox success>
               <div><h3>Success!</h3></div>
