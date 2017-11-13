@@ -64,6 +64,31 @@
   a:hover {
     cursor: pointer;
   }
+
+  .see-all > button{
+    display: inline-block;
+    padding: 15px 0;
+    margin: 10px;
+    border: 2px solid $fixedHeaderButtonBgColor;
+    text-transform: uppercase;
+    background-color: $fixedHeaderButtonBgColor;
+    border-radius: 0;
+    color: $fixedHeaderButtonColor;
+    font-size: 12px;
+    width: 140px;
+    transition: all 0.4s ease-in-out;
+    font-family: 'Lato', sans-serif;
+
+    &:hover {
+      background-color: $fixedHeaderVolunteerBtnHoverBgColor;
+      color: $fixedHeaderVolunteerBtnHoverColor;
+      border-color: BLACK;
+    }
+  }
+
+  .see-all ~ .activity-container {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 890px) {

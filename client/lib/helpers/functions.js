@@ -67,3 +67,11 @@ export const getParameterByName = (name, url) => {
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
+
+export const insertInArray = (array, item, index = 0) => {
+  return [
+    ...array.slice(0, index),
+    item,
+    ...array.slice(index)
+  ];
+};
