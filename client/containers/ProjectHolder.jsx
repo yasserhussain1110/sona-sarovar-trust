@@ -17,6 +17,7 @@ const ProjectHolder = ({project}) => {
           <ImageCarousal
             viewDuration={8000}
             imageLinks={pics.map(pic => pic.url)}
+            type="bg-image"
             dots
             arrows
           />

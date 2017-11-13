@@ -96,7 +96,7 @@ const getImageComponent = (imageLinks, checkIfShowing, type) => (
     :
     imageLinks.map((link, index) => (
       <div
-        style={{backgroundImage: `url(${link})`}}
+        style={{backgroundImage: `url('${link}')`}}
         key={index}
         className={`bg-image ${checkIfShowing(index) ? 'active' : 'inactive'}`}
       />))
