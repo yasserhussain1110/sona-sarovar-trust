@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-const MediaEventsBlog = ({projectUrl, activityUrl}) => (
+const MediaEventsBlog = ({projectUrl}) => (
   <div className="media-events-blog">
     <h2>Media, Events and Blogs</h2>
     <div className="link-holder">
@@ -34,22 +34,16 @@ const MediaEventsBlog = ({projectUrl, activityUrl}) => (
 
 const mapStateToProps = state => {
   let projectUrl = '';
-  let activityUrl = '';
 
   if (state.projects.projectsDone.length > 0) {
     projectUrl = state.projects.projectsDone[0].pics[0].url;
   }
 
-  if (state.activities.activitiesUndertaken.length > 0) {
-    activityUrl = state.activities.activitiesUndertaken[0].pics[0].url;
-  }
-
-  return {projectUrl, activityUrl};
+  return {projectUrl};
 };
 
 MediaEventsBlog.propTypes = {
-  projectUrl: PropTypes.string.isRequired,
-  activityUrl: PropTypes.string.isRequired
+  projectUrl: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps)(MediaEventsBlog);
