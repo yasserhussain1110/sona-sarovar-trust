@@ -17,14 +17,14 @@ const MediaEventsBlog = ({projectUrl, activityUrl}) => (
       <div className="events">
         <h3>Our Projects</h3>
         <div className="img-holder">
-          <img alt="" src={projectUrl} />
+          <img alt="Project Cover" src={projectUrl} />
         </div>
         <NavLink to="web/projects" className="button">See More</NavLink>
       </div>
       <div className="blog">
         <h3>Our Activities</h3>
         <div className="img-holder">
-          <img alt="" src={activityUrl} />
+          <img alt="Activity Cover" src="/static/img/activity-cover.jpg" />
         </div>
         <NavLink to="web/activities" className="button">See More</NavLink>
       </div>
