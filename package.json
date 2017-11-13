@@ -96,7 +96,6 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.1",
     "scrollbar-width": "^3.1.1",
-    "typeface-kelly-slab": "0.0.22",
     "url-loader": "^0.5.8",
     "validator": "^8.2.0",
     "winston": "^2.4.0",
