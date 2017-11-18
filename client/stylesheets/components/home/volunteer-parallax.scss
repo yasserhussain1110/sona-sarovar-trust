@@ -52,7 +52,7 @@
   }
 }
 
-@media screen and (min-width: 571px) and (max-width: 1040px) {
+@media screen and (min-width: 785px) and (max-width: 1040px) {
   .volunteer-parallax {
     .parallax-content {
       p {
@@ -62,9 +62,10 @@
   }
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 784px) {
   .volunteer-parallax {
     .parallax-content {
+      padding: 80px 40px;
       p {
         width: 80%;
       }
@@ -72,11 +73,24 @@
   }
 }
 
+@media screen and (max-width: 643px) {
+  .volunteer-parallax {
+    .parallax-content {
+      padding: 40px 20px;
+      p {
+        width: 80%;
+      }
+    }
+  }
+}
+
+
 @media screen and (max-width: 420px) {
   .volunteer-parallax {
     .parallax-content {
+      padding: 20px 20px;
       p {
-        width: 90%;
+        width: 100%;
       }
     }
   }

@@ -28,12 +28,15 @@ const VolunteerParallaxView = () => (
     <div className="parallax-content">
       <h1>Volunteer</h1>
       <p>
-        Our volunteers are awesome. You can be too.
-        Please join us and help us with this work.
-        That&apos;ll prove your awesome. Many people
-        from all walks of life come and join us.
-        You should too. It will make a huge difference
-        in lives of the underprivileged children.
+        The hundreds of individuals who volunteer to support us are some of our most important and
+        inspirational team members. Our volunteers are the backbone of our organization – they not
+        only carry the organization’s ideals within them, but also spread the message far and
+        beyond, sensitizing the society towards the cause.
+      </p>
+
+      <p>
+        We encourage and invite volunteers to be an active part of our organization and share the
+        same vision and purpose as us – to work for the welfare of children and their families.
       </p>
 
       <div className="button-holder">
