@@ -19,7 +19,7 @@ const Volunteer = () => (
         </p>
 
         <p>
-          You can aid our cause and positively impact a child&quot;s life too.
+          You can aid our cause and positively impact a child&apos;s life too.
           Please fill the form below and we will get back to you.
           Thank you for your interest!
         </p>
