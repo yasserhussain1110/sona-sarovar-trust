@@ -10,7 +10,7 @@ const MediaEventsBlog = ({projectUrl}) => (
       <div className="donate">
         <h3>Donate to help</h3>
         <div className="iframe-holder">
-          <iframe title="Our Movie" src="https://www.youtube.com/embed/VT3SRGNr22I" />
+          <iframe title="Our Movie" src="https://www.youtube.com/embed/1Ye9HqlmcB4" />
         </div>
         <NavLink to="web/involve/donate" className="button">Donate Now</NavLink>
       </div>
