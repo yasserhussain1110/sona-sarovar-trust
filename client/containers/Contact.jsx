@@ -26,7 +26,7 @@ const Contact = () => (
 
       <div className="additional-info">
         <h2 className="add-info-header">E-mail</h2>
-        <span>contact@sonasarovartrust.com</span>
+        <span>contact@sonasarovartrust.org</span>
       </div>
 
       <div id="map">
