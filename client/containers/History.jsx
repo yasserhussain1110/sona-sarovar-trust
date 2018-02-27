@@ -8,7 +8,7 @@ const History = ({history}) => (
     <h1>History</h1>
     <div className="page-content">
       <div className="iframe-holder">
-        <iframe title="Our History" src="https://www.youtube.com/embed/VT3SRGNr22I" />
+        <iframe title="Our History" src="https://www.youtube.com/embed/1Ye9HqlmcB4" />
       </div>
 
       <div dangerouslySetInnerHTML={{__html: marked(history)}} className="text-holder" />
