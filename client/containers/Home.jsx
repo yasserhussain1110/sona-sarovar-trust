@@ -11,7 +11,6 @@ const Home = ({messages, imageLinks}) => (
   <div className="home">
     <Carousal messages={messages} imageLinks={imageLinks} />
     <MediaEventsBlog />
-    <OurImpact />
     <VolunteerParallax />
     <SampleTestimonial />
   </div>
