@@ -10,7 +10,8 @@ const Contact = () => (
 
       <div className="additional-info">
         <h2 className="add-info-header">Contact Person</h2>
-        <span>Mrs. Sona Kumar</span>
+        <div><span>Mrs. Sona Kumar: </span><span>+91-9820195874</span></div>
+        <div><span>Ms. Laila Pannda: </span><span>+91-9821339900</span></div>
       </div>
 
       <div className="additional-info">
@@ -20,13 +21,12 @@ const Contact = () => (
       </div>
 
       <div className="additional-info">
-        <h2 className="add-info-header">Mobile No.</h2>
-        <span>+91-9820195874</span>
+        <h2 className="add-info-header">Office No.</h2>
+        <span>+91-8655042119</span>
       </div>
-
       <div className="additional-info">
         <h2 className="add-info-header">E-mail</h2>
-        <span>contact@sonasarovartrust.org</span>
+        <a href="mailto:contact@sonasarovartrust.org">contact@sonasarovartrust.org</a>
       </div>
 
       <div id="map">

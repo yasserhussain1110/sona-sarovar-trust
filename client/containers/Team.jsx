@@ -20,8 +20,7 @@ const Team = ({match}) => (
       <div className="technical-team sub-team">
         <h2><NavLink to={`${match.url}/technical-team`}>TECHNICAL TEAM</NavLink></h2>
         <div className="details">
-          Each one of our Trustees holds our trust&quot;s interest above everything else,
-          sharing a firm belief in values of public trust, collective …
+          The technical team helps in maintaing the website from across geographies.
           <div className="button-holder">
             <NavLink to={`${match.url}/technical-team`} className="button">READ MORE</NavLink>
           </div>
@@ -31,8 +30,8 @@ const Team = ({match}) => (
       <div className="brand-ambassador sub-team">
         <h2><NavLink to={`${match.url}/brand-ambassador`}>BRAND AMBASSADOR</NavLink></h2>
         <div className="details">
-          Each one of our Trustees holds our trust&quot;s interest above everything else,
-          sharing a firm belief in values of public trust, collective …
+        Miss Priya is an Internationally Acclaimed Motivational Speaker,
+        Bestselling Author of 10 Inspirational Books & Founder Trustee.
           <div className="button-holder">
             <NavLink to={`${match.url}/brand-ambassador`} className="button">READ MORE</NavLink>
           </div>
@@ -42,8 +41,7 @@ const Team = ({match}) => (
       <div className="volunteers sub-team">
         <h2><NavLink to={`${match.url}/volunteers`}>VOLUNTEERS</NavLink></h2>
         <div className="details">
-          Each one of our Trustees holds our trust&quot;s interest above everything else,
-          sharing a firm belief in values of public trust, collective …
+        Age/Status is no Bar.Our volunteers work tirelessly without expecting any Award or Reward.
           <div className="button-holder">
             <NavLink to={`${match.url}/volunteers`} className="button">READ MORE</NavLink>
           </div>

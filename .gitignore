@@ -11,3 +11,4 @@ resources.prod
 package-lock.json
 logs
 deploy-js.sh
+YOUR_UPLOADED_RESOURCES_DIR/
