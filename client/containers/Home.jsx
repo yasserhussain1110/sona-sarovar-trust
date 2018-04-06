@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Carousal from '../components/Home/Carousal';
 import MediaEventsBlog from '../components/Home/MediaEventsBlog';
-import OurImpact from '../components/Home/OurImpact';
 import VolunteerParallax from '../components/Home/VolunteerParallax';
 import SampleTestimonial from '../components/Home/SampleTestimonial';
 

@@ -30,7 +30,8 @@ const Team = ({match}) => (
       <div className="brand-ambassador sub-team">
         <h2><NavLink to={`${match.url}/brand-ambassador`}>BRAND AMBASSADOR</NavLink></h2>
         <div className="details">
-        Miss Priya is an Internationally Acclaimed Motivational Speaker, Bestselling Author of 10 Inspirational Books & Founder Trustee.
+        Miss Priya is an Internationally Acclaimed Motivational Speaker,
+        Bestselling Author of 10 Inspirational Books & Founder Trustee.
           <div className="button-holder">
             <NavLink to={`${match.url}/brand-ambassador`} className="button">READ MORE</NavLink>
           </div>

@@ -21,10 +21,9 @@ const Contact = () => (
       </div>
 
       <div className="additional-info">
-        <h2 className="add-info-header">Landline.</h2>
-        <span>+91 22 65842119</span>
+        <h2 className="add-info-header">Office No.</h2>
+        <span>+91-8655042119</span>
       </div>
-      
       <div className="additional-info">
         <h2 className="add-info-header">E-mail</h2>
         <a href="mailto:contact@sonasarovartrust.org">contact@sonasarovartrust.org</a>
