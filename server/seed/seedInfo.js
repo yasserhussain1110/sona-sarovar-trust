@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {ObjectID} = require('mongodb');
+const mongoose = require('mongoose');
 const Admin = require('../models/admin');
 const HomePage = require('../models/homepage');
 const TeamMember = require('../models/teammember');
@@ -8,9 +8,11 @@ const Activity = require('../models/activity');
 const AboutUs = require('../models/aboutus');
 const ncp = require('ncp').ncp;
 
+const ObjectId = mongoose.Types.ObjectId;
+
 const {INIT_ADMIN_USERNAME, INIT_ADMIN_PASSWORD, JWT_SECRET_KEY, RESOURCES_DIR} = process.env;
 
-const INIT_ADMIN_ID = new ObjectID();
+const INIT_ADMIN_ID = new ObjectId();
 const INIT_ADMIN = {
   _id: INIT_ADMIN_ID,
   username: INIT_ADMIN_USERNAME,
@@ -20,10 +22,10 @@ const INIT_ADMIN = {
 
 const INIT_HOME_PAGE = {
   centerPics: [{
-    _id: new ObjectID(),
+    _id: new ObjectId(),
     url: '/home/IMG1.jpg'
   }, {
-    _id: new ObjectID(),
+    _id: new ObjectId(),
     url: '/home/IMG2.jpg'
   }],
   brandLogoUrl: '/home/logo.jpg',
@@ -64,7 +66,7 @@ const INIT_ABOUT_US = {
 };
 
 const INIT_TEAM_MEMBERS = [{
-  _id: new ObjectID(),
+  _id: new ObjectId(),
   name: 'Trustee Member 1',
   info: `adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
    adhas da skdhask dhajd kja dkjah dsk asghd as dhkjahsdkh ajkshd jkasasd asd asdasjdh kjash djkasdjk jaksdkasjd
@@ -110,7 +112,7 @@ const INIT_TEAM_MEMBERS = [{
   pic: '/team/person4.png',
   type: 'ambassador'
 }, {
-  _id: new ObjectID(),
+  _id: new ObjectId(),
   name: 'Volunteer Member',
   info: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie euismod dolor,
   id malesuada ex elementum non. Morbi nisi eros, ultricies quis nisl id, pellentesque tristique eros.
@@ -126,7 +128,7 @@ const INIT_TEAM_MEMBERS = [{
 }];
 
 const INIT_PROJECTS = [{
-  _id: new ObjectID(),
+  _id: new ObjectId(),
   name: 'Project XYZ',
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
   'Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. ' +
@@ -136,9 +138,9 @@ const INIT_PROJECTS = [{
   'Ut viverra quam sit amet enim rutrum volutpat. Aenean hendrerit nulla ac urna dignissim posuere. ' +
   'Pellentesque non bibendum metus, vel tempor est. Pellentesque laoreet posuere enim, ac viverra nibh ' +
   'lacinia sit amet. Pellentesque sit amet rhoncus massa, ut maximus justo.',
-  pics: [{_id: new ObjectID(), url: '/projects/project1.jpg'}, {url: '/projects/project2.jpg'}]
+  pics: [{_id: new ObjectId(), url: '/projects/project1.jpg'}, {url: '/projects/project2.jpg'}]
 }, {
-  _id: new ObjectID(),
+  _id: new ObjectId(),
   name: 'Project ABC',
   description: 'Fusce commodo porta molestie. Vestibulum ac tellus condimentum, auctor felis sed, pharetra eros. ' +
   'Sed placerat eget elit ut feugiat. Pellentesque nec dictum lorem. Morbi luctus dignissim arcu et venenatis. ' +
@@ -148,7 +150,7 @@ const INIT_PROJECTS = [{
 }];
 
 const INIT_ACTIVITIES = [{
-  _id: new ObjectID(),
+  _id: new ObjectId(),
   name: 'Card Making',
   description: 'Fusce commodo porta molestie. Vestibulum ac tellus condimentum, auctor felis sed, pharetra eros. ' +
   'Sed placerat eget elit ut feugiat. Pellentesque nec dictum lorem. Morbi luctus dignissim arcu et venenatis. ' +
@@ -156,7 +158,7 @@ const INIT_ACTIVITIES = [{
   'mauris dolor eleifend nisl, eget cursus arcu leo id risus.',
   pics: [{url: '/activities/Card1.jpg'}, {url: '/activities/Card2.jpg'}, {url: '/activities/Card3.jpg'}]
 }, {
-  _id: new ObjectID(),
+  _id: new ObjectId(),
   name: 'Social Activities',
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
   'Nulla fermentum nisi sit amet odio tempor, vel fringilla metus porttitor. ' +
@@ -257,10 +259,8 @@ module.exports = {
   INIT_PROJECTS,
   INIT_ACTIVITIES,
   populateAll,
-  populateAdmins,
   populateHomePage,
   populateAboutUs,
   populateTeamMembers,
   populateProjects,
-  populateActivities
 };

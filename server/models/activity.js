@@ -19,6 +19,8 @@ const ActivitySchema = new Schema({
     type: [PicSchema],
     required: true
   }
+}, {
+  usePushEach: true
 });
 
 ActivitySchema.methods.toJSON = function () {

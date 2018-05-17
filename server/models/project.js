@@ -19,6 +19,8 @@ const ProjectSchema = new Schema({
     type: [PicSchema],
     required: true
   }
+}, {
+  usePushEach: true
 });
 
 ProjectSchema.methods.toJSON = function () {

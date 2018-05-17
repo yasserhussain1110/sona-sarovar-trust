@@ -23,6 +23,8 @@ const AdminSchema = new Schema({
   tokens: [{
     type: String
   }]
+}, {
+  usePushEach: true
 });
 
 AdminSchema.pre('save', function (next) {

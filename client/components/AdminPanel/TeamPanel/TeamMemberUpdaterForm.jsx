@@ -35,6 +35,7 @@ class TeamMemberUpdaterForm extends Component {
     this.showMarkdownModal = this.showMarkdownModal.bind(this);
     this.back = this.back.bind(this);
     this.markdownUpdate = this.markdownUpdate.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -113,7 +114,6 @@ class TeamMemberUpdaterForm extends Component {
     const fileInput = this.updaterForm.querySelector('input[type=file]');
     const fileList = fileInput.files;
 
-
     const formData = new FormData();
     formData.append('name', this.state.name);
     formData.append('info', this.state.info);
@@ -145,6 +145,29 @@ class TeamMemberUpdaterForm extends Component {
       });
 
     fileInput.value = null;
+  }
+
+  delete() {
+    axios.delete(`/api/teammember/${this.props.member._id}`, {headers: {'x-auth': this.props.authToken}})
+      .then(() => {
+        this.props.deletedTeamMember(this.props.member);
+        this.props.addStatusBox(
+          <StatusBox success>
+            <div><h3>Success!</h3></div>
+            <div>Team member {this.props.member.name} removed successfully.</div>
+          </StatusBox>
+        );
+      })
+      .catch(err => {
+        handleCommonErrors(err);
+        console.log(err);
+        this.props.addStatusBox(
+          <StatusBox success={false}>
+            <div><h3>Failure!</h3></div>
+            <div>Team member {this.props.member.name} could not be removed.</div>
+          </StatusBox>
+        );
+      });
   }
 
   updateName(e) {
@@ -189,6 +212,7 @@ class TeamMemberUpdaterForm extends Component {
 
         <div className="button-holder">
           <button onClick={this.update}>Update</button>
+          <button onClick={this.delete}>Delete</button>
         </div>
         {this.getModalContent()}
       </section>
@@ -206,7 +230,8 @@ TeamMemberUpdaterForm.propTypes = {
   index: PropTypes.number.isRequired,
   updatedTeamMember: PropTypes.func.isRequired,
   addStatusBox: PropTypes.func.isRequired,
-  designationRequired: PropTypes.bool
+  designationRequired: PropTypes.bool,
+  deletedTeamMember: PropTypes.func.isRequired
 };
 
 export default TeamMemberUpdaterForm;

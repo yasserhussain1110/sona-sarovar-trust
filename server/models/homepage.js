@@ -20,6 +20,8 @@ const HomePageSchema = new Schema({
     type: [CaptionSchema],
     required: true
   }
+}, {
+  usePushEach: true
 });
 
 HomePageSchema.methods.toJSON = function () {

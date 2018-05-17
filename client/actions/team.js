@@ -19,3 +19,10 @@ export const addedTeamMember = teamMember => (
     teamMember
   }
 );
+
+export const deletedTeamMember = teamMember => (
+  {
+    type: 'DELETED_TEAM_MEMBER',
+    teamMember
+  }
+);

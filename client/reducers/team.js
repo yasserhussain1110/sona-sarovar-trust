@@ -27,6 +27,16 @@ const team = (state = defaultState, action) => {
         })
       };
     }
+    case 'DELETED_TEAM_MEMBER': {
+      const teamMemberIndex =
+        state.teamMembers.findIndex(teamMember => teamMember._id === action.teamMember._id);
+      return {
+        teamMembers: [
+          ...state.teamMembers.slice(0, teamMemberIndex),
+          ...state.teamMembers.slice(teamMemberIndex + 1)
+        ]
+      };
+    }
     default:
       return state;
   }

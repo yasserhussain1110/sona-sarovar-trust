@@ -7,6 +7,8 @@ const PicSchema = new Schema({
     type: String,
     required: true
   }
+}, {
+  usePushEach: true
 });
 
 module.exports = PicSchema;

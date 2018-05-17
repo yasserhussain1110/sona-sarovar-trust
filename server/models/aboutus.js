@@ -27,6 +27,8 @@ const AboutUsSchema = new Schema({
     maxlength: 6000,
     trim: true
   }
+}, {
+  usePushEach: true
 });
 
 AboutUsSchema.methods.toJSON = function () {

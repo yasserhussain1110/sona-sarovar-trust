@@ -68,6 +68,16 @@ const teammemberRoutes = app => {
       res.status(400).send();
     });
   });
+
+  app.delete('/api/teammember/:_id', auth, (req, res) => {
+    const _id = req.params._id;
+    TeamMember.remove({_id}).then(() => {
+      res.send(200);
+    }).catch(e => {
+      logger.error(e.measure, e);
+      res.status(400).send();
+    });
+  });
 };
 
 module.exports = teammemberRoutes;

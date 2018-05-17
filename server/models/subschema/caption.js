@@ -10,6 +10,8 @@ const CaptionSchema = new Schema({
     trim: true,
     required: true
   }
+}, {
+  usePushEach: true
 });
 
 module.exports = CaptionSchema;

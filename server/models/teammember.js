@@ -30,6 +30,8 @@ const TeamMemberSchema = new Schema({
     type: String,
     required: true
   }
+}, {
+  usePushEach: true
 });
 
 TeamMemberSchema.methods.toJSON = function () {

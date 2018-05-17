@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TeamMemberUpdaterForm from './TeamPanel/TeamMemberUpdaterForm';
-import {updatedTeamMember} from '../../actions';
+import {updatedTeamMember, deletedTeamMember} from '../../actions';
 import StatusPanel from '../../lib/components/StatusPanel';
 
 class TrusteesPanel extends Component {
@@ -33,7 +33,7 @@ class TrusteesPanel extends Component {
 }
 
 const TrusteesPanelView = ({
-  trustees, authToken, updatedTeamMember, statusBoxToAdd, addStatusBox
+  trustees, authToken, updatedTeamMember, statusBoxToAdd, addStatusBox, deletedTeamMember
 }) => (
   <div className="controller team-panel">
     <h1>Trustees Panel</h1>
@@ -60,6 +60,7 @@ const TrusteesPanelView = ({
           authToken={authToken}
           updatedTeamMember={updatedTeamMember}
           addStatusBox={addStatusBox}
+          deletedTeamMember={deletedTeamMember}
         />))}
       </section>
       <StatusPanel statusBoxToAdd={statusBoxToAdd} />
@@ -72,7 +73,7 @@ const mapStateToProps = state => ({
   authToken: state.userAuth.authToken
 });
 
-const mapDispatchToProps = {updatedTeamMember};
+const mapDispatchToProps = {updatedTeamMember, deletedTeamMember};
 
 TrusteesPanelView.defaultProps = {
   statusBoxToAdd: null
@@ -83,7 +84,8 @@ TrusteesPanelView.propTypes = {
   authToken: PropTypes.string.isRequired,
   updatedTeamMember: PropTypes.func.isRequired,
   addStatusBox: PropTypes.func.isRequired,
-  statusBoxToAdd: PropTypes.element
+  statusBoxToAdd: PropTypes.element,
+  deletedTeamMember: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrusteesPanel);
