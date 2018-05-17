@@ -6,6 +6,7 @@ const TeamMember = require('../models/teammember');
 const Project = require('../models/project');
 const Activity = require('../models/activity');
 const AboutUs = require('../models/aboutus');
+const Testimonial = require('../models/testimonial');
 const ncp = require('ncp').ncp;
 
 const ObjectId = mongoose.Types.ObjectId;
@@ -229,6 +230,38 @@ const populateProjects = () => {
   });
 };
 
+const INIT_TESTIMONIALS_INFO = [{
+  heading: 'Next to our Elite Complex, there are a number of sprawling slums.',
+  message: `Next to our Elite Complex, there are a number of sprawling slums. I always thought that I
+          must do something for the people of these areas who have equal rights to live decent lives
+          just as we do. They must get the basic education and health facilities. What kind of
+          society or nation we are going to create when millions of people are in dire need of food,
+          education and elementary health facilities?. During one of my visits to these areas I came
+          across Sona Sarovar Trust and in particular Ms. Sona Kumar who has been doing exemplary
+          work in her own small way. Since then I have been supporting her by contributing my time
+          and the fund.`,
+  testimonialGiverName: 'Mr.Pradyumn Patel',
+  testimonialGiverDesignation: 'Social Worker'
+},  {
+  heading: 'Next to our Elite Complex, there are a number of sprawling slums.',
+  message: `Next to our Elite Complex, there are a number of sprawling slums. I always thought that I
+          must do something for the people of these areas who have equal rights to live decent lives
+          just as we do. They must get the basic education and health facilities. What kind of
+          society or nation we are going to create when millions of people are in dire need of food,
+          education and elementary health facilities?. During one of my visits to these areas I came
+          across Sona Sarovar Trust and in particular Ms. Sona Kumar who has been doing exemplary
+          work in her own small way. Since then I have been supporting her by contributing my time
+          and the fund.`,
+  testimonialGiverName: 'Mr.Pradyumn Patel',
+  testimonialGiverDesignation: 'Social Worker'
+}];
+
+const populateTestimonials = () => {
+  return Testimonial.remove().then(() => {
+    Testimonial.insertMany(INIT_TESTIMONIALS_INFO);
+  });
+};
+
 const populateActivities = () => {
   const sourceProjectsDir = 'init-resources/activities';
   const targetProjectsDir = RESOURCES_DIR + '/activities';
@@ -248,7 +281,8 @@ const populateActivities = () => {
 const populateAll = () => {
   return Promise.all([
     populateAdmins(), populateHomePage(), populateAboutUs(),
-    populateTeamMembers(), populateProjects(), populateActivities()
+    populateTeamMembers(), populateProjects(), populateActivities(),
+    populateTestimonials()
   ]);
 };
 
@@ -262,5 +296,5 @@ module.exports = {
   populateHomePage,
   populateAboutUs,
   populateTeamMembers,
-  populateProjects,
+  populateProjects
 };

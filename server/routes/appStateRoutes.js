@@ -3,6 +3,7 @@ const Project = require('../models/project');
 const Activity = require('../models/activity');
 const TeamMember = require('../models/teammember');
 const AboutUs = require('../models/aboutus');
+const Testimonial = require('../models/testimonial');
 
 const appStateRoutes = app => {
   app.get('/api/init-state', (req, res) => {
@@ -11,14 +12,16 @@ const appStateRoutes = app => {
       AboutUs.findOne(),
       Project.find(),
       TeamMember.find(),
-      Activity.find()
-    ]).then(([homePage, aboutUs, projects, teamMembers, activities]) => {
+      Activity.find(),
+      Testimonial.find()
+    ]).then(([homePage, aboutUs, projects, teamMembers, activities, testimonials]) => {
       res.send({
         homePage,
         aboutUs,
         projects,
         teamMembers,
-        activities
+        activities,
+        testimonials
       });
     });
   });

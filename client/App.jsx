@@ -47,12 +47,13 @@ class App extends Component {
   initializeApp() {
     axios.get('/api/init-state')
       .then(response => {
-        const {homePage, aboutUs, projects, activities, teamMembers} = response.data;
+        const {homePage, aboutUs, projects, activities, teamMembers, testimonials} = response.data;
         this.props.receivedHomePageContent(homePage);
         this.props.receivedAboutUs(aboutUs);
         this.props.receivedTeamMembers(teamMembers);
         this.props.receivedActivitiesUndertaken(activities);
         this.props.receivedProjectsDone(projects);
+        this.props.receivedTestimonials(testimonials);
       })
       .catch(error => {
         handleCommonErrors(error);
@@ -86,7 +87,8 @@ App.propTypes = {
   receivedTeamMembers: PropTypes.func.isRequired,
   receivedActivitiesUndertaken: PropTypes.func.isRequired,
   receivedProjectsDone: PropTypes.func.isRequired,
-  receivedAboutUs: PropTypes.func.isRequired
+  receivedAboutUs: PropTypes.func.isRequired,
+  receivedTestimonials: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = actions;
