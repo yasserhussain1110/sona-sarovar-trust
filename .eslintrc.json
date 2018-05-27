@@ -103,6 +103,9 @@
     "react/no-danger": [
       "off"
     ],
+    "react/no-unused-state": [
+      "off"
+    ],
     "jsx-a11y/no-noninteractive-element-interactions": [
       "off"
     ],

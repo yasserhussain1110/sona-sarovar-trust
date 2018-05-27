@@ -17,6 +17,7 @@ const SideNavContainer = () => (
     <SideNav to="/admin/volunteers" icon={group}>Volunteers</SideNav>
     <SideNav to="/admin/technical" icon={code}>TechnicalTeam</SideNav>
     <SideNav to="/admin/ambassador" icon={star}>Ambassador</SideNav>
+    <SideNav to="/admin/testimonials" icon={star}>Testimonials</SideNav>
     <SideNav to="/admin/preview" icon={eye}>Preview</SideNav>
     <SideNav to="/admin/login" onClick={logOut} icon={signOut}>Log Out</SideNav>
   </SideNavBar>
