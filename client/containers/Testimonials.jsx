@@ -8,7 +8,7 @@ const Testimonials = ({testimonials}) => (
     <div className="page-content">
       {
         testimonials.map(testimonial => (
-          <div className="testimonial-holder">
+          <div className="testimonial-holder" key={testimonial.id}>
             <h2 className="testimonial-header">
               {testimonial.heading}
             </h2>

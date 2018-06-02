@@ -26,6 +26,15 @@ const testimonialRoutes = app => {
         res.status(400).send();
       });
   });
+
+  app.post('/api/testimonial', auth, (req, res) => {
+    new Testimonial(req.body).save().then(testimonial => {
+      res.send(testimonial);
+    }).catch(e => {
+      console.log(e);
+      res.status(400).send();
+    });
+  });
 };
 
 module.exports = testimonialRoutes;

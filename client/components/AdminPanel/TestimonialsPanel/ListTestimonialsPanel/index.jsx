@@ -83,7 +83,7 @@ const ListTestimonialsPanelView = ({testimonials, updateTestimonial, showingModa
     <div className="add-project-wrapper">
       <h2>Add a Testimonial</h2>
       <div className="link-holder">
-        <NavLink className="success-button" to="/admin/projects/add">Add a New Testimonial</NavLink>
+        <NavLink className="success-button" to="/admin/testimonials/add">Add a New Testimonial</NavLink>
       </div>
     </div>
 

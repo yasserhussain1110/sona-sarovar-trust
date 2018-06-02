@@ -13,3 +13,8 @@ export const deleteTestimonial = index => ({
   type: 'DELETE_TESTIMONIAL',
   index
 });
+
+export const addTestimonial = testimonial => ({
+  type: 'ADD_TESTIMONIAL',
+  testimonial
+});

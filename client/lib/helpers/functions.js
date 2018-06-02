@@ -1,3 +1,5 @@
+import upperFirst from 'lodash/upperFirst';
+
 /**
  *
  * @param array
@@ -74,4 +76,13 @@ export const insertInArray = (array, item, index = 0) => {
     item,
     ...array.slice(index)
   ];
+};
+
+export const createUpdators = fields => thisContext => {
+  fields.forEach(f => {
+    const updatorName = `update${upperFirst(f)}`;
+    thisContext[updatorName] = (function (e) {
+      this.setState({[f]: e.target.value});
+    }).bind(thisContext);
+  });
 };

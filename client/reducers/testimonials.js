@@ -10,6 +10,11 @@ const testimonials = (state = [], action) => {
       ];
     case 'DELETE_TESTIMONIAL':
       return state.filter((_, index) => index !== action.index);
+    case 'ADD_TESTIMONIAL':
+      return [
+        ...state,
+        action.testimonial
+      ];
     default:
       return state;
   }
