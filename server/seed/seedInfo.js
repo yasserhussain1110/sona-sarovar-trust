@@ -7,6 +7,7 @@ const Project = require('../models/project');
 const Activity = require('../models/activity');
 const AboutUs = require('../models/aboutus');
 const Testimonial = require('../models/testimonial');
+const Award = require('../models/award');
 const ncp = require('ncp').ncp;
 
 const ObjectId = mongoose.Types.ObjectId;
@@ -256,6 +257,12 @@ const INIT_TESTIMONIALS_INFO = [{
   testimonialGiverDesignation: 'Social Worker'
 }];
 
+const INIT_AWARDS = [{
+  url: '/awards/guide-star1.png'
+}, {
+  url: '/awards/guide-star2.png'
+}];
+
 const populateTestimonials = () => {
   return Testimonial.remove().then(() => {
     Testimonial.insertMany(INIT_TESTIMONIALS_INFO);
@@ -278,11 +285,27 @@ const populateActivities = () => {
   });
 };
 
+const populateAwards = () => {
+  const sourceProjectsDir = 'init-resources/awards';
+  const targetProjectsDir = RESOURCES_DIR + '/awards';
+
+  return new Promise(resolve => {
+    ncp(sourceProjectsDir, targetProjectsDir, err => {
+      if (err)  throw err;
+      resolve();
+    });
+  }).then(() => {
+    return Award.remove({});
+  }).then(() => {
+    return Award.insertMany(INIT_AWARDS);
+  });
+};
+
 const populateAll = () => {
   return Promise.all([
     populateAdmins(), populateHomePage(), populateAboutUs(),
     populateTeamMembers(), populateProjects(), populateActivities(),
-    populateTestimonials()
+    populateTestimonials(), populateAwards()
   ]);
 };
 

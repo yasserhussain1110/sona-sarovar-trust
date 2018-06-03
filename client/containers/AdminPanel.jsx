@@ -12,6 +12,7 @@ import TechnicalTeamPanel from '../components/AdminPanel/TechnicalTeamPanel';
 import AmbassadorPanel from '../components/AdminPanel/AmbassadorPanel';
 import AddTeamMemberPanel from '../components/AdminPanel/AddTeamMemberPanel';
 import TestimonialsPanel from '../components/AdminPanel/TestimonialsPanel';
+import AwardsPanel from '../components/AdminPanel/AwardsPanel';
 
 const AdminPanel = () => {
   return (
@@ -29,6 +30,7 @@ const AdminPanel = () => {
             <Route path="/admin/technical" component={TechnicalTeamPanel} />
             <Route path="/admin/ambassador" component={AmbassadorPanel} />
             <Route path="/admin/testimonials" component={TestimonialsPanel} />
+            <Route path="/admin/awards" component={AwardsPanel} />
             <Route path="/admin/team-member/add" component={AddTeamMemberPanel} />
             <Route path="/admin/preview" component={Previewer} />
             <Route path="/" render={() => <Redirect to="/admin/home" push />} />

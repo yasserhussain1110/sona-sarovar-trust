@@ -1,0 +1,46 @@
+.awards-panel {
+  .wrapper {
+    margin: 10px 0;
+  }
+
+  img {
+    height: 100px;
+    width: 150px;
+    vertical-align: middle;
+  }
+
+  .card {
+    box-shadow: 0 0 2px black;
+    margin: 10px 0;
+  }
+
+  .remove {
+    vertical-align: middle;
+  }
+
+  .space {
+    background-color: transparent;
+    display: inline-block;
+    width: 200px;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  .add-award {
+    text-align: center;
+  }
+
+  .add-award-button {
+    background-color: green;
+    color: white;
+    box-shadow: 3px 3px 6px darkgreen;
+    margin: 10px 0;
+    display: inline-block;
+    padding: 10px;
+  }
+
+  .add-award-button:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+  }
+}

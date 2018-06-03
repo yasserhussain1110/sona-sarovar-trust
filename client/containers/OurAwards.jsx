@@ -1,12 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import ImageCarousal from '../lib/components/ImageCarousal';
 
-const awardImageLinks = [
-  '/static/img/guide-star1.png',
-  '/static/img/guide-star2.png'
-];
-
-const OurAwards = () => (
+const OurAwards = ({awardUrls}) => (
   <div className="our-awards">
     <h1>Our Awards</h1>
     <div className="page-content">
@@ -14,7 +11,7 @@ const OurAwards = () => (
         <ImageCarousal
           dots
           arrows
-          imageLinks={awardImageLinks}
+          imageLinks={awardUrls}
           viewDuration={5000}
         />
       </div>
@@ -29,4 +26,12 @@ const OurAwards = () => (
   </div>
 );
 
-export default OurAwards;
+const mapStateToProps = state => ({
+  awardUrls: state.awards.map(award => award.url)
+});
+
+OurAwards.propTypes = {
+  awardUrls: PropTypes.arrayOf(PropTypes.string).isRequired
+};
+
+export default connect(mapStateToProps)(OurAwards);

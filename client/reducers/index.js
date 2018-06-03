@@ -6,6 +6,7 @@ import projects from './projects';
 import activities from './activities';
 import userAuth from './userAuth';
 import testimonials from './testimonials';
+import awards from './awards';
 
 const reducers = combineReducers({
   home,
@@ -14,7 +15,8 @@ const reducers = combineReducers({
   projects,
   activities,
   userAuth,
-  testimonials
+  testimonials,
+  awards
 });
 
 export default reducers;
