@@ -1,26 +1,38 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
+import axios from 'axios';
+import {deletedAward} from '../../../../actions';
 
 class AwardsPanel extends Component {
   constructor(props) {
     super(props);
+
+    this.deleteAward = this.deleteAward.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+  deleteAward(e) {
+    const awardId = e.target.dataset.awardId;
+    axios.delete(`/api/awards/${awardId}`, {
+      headers: {'x-auth': this.props.authToken}
+    }).then(() => {
+      this.props.deletedAward(awardId);
+    }).catch(e => {
+      console.log(e);
+    });
   }
 
   render() {
     return (
       <AwardsPanelView
         {...this.props}
+        deleteAward={this.deleteAward}
       />
     );
   }
 }
 
-const AwardsPanelView = ({awards}) => (
+const AwardsPanelView = ({awards, deleteAward}) => (
   <div>
     <h2>Awards Panel</h2>
     <div className="add-award">
@@ -34,7 +46,9 @@ const AwardsPanelView = ({awards}) => (
             <li key={award._id} className="card">
               <img src={award.url} alt={award.url} />
               <div className="space" />
-              <button className="remove">Remove</button>
+              <button onClick={deleteAward} data-award-id={award._id} className="remove">
+                Remove
+              </button>
             </li>
           ))
         }
@@ -44,7 +58,10 @@ const AwardsPanelView = ({awards}) => (
 );
 
 const mapStateToProps = state => ({
-  awards: state.awards
+  awards: state.awards,
+  authToken: state.userAuth.authToken
 });
 
-export default connect(mapStateToProps)(AwardsPanel);
+const mapDispatchToProps = {deletedAward};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AwardsPanel);
