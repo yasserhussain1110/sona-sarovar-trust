@@ -82,7 +82,7 @@ const TestimonialContainerView = ({
   updateTestimonialGiverDesignation,
   updateTestimonialGiverLocation,
   saveUpdatedTestimonial,
-  deleteTestimonial
+  deleteTestimonial, statusBox
 }) => (
   <li>
     <div className="sl">Testimonial #{index + 1}</div>

@@ -5,6 +5,7 @@ import axios from 'axios';
 import TestimonialContainer from './TestimonialContainer';
 import Modal from '../../../../lib/components/Modal';
 import StatusPanel from '../../../../lib/components/StatusPanel';
+import StatusBox from '../../../../lib/components/StatusBox';
 import {updateTestimonial, deleteTestimonial} from '../../../../actions';
 
 class ListTestimonialsPanel extends Component {
@@ -13,7 +14,8 @@ class ListTestimonialsPanel extends Component {
 
     this.state = {
       showingModal: false,
-      modalContent: null
+      modalContent: null,
+      statusBox: null
     };
 
     this.updateTestimonial = this.updateTestimonial.bind(this);
@@ -28,8 +30,26 @@ class ListTestimonialsPanel extends Component {
       .then(res => {
         this.props.updateTestimonial(res.data, index);
       })
+      .then(() => {
+        this.setState({
+          statusBox: (
+            <StatusBox success>
+              <div><h3>Success!</h3></div>
+              <div>Testimonial updated successfully.</div>
+            </StatusBox>
+          )
+        });
+      })
       .catch(e => {
         console.log(e);
+        this.setState({
+          statusBox: (
+            <StatusBox success={false}>
+              <div><h3>Failure!</h3></div>
+              <div>Testimonial could not be updated.</div>
+            </StatusBox>
+          )
+        });
       });
   }
 
@@ -40,8 +60,26 @@ class ListTestimonialsPanel extends Component {
         this.props.deleteTestimonial(index);
         this.hideModal();
       })
+      .then(() => {
+        this.setState({
+          statusBox: (
+            <StatusBox success>
+              <div><h3>Success!</h3></div>
+              <div>Testimonial deleted successfully.</div>
+            </StatusBox>
+          )
+        });
+      })
       .catch(e => {
         console.log(e);
+        this.setState({
+          statusBox: (
+            <StatusBox success={false}>
+              <div><h3>Failure!</h3></div>
+              <div>Testimonial could not be deleted.</div>
+            </StatusBox>
+          )
+        });
       });
   }
 
@@ -73,12 +111,13 @@ class ListTestimonialsPanel extends Component {
         showingModal={this.state.showingModal}
         modalContent={this.state.modalContent}
         deleteTestimonial={this.deleteTestimonial}
+        statusBox={this.state.statusBox}
       />
     );
   }
 }
 
-const ListTestimonialsPanelView = ({testimonials, updateTestimonial, showingModal, modalContent, deleteTestimonial}) => (
+const ListTestimonialsPanelView = ({testimonials, updateTestimonial, showingModal, modalContent, deleteTestimonial, statusBox}) => (
   <div className="project-list-panel testimonials-list-panel">
     <div className="add-project-wrapper">
       <h2>Add a Testimonial</h2>
@@ -106,7 +145,7 @@ const ListTestimonialsPanelView = ({testimonials, updateTestimonial, showingModa
     <Modal show={showingModal}>
       {modalContent}
     </Modal>
-    <StatusPanel />
+    <StatusPanel statusBoxToAdd={statusBox} />
   </div>
 );
 

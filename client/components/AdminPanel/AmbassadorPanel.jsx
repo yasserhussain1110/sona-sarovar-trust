@@ -46,6 +46,7 @@ const AmbassadorPanelView = ({
         updatedTeamMember={updatedTeamMember}
         addStatusBox={addStatusBox}
         designationRequired={false}
+        deletedTeamMember={() => {}}
       />))}
     </section>
     <StatusPanel statusBoxToAdd={statusBoxToAdd} />

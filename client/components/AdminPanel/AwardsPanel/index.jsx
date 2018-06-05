@@ -5,7 +5,7 @@ import ListAwardsPanel from './ListAwardsPanel';
 
 const AwardsPanel = () => (
   <div className="controller awards-panel">
-    <h1>Testimonials Panel</h1>
+    <h1>Awards Panel</h1>
     <Switch>
       <Route path="/admin/awards/add" component={AddAwardsPanel} />
       <Route path="/admin/awards" component={ListAwardsPanel} />
