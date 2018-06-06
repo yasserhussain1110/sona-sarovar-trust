@@ -27,7 +27,7 @@ class AwardsPanel extends Component {
     this.setState({
       showingModal: true,
       modalContent: (
-        <div>
+        <div className="remove-award-confirmation">
           <h4>Are you sure you want to delete award?</h4>
           <button onClick={() => this.deleteAwardConfirm(awardId)}>Yes</button>
           <button onClick={this.hideModal}>No</button>
@@ -77,8 +77,8 @@ class AwardsPanel extends Component {
 }
 
 const AwardsPanelView = ({awards, deleteAward, showingModal, modalContent, statusBox}) => (
-  <div>
-    <h2>Awards Panel</h2>
+  <div className="list-awards-panel">
+    <h2>List Awards Panel</h2>
     <div className="add-award">
       <NavLink to="/admin/awards/add" className="add-award-button">Add Award</NavLink>
     </div>

@@ -94,7 +94,7 @@ class ListTestimonialsPanel extends Component {
     this.setState({
       showingModal: true,
       modalContent: (
-        <div>
+        <div className="delete-testimonial-confirmation">
           <h4>Are you sure you want to delete testimonial?</h4>
           <button onClick={() => this.deleteTestimonialConfirm(testimonial, index)}>Yes</button>
           <button onClick={this.hideModal}>No</button>

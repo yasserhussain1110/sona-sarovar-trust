@@ -15,6 +15,7 @@ class AddAwardsPanel extends Component {
 
     this.addAwardSuccess = this.addAwardSuccess.bind(this);
     this.addAwardFailure = this.addAwardFailure.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
 
   addAwardSuccess(award) {
@@ -23,7 +24,7 @@ class AddAwardsPanel extends Component {
       statusBox: (
         <StatusBox success>
           <div><h3>Success!</h3></div>
-          <div>Award addedd successfully.</div>
+          <div>Award added successfully.</div>
         </StatusBox>
       )
     });
@@ -40,6 +41,10 @@ class AddAwardsPanel extends Component {
     });
   }
 
+  goBack() {
+    this.props.history.goBack();
+  }
+
   render() {
     return (
       <AddAwardsPanelView
@@ -47,15 +52,23 @@ class AddAwardsPanel extends Component {
         addAwardSuccess={this.addAwardSuccess}
         addAwardFailure={this.addAwardFailure}
         statusBox={this.state.statusBox}
+        goBack={this.goBack}
       />
     );
   }
 }
 
-const AddAwardsPanelView = ({authToken, addAwardSuccess, addAwardFailure, statusBox}) => (
+const AddAwardsPanelView = ({authToken, addAwardSuccess, addAwardFailure, statusBox, goBack}) => (
   <div className="add-awards">
     Add Awards
-    <PicForm authToken={authToken} mode="add" url="/api/awards" close={addAwardFailure} onSuccess={addAwardSuccess} />
+    <PicForm
+      authToken={authToken}
+      mode="add"
+      url="/api/awards"
+      close={goBack}
+      onFailure={addAwardFailure}
+      onSuccess={addAwardSuccess}
+    />
     <StatusPanel statusBoxToAdd={statusBox} />
   </div>
 );
